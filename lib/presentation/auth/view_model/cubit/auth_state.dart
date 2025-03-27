@@ -11,14 +11,19 @@ final class CeckGuestState extends AuthState {
   CeckGuestState(this.isGuest);
 }
 
-final class RegisterViewModelLoading extends AuthState {}
+final class RegisterViewModelLoading extends AuthState {
+  @override
+  List<Object?> get props => [];
+}
 
 final class RegisterViewModelSuccess extends AuthState {
   final AuthResponseEntity response;
 
   RegisterViewModelSuccess(this.response);
-}
 
+  @override
+  List<Object?> get props => [response];
+}
 final class RegisterViewModelFailure extends AuthState {
   final String error;
 

@@ -79,8 +79,10 @@ class AuthCubit extends Cubit<AuthState> {
     );
 
     result.fold(
-      (failureMessage) => emit(RegisterViewModelFailure(failureMessage)),
-      (response) => emit(RegisterViewModelSuccess(response)),
+          (failureMessage) => emit(RegisterViewModelFailure(failureMessage)),
+          (response) {
+        emit(RegisterViewModelSuccess(response)); // ✅ `response` الآن هو `AuthResponseEntity`
+      },
     );
   }
 }

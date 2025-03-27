@@ -3,14 +3,19 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i4;
+import 'dart:async' as _i6;
 
-import 'package:flora_mart/domain/common/result.dart' as _i5;
+import 'package:dartz/dartz.dart' as _i4;
+import 'package:flora_mart/domain/common/result.dart' as _i7;
+import 'package:flora_mart/domain/entity/auth/auth_response_entity.dart'
+    as _i11;
+import 'package:flora_mart/domain/repo_contract/auth_repo.dart' as _i3;
 import 'package:flora_mart/domain/repo_contract/guest_repo.dart' as _i2;
-import 'package:flora_mart/domain/usecase/changeGuest_usecase.dart' as _i7;
-import 'package:flora_mart/domain/usecase/check_guest_usecase.dart' as _i3;
+import 'package:flora_mart/domain/usecase/changeGuest_usecase.dart' as _i9;
+import 'package:flora_mart/domain/usecase/check_guest_usecase.dart' as _i5;
+import 'package:flora_mart/domain/usecase/register_usecase.dart' as _i10;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:mockito/src/dummies.dart' as _i6;
+import 'package:mockito/src/dummies.dart' as _i8;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -31,10 +36,20 @@ class _FakeGuestRepo_0 extends _i1.SmartFake implements _i2.GuestRepo {
     : super(parent, parentInvocation);
 }
 
+class _FakeAuthRepo_1 extends _i1.SmartFake implements _i3.AuthRepo {
+  _FakeAuthRepo_1(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
+}
+
+class _FakeEither_2<L, R> extends _i1.SmartFake implements _i4.Either<L, R> {
+  _FakeEither_2(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
+}
+
 /// A class which mocks [CheckGuestUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockCheckGuestUseCase extends _i1.Mock implements _i3.CheckGuestUseCase {
+class MockCheckGuestUseCase extends _i1.Mock implements _i5.CheckGuestUseCase {
   MockCheckGuestUseCase() {
     _i1.throwOnMissingStub(this);
   }
@@ -48,24 +63,24 @@ class MockCheckGuestUseCase extends _i1.Mock implements _i3.CheckGuestUseCase {
           as _i2.GuestRepo);
 
   @override
-  _i4.Future<_i5.Result<bool>> call() =>
+  _i6.Future<_i7.Result<bool>> call() =>
       (super.noSuchMethod(
             Invocation.method(#call, []),
-            returnValue: _i4.Future<_i5.Result<bool>>.value(
-              _i6.dummyValue<_i5.Result<bool>>(
+            returnValue: _i6.Future<_i7.Result<bool>>.value(
+              _i8.dummyValue<_i7.Result<bool>>(
                 this,
                 Invocation.method(#call, []),
               ),
             ),
           )
-          as _i4.Future<_i5.Result<bool>>);
+          as _i6.Future<_i7.Result<bool>>);
 }
 
 /// A class which mocks [ChangeguestUsecase].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockChangeguestUsecase extends _i1.Mock
-    implements _i7.ChangeguestUsecase {
+    implements _i9.ChangeguestUsecase {
   MockChangeguestUsecase() {
     _i1.throwOnMissingStub(this);
   }
@@ -79,10 +94,65 @@ class MockChangeguestUsecase extends _i1.Mock
           as _i2.GuestRepo);
 
   @override
-  _i4.Future<bool> call({required bool? isGuest}) =>
+  _i6.Future<bool> call({required bool? isGuest}) =>
       (super.noSuchMethod(
             Invocation.method(#call, [], {#isGuest: isGuest}),
-            returnValue: _i4.Future<bool>.value(false),
+            returnValue: _i6.Future<bool>.value(false),
           )
-          as _i4.Future<bool>);
+          as _i6.Future<bool>);
+}
+
+/// A class which mocks [RegisterUsecase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockRegisterUsecase extends _i1.Mock implements _i10.RegisterUsecase {
+  MockRegisterUsecase() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i3.AuthRepo get authRepo =>
+      (super.noSuchMethod(
+            Invocation.getter(#authRepo),
+            returnValue: _FakeAuthRepo_1(this, Invocation.getter(#authRepo)),
+          )
+          as _i3.AuthRepo);
+
+  @override
+  _i6.Future<_i4.Either<String, _i11.AuthResponseEntity>> call({
+    required String? firstName,
+    required String? lastName,
+    required String? email,
+    required String? password,
+    required String? rePassword,
+    required String? phone,
+    required String? gender,
+  }) =>
+      (super.noSuchMethod(
+            Invocation.method(#call, [], {
+              #firstName: firstName,
+              #lastName: lastName,
+              #email: email,
+              #password: password,
+              #rePassword: rePassword,
+              #phone: phone,
+              #gender: gender,
+            }),
+            returnValue:
+                _i6.Future<_i4.Either<String, _i11.AuthResponseEntity>>.value(
+                  _FakeEither_2<String, _i11.AuthResponseEntity>(
+                    this,
+                    Invocation.method(#call, [], {
+                      #firstName: firstName,
+                      #lastName: lastName,
+                      #email: email,
+                      #password: password,
+                      #rePassword: rePassword,
+                      #phone: phone,
+                      #gender: gender,
+                    }),
+                  ),
+                ),
+          )
+          as _i6.Future<_i4.Either<String, _i11.AuthResponseEntity>>);
 }
