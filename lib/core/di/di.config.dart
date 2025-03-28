@@ -28,6 +28,7 @@ import '../api/api_manager.dart' as _i1047;
 import '../cache/shared_pref.dart' as _i299;
 
 extension GetItInjectableX on _i174.GetIt {
+// initializes the registration of main-scope dependencies inside of GetIt
   _i174.GetIt init({
     String? environment,
     _i526.EnvironmentFilter? environmentFilter,
@@ -43,10 +44,10 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i48.GuestDatasourceImpl(gh<_i299.CacheHelper>()));
     gh.factory<_i214.AuthDatasource>(
         () => _i422.AuthDatasourceImpl(gh<_i1047.ApiManager>()));
-    gh.factory<_i233.AuthRepo>(
-        () => _i540.AuthRepoImpl(gh<_i214.AuthDatasource>()));
     gh.factory<_i234.GuestRepo>(
         () => _i905.GuestRepoImpl(gh<_i623.GuestDatasource>()));
+    gh.factory<_i233.AuthRepo>(
+        () => _i540.AuthRepoImpl(gh<_i214.AuthDatasource>()));
     gh.factory<_i285.ChangeguestUsecase>(
         () => _i285.ChangeguestUsecase(gh<_i234.GuestRepo>()));
     gh.factory<_i304.CheckGuestUseCase>(
@@ -58,7 +59,6 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i285.ChangeguestUsecase>(),
           gh<_i626.RegisterUsecase>(),
         ));
-
     return this;
   }
 }

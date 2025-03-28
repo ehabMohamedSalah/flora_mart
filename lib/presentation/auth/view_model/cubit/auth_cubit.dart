@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:flora_mart/core/api/api_result.dart';
 import 'package:flora_mart/domain/common/result.dart';
 import 'package:flora_mart/domain/entity/auth/auth_response_entity.dart';
 import 'package:flora_mart/domain/usecase/changeGuest_usecase.dart';
@@ -14,7 +15,6 @@ part 'auth_state.dart';
 
 @injectable
 class AuthCubit extends Cubit<AuthState> {
-
   final RegisterUsecase registerUsecase;
   final CheckGuestUseCase checkGuestUseCase;
   final ChangeguestUsecase changeGuestUsecase;
@@ -78,11 +78,12 @@ class AuthCubit extends Cubit<AuthState> {
       gender: intent.gender,
     );
 
-    result.fold(
-          (failureMessage) => emit(RegisterViewModelFailure(failureMessage)),
-          (response) {
-        emit(RegisterViewModelSuccess(response)); // ✅ `response` الآن هو `AuthResponseEntity`
-      },
-    );
+    if (result is SuccessApiResult<AuthResponseEntity>) {
+      var successResult = result;
+      emit(RegisterViewModelSuccess(successResult.data!));
+    } else {
+      emit(RegisterViewModelFailure(
+          (result as ErrorApiResult).exception.toString()));
+    }
   }
 }

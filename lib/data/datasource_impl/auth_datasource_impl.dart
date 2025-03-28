@@ -1,11 +1,11 @@
-import 'package:dartz/dartz.dart';
 import 'package:flora_mart/core/api/api_manager.dart';
+import 'package:flora_mart/core/api/api_result.dart';
 import 'package:flora_mart/core/api/endpoints.dart';
 import 'package:flora_mart/data/datasource_contract/auth_datasource.dart';
 import 'package:flora_mart/data/model/auth/auth_response.dart';
 import 'package:injectable/injectable.dart';
 
-@injectable
+@Injectable(as: AuthDatasource)
 class AuthDatasourceImpl extends AuthDatasource {
   final ApiManager apiManager;
 
@@ -13,7 +13,7 @@ class AuthDatasourceImpl extends AuthDatasource {
   AuthDatasourceImpl(this.apiManager);
 
   @override
-  Future<Either<String, AuthResponse>> postRegister({
+  Future<ApiResult<AuthResponse>> postRegister({
     required String firstName,
     required String lastName,
     required String email,
@@ -39,13 +39,14 @@ class AuthDatasourceImpl extends AuthDatasource {
       AuthResponse registerResponse = AuthResponse.fromJson(response.data);
 
       if (registerResponse.token != null) {
-        return right(registerResponse);
+        return SuccessApiResult(registerResponse);
       }
 
-      return left(registerResponse.message ?? "An unknown error occurred");
+      return ErrorApiResult(
+          Exception(registerResponse.message ?? "An unknown error occurred"));
     } catch (err) {
-      return left("Server connection error: ${err.toString()}");
+      return ErrorApiResult(
+          Exception("Server connection error: ${err.toString()}"));
     }
   }
 }
-

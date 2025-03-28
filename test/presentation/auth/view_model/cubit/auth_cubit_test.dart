@@ -1,5 +1,6 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flora_mart/core/api/api_result.dart';
 import 'package:flora_mart/data/model/auth/auth_response.dart';
 import 'package:flora_mart/domain/common/result.dart';
 import 'package:flora_mart/domain/usecase/changeGuest_usecase.dart';
@@ -90,7 +91,7 @@ void main() {
             gender: testGender,
           )).thenAnswer((_) async {
             final authResponse = AuthResponse(token: "dummy_token");
-            return right(authResponse.toLoginResponseEntity());
+            return SuccessApiResult(authResponse.toLoginResponseEntity());
           });
 
           return authCubit;

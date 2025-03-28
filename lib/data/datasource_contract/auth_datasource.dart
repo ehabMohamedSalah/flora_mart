@@ -1,8 +1,8 @@
-import 'package:dartz/dartz.dart';
+import 'package:flora_mart/core/api/api_result.dart';
 import 'package:flora_mart/data/model/auth/auth_response.dart';
 
 abstract class AuthDatasource {
-  Future<Either<String, AuthResponse>> postRegister({
+  Future<ApiResult<AuthResponse>> postRegister({
     required String firstName,
     required String lastName,
     required String email,
@@ -12,4 +12,3 @@ abstract class AuthDatasource {
     required String gender,
   });
 }
-

@@ -1,4 +1,4 @@
-import 'package:dartz/dartz.dart';
+import 'package:flora_mart/core/api/api_result.dart';
 import 'package:flora_mart/domain/entity/auth/auth_response_entity.dart';
 import 'package:flora_mart/domain/repo_contract/auth_repo.dart';
 import 'package:injectable/injectable.dart';
@@ -9,7 +9,7 @@ class RegisterUsecase {
 
   RegisterUsecase(this.authRepo);
 
-  Future<Either<String, AuthResponseEntity>> call({
+  Future<ApiResult<AuthResponseEntity>> call({
     required String firstName,
     required String lastName,
     required String email,

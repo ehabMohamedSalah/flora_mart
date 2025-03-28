@@ -3,12 +3,13 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i4;
+import 'dart:async' as _i3;
 
-import 'package:dartz/dartz.dart' as _i2;
+import 'package:flora_mart/core/api/api_result.dart' as _i4;
 import 'package:flora_mart/domain/entity/auth/auth_response_entity.dart' as _i5;
-import 'package:flora_mart/domain/repo_contract/auth_repo.dart' as _i3;
+import 'package:flora_mart/domain/repo_contract/auth_repo.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:mockito/src/dummies.dart' as _i6;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -24,21 +25,16 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeEither_0<L, R> extends _i1.SmartFake implements _i2.Either<L, R> {
-  _FakeEither_0(Object parent, Invocation parentInvocation)
-    : super(parent, parentInvocation);
-}
-
 /// A class which mocks [AuthRepo].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockAuthRepo extends _i1.Mock implements _i3.AuthRepo {
+class MockAuthRepo extends _i1.Mock implements _i2.AuthRepo {
   MockAuthRepo() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i4.Future<_i2.Either<String, _i5.AuthResponseEntity>> postRegister({
+  _i3.Future<_i4.ApiResult<_i5.AuthResponseEntity>> postRegister({
     required String? firstName,
     required String? lastName,
     required String? email,
@@ -58,8 +54,8 @@ class MockAuthRepo extends _i1.Mock implements _i3.AuthRepo {
               #gender: gender,
             }),
             returnValue:
-                _i4.Future<_i2.Either<String, _i5.AuthResponseEntity>>.value(
-                  _FakeEither_0<String, _i5.AuthResponseEntity>(
+                _i3.Future<_i4.ApiResult<_i5.AuthResponseEntity>>.value(
+                  _i6.dummyValue<_i4.ApiResult<_i5.AuthResponseEntity>>(
                     this,
                     Invocation.method(#postRegister, [], {
                       #firstName: firstName,
@@ -73,5 +69,5 @@ class MockAuthRepo extends _i1.Mock implements _i3.AuthRepo {
                   ),
                 ),
           )
-          as _i4.Future<_i2.Either<String, _i5.AuthResponseEntity>>);
+          as _i3.Future<_i4.ApiResult<_i5.AuthResponseEntity>>);
 }
