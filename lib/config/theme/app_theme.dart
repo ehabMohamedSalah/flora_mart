@@ -40,6 +40,10 @@ class AppTheme {
         fontWeight: FontWeight.bold,
         color: Colors.white,
       ),
+      bodySmall: TextStyle(
+        fontSize: 13,
+        color: ColorManager.grey,
+      )
     ),
 
     // 🔹 شريط التطبيق العلوي (AppBar)

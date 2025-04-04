@@ -5,4 +5,5 @@ class EndPoint {
   static const String forgetPasswordEndpoints="/v1/auth/forgotPassword";
   static const String changePasswordEndpoint = "/v1/auth/change-password";
   static const String signUpEndpoint="/v1/auth/signup";
+  static const String occassionsEndpoint="/v1/occasions";
 }

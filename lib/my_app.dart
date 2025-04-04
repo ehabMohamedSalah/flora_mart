@@ -5,6 +5,9 @@ import 'package:flora_mart/presentation/auth/forget_password/view/forget_passwor
 import 'package:flora_mart/presentation/auth/forget_password/view/forget_password/view/verify_reset_code_screen.dart';
 import 'package:flora_mart/presentation/auth/login/login_screen.dart';
 import 'package:flora_mart/presentation/auth/register/view/register_screen.dart';
+
+import 'package:flora_mart/presentation/tabs/home_tab/home_screen.dart';
+import 'package:flora_mart/presentation/tabs/home_tab/widgets/occasion_widget.dart';
 import 'package:flora_mart/presentation/tabs/main_screen/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -13,15 +16,15 @@ import 'config/theme/app_theme.dart';
 import 'core/utils/routes_manager.dart';
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
 
   @override
   Widget build(
     BuildContext context,
   ) {
     String initialRoute() {
-      bool? rememberMe = CacheHelper.getRememberMe();
-      print("$rememberMe ⭐⭐⭐⭐⭐⭐⭐⭐");
+      bool? rememberMe = CacheHelper.getRememberMe() ;
+      print("$rememberMe ⭐⭐⭐⭐⭐⭐⭐⭐" );
       return rememberMe == true
           ? RouteManager.mainScreen
           : RouteManager.loginScreen;
@@ -35,7 +38,7 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
 
-         
+          home: MainScreen(),
           // routes: {
           //   RouteManager.homeScreen: (context) => HomeScreen(),
           //   RouteManager.cartScreen: (context) => CartScreen(),
@@ -45,6 +48,7 @@ class MyApp extends StatelessWidget {
 
           routes: {
             RouteManager.mainScreen: (context) => MainScreen(),
+            RouteManager.occasionScreen:(context)=>OccasionWidget( ),
             RouteManager.loginScreen: (context) => SignInScreen(),
             RouteManager.registerScreen: (context) => RegisterScreen(),
             RouteManager.forgetPasswordScreen: (context) =>
@@ -59,7 +63,7 @@ class MyApp extends StatelessWidget {
           localizationsDelegates: context.localizationDelegates,
           supportedLocales: context.supportedLocales,
           locale: context.locale,
-          initialRoute: initialRoute(),
+          initialRoute: RouteManager.occasionScreen,
         );
       },
     );
