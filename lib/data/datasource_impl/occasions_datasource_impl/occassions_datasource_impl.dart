@@ -15,7 +15,7 @@ class OccasionsDatasourceImpl extends OccassionsDataSource{
   Future<ApiResult<OccasiosnResponseEntity>> getOccasions()async {
 try{
   var response=  await apiManager.getRequest(Endpoint: EndPoint.occassionsEndpoint);
-  OccasiosnResponse occasionsModel=OccasiosnResponse.fromJson(response);
+  OccasiosnResponse occasionsModel=OccasiosnResponse.fromJson(response.data);
   OccasiosnResponseEntity occasionsEntity=occasionsModel.toOccasiosnResponseEntity();
   return SuccessApiResult (occasionsEntity);
 

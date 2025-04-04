@@ -46,15 +46,22 @@ class HomeCubit extends Cubit<HomeStates> {
   _getHomeOccasion({required GetHomeOccaisonIntent intent}) async {
     emit(GetHomeOccasionLoading());
     final result = await getHomeOccasionUseCase.invoke();
+    print(result);
+    if (result is SuccessApiResult<OccasiosnResponseEntity>)
 
-    switch (result) {
-      case SuccessApiResult():
         {
-          emit(GetHomeOccasionSuccess(occasions: result.data?.occasions ?? []));
+          print("success");
+          emit(GetHomeOccasionSuccess(occasions: result.data));
         }
-      case ErrorApiResult():
-        {
+    else if (result is ErrorApiResult<OccasiosnResponseEntity>)
+         {
+          print("fail");
+          print( result.exception.toString());
+
           emit(GetHomeOccasionError(message: result.exception.toString()));
-        }
+        }else{
+          print("fail");
+          emit(GetHomeOccasionError(message: "Unknown error occurred"));
+
     }
   }}

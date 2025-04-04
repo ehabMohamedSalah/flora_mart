@@ -39,7 +39,7 @@ dependencies:
   flutter_bloc: any
   provider: any
   bloc: any
-  injectable: any
+  injectable: ^2.5.0
 
   build_runner: any
   # add get_it
@@ -58,6 +58,9 @@ dependencies:
   easy_localization: any
   mockito: any
   bloc_test: any
+  skeletonizer: ^1.4.3
+  carousel_slider: ^5.0.0
+  smooth_page_indicator: ^1.2.1
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

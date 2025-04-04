@@ -49,8 +49,7 @@ final class GetHomeOccasionInitial extends HomeStates {}
 final class GetHomeOccasionLoading extends HomeStates {}
 
 final class GetHomeOccasionSuccess extends HomeStates {
-  List<Occasions>? occasions;
-
+  OccasiosnResponseEntity? occasions;
   GetHomeOccasionSuccess({required this.occasions});
 }
 

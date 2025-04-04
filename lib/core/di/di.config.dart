@@ -21,6 +21,8 @@ import '../../data/datasource_contract/forget_password_datasource/verify_reset_c
     as _i574;
 import '../../data/datasource_contract/guest_datasource.dart' as _i623;
 import '../../data/datasource_contract/Login_Data_Source_Repo.dart' as _i557;
+import '../../data/datasource_contract/occasion_datasource/occasions_datasource.dart'
+    as _i331;
 import '../../data/datasource_impl/auth_datasource_impl.dart' as _i422;
 import '../../data/datasource_impl/forget_password_datasource_impl/forget_password_datasource_impl.dart'
     as _i319;
@@ -30,6 +32,8 @@ import '../../data/datasource_impl/forget_password_datasource_impl/verify_reset_
     as _i353;
 import '../../data/datasource_impl/guest_datasource_impl.dart' as _i48;
 import '../../data/datasource_impl/Login_Data_Source_Repo_Impl.dart' as _i878;
+import '../../data/datasource_impl/occasions_datasource_impl/occassions_datasource_impl.dart'
+    as _i626;
 import '../../data/repo_impl/auth_repo_impl.dart' as _i540;
 import '../../data/repo_impl/forget_password_repo_impl/forget_password_repo_impl.dart'
     as _i210;
@@ -39,6 +43,7 @@ import '../../data/repo_impl/forget_password_repo_impl/verify_reset_code_repo_im
     as _i721;
 import '../../data/repo_impl/guest_repo_impl.dart' as _i905;
 import '../../data/repo_impl/Login_Repo_Impl.dart' as _i722;
+import '../../data/repo_impl/occasions_repo_impl.dart' as _i750;
 import '../../domain/repo_contract/auth_repo.dart' as _i233;
 import '../../domain/repo_contract/forget_password_repo_contract/forget_password_repo.dart'
     as _i976;
@@ -48,6 +53,7 @@ import '../../domain/repo_contract/forget_password_repo_contract/verify_reset_co
     as _i544;
 import '../../domain/repo_contract/guest_repo.dart' as _i234;
 import '../../domain/repo_contract/Login_Repo.dart' as _i831;
+import '../../domain/repo_contract/occasions_repo.dart' as _i130;
 import '../../domain/usecase/changeGuest_usecase.dart' as _i285;
 import '../../domain/usecase/check_guest_usecase.dart' as _i304;
 import '../../domain/usecase/forget_password_usecases/forget_password_usecase.dart'
@@ -57,8 +63,11 @@ import '../../domain/usecase/forget_password_usecases/reset_password_usecase.dar
 import '../../domain/usecase/forget_password_usecases/verify_reset_code_usecase.dart'
     as _i323;
 import '../../domain/usecase/login_Usecase.dart' as _i181;
+import '../../domain/usecase/occasions_usecase.dart' as _i896;
 import '../../domain/usecase/register_usecase.dart' as _i626;
 import '../../presentation/auth/view_model/cubit/auth_cubit.dart' as _i351;
+import '../../presentation/tabs/home_tab/view_model/cubit/home_cubit.dart'
+    as _i979;
 import '../api/api_manager.dart' as _i1047;
 import '../cache/shared_pref.dart' as _i299;
 
@@ -88,6 +97,8 @@ extension GetItInjectableX on _i174.GetIt {
             apiManager: gh<_i1047.ApiManager>()));
     gh.factory<_i214.AuthDatasource>(
         () => _i422.AuthDatasourceImpl(gh<_i1047.ApiManager>()));
+    gh.factory<_i331.OccassionsDataSource>(
+        () => _i626.OccasionsDatasourceImpl(gh<_i1047.ApiManager>()));
     gh.factory<_i233.AuthRepo>(
         () => _i540.AuthRepoImpl(gh<_i214.AuthDatasource>()));
     gh.factory<_i557.LoginDataSourceRepo>(() => _i878.LoginDatasourceImpl(
@@ -100,11 +111,17 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i574.VerifyresetcodeRepoDataSource>()));
     gh.factory<_i161.ResetpasswordRepo>(() =>
         _i289.Resetpasswordrepoimpl(gh<_i99.ResetpasswordDataSourceRepo>()));
+    gh.factory<_i130.OccasionsRepo>(
+        () => _i750.OcassionsRepoImpl(gh<_i331.OccassionsDataSource>()));
     gh.factory<_i976.ForgetpasswordRepo>(() => _i210.Forgetpasswordrepoimpl(
         forgetpassword_data_sourse_repo:
             gh<_i206.ForgetpasswordDataSourseRepo>()));
+    gh.factory<_i896.OccassionsUsecase>(
+        () => _i896.OccassionsUsecase(gh<_i130.OccasionsRepo>()));
     gh.factory<_i831.LoginRepo>(
         () => _i722.SigninRepoImpl(gh<_i557.LoginDataSourceRepo>()));
+    gh.factory<_i979.HomeCubit>(
+        () => _i979.HomeCubit(gh<_i896.OccassionsUsecase>()));
     gh.factory<_i285.ChangeguestUsecase>(
         () => _i285.ChangeguestUsecase(gh<_i234.GuestRepo>()));
     gh.factory<_i304.CheckGuestUseCase>(
