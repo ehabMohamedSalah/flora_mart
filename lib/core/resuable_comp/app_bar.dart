@@ -13,7 +13,7 @@ class AppBarWidget extends StatelessWidget {
           icon: Icon(Icons.arrow_back_ios_new,color: Colors.black,size: 25,) ,
 
         ),
-        Text(title??"",style:  Theme.of(context).textTheme.labelLarge?.copyWith(color: Colors.black,),),
+        Text(title??"",style:  Theme.of(context).textTheme.titleLarge?.copyWith(color: Colors.black,),),
 
       ],
     );

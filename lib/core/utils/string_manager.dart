@@ -129,4 +129,6 @@ class AppStrings {
   static String get bySigningUp => "bySigningUp,YouAgreeToOur".tr();
   static String get terms => "terms&Conditions".tr();
   static String get alreadyHaveAnAccount => "alreadyHaveAnAccount?".tr();
+  static String get occasions => "Occasion".tr();
+  static String get BloomWithOurExquisiteBestSellers=>"BloomWithOurExquisiteBestSellers".tr();
 }
