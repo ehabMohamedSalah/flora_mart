@@ -1,9 +1,10 @@
 import 'package:flora_mart/core/resuable_comp/flower_card_resuble/flower_card.dart';
+import 'package:flora_mart/domain/entity/product_entity.dart';
 import 'package:flora_mart/presentation/tabs/categories_tab/categories_screen.dart';
 import 'package:flutter/material.dart';
 
 class FlowerCardBuilder extends StatelessWidget {
-  final List<Products> products;
+  final List<ProductEntity> products;
   const FlowerCardBuilder({super.key, required this.products});
 
   @override

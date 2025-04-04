@@ -45,7 +45,7 @@ class FlowerCard extends StatelessWidget {
                 child: Center(
                     child: CachedNetworkImage(
                   imageUrl: imgCover ?? "",
-                  fit: BoxFit.fill,
+                  fit: BoxFit.cover,
                   width: double.infinity,
                   progressIndicatorBuilder: (context, url, downloadProgress) =>
                       Skeletonizer(

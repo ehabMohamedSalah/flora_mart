@@ -6,13 +6,18 @@ import 'package:flora_mart/presentation/auth/forget_password/view/forget_passwor
 import 'package:flora_mart/presentation/auth/forget_password/view/forget_password/view/reset_password_screen.dart';
 import 'package:flora_mart/presentation/auth/forget_password/view/forget_password/view/verify_reset_code_screen.dart';
 import 'package:flora_mart/presentation/auth/register/view/register_screen.dart';
+import 'package:flora_mart/presentation/tabs/categories_tab/categories_screen.dart';
+import 'package:flora_mart/presentation/tabs/categories_tab/view_model/product_cubit.dart';
+import 'package:flora_mart/presentation/tabs/categories_tab/view_model/product_intent.dart';
 
 import 'package:flora_mart/presentation/tabs/home_tab/home_screen.dart';
 import 'package:flora_mart/presentation/tabs/main_screen/main_screen.dart';
 import 'package:flora_mart/presentation/tabs/profile_tab/profile_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'config/theme/app_theme.dart';
+import 'core/di/di.dart';
 import 'core/utils/routes_manager.dart';
 
 class MyApp extends StatelessWidget {
@@ -56,6 +61,8 @@ class MyApp extends StatelessWidget {
                 VerifyResetCodeScreen(),
             RouteManager.resetPasswordScreen: (context) =>
                 ResetPasswordScreen(),
+            RouteManager.categoriesScreen: (context) =>
+                CategoriesScreen(),
           },
 
           theme: AppTheme.lightTheme,
