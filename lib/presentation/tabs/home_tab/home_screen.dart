@@ -1,8 +1,13 @@
 import 'package:flora_mart/core/resuable_comp/search_bar/custom_searchbar_widget.dart';
 import 'package:flora_mart/core/utils/colors_manager.dart';
 import 'package:flora_mart/core/utils/string_manager.dart';
+import 'package:flora_mart/presentation/best_seller/best_seller_screen.dart';
+import 'package:flora_mart/presentation/tabs/home_tab/bloc_scope/home_bloc_scope.dart';
+import 'package:flora_mart/presentation/tabs/home_tab/view_model/cubit/home_cubit.dart';
+import 'package:flora_mart/presentation/tabs/home_tab/view_model/cubit/home_intent.dart';
 import 'package:flora_mart/presentation/tabs/home_tab/widgets/best_seller_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'widgets/Category widget.dart';
@@ -18,6 +23,12 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<HomeCubit>().doIntent(GetHomeBestSellerIntent());
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -84,7 +95,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                   SizedBox(
-                    height: 100,
+                    height: 120,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
                       itemCount: 20,
@@ -111,26 +122,45 @@ class _HomeScreenState extends State<HomeScreen> {
                         style: Theme.of(context).textTheme.titleLarge,
                       ),
                       Spacer(),
-                      Text(
-                        AppStrings.viewAll,
-                        style: TextStyle(
-                          decoration: TextDecoration.underline,
-                          decorationColor: ColorManager.pinkBase,
-                          decorationThickness: 2.0,
-                          color: ColorManager.pinkBase,
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => HomeBlocScope(
+                                child: BestSellerScreen(),
+                              ),
+                            ),
+                          );
+                        },
+                        child: Text(
+                          AppStrings.viewAll,
+                          style: TextStyle(
+                            decoration: TextDecoration.underline,
+                            decorationColor: ColorManager.pinkBase,
+                            decorationThickness: 2.0,
+                            color: ColorManager.pinkBase,
+                          ),
                         ),
                       ),
                     ],
                   ),
                   SizedBox(
-                    height: 220,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: 20,
-                      itemBuilder: (context, index) {
-                        return BestSellerWidget(
-                          image: 'https://picsum.photos/200',
-                        );
+                    height: 230,
+                    child: BlocBuilder<HomeCubit, HomeStates>(
+                      builder: (context, state) {
+                        if (state is GetHomeBestSellerSuccess) {
+                          return ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: state.bestSellers.length,
+                            itemBuilder: (context, index) {
+                              return BestSellerWidget(
+                                product: state.bestSellers[index],
+                              );
+                            },
+                          );
+                        }
+                        return Center(child: CircularProgressIndicator());
                       },
                     ),
                   ),
@@ -164,7 +194,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                   SizedBox(
-                    height: 200,
+                    height: 210,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
                       itemCount: 20,

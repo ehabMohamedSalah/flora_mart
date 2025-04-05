@@ -32,7 +32,7 @@ final class GetHomeBestSellerInitial extends HomeStates {}
 final class GetHomeBestSellerLoading extends HomeStates {}
 
 final class GetHomeBestSellerSuccess extends HomeStates {
-  final List<String> bestSellers;
+  final List<BestSellerModel> bestSellers;
 
   GetHomeBestSellerSuccess({required this.bestSellers});
 }
