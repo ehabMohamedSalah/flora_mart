@@ -25,43 +25,43 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return HomeBlocScope(
-      child: Scaffold(
-        body: IndexedStack(
-          index: _selectedIndex,
-          children: [
-            HomeScreen(onViewAllTapped: () => _onItemTapped(1)),
-            CategoriesScreen(),
-            CartScreen(),
-            ProfileScreen(),
-          ],
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: AppStrings.home,
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.category_outlined),
-              label: AppStrings.category,
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_cart_outlined),
-              label: AppStrings.cart,
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person_outline),
-              label: AppStrings.profile,
-            ),
-          ],
-          currentIndex: _selectedIndex,
-          selectedItemColor: Theme.of(context).colorScheme.primary,
-          onTap: _onItemTapped,
-          backgroundColor: ColorManager.white,
-          type: BottomNavigationBarType.fixed,
-          elevation: 0,
-        ),
+    return Scaffold(
+      body: IndexedStack(
+        index: _selectedIndex,
+        children: [
+          HomeBlocScope(
+            child: HomeScreen(onViewAllTapped: () => _onItemTapped(1)),
+          ),
+          CategoriesScreen(),
+          CartScreen(),
+          ProfileScreen(),
+        ],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: AppStrings.home,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.category_outlined),
+            label: AppStrings.category,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.shopping_cart_outlined),
+            label: AppStrings.cart,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person_outline),
+            label: AppStrings.profile,
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Theme.of(context).colorScheme.primary,
+        onTap: _onItemTapped,
+        backgroundColor: ColorManager.white,
+        type: BottomNavigationBarType.fixed,
+        elevation: 0,
       ),
     );
   }

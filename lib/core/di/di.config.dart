@@ -64,6 +64,8 @@ import '../../domain/usecase/get_best_sellers_usecase.dart' as _i814;
 import '../../domain/usecase/login_Usecase.dart' as _i181;
 import '../../domain/usecase/register_usecase.dart' as _i626;
 import '../../presentation/auth/view_model/cubit/auth_cubit.dart' as _i351;
+import '../../presentation/best_seller/view_model/cubit/best_seller_cubit.dart'
+    as _i165;
 import '../../presentation/tabs/home_tab/view_model/cubit/home_cubit.dart'
     as _i979;
 import '../api/api_manager.dart' as _i1047;
@@ -143,6 +145,8 @@ extension GetItInjectableX on _i174.GetIt {
         ));
     gh.factory<_i979.HomeCubit>(
         () => _i979.HomeCubit(gh<_i814.GetBestSellersUseCase>()));
+    gh.factory<_i165.BestSellerCubit>(
+        () => _i165.BestSellerCubit(gh<_i814.GetBestSellersUseCase>()));
     return this;
   }
 }

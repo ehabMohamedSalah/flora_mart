@@ -1,47 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:flora_mart/data/model/BestSellerModel.dart';
-import 'package:flora_mart/presentation/tabs/home_tab/widgets/image_widget.dart';
-import 'package:flora_mart/presentation/product_details/product_details_screen.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'image_widget.dart';
 
 class BestSellerWidget extends StatelessWidget {
-  final BestSellerModel product;
+  String image;
 
-  const BestSellerWidget({
-    super.key,
-    required this.product,
-  });
+  BestSellerWidget({required this.image, super.key});
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => ProductDetailsScreen(
-              product: product.toProduct(),
-            ),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ImageWidget(
+            image: image,
           ),
-        );
-      },
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ImageWidget(
-              image: product.imgCover,
-            ),
-            Text(
-              product.title,
-              style: Theme.of(context).textTheme.titleSmall,
-            ),
-            Text(
-              "${product.price} EGP",
-              style: Theme.of(context).textTheme.bodyMedium,
-            ),
-          ],
-        ),
+          Text(
+            "Gift card",
+            style: Theme.of(context).textTheme.titleSmall,
+          ),
+          Text("600 EGP")
+        ],
       ),
     );
   }

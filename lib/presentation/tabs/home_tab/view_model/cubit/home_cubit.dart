@@ -33,17 +33,7 @@ class HomeCubit extends Cubit<HomeStates> {
 
   _getHomeCategories({required GetHomeCatogoriesIntent intent}) async {}
 
-  _getHomeBestSeller({required GetHomeBestSellerIntent intent}) async {
-    emit(GetHomeBestSellerLoading());
-    final result = await getBestSellersUseCase.invoke();
-
-    switch (result) {
-      case SuccessApiResult(data: final data):
-        emit(GetHomeBestSellerSuccess(bestSellers: data ?? []));
-      case ErrorApiResult(exception: final error):
-        emit(GetHomeBestSellerError(message: error.toString()));
-    }
-  }
+  _getHomeBestSeller({required GetHomeBestSellerIntent intent}) async {}
 
   _getHomeOccasion({required GetHomeOccaisonIntent intent}) async {}
 }

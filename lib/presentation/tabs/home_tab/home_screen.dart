@@ -2,6 +2,7 @@ import 'package:flora_mart/core/resuable_comp/search_bar/custom_searchbar_widget
 import 'package:flora_mart/core/utils/colors_manager.dart';
 import 'package:flora_mart/core/utils/string_manager.dart';
 import 'package:flora_mart/presentation/best_seller/best_seller_screen.dart';
+import 'package:flora_mart/presentation/best_seller/bloc_scope/best_seller_bloc_scope.dart';
 import 'package:flora_mart/presentation/tabs/home_tab/bloc_scope/home_bloc_scope.dart';
 import 'package:flora_mart/presentation/tabs/home_tab/view_model/cubit/home_cubit.dart';
 import 'package:flora_mart/presentation/tabs/home_tab/view_model/cubit/home_intent.dart';
@@ -127,7 +128,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => HomeBlocScope(
+                              builder: (context) => BestSellerBlocScope(
                                 child: BestSellerScreen(),
                               ),
                             ),
@@ -147,25 +148,15 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   SizedBox(
                     height: 230,
-                    child: BlocBuilder<HomeCubit, HomeStates>(
-                      builder: (context, state) {
-                        if (state is GetHomeBestSellerSuccess) {
-                          return ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: state.bestSellers.length,
-                            itemBuilder: (context, index) {
-                              return BestSellerWidget(
-                                product: state.bestSellers[index],
-                              );
-                            },
-                          );
-                        }
-                        return Center(child: CircularProgressIndicator());
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: 20,
+                      itemBuilder: (context, index) {
+                        return BestSellerWidget(
+                          image: 'https://picsum.photos/200',
+                        );
                       },
                     ),
-                  ),
-                  SizedBox(
-                    height: 10,
                   ),
                 ],
               ),

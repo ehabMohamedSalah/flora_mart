@@ -1,8 +1,8 @@
-import 'package:flora_mart/presentation/tabs/home_tab/view_model/cubit/home_intent.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flora_mart/core/resuable_comp/flower_card_resuble/flower_card_builder.dart';
-import 'package:flora_mart/presentation/tabs/home_tab/view_model/cubit/home_cubit.dart';
+import 'package:flora_mart/presentation/best_seller/view_model/cubit/best_seller_cubit.dart';
+import 'package:flora_mart/presentation/best_seller/view_model/cubit/best_seller_intent.dart';
 import 'package:flora_mart/core/utils/string_manager.dart';
 
 class BestSellerScreen extends StatefulWidget {
@@ -16,7 +16,7 @@ class _BestSellerScreenState extends State<BestSellerScreen> {
   @override
   void initState() {
     super.initState();
-    context.read<HomeCubit>().doIntent(GetHomeBestSellerIntent());
+    context.read<BestSellerCubit>().doIntent(GetBestSellersIntent());
   }
 
   @override
@@ -25,18 +25,18 @@ class _BestSellerScreenState extends State<BestSellerScreen> {
       appBar: AppBar(
         title: Text(AppStrings.bestSeller),
       ),
-      body: BlocBuilder<HomeCubit, HomeStates>(
+      body: BlocBuilder<BestSellerCubit, BestSellerStates>(
         builder: (context, state) {
           switch (state) {
-            case GetHomeBestSellerLoading():
+            case GetBestSellersLoading():
               return Center(child: CircularProgressIndicator());
 
-            case GetHomeBestSellerSuccess():
+            case GetBestSellersSuccess():
               return FlowerCardBuilder(
                 products: state.bestSellers.map((e) => e.toProduct()).toList(),
               );
 
-            case GetHomeBestSellerError():
+            case GetBestSellersError():
               return Center(
                 child: Text(state.message),
               );
