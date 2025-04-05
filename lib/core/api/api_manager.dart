@@ -11,12 +11,6 @@ class ApiManager{
     dio = Dio(
       BaseOptions(
           baseUrl: Constant.baseUrl,
-          validateStatus: (status){
-            if(status!<500){
-              return true;
-            }
-            return false;
-          }
       ),);
   }
 

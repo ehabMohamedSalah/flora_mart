@@ -4,16 +4,18 @@ import 'package:flutter/material.dart';
 class AppTheme {
   static ThemeData lightTheme = ThemeData(
     primaryColor: ColorManager.primaryColor,
-    scaffoldBackgroundColor: Colors.white,
-    fontFamily: 'Roboto',
+    scaffoldBackgroundColor: ColorManager.backgroundColor,
+    fontFamily: 'Inter',
 
     // 🎨 ألوان التطبيق
     colorScheme: ColorScheme.light(
       primary: ColorManager.primaryColor, // اللون الأساسي
-      secondary: Colors.black87, // الخلفية
+      secondary: Colors.black87,
       surface: Colors.white, // سطح البطاقات
       onPrimary: Colors.white, // لون النص على اللون الأساسي
       onSecondary: Colors.black, // لون النص على الخلفية
+      error: ColorManager.errorColor,
+      onError: Colors.white,
       onSurface: Colors.black87, // لون النص على البطاقات
     ),
 
@@ -30,7 +32,8 @@ class AppTheme {
       ),
       bodyMedium: TextStyle(
         fontSize: 14,
-        color: Colors.black54,
+        color: Colors.black,
+        fontWeight: FontWeight.w700,
       ),
       labelLarge: TextStyle(
         fontSize: 16,
@@ -54,11 +57,10 @@ class AppTheme {
     // 🔘 تصميم الأزرار (Buttons)
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.pinkAccent,
+        backgroundColor: ColorManager.addToCartButtonColor,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(32),
         ),
-        padding: EdgeInsets.symmetric(vertical: 12, horizontal: 20),
       ),
     ),
 
@@ -83,9 +85,18 @@ class AppTheme {
     // 🏠 تصميم شريط التنقل السفلي (Bottom Navigation Bar)
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: Colors.white,
-      selectedItemColor: Colors.pinkAccent,
+      selectedItemColor: ColorManager.primaryColor,
       unselectedItemColor: Colors.black54,
       showUnselectedLabels: true,
+    ),
+
+    tabBarTheme: TabBarTheme(
+      labelColor: ColorManager.primaryColor,
+      dividerColor: Colors.transparent,
+      indicatorSize: TabBarIndicatorSize.tab,
+      indicatorColor: ColorManager.primaryColor,
+      unselectedLabelColor: Colors.grey,
+      tabAlignment: TabAlignment.start,
     ),
 
     // 🛒 تصميم بطاقات المنتجات (Cards)

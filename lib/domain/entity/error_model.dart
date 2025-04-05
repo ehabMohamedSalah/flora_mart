@@ -11,7 +11,7 @@ class ErrorModel {
   List<ErrorData>? errors; // ✅ تغيير errors إلى List
 
   ErrorModel.fromJson(dynamic json) {
-    message = json['message'];
+    message = json['error'];
 
     // ✅ التأكد من أن errors هي قائمة
     if (json['errors'] != null) {

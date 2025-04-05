@@ -1,18 +1,21 @@
-import 'package:flutter/material.dart';
+// ignore_for_file: must_be_immutable
 
-import '../utils/colors_manager.dart';
+import 'package:flutter/material.dart';
 
 class CustomTextButton extends StatelessWidget {
   Color color;
   Color textColor;
   String text;
+  final Color borderColor;
   void Function()? onPressed;
 
   CustomTextButton(
-      {required this.onPressed,
-        required this.text,
-        required this.color,
-        required this.textColor});
+      {super.key,
+      required this.onPressed,
+      required this.borderColor,
+      required this.text,
+      required this.color,
+      required this.textColor});
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +26,7 @@ class CustomTextButton extends StatelessWidget {
               backgroundColor: color,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
-                  side:
-                  const BorderSide(color: ColorManager.primaryColor, width: 2))),
+                  side: BorderSide(color: borderColor, width: 2))),
           onPressed: onPressed,
           child: Text(text,
               style: TextStyle(
