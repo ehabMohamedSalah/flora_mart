@@ -20,7 +20,11 @@ class CategoryWidget extends StatelessWidget {
               borderRadius: BorderRadius.circular(20),
             ),
           ),
-          Text("Gift card")
+          Flexible(
+            child: Text(
+              "Gift card",
+            ),
+          )
         ],
       ),
     );

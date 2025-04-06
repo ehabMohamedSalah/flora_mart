@@ -3,7 +3,6 @@ import 'package:flora_mart/core/utils/colors_manager.dart';
 import 'package:flora_mart/core/utils/string_manager.dart';
 import 'package:flora_mart/presentation/best_seller/best_seller_screen.dart';
 import 'package:flora_mart/presentation/best_seller/bloc_scope/best_seller_bloc_scope.dart';
-import 'package:flora_mart/presentation/tabs/home_tab/bloc_scope/home_bloc_scope.dart';
 import 'package:flora_mart/presentation/tabs/home_tab/view_model/cubit/home_cubit.dart';
 import 'package:flora_mart/presentation/tabs/home_tab/view_model/cubit/home_intent.dart';
 import 'package:flora_mart/presentation/tabs/home_tab/widgets/best_seller_widget.dart';
@@ -27,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    context.read<HomeCubit>().doIntent(GetHomeBestSellerIntent());
+    context.read<HomeCubit>().doIntent(getHomeDataIntent());
   }
 
   @override
