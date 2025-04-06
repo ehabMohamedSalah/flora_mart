@@ -14,4 +14,5 @@ class RouteManager {
   static const String registerScreen = "/REGISTERSCREEN";
 
 
+  static const String productDetailsScreen = "/productDetailsScreen";
 }

@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 
 class CustomTextButton extends StatelessWidget {
@@ -8,7 +10,8 @@ class CustomTextButton extends StatelessWidget {
   void Function()? onPressed;
 
   CustomTextButton(
-      {required this.onPressed,
+      {super.key,
+      required this.onPressed,
       required this.borderColor,
       required this.text,
       required this.color,

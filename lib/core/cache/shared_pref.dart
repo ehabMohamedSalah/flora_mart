@@ -2,10 +2,9 @@ import 'package:injectable/injectable.dart';
 import 'dart:developer';
 
 import 'package:flora_mart/core/constant.dart';
-import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-@singleton
 
+@singleton
 @singleton
 class CacheHelper {
   static SharedPreferences? _sharedPrefs;
@@ -15,7 +14,8 @@ class CacheHelper {
   CacheHelper() {
     init();
     log("Constructor called shared prefs");
-  } static void initForTest(SharedPreferences prefs) {
+  }
+  static void initForTest(SharedPreferences prefs) {
     _sharedPrefs = prefs;
   }
 
@@ -45,12 +45,13 @@ class CacheHelper {
       return false;
     }
   }
+
   static T? getRememberMe<T>() {
     if (_sharedPrefs == null) return null;
     return _sharedPrefs!.getBool(Constant.isRememberMe) as T?;
   }
+
   //========USAGE=========\\
-  /// bool set = await CacheHelper.setData<String>("token", response.data['token']);
   Future<bool> setData<T>(String key, T value) async {
     await _ensureInitialized();
     if (value is String) {
@@ -69,7 +70,6 @@ class CacheHelper {
   }
 
   //========USAGE=========\\
-  /// String? token = CacheHelper.getData<String>("token");
   Future<T> getData<T>(String key) async {
     await _ensureInitialized();
 
@@ -87,7 +87,6 @@ class CacheHelper {
       throw Exception("Invalid type");
     }
   }
-
 
   Future<bool> removeData(String key) async {
     await _ensureInitialized();

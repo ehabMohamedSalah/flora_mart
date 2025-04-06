@@ -1,11 +1,7 @@
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flora_mart/presentation/auth/view_model/cubit/auth_cubit.dart';
-import 'package:flora_mart/core/cache/shared_pref.dart';
 import 'package:flora_mart/core/observer/BlocObserver.dart';
 import 'package:flora_mart/presentation/auth/view_model/cubit/auth_intent.dart';
-import 'package:flora_mart/presentation/tabs/categories_tab/view_model/product_cubit.dart';
-import 'package:flora_mart/presentation/tabs/categories_tab/view_model/product_intent.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -19,6 +15,7 @@ void main() async {
   configureDependencies();
   Bloc.observer = MyBlocObserver();
   ApiManager.init();
+
   final authCubit = getIt<AuthCubit>()..doIntent(CheckAuthIntent());
   runApp(
       EasyLocalization(
@@ -27,15 +24,8 @@ void main() async {
       // <-- change the path of the translation files
       fallbackLocale: Locale('en'),
       startLocale: Locale("en"),
-      child: MultiBlocProvider(
-        providers: [
-          BlocProvider<AuthCubit>(
-            create: (context) => getIt<AuthCubit>()..doIntent(CheckAuthIntent()),
-          ),
-          BlocProvider<ProductCubit>(
-            create: (context) => getIt<ProductCubit>()..doIntent(GetProductsIntent("")),
-          ),
-        ],
+      child: BlocProvider<AuthCubit>(
+        create: (context) => authCubit,
         child: MyApp(),
       ),));
 }
