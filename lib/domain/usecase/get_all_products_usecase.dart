@@ -3,6 +3,8 @@ import 'package:flora_mart/domain/entity/product_entity.dart';
 import 'package:flora_mart/domain/repo_contract/get_all_products_repo.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../data/model/products/Products.dart';
+
 
 @injectable
 class GetAllProductsUsecase {
@@ -10,6 +12,6 @@ class GetAllProductsUsecase {
 
   GetAllProductsUsecase(this.getAllProductsRepo);
 
-  Future<ApiResult<List<ProductEntity>>> execute(String categoryId) =>
+  Future<ApiResult<List<Products>>> execute(String categoryId) =>
       getAllProductsRepo.getAllProducts(categoryId);
 }

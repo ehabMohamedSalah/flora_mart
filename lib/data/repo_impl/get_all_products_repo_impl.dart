@@ -4,6 +4,8 @@ import 'package:flora_mart/domain/entity/product_entity.dart';
 import 'package:flora_mart/domain/repo_contract/get_all_products_repo.dart';
 import 'package:injectable/injectable.dart';
 
+import '../model/products/Products.dart';
+
 @Injectable(as: GetAllProductsRepo)
 class GetAllProductsRepoImpl implements GetAllProductsRepo {
   final GetAllProductsDatasource getAllProductsDatasource;
@@ -11,7 +13,7 @@ class GetAllProductsRepoImpl implements GetAllProductsRepo {
   GetAllProductsRepoImpl(this.getAllProductsDatasource);
 
   @override
-  Future<ApiResult<List<ProductEntity>>> getAllProducts(String categoryId) {
+  Future<ApiResult<List<Products>>> getAllProducts(String categoryId) {
     return getAllProductsDatasource.getAllProducts(categoryId);
   }
 }

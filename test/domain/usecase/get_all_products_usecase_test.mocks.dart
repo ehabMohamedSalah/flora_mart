@@ -6,7 +6,7 @@
 import 'dart:async' as _i3;
 
 import 'package:flora_mart/core/api/api_result.dart' as _i4;
-import 'package:flora_mart/domain/entity/product_entity.dart' as _i5;
+import 'package:flora_mart/data/model/products/Products.dart' as _i5;
 import 'package:flora_mart/domain/repo_contract/get_all_products_repo.dart'
     as _i2;
 import 'package:mockito/mockito.dart' as _i1;
@@ -36,18 +36,17 @@ class MockGetAllProductsRepo extends _i1.Mock
   }
 
   @override
-  _i3.Future<_i4.ApiResult<List<_i5.ProductEntity>>> getAllProducts(
+  _i3.Future<_i4.ApiResult<List<_i5.Products>>> getAllProducts(
     String? categoryId,
   ) =>
       (super.noSuchMethod(
             Invocation.method(#getAllProducts, [categoryId]),
-            returnValue:
-                _i3.Future<_i4.ApiResult<List<_i5.ProductEntity>>>.value(
-                  _i6.dummyValue<_i4.ApiResult<List<_i5.ProductEntity>>>(
-                    this,
-                    Invocation.method(#getAllProducts, [categoryId]),
-                  ),
-                ),
+            returnValue: _i3.Future<_i4.ApiResult<List<_i5.Products>>>.value(
+              _i6.dummyValue<_i4.ApiResult<List<_i5.Products>>>(
+                this,
+                Invocation.method(#getAllProducts, [categoryId]),
+              ),
+            ),
           )
-          as _i3.Future<_i4.ApiResult<List<_i5.ProductEntity>>>);
+          as _i3.Future<_i4.ApiResult<List<_i5.Products>>>);
 }

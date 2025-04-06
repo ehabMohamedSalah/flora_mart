@@ -1,6 +1,7 @@
 
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flora_mart/core/api/api_result.dart';
+import 'package:flora_mart/data/model/products/Products.dart';
 import 'package:flora_mart/domain/entity/product_entity.dart';
 import 'package:flora_mart/domain/usecase/get_all_products_usecase.dart';
 import 'package:flora_mart/presentation/tabs/categories_tab/view_model/product_cubit.dart';
@@ -25,10 +26,10 @@ void main() {
       productCubit = ProductCubit(getAllProductsUsecase: getAllProductsUsecase);
 
       // Provide a dummy value for ApiResult<List<ProductEntity>> using provideDummy
-      provideDummy<ApiResult<List<ProductEntity>>>(
+      provideDummy<ApiResult<List<Products>>>(
           SuccessApiResult(
               [
-                ProductEntity(
+                Products(
                     id: "673e1cd711599201718280fb",
                     title: "Wdding Flower",
                     slug: "wdding-flower",
@@ -51,7 +52,7 @@ void main() {
                     rateAvg: 3.5,
                     rateCount: 30
                 ),
-                ProductEntity(
+                Products(
                     id: "673e2bd91159920171828139",
                     title: "Red Wdding Flower",
                     slug: "red-wdding-flower",
@@ -87,7 +88,7 @@ void main() {
         when(getAllProductsUsecase.execute(testCategoryId))
             .thenAnswer((_) async => SuccessApiResult(
             [
-              ProductEntity(
+              Products(
                   id: "673e1cd711599201718280fb",
                   title: "Wdding Flower",
                   slug: "wdding-flower",
@@ -110,7 +111,7 @@ void main() {
                   rateAvg: 3.5,
                   rateCount: 30
               ),
-              ProductEntity(
+              Products(
                   id: "673e2bd91159920171828139",
                   title: "Red Wdding Flower",
                   slug: "red-wdding-flower",

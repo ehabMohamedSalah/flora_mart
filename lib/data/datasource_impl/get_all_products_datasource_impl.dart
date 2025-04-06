@@ -6,6 +6,7 @@ import 'package:injectable/injectable.dart';
 import '../../core/api/api_excuter.dart';
 import '../../core/api/api_manager.dart';
 import '../../core/api/endpoints.dart';
+import '../model/products/Products.dart';
 
 @Injectable(as: GetAllProductsDatasource)
 class GetAllProductsDatasourceImpl implements GetAllProductsDatasource {
@@ -15,8 +16,8 @@ class GetAllProductsDatasourceImpl implements GetAllProductsDatasource {
 
 
   @override
-  Future<ApiResult<List<ProductEntity>>> getAllProducts(String categoryId) async {
-    return await executeApi<List<ProductEntity>>(() async {
+  Future<ApiResult<List<Products>>> getAllProducts(String categoryId) async {
+    return await executeApi<List<Products>>(() async {
       var response;
       if(categoryId == " ") {
          response = await apiManager.getRequest(
@@ -31,7 +32,7 @@ class GetAllProductsDatasourceImpl implements GetAllProductsDatasource {
       }
 
       final products = response.data['products'] as List;
-      return products.map((e) => ProductModel.fromJson(e)).toList();
+      return products.map((e) => Products.fromJson(e)).toList();
     });
   }
 }

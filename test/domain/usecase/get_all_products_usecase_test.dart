@@ -1,4 +1,5 @@
 import 'package:flora_mart/core/api/api_result.dart';
+import 'package:flora_mart/data/model/products/Products.dart';
 import 'package:flora_mart/domain/entity/product_entity.dart';
 import 'package:flora_mart/domain/repo_contract/get_all_products_repo.dart';
 import 'package:flora_mart/domain/usecase/get_all_products_usecase.dart';
@@ -11,8 +12,8 @@ import 'get_all_products_usecase_test.mocks.dart';
 @GenerateMocks([GetAllProductsRepo])
 void main() {
 
-  provideDummy<ApiResult<List<ProductEntity>>>(SuccessApiResult([]));
-  provideDummy<ApiResult<List<ProductEntity>>>(ErrorApiResult(Exception("Dummy error")));
+  provideDummy<ApiResult<List<Products>>>(SuccessApiResult([]));
+  provideDummy<ApiResult<List<Products>>>(ErrorApiResult(Exception("Dummy error")));
 
   late GetAllProductsUsecase getAllProductsUsecase;
   late MockGetAllProductsRepo mockGetAllProductsRepo;
@@ -27,8 +28,8 @@ void main() {
 
     test('should return SuccessApiResult when products are retrieved successfully', () async {
       // Arrange
-      final List<ProductEntity> productList = [
-        ProductEntity(
+      final List<Products> productList = [
+        Products(
             id: "673e1cd711599201718280fb",
             title: "Wdding Flower",
             slug: "wdding-flower",
@@ -50,7 +51,7 @@ void main() {
             sold: 677,
             rateAvg: 3.5,
             rateCount: 30),
-        ProductEntity(
+        Products(
             id: "673e2bd91159920171828139",
             title: "Red Wdding Flower",
             slug: "red-wdding-flower",

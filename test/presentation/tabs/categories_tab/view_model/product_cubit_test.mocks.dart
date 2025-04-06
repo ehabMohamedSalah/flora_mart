@@ -6,7 +6,7 @@
 import 'dart:async' as _i4;
 
 import 'package:flora_mart/core/api/api_result.dart' as _i5;
-import 'package:flora_mart/domain/entity/product_entity.dart' as _i6;
+import 'package:flora_mart/data/model/products/Products.dart' as _i6;
 import 'package:flora_mart/domain/repo_contract/get_all_products_repo.dart'
     as _i2;
 import 'package:flora_mart/domain/usecase/get_all_products_usecase.dart' as _i3;
@@ -54,18 +54,15 @@ class MockGetAllProductsUsecase extends _i1.Mock
           as _i2.GetAllProductsRepo);
 
   @override
-  _i4.Future<_i5.ApiResult<List<_i6.ProductEntity>>> execute(
-    String? categoryId,
-  ) =>
+  _i4.Future<_i5.ApiResult<List<_i6.Products>>> execute(String? categoryId) =>
       (super.noSuchMethod(
             Invocation.method(#execute, [categoryId]),
-            returnValue:
-                _i4.Future<_i5.ApiResult<List<_i6.ProductEntity>>>.value(
-                  _i7.dummyValue<_i5.ApiResult<List<_i6.ProductEntity>>>(
-                    this,
-                    Invocation.method(#execute, [categoryId]),
-                  ),
-                ),
+            returnValue: _i4.Future<_i5.ApiResult<List<_i6.Products>>>.value(
+              _i7.dummyValue<_i5.ApiResult<List<_i6.Products>>>(
+                this,
+                Invocation.method(#execute, [categoryId]),
+              ),
+            ),
           )
-          as _i4.Future<_i5.ApiResult<List<_i6.ProductEntity>>>);
+          as _i4.Future<_i5.ApiResult<List<_i6.Products>>>);
 }

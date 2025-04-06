@@ -6,6 +6,5 @@ class EndPoint {
   static const String changePasswordEndpoint = "/v1/auth/change-password";
   static const String signUpEndpoint="/v1/auth/signup";
   static const String getAllProductsEndpoint="/v1/products";
-  static const String signUpEndpoint = "/v1/auth/signup";
   static const String bestSellerEndpoint = "/v1/best-seller";
 }
