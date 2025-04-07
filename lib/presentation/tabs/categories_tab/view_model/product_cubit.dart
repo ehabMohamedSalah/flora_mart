@@ -11,9 +11,9 @@ class ProductCubit extends Cubit<ProductState> {
 
   ProductCubit({required this.getAllProductsUsecase}) : super(ProductInitial());
 
-  Future<void> _getProducts(String categoryId) async {
+  Future<void> _getProducts(String typeId,String type) async {
     emit(ProductLoadingState());
-    final result = await getAllProductsUsecase.execute(categoryId);
+    final result = await getAllProductsUsecase.execute(typeId,type);
 
     switch (result) {
       case SuccessApiResult():
@@ -26,7 +26,7 @@ class ProductCubit extends Cubit<ProductState> {
   void doIntent(ProductIntent intent) {
     switch (intent) {
       case GetProductsIntent():
-        _getProducts(intent.categoryId);
+        _getProducts(intent.typeId,intent.type);
         break;
     }
   }

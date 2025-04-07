@@ -19,7 +19,8 @@ void main() {
     late GetAllProductsUsecase getAllProductsUsecase;
     late ProductCubit productCubit;
 
-    const String testCategoryId = 'category_123';
+    const String testTypeId = 'category_123';
+    const String testType = 'category';
 
     setUp(() {
       getAllProductsUsecase = MockGetAllProductsUsecase();
@@ -85,7 +86,7 @@ void main() {
       'emits [ProductLoadingState, ProductLoadedState] when getProducts is successful',
       build: () {
         // Mock the result of the use case
-        when(getAllProductsUsecase.execute(testCategoryId))
+        when(getAllProductsUsecase.execute(testTypeId,testType))
             .thenAnswer((_) async => SuccessApiResult(
             [
               Products(
@@ -139,7 +140,7 @@ void main() {
         ));
         return productCubit;
       },
-      act: (cubit) => cubit.doIntent(GetProductsIntent(testCategoryId)),
+      act: (cubit) => cubit.doIntent(GetProductsIntent(testTypeId,testType)),
       expect: () => [
         isA<ProductLoadingState>(),
         isA<ProductLoadedState>(),
@@ -150,11 +151,11 @@ void main() {
       'emits [ProductLoadingState, ProductErrorState] when getProducts fails',
       build: () {
         // Mock the error result of the use case
-        when(getAllProductsUsecase.execute(testCategoryId))
+        when(getAllProductsUsecase.execute(testTypeId,testType))
             .thenAnswer((_) async => ErrorApiResult(Exception('Failed to load products')));
         return productCubit;
       },
-      act: (cubit) => cubit.doIntent(GetProductsIntent( testCategoryId)),
+      act: (cubit) => cubit.doIntent(GetProductsIntent( testTypeId,testType)),
       expect: () => [
         isA<ProductLoadingState>(),
         isA<ProductErrorState>(),

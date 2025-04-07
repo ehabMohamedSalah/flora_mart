@@ -24,7 +24,8 @@ void main() {
   });
 
   group('GetAllProductsUsecase Tests', () {
-    const String testCategoryId = 'category123';
+    const String testTypeId = 'category123';
+    const String testType = 'category';
 
     test('should return SuccessApiResult when products are retrieved successfully', () async {
       // Arrange
@@ -75,33 +76,33 @@ void main() {
             rateAvg: 5,
             rateCount: 0),
       ];
-      when(mockGetAllProductsRepo.getAllProducts(testCategoryId))
+      when(mockGetAllProductsRepo.getAllProducts(testTypeId,testType))
           .thenAnswer((_) async => SuccessApiResult(productList));
 
       // Act
-      final result = await getAllProductsUsecase.execute(testCategoryId);
+      final result = await getAllProductsUsecase.execute(testTypeId,testType);
 
       // Assert
-      expect(result, isA<SuccessApiResult<List<ProductEntity>>>());
+      expect(result, isA<SuccessApiResult<List<Products>>>());
       expect((result as SuccessApiResult).data, isNotEmpty);
       //expect(result.data!.length, 2);
-      verify(mockGetAllProductsRepo.getAllProducts(testCategoryId)).called(1);
+      verify(mockGetAllProductsRepo.getAllProducts(testTypeId,testType)).called(1);
       verifyNoMoreInteractions(mockGetAllProductsRepo);
     });
 
     test('should return ErrorApiResult when an error occurs while retrieving products', () async {
       // Arrange
       final error = Exception('Failed to load products');
-      when(mockGetAllProductsRepo.getAllProducts(testCategoryId))
+      when(mockGetAllProductsRepo.getAllProducts(testTypeId,testType))
           .thenAnswer((_) async => ErrorApiResult(error));
 
       // Act
-      final result = await getAllProductsUsecase.execute(testCategoryId);
+      final result = await getAllProductsUsecase.execute(testTypeId,testType);
 
       // Assert
-      expect(result, isA<ErrorApiResult<List<ProductEntity>>>());
+      expect(result, isA<ErrorApiResult<List<Products>>>());
       expect((result as ErrorApiResult).exception.toString(), contains('Failed to load products'));
-      verify(mockGetAllProductsRepo.getAllProducts(testCategoryId)).called(1);
+      verify(mockGetAllProductsRepo.getAllProducts(testTypeId,testType)).called(1);
       verifyNoMoreInteractions(mockGetAllProductsRepo);
     });
   });

@@ -6,11 +6,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProductScreen extends StatelessWidget {
 
-  final String categoryId;
+  final String typeId;
+  final String type;
 
   const ProductScreen({
     super.key,
-    required this.categoryId,
+    required this.typeId,
+    required this.type,
   });
 
 
