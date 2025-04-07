@@ -1,103 +1,93 @@
+import 'package:flora_mart/core/di/di.dart';
 import 'package:flora_mart/core/resuable_comp/search_bar/custom_searchbar_widget.dart';
 import 'package:flora_mart/core/utils/colors_manager.dart';
 import 'package:flora_mart/core/utils/string_manager.dart';
+import 'package:flora_mart/presentation/tabs/categories_tab/view/widget/product_screen.dart';
 import 'package:flora_mart/presentation/tabs/categories_tab/view/widget/tab_categories.dart';
+import 'package:flora_mart/presentation/tabs/categories_tab/view_model/product_cubit.dart';
+import 'package:flora_mart/presentation/tabs/categories_tab/view_model/product_intent.dart';
 import 'package:flutter/material.dart';
-import 'package:flora_mart/core/resuable_comp/flower_card_resuble/flower_card_builder.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class CategoriesScreen extends StatelessWidget {
+class CategoriesScreen extends StatefulWidget {
   const CategoriesScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    List<Products> products = [
-      //list of products for testing
-      Products(
-        title: "Wdding Flower",
-        imgCover:
-            "https://flower.elevateegy.com/uploads/fefa790a-f0c1-42a0-8699-34e8fc065812-cover_image.png",
-        price: 440,
-        priceAfterDiscount: 100,
-        discount: 50,
-      ),
-      Products(
-        title: "Red Wdding Flower",
-        imgCover:
-            "https://flower.elevateegy.com/uploads/5452abf4-2040-43d7-bb3d-3ae8f53c4576-cover_image.png",
-        price: 440,
-        priceAfterDiscount: 100,
-        discount: 50,
-      ),
-      Products(
-        title: "Wdding Flower",
-        imgCover:
-            "https://flower.elevateegy.com/uploads/5165a2c1-3e6c-44db-96f3-97ee83a29da9-cover_image.png",
-        price: 440,
-        priceAfterDiscount: 100,
-        discount: 50,
-      ),
-      Products(
-        title: "Wdding Flower",
-        imgCover:
-            "https://flower.elevateegy.com/uploads/5165a2c1-3e6c-44db-96f3-97ee83a29da9-cover_image.png",
-        price: 440,
-        priceAfterDiscount: 100,
-        discount: 50,
-      ),
-      Products(
-        title: "Wdding Flower",
-        imgCover:
-            "https://flower.elevateegy.com/uploads/5165a2c1-3e6c-44db-96f3-97ee83a29da9-cover_image.png",
-        price: 440,
-        priceAfterDiscount: 100,
-        discount: 50,
-      ),
-      Products(
-        title: "Wdding Flower",
-        imgCover:
-            "https://flower.elevateegy.com/uploads/5165a2c1-3e6c-44db-96f3-97ee83a29da9-cover_image.png",
-        price: 440,
-        priceAfterDiscount: 100,
-        discount: 50,
-      ),
-      Products(
-        title: "Wdding Flower",
-        imgCover:
-            "https://flower.elevateegy.com/uploads/5165a2c1-3e6c-44db-96f3-97ee83a29da9-cover_image.png",
-        price: 440,
-        priceAfterDiscount: 100,
-        discount: 50,
-      )
-    ];
+  State<CategoriesScreen> createState() => _CategoriesScreenState();
+}
 
-    return Scaffold(
-      floatingActionButton: _buildFloatingActionButton(),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 10),
-        child: Column(
-          children: [
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                CustomSearchBar(margin: EdgeInsets.zero),
-                SizedBox(width: 10.w),
-                Container(
-                  padding: EdgeInsets.all(12),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    border: Border.all(color: ColorManager.white70, width: 1),
+class _CategoriesScreenState extends State<CategoriesScreen> {
+  String productID = "";
+  late final ProductCubit _productCubit;
+
+  @override
+  void initState() {
+    super.initState();
+    _productCubit = getIt<ProductCubit>();
+    _productCubit.doIntent(GetProductsIntent(productID, 'category'));
+  }
+
+  @override
+  void dispose() {
+    _productCubit.close();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        floatingActionButton: _buildFloatingActionButton(),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        body: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 10),
+          child: Column(
+            spacing: 10,
+            children: [
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  CustomSearchBar(margin: EdgeInsets.zero),
+                  SizedBox(width: 10.w),
+                  Container(
+                    padding: EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(color: ColorManager.white70, width: 1),
+                    ),
+                    child: Icon(Icons.format_align_left,
+                        color: ColorManager.white70, size: 24),
                   ),
-                  child: Icon(Icons.format_align_left,
-                      color: ColorManager.white70, size: 24),
+                ],
+              ),
+              Expanded(
+                flex: 0,
+                child: TabCategories(
+                  id: productID,
+                  onCategorySelected: (selectedCategoryName) {
+                    setState(() {
+                      productID = selectedCategoryName ?? "";
+                    });
+                    _productCubit.doIntent(
+                      GetProductsIntent(productID, 'category'),
+                    );
+                  },
                 ),
-              ],
-            ),
-            SizedBox(height: 10.h),
-            Expanded(flex:0,child: TabCategories(id: '')),
-            Expanded(flex:6,child: FlowerCardBuilder(products: products)),
-          ],
+              ),
+              SizedBox(height: 5.h),
+              Expanded(
+                flex: 6,
+                child: BlocProvider.value(
+                  value: _productCubit,
+                  child: ProductScreen(
+                    typeId: productID,
+                    type: "category",
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -113,21 +103,4 @@ class CategoriesScreen extends StatelessWidget {
       label: Text(AppStrings.filter),
     );
   }
-}
-
-class Products {
-  //this is a custom class for testing but the response from api like this
-  Products({
-    this.title,
-    this.price,
-    this.priceAfterDiscount,
-    this.discount,
-    this.imgCover,
-  });
-
-  String? title;
-  String? imgCover;
-  num? price;
-  num? priceAfterDiscount;
-  num? discount;
 }

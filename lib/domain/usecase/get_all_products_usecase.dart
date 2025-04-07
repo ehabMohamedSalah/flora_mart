@@ -12,6 +12,6 @@ class GetAllProductsUsecase {
 
   GetAllProductsUsecase(this.getAllProductsRepo);
 
-  Future<ApiResult<List<Products>>> execute(String categoryId) =>
-      getAllProductsRepo.getAllProducts(categoryId);
+  Future<ApiResult<List<Products>>> execute(String typeId,String type) =>
+      getAllProductsRepo.getAllProducts(typeId,type);
 }

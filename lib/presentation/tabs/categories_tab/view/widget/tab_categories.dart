@@ -1,5 +1,4 @@
 import 'package:flora_mart/core/api/api_result.dart';
-import 'package:flora_mart/data/model/categories/all_categories/categories.dart';
 import 'package:flora_mart/domain/entity/categories_entity/all_categories_entity/categories_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,8 +8,10 @@ import 'package:flora_mart/presentation/tabs/categories_tab/view_model/categorie
 
 class TabCategories extends StatefulWidget {
   final String id;
+  final Function(String?) onCategorySelected;
 
-  const TabCategories({super.key, required this.id});
+  const TabCategories(
+      {super.key, required this.id, required this.onCategorySelected});
 
   @override
   State<TabCategories> createState() => _TabCategoriesState();
@@ -19,7 +20,7 @@ class TabCategories extends StatefulWidget {
 class _TabCategoriesState extends State<TabCategories>
     with SingleTickerProviderStateMixin {
   TabController? _tabController;
-  Categories? categories;
+  List<CategoriesEntity> categories = [];
   int _selectedIndex = 0;
   List<String> tabNames = ["All"];
   bool isLoading = true;
@@ -47,7 +48,7 @@ class _TabCategoriesState extends State<TabCategories>
         }
 
         setState(() {
-          categories = Categories.fromEntity(response.data!.first);
+          categories = response.data!;
           tabNames.addAll(response.data!.map((e) => e.name ?? "Unnamed"));
 
           _tabController = TabController(
@@ -74,7 +75,8 @@ class _TabCategoriesState extends State<TabCategories>
       var response = await getIt<CategoriesCubit>().categoriesUsecase.call(
             id: widget.id,
             name: selectedCategoryName ?? "",
-            productsCount: categories?.productsCount ?? 0,
+            productsCount:
+                categories.isNotEmpty ? (categories[0].productsCount ?? 0) : 0,
           );
 
       if (response is SuccessApiResult<List<CategoriesEntity>>) {
@@ -84,11 +86,11 @@ class _TabCategoriesState extends State<TabCategories>
         }
 
         setState(() {
-          categories = Categories.fromEntity(response.data!.first);
+          categories = response.data!;
         });
 
         print(
-            "✅ [TabCategories] Loaded ${categories!.productsCount} products for $categoryLog.");
+            "✅ [TabCategories] Loaded ${categories[0].productsCount} products for $categoryLog.");
       } else {
         print("❌ [TabCategories] Failed to load data for $categoryLog.");
       }
@@ -116,7 +118,12 @@ class _TabCategoriesState extends State<TabCategories>
                 _selectedIndex = index;
                 _tabController!.animateTo(index);
               });
-              _fetchCategoryData(index == 0 ? null : tabNames[index]);
+
+              final selectedCategory =
+                  index == 0 ? null : categories[index - 1].id;
+              print("ii={$selectedCategory}");
+              _fetchCategoryData(selectedCategory);
+              widget.onCategorySelected(selectedCategory);
             },
           );
         },

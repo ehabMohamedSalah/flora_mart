@@ -37,14 +37,15 @@ class MockGetAllProductsRepo extends _i1.Mock
 
   @override
   _i3.Future<_i4.ApiResult<List<_i5.Products>>> getAllProducts(
-    String? categoryId,
+    String? typeId,
+    String? type,
   ) =>
       (super.noSuchMethod(
-            Invocation.method(#getAllProducts, [categoryId]),
+            Invocation.method(#getAllProducts, [typeId, type]),
             returnValue: _i3.Future<_i4.ApiResult<List<_i5.Products>>>.value(
               _i6.dummyValue<_i4.ApiResult<List<_i5.Products>>>(
                 this,
-                Invocation.method(#getAllProducts, [categoryId]),
+                Invocation.method(#getAllProducts, [typeId, type]),
               ),
             ),
           )

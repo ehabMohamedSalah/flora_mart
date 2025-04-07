@@ -1,9 +1,8 @@
 import 'package:flora_mart/core/utils/colors_manager.dart';
 import 'package:flora_mart/core/utils/string_manager.dart';
 import 'package:flora_mart/presentation/tabs/cart_tab/cart_screen.dart';
-import 'package:flora_mart/presentation/tabs/categories_tab/categories_screen.dart';
-import 'package:flora_mart/presentation/tabs/home_tab/bloc_scope/home_bloc_scope.dart';
 import 'package:flora_mart/presentation/tabs/categories_tab/view/categories_screen.dart';
+import 'package:flora_mart/presentation/tabs/home_tab/bloc_scope/home_bloc_scope.dart';
 import 'package:flora_mart/presentation/tabs/home_tab/home_screen.dart';
 import 'package:flora_mart/presentation/tabs/profile_tab/profile_screen.dart';
 import 'package:flutter/material.dart';
@@ -17,13 +16,6 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
-
-  final List<Widget> _screens = [
-    const HomeScreen(),
-    const CategoriesScreen(),
-    const CartScreen(),
-    const ProfileScreen(),
-  ];
 
   void _onItemTapped(int index) {
     setState(() {
