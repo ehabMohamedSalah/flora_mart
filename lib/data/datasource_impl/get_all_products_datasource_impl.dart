@@ -16,10 +16,10 @@ class GetAllProductsDatasourceImpl implements GetAllProductsDatasource {
 
 
   @override
-  Future<ApiResult<List<Products>>> getAllProducts(String categoryId) async {
+  Future<ApiResult<List<Products>>> getAllProducts(String typeId,String type) async {
     return await executeApi<List<Products>>(() async {
       var response;
-      if(categoryId == " ") {
+      if(typeId == " ") {
          response = await apiManager.getRequest(
           Endpoint: EndPoint.getAllProductsEndpoint,
         );
@@ -27,7 +27,7 @@ class GetAllProductsDatasourceImpl implements GetAllProductsDatasource {
       else {
         response = await apiManager.getRequest(
           Endpoint: EndPoint.getAllProductsEndpoint,
-          queryParameters: {"category": categoryId}
+          queryParameters: {type: typeId}
         );
       }
 

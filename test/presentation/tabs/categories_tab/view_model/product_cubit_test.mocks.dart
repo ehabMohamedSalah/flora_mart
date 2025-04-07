@@ -54,13 +54,16 @@ class MockGetAllProductsUsecase extends _i1.Mock
           as _i2.GetAllProductsRepo);
 
   @override
-  _i4.Future<_i5.ApiResult<List<_i6.Products>>> execute(String? categoryId) =>
+  _i4.Future<_i5.ApiResult<List<_i6.Products>>> execute(
+    String? typeId,
+    String? type,
+  ) =>
       (super.noSuchMethod(
-            Invocation.method(#execute, [categoryId]),
+            Invocation.method(#execute, [typeId, type]),
             returnValue: _i4.Future<_i5.ApiResult<List<_i6.Products>>>.value(
               _i7.dummyValue<_i5.ApiResult<List<_i6.Products>>>(
                 this,
-                Invocation.method(#execute, [categoryId]),
+                Invocation.method(#execute, [typeId, type]),
               ),
             ),
           )

@@ -13,7 +13,7 @@ class GetAllProductsRepoImpl implements GetAllProductsRepo {
   GetAllProductsRepoImpl(this.getAllProductsDatasource);
 
   @override
-  Future<ApiResult<List<Products>>> getAllProducts(String categoryId) {
-    return getAllProductsDatasource.getAllProducts(categoryId);
+  Future<ApiResult<List<Products>>> getAllProducts(String typeId,String type) {
+    return getAllProductsDatasource.getAllProducts(typeId,type);
   }
 }

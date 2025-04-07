@@ -1,6 +1,7 @@
 sealed class ProductIntent {}
 
 class GetProductsIntent extends ProductIntent {
-  final String categoryId;
-  GetProductsIntent(this.categoryId);
+  final String typeId;
+  final String type;
+  GetProductsIntent(this.typeId,this.type);
 }
