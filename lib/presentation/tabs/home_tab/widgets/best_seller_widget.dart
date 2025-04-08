@@ -5,8 +5,14 @@ import 'image_widget.dart';
 
 class BestSellerWidget extends StatelessWidget {
   String image;
+  String label;
+  String price;
 
-  BestSellerWidget({required this.image, super.key});
+  BestSellerWidget(
+      {required this.label,
+      required this.price,
+      required this.image,
+      super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,11 +24,13 @@ class BestSellerWidget extends StatelessWidget {
           ImageWidget(
             image: image,
           ),
-          Text(
-            "Gift card",
-            style: Theme.of(context).textTheme.titleSmall,
+          Flexible(
+            child: Text(
+              label.length > 15 ? '${label.substring(0, 15)}...' : label,
+              softWrap: true,
+            ),
           ),
-          Text("600 EGP")
+          Flexible(child: Text("$price EGP"))
         ],
       ),
     );

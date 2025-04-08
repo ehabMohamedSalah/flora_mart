@@ -6,7 +6,9 @@ import 'image_widget.dart';
 
 class OccasionWidget extends StatelessWidget {
   String image;
-  OccasionWidget({required this.image, super.key});
+  String label;
+
+  OccasionWidget({required this.label, required this.image, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +20,11 @@ class OccasionWidget extends StatelessWidget {
           ImageWidget(
             image: image,
           ),
-          Text(
-            "birthday",
-            style: Theme.of(context).textTheme.titleSmall,
+          Flexible(
+            child: Text(
+              label,
+              style: Theme.of(context).textTheme.titleSmall,
+            ),
           ),
         ],
       ),

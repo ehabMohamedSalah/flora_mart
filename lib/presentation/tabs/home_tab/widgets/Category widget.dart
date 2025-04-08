@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CategoryWidget extends StatelessWidget {
-  const CategoryWidget({super.key});
+  String label;
+  String image;
+
+  CategoryWidget({required this.label, required this.image, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,20 +14,31 @@ class CategoryWidget extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Column(
         children: [
-          Container(
-            width: 68.w,
-            height: 64.h,
-            child: Icon(Icons.card_giftcard, size: 24.sp,color: ColorManager.pink,),
-            decoration: BoxDecoration(
-              color: ColorManager.lightPink,
-              borderRadius: BorderRadius.circular(20),
+          Flexible(
+            flex: 2,
+            child: Container(
+              decoration: BoxDecoration(
+                color: ColorManager.lightPink,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(20),
+                child: Image.network(
+                  image,
+                ),
+              ),
             ),
           ),
+          SizedBox(height: 5.h),
           Flexible(
             child: Text(
-              "Gift card",
+              label,
+              style: TextStyle(
+                fontSize: 12.sp,
+              ),
+              textAlign: TextAlign.center,
             ),
-          )
+          ),
         ],
       ),
     );
