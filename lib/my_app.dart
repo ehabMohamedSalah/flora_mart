@@ -7,7 +7,7 @@ import 'package:flora_mart/presentation/auth/login/login_screen.dart';
 import 'package:flora_mart/presentation/auth/register/view/register_screen.dart';
 
 import 'package:flora_mart/presentation/tabs/home_tab/home_screen.dart';
-import 'package:flora_mart/presentation/tabs/home_tab/widgets/occasion_widget.dart';
+import 'package:flora_mart/presentation/tabs/home_tab/widgets/occasions/occasion_widget.dart';
 import 'package:flora_mart/presentation/tabs/main_screen/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

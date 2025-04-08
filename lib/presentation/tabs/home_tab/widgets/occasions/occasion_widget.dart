@@ -4,13 +4,16 @@ import 'package:flora_mart/data/model/occasions/Occasions.dart';
 import 'package:flora_mart/domain/entity/occassions_entity/OccasionsResponse.dart';
 import 'package:flora_mart/presentation/tabs/home_tab/view_model/cubit/home_cubit.dart';
 import 'package:flora_mart/presentation/tabs/home_tab/view_model/cubit/home_intent.dart';
+import 'package:flora_mart/presentation/tabs/home_tab/widgets/occasions/view_model/occasions_cubit.dart';
+import 'package:flora_mart/presentation/tabs/home_tab/widgets/occasions/view_model/occasions_intent.dart';
+import 'package:flora_mart/presentation/tabs/home_tab/widgets/occasions/view_model/occasions_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../core/resuable_comp/app_bar.dart';
-import '../../../../core/resuable_comp/custom_tab_bar_widget.dart';
-import '../../../../core/utils/string_manager.dart';
-import 'image_widget.dart';
+import '../../../../../core/resuable_comp/app_bar.dart';
+import '../../../../../core/resuable_comp/custom_tab_bar_widget.dart';
+import '../../../../../core/utils/string_manager.dart';
+import '../image_widget.dart';
 
 
 class OccasionWidget extends StatefulWidget {
@@ -23,14 +26,14 @@ class _OccasionWidgetState extends State<OccasionWidget> with SingleTickerProvid
   int selectedIndex = 0;
   List<Occasions> occasionsList = [];
 
-  late HomeCubit cubit; // define once
+  late OccasionsCubit cubit; // define once
 
   @override
   void initState() {
     super.initState();
-    cubit = getIt<HomeCubit>(); // inject once
+    cubit = getIt<OccasionsCubit>(); // inject once
     Future.delayed(Duration.zero, () {
-      cubit.doIntent(GetHomeOccaisonIntent());
+      cubit.doIntent(GetOccaisonIntent());
     });
   }
 
@@ -64,20 +67,20 @@ class _OccasionWidgetState extends State<OccasionWidget> with SingleTickerProvid
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => cubit,
-      child: BlocConsumer<HomeCubit, HomeStates>(
+      child: BlocConsumer<OccasionsCubit, OccasionsState>(
         listener: (context, state) {
-          if (state is GetHomeOccasionSuccess) {
+          if (state is GetOccasionSuccess) {
             occasionsList = state.occasions?.occasions ?? [];
             _setupTabController();
           }
         },
         builder: (context, state) {
-          if (state is GetHomeOccasionLoading || _tabController == null) {
+          if (state is GetOccasionLoading || _tabController == null) {
             return Scaffold(
 
               body: Center(child: CircularProgressIndicator()),
             );
-          } else if (state is GetHomeOccasionError) {
+          } else if (state is GetOccasionError) {
             return Scaffold(
                body: Center(child: Text("Error: ${state.message}")),
             );

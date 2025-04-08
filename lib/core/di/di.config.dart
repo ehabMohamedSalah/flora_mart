@@ -68,6 +68,8 @@ import '../../domain/usecase/register_usecase.dart' as _i626;
 import '../../presentation/auth/view_model/cubit/auth_cubit.dart' as _i351;
 import '../../presentation/tabs/home_tab/view_model/cubit/home_cubit.dart'
     as _i979;
+import '../../presentation/tabs/home_tab/widgets/occasions/view_model/occasions_cubit.dart'
+    as _i790;
 import '../api/api_manager.dart' as _i1047;
 import '../cache/shared_pref.dart' as _i299;
 
@@ -122,6 +124,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i722.SigninRepoImpl(gh<_i557.LoginDataSourceRepo>()));
     gh.factory<_i979.HomeCubit>(
         () => _i979.HomeCubit(gh<_i896.OccassionsUsecase>()));
+    gh.factory<_i790.OccasionsCubit>(
+        () => _i790.OccasionsCubit(gh<_i896.OccassionsUsecase>()));
     gh.factory<_i285.ChangeguestUsecase>(
         () => _i285.ChangeguestUsecase(gh<_i234.GuestRepo>()));
     gh.factory<_i304.CheckGuestUseCase>(
