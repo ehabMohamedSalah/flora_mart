@@ -5,6 +5,7 @@ import 'package:flora_mart/presentation/tabs/categories_tab/view_model/product_c
 import 'package:flora_mart/presentation/tabs/categories_tab/view_model/product_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProductScreen extends StatelessWidget {
   final String typeId;
@@ -34,6 +35,7 @@ class ProductScreen extends StatelessWidget {
                   size: 35,
                   color: ColorManager.white70,
                 ),
+                SizedBox(width: 10.w,),
                 Text(
                   "No Product Found !!",
                   style: AppTheme.lightTheme.textTheme.bodyLarge,
