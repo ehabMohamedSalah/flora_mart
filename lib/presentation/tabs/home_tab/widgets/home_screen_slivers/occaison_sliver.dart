@@ -20,8 +20,7 @@ Widget buildOccasions(List occasions, BuildContext context) {
             itemBuilder: (context, index) {
               final occasion = occasions[index];
               return OccasionWidget(
-                label: occasion.name ?? '',
-                image: occasion.image ?? 'https://picsum.photos/200',
+                occasionsModel: occasion,
               );
             },
           ),

@@ -1,14 +1,14 @@
 // ignore_for_file: must_be_immutable
 
+import 'package:flora_mart/data/model/Home/Occasions.dart';
 import 'package:flutter/material.dart';
 
 import 'image_widget.dart';
 
 class OccasionWidget extends StatelessWidget {
-  String image;
-  String label;
+  Occasions occasionsModel;
 
-  OccasionWidget({required this.label, required this.image, super.key});
+  OccasionWidget({required this.occasionsModel, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,11 +18,11 @@ class OccasionWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ImageWidget(
-            image: image,
+            image: occasionsModel.image ?? "",
           ),
           Flexible(
             child: Text(
-              label,
+              occasionsModel.name ?? "",
               style: Theme.of(context).textTheme.titleSmall,
             ),
           ),

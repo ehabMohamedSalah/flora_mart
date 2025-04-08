@@ -22,7 +22,6 @@ class HomeDatasourceImpl implements HomeDataSourceRepo {
           Endpoint: EndPoint.homeEndpoint,
         );
 
-        log('API Response: ${apiResponse.data}');
         log('API Response: ${apiResponse.statusCode}');
 
         var response = HomeResponse.fromJson(apiResponse.data ?? {});

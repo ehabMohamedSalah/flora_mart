@@ -40,7 +40,7 @@ dependencies:
   provider: any
   bloc: any
   injectable: any
-
+  shimmer:
   build_runner: any
   # add get_it
   get_it:

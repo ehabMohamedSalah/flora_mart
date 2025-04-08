@@ -1,3 +1,5 @@
+import 'package:flora_mart/data/model/products/Products.dart';
+
 /// _id : "673e1cd711599201718280fb"
 /// title : "Wdding Flower"
 /// slug : "wdding-flower"
@@ -101,5 +103,23 @@ class BestSeller {
     map['rateCount'] = rateCount;
     map['id'] = id;
     return map;
+  }
+
+  Products toProduct(BestSeller model) {
+    return Products(
+      id: model.id,
+      title: model.title,
+      slug: model.slug,
+      description: model.description,
+      imgCover: model.imgCover,
+      images: model.images,
+      price: model.price,
+      priceAfterDiscount: model.priceAfterDiscount,
+      quantity: model.quantity,
+      category: model.category,
+      discount: model.discount,
+      rateAvg: model.rateAvg,
+      rateCount: model.rateCount,
+    );
   }
 }

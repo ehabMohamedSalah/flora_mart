@@ -1,7 +1,9 @@
+import 'package:flora_mart/presentation/tabs/home_tab/widgets/shimmer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'widgets/home_screen_slivers/Address_sliver..dart';
+import 'package:shimmer/shimmer.dart'; // Import shimmer
+import 'widgets/home_screen_slivers/Address_sliver.dart';
 import 'widgets/home_screen_slivers/Best_Seller_sliver.dart';
 import 'widgets/home_screen_slivers/categories_sliver.dart';
 import 'widgets/home_screen_slivers/occaison_sliver.dart';
@@ -38,15 +40,27 @@ class _HomeScreenState extends State<HomeScreen> {
               child: CustomScrollView(
                 slivers: [
                   buildAddress(),
-                  buildCategories(homeData?.categories ?? [],
+                  // Show actual categories if data is available
+                  buildCategories(homeData?.categories?.take(10).toList() ?? [],
                       widget.onViewAllTapped, context),
-                  buildBestSellers(homeData?.bestSeller ?? [], context),
-                  buildOccasions(homeData?.occasions ?? [], context),
+                  // Show actual best sellers if data is available
+                  buildBestSellers(
+                      homeData?.bestSeller?.take(10).toList() ?? [], context),
+                  // Show actual occasions if data is available
+                  buildOccasions(
+                      homeData?.occasions?.take(10).toList() ?? [], context),
                 ],
               ),
             );
           }
-          return Center(child: CircularProgressIndicator());
+
+          // Show shimmer loader while data is loading
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: SingleChildScrollView(
+              child: buildSkeletonLoader(),
+            ),
+          );
         },
       ),
     );
@@ -63,4 +77,5 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+// Add these shimmer widgets to your home screen file or a separate file
 }

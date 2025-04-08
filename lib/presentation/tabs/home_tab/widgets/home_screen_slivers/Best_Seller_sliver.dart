@@ -31,9 +31,7 @@ Widget buildBestSellers(List bestSellers, BuildContext context) {
             itemBuilder: (context, index) {
               final product = bestSellers[index];
               return BestSellerWidget(
-                label: product.title ?? '',
-                price: product.price?.toString() ?? '',
-                image: product.images?.first ?? '',
+                bestSellerModel: product,
               );
             },
           ),
