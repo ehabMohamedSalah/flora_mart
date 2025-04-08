@@ -17,7 +17,8 @@ void main() async {
   ApiManager.init();
 
   final authCubit = getIt<AuthCubit>()..doIntent(CheckAuthIntent());
-  runApp(EasyLocalization(
+  runApp(
+      EasyLocalization(
       supportedLocales: [Locale('en'), Locale('ar')],
       path: 'assets/translations',
       // <-- change the path of the translation files
@@ -26,5 +27,5 @@ void main() async {
       child: BlocProvider<AuthCubit>(
         create: (context) => authCubit,
         child: MyApp(),
-      )));
+      ),));
 }
