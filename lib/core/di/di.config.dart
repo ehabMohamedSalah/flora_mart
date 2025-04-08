@@ -14,6 +14,7 @@ import 'package:injectable/injectable.dart' as _i526;
 
 import '../../data/datasource_contract/auth_datasource.dart' as _i214;
 import '../../data/datasource_contract/best_seller_datasource.dart' as _i575;
+import '../../data/datasource_contract/categories_datasource.dart' as _i546;
 import '../../data/datasource_contract/forget_password_datasource/forget_password_datasource.dart'
     as _i206;
 import '../../data/datasource_contract/forget_password_datasource/reset_password_datasource.dart'
@@ -27,6 +28,7 @@ import '../../data/datasource_contract/Home_Data_Source_Repo.dart' as _i755;
 import '../../data/datasource_contract/Login_Data_Source_Repo.dart' as _i557;
 import '../../data/datasource_impl/auth_datasource_impl.dart' as _i422;
 import '../../data/datasource_impl/best_seller_datasource_impl.dart' as _i378;
+import '../../data/datasource_impl/categories_datasource_impl.dart' as _i71;
 import '../../data/datasource_impl/forget_password_datasource_impl/forget_password_datasource_impl.dart'
     as _i319;
 import '../../data/datasource_impl/forget_password_datasource_impl/reset_password_datasource_impl.dart'
@@ -40,6 +42,7 @@ import '../../data/datasource_impl/Home_Data_Source_Repo_Impl.dart' as _i437;
 import '../../data/datasource_impl/Login_Data_Source_Repo_Impl.dart' as _i878;
 import '../../data/repo_impl/auth_repo_impl.dart' as _i540;
 import '../../data/repo_impl/best_seller_repo_impl.dart' as _i133;
+import '../../data/repo_impl/categories_repo_impl.dart' as _i807;
 import '../../data/repo_impl/forget_password_repo_impl/forget_password_repo_impl.dart'
     as _i210;
 import '../../data/repo_impl/forget_password_repo_impl/reset_password_repo_impl.dart'
@@ -52,6 +55,7 @@ import '../../data/repo_impl/Home_Repo_Impl.dart' as _i420;
 import '../../data/repo_impl/Login_Repo_Impl.dart' as _i722;
 import '../../domain/repo_contract/auth_repo.dart' as _i233;
 import '../../domain/repo_contract/best_seller_repo.dart' as _i64;
+import '../../domain/repo_contract/categories_repo.dart' as _i41;
 import '../../domain/repo_contract/forget_password_repo_contract/forget_password_repo.dart'
     as _i976;
 import '../../domain/repo_contract/forget_password_repo_contract/reset_password_repo.dart'
@@ -62,6 +66,7 @@ import '../../domain/repo_contract/get_all_products_repo.dart' as _i697;
 import '../../domain/repo_contract/guest_repo.dart' as _i234;
 import '../../domain/repo_contract/Home_Repo.dart' as _i820;
 import '../../domain/repo_contract/Login_Repo.dart' as _i831;
+import '../../domain/usecase/categories_usecase.dart' as _i1036;
 import '../../domain/usecase/changeGuest_usecase.dart' as _i285;
 import '../../domain/usecase/check_guest_usecase.dart' as _i304;
 import '../../domain/usecase/forget_password_usecases/forget_password_usecase.dart'
@@ -78,6 +83,8 @@ import '../../domain/usecase/register_usecase.dart' as _i626;
 import '../../presentation/auth/view_model/cubit/auth_cubit.dart' as _i351;
 import '../../presentation/best_seller/view_model/cubit/best_seller_cubit.dart'
     as _i165;
+import '../../presentation/tabs/categories_tab/view_model/categories_cubit.dart'
+    as _i196;
 import '../../presentation/tabs/categories_tab/view_model/product_cubit.dart'
     as _i931;
 import '../../presentation/tabs/home_tab/view_model/cubit/home_cubit.dart'
@@ -133,10 +140,14 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i574.VerifyresetcodeRepoDataSource>()));
     gh.factory<_i697.GetAllProductsRepo>(() =>
         _i883.GetAllProductsRepoImpl(gh<_i466.GetAllProductsDatasource>()));
+    gh.factory<_i546.CategoriesDatasource>(
+        () => _i71.CategoriesDatasourceImpl(gh<_i1047.ApiManager>()));
     gh.factory<_i161.ResetpasswordRepo>(() =>
         _i289.Resetpasswordrepoimpl(gh<_i99.ResetpasswordDataSourceRepo>()));
     gh.factory<_i784.GetAllProductsUsecase>(
         () => _i784.GetAllProductsUsecase(gh<_i697.GetAllProductsRepo>()));
+    gh.factory<_i41.CategoriesRepo>(
+        () => _i807.CategoriesRepoImpl(gh<_i546.CategoriesDatasource>()));
     gh.factory<_i976.ForgetpasswordRepo>(() => _i210.Forgetpasswordrepoimpl(
         forgetpassword_data_sourse_repo:
             gh<_i206.ForgetpasswordDataSourseRepo>()));
@@ -160,10 +171,14 @@ extension GetItInjectableX on _i174.GetIt {
         getAllProductsUsecase: gh<_i784.GetAllProductsUsecase>()));
     gh.factory<_i418.ForgetPasswordUseCase>(() => _i418.ForgetPasswordUseCase(
         forgetPassword: gh<_i976.ForgetpasswordRepo>()));
+    gh.factory<_i1036.CategoriesUsecase>(
+        () => _i1036.CategoriesUsecase(gh<_i41.CategoriesRepo>()));
     gh.factory<_i383.ResetpasswordUsecase>(
         () => _i383.ResetpasswordUsecase(repo: gh<_i161.ResetpasswordRepo>()));
     gh.factory<_i814.GetBestSellersUseCase>(
         () => _i814.GetBestSellersUseCase(gh<_i64.BestSellerRepo>()));
+    gh.factory<_i196.CategoriesCubit>(
+        () => _i196.CategoriesCubit(gh<_i1036.CategoriesUsecase>()));
     gh.factory<_i351.AuthCubit>(() => _i351.AuthCubit(
           gh<_i323.VerifyresetcodeUseCase>(),
           gh<_i383.ResetpasswordUsecase>(),

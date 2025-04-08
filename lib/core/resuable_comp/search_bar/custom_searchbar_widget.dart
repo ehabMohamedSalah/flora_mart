@@ -1,3 +1,4 @@
+import 'package:flora_mart/core/utils/colors_manager.dart';
 import 'package:flutter/material.dart';
 
 class CustomSearchBar extends StatelessWidget {
@@ -12,6 +13,7 @@ class CustomSearchBar extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           border: Border.all(
+            color: ColorManager.white70,
             width: 1,
           ),
         ),

@@ -7,5 +7,6 @@ class EndPoint {
   static const String signUpEndpoint="/v1/auth/signup";
   static const String getAllProductsEndpoint="/v1/products";
   static const String bestSellerEndpoint = "/v1/best-seller";
+  static const String allCategoriesEndpoint="/v1/categories";
   static const String homeEndpoint = "/v1/home";
 }
