@@ -4,24 +4,26 @@ import 'package:flora_mart/data/model/occasions/Occasions.dart';
 import 'package:flora_mart/domain/entity/occassions_entity/OccasionsResponse.dart';
 import 'package:flora_mart/presentation/tabs/home_tab/view_model/cubit/home_cubit.dart';
 import 'package:flora_mart/presentation/tabs/home_tab/view_model/cubit/home_intent.dart';
+import 'package:flora_mart/presentation/tabs/home_tab/widgets/occasion_widget.dart';
+import 'package:flora_mart/presentation/tabs/home_tab/widgets/occasions/view/widget/product_of_occasions_widget.dart';
 import 'package:flora_mart/presentation/tabs/home_tab/widgets/occasions/view_model/occasions_cubit.dart';
 import 'package:flora_mart/presentation/tabs/home_tab/widgets/occasions/view_model/occasions_intent.dart';
 import 'package:flora_mart/presentation/tabs/home_tab/widgets/occasions/view_model/occasions_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../../core/resuable_comp/app_bar.dart';
-import '../../../../../core/resuable_comp/custom_tab_bar_widget.dart';
-import '../../../../../core/utils/string_manager.dart';
-import '../image_widget.dart';
+import '../../../../../../core/resuable_comp/app_bar.dart';
+import '../../../../../../core/resuable_comp/custom_tab_bar_widget.dart';
+import '../../../../../../core/utils/string_manager.dart';
+import '../../image_widget.dart';
 
 
-class OccasionWidget extends StatefulWidget {
+class OccasionScreen extends StatefulWidget {
   @override
-  _OccasionWidgetState createState() => _OccasionWidgetState();
+  _OccasionScreenState createState() => _OccasionScreenState();
 }
 
-class _OccasionWidgetState extends State<OccasionWidget> with SingleTickerProviderStateMixin {
+class _OccasionScreenState extends State<OccasionScreen> with SingleTickerProviderStateMixin {
   TabController? _tabController;
   int selectedIndex = 0;
   List<Occasions> occasionsList = [];
@@ -34,6 +36,7 @@ class _OccasionWidgetState extends State<OccasionWidget> with SingleTickerProvid
     cubit = getIt<OccasionsCubit>(); // inject once
     Future.delayed(Duration.zero, () {
       cubit.doIntent(GetOccaisonIntent());
+
     });
   }
 
@@ -102,7 +105,7 @@ class _OccasionWidgetState extends State<OccasionWidget> with SingleTickerProvid
                 children: [
                   Align(
                       alignment: Alignment.centerLeft,
-                      child: Text(AppStrings.occasions,style: Theme.of(context).textTheme.titleLarge,)),
+                      child: Text(AppStrings.occasion,style: Theme.of(context).textTheme.titleLarge,)),
                   Align(
                     alignment: Alignment.centerLeft,
 
@@ -131,7 +134,9 @@ class _OccasionWidgetState extends State<OccasionWidget> with SingleTickerProvid
                   child: TabBarView(
                     controller: _tabController!,
                     children: occasionsList
-                        .map((o) => Center(child: Text("Content for ${o.name}")))
+                        .map((o) => ProductsOfOccasionWidget(
+                       occasionId: o.id??"",
+                    ))
                         .toList(),
                   ),
                 ),

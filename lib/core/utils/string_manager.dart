@@ -86,4 +86,6 @@ class AppStrings {
   static String get bestSeller => "bestSeller".tr();
   static String get occasion => "occasion".tr();
   static String get viewAll => "viewAll".tr();
+  static String get BloomWithOurExquisiteBestSellers=>"Bloom With Our Exquisite Best Sellers";
+
 }

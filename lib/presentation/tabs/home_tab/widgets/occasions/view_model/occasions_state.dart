@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 
+import '../../../../../../data/model/products/Products.dart';
 import '../../../../../../domain/entity/occassions_entity/OccasionsResponse.dart';
 
 @immutable
@@ -25,4 +26,14 @@ final class GetOccasionError extends OccasionsState {
   final String message;
 
   GetOccasionError({required this.message});
+}
+
+final class GetProductsLoading extends OccasionsState{}
+final class GetProductsSuccess extends OccasionsState{
+   List<Products> products;
+   GetProductsSuccess(this.products);
+}
+final class GetProductsError extends OccasionsState{
+  final String messsage;
+  GetProductsError(this.messsage);
 }

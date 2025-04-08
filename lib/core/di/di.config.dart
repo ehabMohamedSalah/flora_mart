@@ -72,6 +72,8 @@ import '../../domain/usecase/forget_password_usecases/reset_password_usecase.dar
     as _i383;
 import '../../domain/usecase/forget_password_usecases/verify_reset_code_usecase.dart'
     as _i323;
+import '../../domain/usecase/get_all_products_usecase.dart' as _i784;
+import '../../domain/usecase/get_best_sellers_usecase.dart' as _i814;
 import '../../domain/usecase/login_Usecase.dart' as _i181;
 import '../../domain/usecase/occasions_usecase.dart' as _i896;
 import '../../domain/usecase/register_usecase.dart' as _i626;
@@ -80,8 +82,6 @@ import '../../presentation/best_seller/view_model/cubit/best_seller_cubit.dart'
     as _i165;
 import '../../presentation/tabs/categories_tab/view_model/product_cubit.dart'
     as _i931;
-import '../../presentation/tabs/home_tab/view_model/cubit/home_cubit.dart'
-    as _i979;
 import '../../presentation/tabs/home_tab/view_model/cubit/home_cubit.dart'
     as _i979;
 import '../../presentation/tabs/home_tab/widgets/occasions/view_model/occasions_cubit.dart'
@@ -115,21 +115,37 @@ extension GetItInjectableX on _i174.GetIt {
             apiManager: gh<_i1047.ApiManager>()));
     gh.factory<_i214.AuthDatasource>(
         () => _i422.AuthDatasourceImpl(gh<_i1047.ApiManager>()));
+    gh.factory<_i575.BestSellerDataSource>(
+        () => _i378.BestSellerDataSourceImpl(gh<_i1047.ApiManager>()));
+    gh.factory<_i331.OccassionsDataSource>(
+        () => _i626.OccasionsDatasourceImpl(gh<_i1047.ApiManager>()));
     gh.factory<_i233.AuthRepo>(
         () => _i540.AuthRepoImpl(gh<_i214.AuthDatasource>()));
     gh.factory<_i557.LoginDataSourceRepo>(() => _i878.LoginDatasourceImpl(
           gh<_i1047.ApiManager>(),
           gh<_i299.CacheHelper>(),
         ));
+    gh.factory<_i466.GetAllProductsDatasource>(
+        () => _i97.GetAllProductsDatasourceImpl(gh<_i1047.ApiManager>()));
     gh.factory<_i234.GuestRepo>(
         () => _i905.GuestRepoImpl(gh<_i623.GuestDatasource>()));
     gh.factory<_i544.VerifyresetcodeRepo>(() => _i721.Verifyresetcoderepoimpl(
         gh<_i574.VerifyresetcodeRepoDataSource>()));
+    gh.factory<_i697.GetAllProductsRepo>(() =>
+        _i883.GetAllProductsRepoImpl(gh<_i466.GetAllProductsDatasource>()));
     gh.factory<_i161.ResetpasswordRepo>(() =>
         _i289.Resetpasswordrepoimpl(gh<_i99.ResetpasswordDataSourceRepo>()));
+    gh.factory<_i784.GetAllProductsUsecase>(
+        () => _i784.GetAllProductsUsecase(gh<_i697.GetAllProductsRepo>()));
+    gh.factory<_i130.OccasionsRepo>(
+        () => _i750.OcassionsRepoImpl(gh<_i331.OccassionsDataSource>()));
     gh.factory<_i976.ForgetpasswordRepo>(() => _i210.Forgetpasswordrepoimpl(
         forgetpassword_data_sourse_repo:
             gh<_i206.ForgetpasswordDataSourseRepo>()));
+    gh.factory<_i64.BestSellerRepo>(
+        () => _i133.BestSellerRepoImpl(gh<_i575.BestSellerDataSource>()));
+    gh.factory<_i896.OccassionsUsecase>(
+        () => _i896.OccassionsUsecase(gh<_i130.OccasionsRepo>()));
     gh.factory<_i831.LoginRepo>(
         () => _i722.SigninRepoImpl(gh<_i557.LoginDataSourceRepo>()));
     gh.factory<_i285.ChangeguestUsecase>(
@@ -142,10 +158,18 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i626.RegisterUsecase(gh<_i233.AuthRepo>()));
     gh.factory<_i323.VerifyresetcodeUseCase>(() =>
         _i323.VerifyresetcodeUseCase(repo: gh<_i544.VerifyresetcodeRepo>()));
+    gh.factory<_i931.ProductCubit>(() => _i931.ProductCubit(
+        getAllProductsUsecase: gh<_i784.GetAllProductsUsecase>()));
     gh.factory<_i418.ForgetPasswordUseCase>(() => _i418.ForgetPasswordUseCase(
         forgetPassword: gh<_i976.ForgetpasswordRepo>()));
     gh.factory<_i383.ResetpasswordUsecase>(
         () => _i383.ResetpasswordUsecase(repo: gh<_i161.ResetpasswordRepo>()));
+    gh.factory<_i790.OccasionsCubit>(() => _i790.OccasionsCubit(
+          gh<_i896.OccassionsUsecase>(),
+          gh<_i784.GetAllProductsUsecase>(),
+        ));
+    gh.factory<_i814.GetBestSellersUseCase>(
+        () => _i814.GetBestSellersUseCase(gh<_i64.BestSellerRepo>()));
     gh.factory<_i351.AuthCubit>(() => _i351.AuthCubit(
           gh<_i323.VerifyresetcodeUseCase>(),
           gh<_i383.ResetpasswordUsecase>(),
@@ -155,6 +179,10 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i626.RegisterUsecase>(),
           gh<_i181.LoginUsecase>(),
         ));
+    gh.factory<_i165.BestSellerCubit>(
+        () => _i165.BestSellerCubit(gh<_i814.GetBestSellersUseCase>()));
+    gh.factory<_i979.HomeCubit>(
+        () => _i979.HomeCubit(gh<_i814.GetBestSellersUseCase>()));
     return this;
   }
 }
