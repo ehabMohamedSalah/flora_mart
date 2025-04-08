@@ -32,7 +32,7 @@ final class GetHomeBestSellerInitial extends HomeStates {}
 final class GetHomeBestSellerLoading extends HomeStates {}
 
 final class GetHomeBestSellerSuccess extends HomeStates {
-  final List<String> bestSellers;
+  final List<BestSellerModel> bestSellers;
 
   GetHomeBestSellerSuccess({required this.bestSellers});
 }
@@ -49,7 +49,8 @@ final class GetHomeOccasionInitial extends HomeStates {}
 final class GetHomeOccasionLoading extends HomeStates {}
 
 final class GetHomeOccasionSuccess extends HomeStates {
-  OccasiosnResponseEntity? occasions;
+  final List<String> occasions;
+
   GetHomeOccasionSuccess({required this.occasions});
 }
 

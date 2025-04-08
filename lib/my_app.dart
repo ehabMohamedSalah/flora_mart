@@ -5,9 +5,6 @@ import 'package:flora_mart/presentation/auth/forget_password/view/forget_passwor
 import 'package:flora_mart/presentation/auth/forget_password/view/forget_password/view/verify_reset_code_screen.dart';
 import 'package:flora_mart/presentation/auth/login/login_screen.dart';
 import 'package:flora_mart/presentation/auth/register/view/register_screen.dart';
-
-import 'package:flora_mart/presentation/tabs/home_tab/home_screen.dart';
-import 'package:flora_mart/presentation/tabs/home_tab/widgets/occasions/occasion_widget.dart';
 import 'package:flora_mart/presentation/tabs/main_screen/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -38,7 +35,6 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
 
-          home: MainScreen(),
           // routes: {
           //   RouteManager.homeScreen: (context) => HomeScreen(),
           //   RouteManager.cartScreen: (context) => CartScreen(),
@@ -48,7 +44,6 @@ class MyApp extends StatelessWidget {
 
           routes: {
             RouteManager.mainScreen: (context) => MainScreen(),
-            RouteManager.occasionScreen:(context)=>OccasionWidget( ),
             RouteManager.loginScreen: (context) => SignInScreen(),
             RouteManager.registerScreen: (context) => RegisterScreen(),
             RouteManager.forgetPasswordScreen: (context) =>

@@ -1,7 +1,5 @@
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flora_mart/presentation/auth/view_model/cubit/auth_cubit.dart';
-import 'package:flora_mart/core/cache/shared_pref.dart';
 import 'package:flora_mart/core/observer/BlocObserver.dart';
 import 'package:flora_mart/presentation/auth/view_model/cubit/auth_intent.dart';
 import 'package:flutter/material.dart';
@@ -17,15 +15,17 @@ void main() async {
   configureDependencies();
   Bloc.observer = MyBlocObserver();
   ApiManager.init();
+
   final authCubit = getIt<AuthCubit>()..doIntent(CheckAuthIntent());
-  runApp(EasyLocalization(
+  runApp(
+      EasyLocalization(
       supportedLocales: [Locale('en'), Locale('ar')],
       path: 'assets/translations',
       // <-- change the path of the translation files
       fallbackLocale: Locale('en'),
       startLocale: Locale("en"),
       child: BlocProvider<AuthCubit>(
-        create: (context) =>authCubit,
+        create: (context) => authCubit,
         child: MyApp(),
-      )));
+      ),));
 }

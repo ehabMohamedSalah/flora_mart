@@ -82,6 +82,8 @@ class AppStrings {
   static String get outofstock => "outofstock".tr();
   static String get people => "people".tr();
   static String get addedtocart => "addedtocart".tr();
-  static String get occasions => "Occasion".tr();
-  static String get BloomWithOurExquisiteBestSellers=>"BloomWithOurExquisiteBestSellers".tr();
+  static String get categories => "categories".tr();
+  static String get bestSeller => "bestSeller".tr();
+  static String get occasion => "occasion".tr();
+  static String get viewAll => "viewAll".tr();
 }

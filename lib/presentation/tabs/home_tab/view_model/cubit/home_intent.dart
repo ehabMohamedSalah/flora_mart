@@ -1,3 +1,4 @@
+///  Auth Intent ///
 sealed class HomeIntent {}
 
 class GetHomeCatogoriesIntent extends HomeIntent {}
