@@ -1,7 +1,6 @@
 import 'package:flora_mart/presentation/tabs/home_tab/widgets/occasions/view_model/occasions_intent.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../../../../../core/di/di.dart';
 import '../../../../../../../core/resuable_comp/flower_card_resuble/flower_card.dart';
 import '../../../../../../../data/model/products/Products.dart';
@@ -40,32 +39,35 @@ class ProductsOfOccasionWidget extends StatelessWidget {
           } else if (state is GetProductsSuccess) {
             final List<Products> productsList = state.products ?? [];
 
-            return GridView.builder(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 10,
-                mainAxisSpacing: 10,
+            return Padding(
+              padding: const EdgeInsets.all(14.0),
+              child: GridView.builder(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 20,
+                  mainAxisSpacing: 20,
+                ),
+                itemCount: productsList.length,
+                itemBuilder: (BuildContext ctx, int index) {
+                  final product = productsList[index];
+                  return Container(
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: Colors.amber,
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: FlowerCard(
+                      onTap: () {
+                       },
+                      title: product.title,
+                      discount: product.discount,
+                      imgCover: product.imgCover,
+                      price: product.price,
+                      priceAfterDiscount: product.priceAfterDiscount,
+                    ),
+                  );
+                },
               ),
-              itemCount: productsList.length,
-              itemBuilder: (BuildContext ctx, int index) {
-                final product = productsList[index];
-                return Container(
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    color: Colors.amber,
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: FlowerCard(
-                    onTap: () {
-                     },
-                    title: product.title,
-                    discount: product.discount,
-                    imgCover: product.imgCover,
-                    price: product.price,
-                    priceAfterDiscount: product.priceAfterDiscount,
-                  ),
-                );
-              },
             );
           } else {
             // Optionally handle other states if needed.

@@ -12,17 +12,20 @@ class OccasionWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          ImageWidget(
-            image: image,
-          ),
-          Text(
-            "birthday",
-            style: Theme.of(context).textTheme.titleSmall,
-          ),
-        ],
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ImageWidget(
+              image: image,
+            ),
+            Text(
+              "birthday",
+              style: Theme.of(context).textTheme.titleSmall,
+            ),
+          ],
+        ),
       ),
     );
   }
