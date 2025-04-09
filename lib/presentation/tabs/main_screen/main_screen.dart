@@ -51,7 +51,6 @@ class _MainScreenState extends State<MainScreen> {
         ),
       ),
     );
-    print("${widget.selectedCategoryId} 🌋🌋🌋🌋🌋");
   }
 
   @override

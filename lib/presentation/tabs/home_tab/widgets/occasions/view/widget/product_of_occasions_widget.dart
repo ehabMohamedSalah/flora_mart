@@ -41,7 +41,8 @@ class ProductsOfOccasionWidget extends StatelessWidget {
             final List<Products> productsList = state.products ?? [];
 
             return Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 0, vertical: 16.0),
                 child: FlowerCardBuilder(products: productsList));
           } else {
             // Optionally handle other states if needed.
