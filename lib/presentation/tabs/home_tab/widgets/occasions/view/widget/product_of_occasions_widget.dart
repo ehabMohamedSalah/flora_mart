@@ -50,21 +50,14 @@ class ProductsOfOccasionWidget extends StatelessWidget {
                 itemCount: productsList.length,
                 itemBuilder: (BuildContext ctx, int index) {
                   final product = productsList[index];
-                  return Container(
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      color: Colors.amber,
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: FlowerCard(
-                      onTap: () {
-                       },
-                      title: product.title,
-                      discount: product.discount,
-                      imgCover: product.imgCover,
-                      price: product.price,
-                      priceAfterDiscount: product.priceAfterDiscount,
-                    ),
+                  return FlowerCard(
+                    onTap: () {
+                     },
+                    title: product.title,
+                    discount: product.discount,
+                    imgCover: product.imgCover,
+                    price: product.price,
+                    priceAfterDiscount: product.priceAfterDiscount,
                   );
                 },
               ),
