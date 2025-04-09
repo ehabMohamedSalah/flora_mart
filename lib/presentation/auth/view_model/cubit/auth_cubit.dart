@@ -99,7 +99,7 @@ class AuthCubit extends Cubit<AuthState> {
       return _checkGuest();
     } else {
       log("Failed to change guest status");
-      emit(CeckGuestState(isguest ?? false)); // ❌ إبقاء الحالة كما هي دون تغيير
+      emit(CeckGuestState(isguest ?? false));
     }
   }
 

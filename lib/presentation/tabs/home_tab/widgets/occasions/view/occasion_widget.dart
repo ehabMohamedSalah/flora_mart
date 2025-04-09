@@ -19,6 +19,9 @@ import '../../image_widget.dart';
 
 
 class OccasionScreen extends StatefulWidget {
+  final String? selectedOccasionId;
+
+  const OccasionScreen({super.key, this.selectedOccasionId});
   @override
   _OccasionScreenState createState() => _OccasionScreenState();
 }
@@ -43,6 +46,20 @@ class _OccasionScreenState extends State<OccasionScreen> with SingleTickerProvid
   void _setupTabController() {
     _tabController?.dispose();
     _tabController = TabController(length: occasionsList.length, vsync: this);
+
+    if (widget.selectedOccasionId != null) {
+      final index =
+          occasionsList.indexWhere((o) => o.id == widget.selectedOccasionId);
+      if (index != -1) {
+        selectedIndex = index;
+
+        // هتأخر التغيير لحد ما كل حاجة تبقى جاهزة
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          _tabController!.animateTo(index);
+        });
+      }
+    }
+
     _tabController!.addListener(() {
       if (_tabController!.indexIsChanging) {
         setState(() {
@@ -91,15 +108,6 @@ class _OccasionScreenState extends State<OccasionScreen> with SingleTickerProvid
 
           return Scaffold(
             appBar: AppBar(
-              leading: IconButton(
-                  onPressed: (){
-                    Navigator.pushNamedAndRemoveUntil(
-                      context,
-                      RouteManager.homeScreen,
-                          (route) => false,
-                    );                  },
-                  icon: Icon(Icons.arrow_back_ios_new_outlined),
-              ),
               title: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [

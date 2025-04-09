@@ -19,7 +19,7 @@ class GetAllProductsDatasourceImpl implements GetAllProductsDatasource {
       String typeId, String type) async {
     return await executeApi<List<Products>>(() async {
       var response;
-      if (typeId == " ") {
+      if (typeId == " " || typeId == "") {
         response = await apiManager.getRequest(
           Endpoint: EndPoint.getAllProductsEndpoint,
         );

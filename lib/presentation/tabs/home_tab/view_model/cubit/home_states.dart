@@ -1,61 +1,23 @@
-
-
 part of 'home_cubit.dart';
-
 
 @immutable
 sealed class HomeStates {}
 
 final class HomeInitial extends HomeStates {}
 
-
 /// Home Categories States ///
-final class GetHomeCategoriesInitial extends HomeStates {}
+final class GetHomeDataInitial extends HomeStates {}
 
-final class GetHomeCategoriesLoading extends HomeStates {}
+final class GetHomeDataLoading extends HomeStates {}
 
-final class GetHomeCategoriesSuccess extends HomeStates {
-  final List<String> categories;
+final class GetHomeDataSuccess extends HomeStates {
+  final HomeResponse? homeResponse;
 
-  GetHomeCategoriesSuccess({required this.categories});
+  GetHomeDataSuccess({required this.homeResponse});
 }
 
-final class GetHomeCategoriesError extends HomeStates {
+final class GetHomeDataError extends HomeStates {
   final String message;
 
-  GetHomeCategoriesError({required this.message});
-}
-
-/// Home Best Seller States ///
-final class GetHomeBestSellerInitial extends HomeStates {}
-
-final class GetHomeBestSellerLoading extends HomeStates {}
-
-final class GetHomeBestSellerSuccess extends HomeStates {
-  final List<BestSellerModel> bestSellers;
-
-  GetHomeBestSellerSuccess({required this.bestSellers});
-}
-
-final class GetHomeBestSellerError extends HomeStates {
-  final String message;
-
-  GetHomeBestSellerError({required this.message});
-}
-
-/// Home Occasion States ///
-final class GetHomeOccasionInitial extends HomeStates {}
-
-final class GetHomeOccasionLoading extends HomeStates {}
-
-final class GetHomeOccasionSuccess extends HomeStates {
-  final List<String> occasions;
-
-  GetHomeOccasionSuccess({required this.occasions});
-}
-
-final class GetHomeOccasionError extends HomeStates {
-  final String message;
-
-  GetHomeOccasionError({required this.message});
+  GetHomeDataError({required this.message});
 }

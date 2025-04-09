@@ -49,16 +49,26 @@ class _TabCategoriesState extends State<TabCategories>
 
         setState(() {
           categories = response.data!;
-          tabNames.addAll(response.data!.map((e) => e.name ?? "Unnamed"));
+          tabNames.addAll(categories.map((e) => e.name ?? "Unnamed"));
 
           _tabController = TabController(
             length: tabNames.length,
             vsync: this,
           );
+
+          if (widget.id.isNotEmpty) {
+            int matchedIndex = categories.indexWhere((e) => e.id == widget.id);
+            if (matchedIndex != -1) {
+              _selectedIndex = matchedIndex + 1;
+              _tabController!.animateTo(_selectedIndex);
+              widget.onCategorySelected(categories[matchedIndex].id);
+              _fetchCategoryData(categories[matchedIndex].id);
+            }
+          }
+
           isLoading = false;
         });
 
-        _fetchCategoryData(null);
       } else {
         print("❌ [TabCategories] Failed to load categories.");
       }
