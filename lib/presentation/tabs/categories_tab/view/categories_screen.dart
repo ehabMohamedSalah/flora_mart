@@ -21,7 +21,7 @@ class CategoriesScreen extends StatefulWidget {
 }
 
 class _CategoriesScreenState extends State<CategoriesScreen> {
-  String productID = "";
+  String productID = " ";
   late final ProductCubit _productCubit;
 
   @override
@@ -29,7 +29,6 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
     super.initState();
     _productCubit = getIt<ProductCubit>();
     if (widget.selectedCategoryId != null) {
-      print("${widget.selectedCategoryId} 🌋🌋🌋🌋🌋🌋🌋🌋");
       _productCubit.doIntent(
         GetProductsIntent(widget.selectedCategoryId ?? "", 'category'),
       );
