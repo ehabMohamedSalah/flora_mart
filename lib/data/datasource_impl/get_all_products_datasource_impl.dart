@@ -14,20 +14,27 @@ class GetAllProductsDatasourceImpl implements GetAllProductsDatasource {
 
   GetAllProductsDatasourceImpl(this.apiManager);
 
-
   @override
-  Future<ApiResult<List<Products>>> getAllProducts(String typeId, String type) async {
+  Future<ApiResult<List<Products>>> getAllProducts(
+      String typeId, String type) async {
     return await executeApi<List<Products>>(() async {
-      final response = await apiManager.getRequest(
-        Endpoint: EndPoint.getAllProductsEndpoint,
-        queryParameters: {type: typeId},
-      );
+      var response;
+      if (typeId == " ") {
+        response = await apiManager.getRequest(
+          Endpoint: EndPoint.getAllProductsEndpoint,
+        );
+      } else {
+        response = await apiManager.getRequest(
+            Endpoint: EndPoint.getAllProductsEndpoint,
+            queryParameters: {type: typeId});
+      }
 
       final products = response.data['products'] as List;
       return products.map((e) => Products.fromJson(e)).toList();
     });
   }
 }
+
 /*
       String type = "occasion";
       String type = "category";
