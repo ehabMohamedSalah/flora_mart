@@ -4,8 +4,10 @@ import 'package:flora_mart/presentation/tabs/home_tab/widgets/Category%20widget.
 import 'package:flora_mart/presentation/tabs/home_tab/widgets/home_screen_slivers/TitleRow.dart';
 import 'package:flutter/material.dart';
 
-Widget buildCategories(
-    List categories, VoidCallback onTap, BuildContext context) {
+Widget buildCategories(List categories,
+    VoidCallback onTap,
+    BuildContext context,
+    Function(String) onCategoryTapped,) {
   return SliverToBoxAdapter(
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -22,7 +24,9 @@ Widget buildCategories(
             itemBuilder: (context, index) {
               final category = categories[index];
               return CategoryWidget(
-                  image: category.image ?? "", label: category.name ?? "");
+                  onTap: () => onCategoryTapped(category.id),
+                  image: category.image ?? "",
+                  label: category.name ?? "");
             },
           ),
         ),

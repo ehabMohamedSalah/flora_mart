@@ -11,7 +11,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CategoriesScreen extends StatefulWidget {
-  const CategoriesScreen({super.key});
+  String? selectedCategoryId;
+
+  CategoriesScreen({Key? key, required this.selectedCategoryId})
+      : super(key: key);
 
   @override
   State<CategoriesScreen> createState() => _CategoriesScreenState();
@@ -25,12 +28,18 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
   void initState() {
     super.initState();
     _productCubit = getIt<ProductCubit>();
-    _productCubit.doIntent(GetProductsIntent(productID, 'category'));
+    if (widget.selectedCategoryId != null) {
+      print("${widget.selectedCategoryId} 🌋🌋🌋🌋🌋🌋🌋🌋");
+      _productCubit.doIntent(
+        GetProductsIntent(widget.selectedCategoryId ?? "", 'category'),
+      );
+    } else {
+      _productCubit.doIntent(GetProductsIntent(productID, 'category'));
+    }
   }
 
   @override
   void dispose() {
-    _productCubit.close();
     super.dispose();
   }
 
@@ -41,7 +50,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
         floatingActionButton: _buildFloatingActionButton(),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         body: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 10),
+          padding: const EdgeInsets.symmetric(vertical: 25),
           child: Column(
             spacing: 10,
             children: [
@@ -64,10 +73,14 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
               Expanded(
                 flex: 0,
                 child: TabCategories(
-                  id: productID,
+                  id: widget.selectedCategoryId != null
+                      ? widget.selectedCategoryId ?? ""
+                      : productID,
+                  // Ensure the selected productID is passed here
                   onCategorySelected: (selectedCategoryName) {
                     setState(() {
-                      productID = selectedCategoryName ?? "";
+                      productID =
+                          selectedCategoryName ?? ""; // Update productID
                     });
                     _productCubit.doIntent(
                       GetProductsIntent(productID, 'category'),
@@ -82,6 +95,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                   value: _productCubit,
                   child: ProductScreen(
                     typeId: productID,
+                    // Ensure ProductScreen receives the updated productID
                     type: "category",
                   ),
                 ),

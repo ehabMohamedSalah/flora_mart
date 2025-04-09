@@ -2,7 +2,6 @@ import 'package:flora_mart/presentation/tabs/home_tab/widgets/shimmer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shimmer/shimmer.dart'; // Import shimmer
 import 'widgets/home_screen_slivers/Address_sliver.dart';
 import 'widgets/home_screen_slivers/Best_Seller_sliver.dart';
 import 'widgets/home_screen_slivers/categories_sliver.dart';
@@ -13,8 +12,12 @@ import 'package:flora_mart/core/resuable_comp/search_bar/custom_searchbar_widget
 
 class HomeScreen extends StatefulWidget {
   final VoidCallback onViewAllTapped;
+  final Function(String categoryId) onCategoryTapped;
 
-  const HomeScreen({required this.onViewAllTapped, super.key});
+  const HomeScreen(
+      {required this.onCategoryTapped,
+      required this.onViewAllTapped,
+      super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -42,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   buildAddress(),
                   // Show actual categories if data is available
                   buildCategories(homeData?.categories?.take(10).toList() ?? [],
-                      widget.onViewAllTapped, context),
+                      widget.onViewAllTapped, context, widget.onCategoryTapped),
                   // Show actual best sellers if data is available
                   buildBestSellers(
                       homeData?.bestSeller?.take(10).toList() ?? [], context),

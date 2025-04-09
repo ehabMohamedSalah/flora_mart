@@ -8,7 +8,14 @@ import 'package:flora_mart/presentation/tabs/profile_tab/profile_screen.dart';
 import 'package:flutter/material.dart';
 
 class MainScreen extends StatefulWidget {
-  const MainScreen({super.key});
+  final int initialTab;
+  String? selectedCategoryId; // Remove 'final' here
+
+  MainScreen({
+    super.key,
+    this.initialTab = 0,
+    this.selectedCategoryId,
+  });
 
   @override
   State<MainScreen> createState() => _MainScreenState();
@@ -17,10 +24,34 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
 
+  @override
+  void initState() {
+    super.initState();
+    _selectedIndex = widget.initialTab;
+  }
+
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
+  }
+
+  void _onCategoryTapped(String categoryId) {
+    setState(() {
+      widget.selectedCategoryId =
+          categoryId; // Dynamically update selectedCategory
+    });
+
+    // Now navigate after the state is updated
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder: (_) => MainScreen(
+          selectedCategoryId: categoryId,
+          initialTab: 1, // Keeping the tab at Categories screen
+        ),
+      ),
+    );
+    print("${widget.selectedCategoryId} 🌋🌋🌋🌋🌋");
   }
 
   @override
@@ -30,9 +61,15 @@ class _MainScreenState extends State<MainScreen> {
         index: _selectedIndex,
         children: [
           HomeBlocScope(
-            child: HomeScreen(onViewAllTapped: () => _onItemTapped(1)),
+            child: HomeScreen(
+              onViewAllTapped: () => _onItemTapped(1),
+              onCategoryTapped: (categoryId) {
+                _onCategoryTapped(
+                    categoryId); // Update the category before navigating
+              },
+            ),
           ),
-          CategoriesScreen(),
+          CategoriesScreen(selectedCategoryId: widget.selectedCategoryId),
           CartScreen(),
           ProfileScreen(),
         ],
