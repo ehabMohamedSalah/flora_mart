@@ -3,7 +3,7 @@ name: Flutter Linting
 on:
   pull_request:
     branches:
-      - development  # أو "develop" حسب الفرع الذي تريد حمايته
+      - new-development  # أو "develop" حسب الفرع الذي تريد حمايته
 
 jobs:
   lint:
