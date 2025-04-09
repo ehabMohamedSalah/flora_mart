@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
     }
 
     return ScreenUtilInit(
-      designSize: Size(430, 932),
+      designSize: Size(375, 852),
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
@@ -64,7 +64,7 @@ class MyApp extends StatelessWidget {
           localizationsDelegates: context.localizationDelegates,
           supportedLocales: context.supportedLocales,
           locale: context.locale,
-          initialRoute: RouteManager.occasionScreen,
+          initialRoute:initialRoute() ,
         );
       },
     );
