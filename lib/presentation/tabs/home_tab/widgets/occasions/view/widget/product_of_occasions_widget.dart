@@ -1,3 +1,4 @@
+import 'package:flora_mart/core/resuable_comp/flower_card_resuble/flower_card_builder.dart';
 import 'package:flora_mart/presentation/tabs/home_tab/widgets/occasions/view_model/occasions_intent.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -40,28 +41,8 @@ class ProductsOfOccasionWidget extends StatelessWidget {
             final List<Products> productsList = state.products ?? [];
 
             return Padding(
-              padding: const EdgeInsets.all(14.0),
-              child: GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 20,
-                  mainAxisSpacing: 20,
-                ),
-                itemCount: productsList.length,
-                itemBuilder: (BuildContext ctx, int index) {
-                  final product = productsList[index];
-                  return FlowerCard(
-                    onTap: () {
-                     },
-                    title: product.title,
-                    discount: product.discount,
-                    imgCover: product.imgCover,
-                    price: product.price,
-                    priceAfterDiscount: product.priceAfterDiscount,
-                  );
-                },
-              ),
-            );
+                padding: const EdgeInsets.all(16.0),
+                child: FlowerCardBuilder(products: productsList));
           } else {
             // Optionally handle other states if needed.
             return const SizedBox();

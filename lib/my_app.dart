@@ -39,7 +39,6 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
 
-          home: MainScreen(),
           // routes: {
           //   RouteManager.homeScreen: (context) => HomeScreen(),
           //   RouteManager.cartScreen: (context) => CartScreen(),
