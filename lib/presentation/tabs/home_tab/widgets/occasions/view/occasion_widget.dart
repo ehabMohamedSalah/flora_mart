@@ -110,7 +110,7 @@ class _OccasionScreenState extends State<OccasionScreen> with SingleTickerProvid
                     alignment: Alignment.centerLeft,
 
                     child: Text(
-                      AppStrings.BloomWithOurExquisiteBestSellers,
+                      AppStrings.bloomWithOurExquisiteBestSellers,
                       style: Theme.of(context).textTheme.bodySmall,
                     ),
                   ),
