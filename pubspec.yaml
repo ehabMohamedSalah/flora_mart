@@ -29,8 +29,8 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   collection: any
-  pinput: ^5.0.1
-  flutter_timer_countdown: ^1.0.7
+  pinput: any
+  flutter_timer_countdown: any
   cupertino_icons: any
   fluttertoast: any
   flutter_screenutil: any
@@ -39,7 +39,7 @@ dependencies:
   flutter_bloc: any
   provider: any
   bloc: any
-  injectable: any
+  injectable: ^2.5.0
   shimmer:
   build_runner: any
   # add get_it
@@ -53,11 +53,11 @@ dependencies:
   dio: any
   image_picker: any
   shared_preferences: any
-  percent_indicator: ^4.2.4
+  percent_indicator: any
   flutter_plugin_android_lifecycle: any
-  easy_localization: ^3.0.7+1
-  mockito: ^5.4.5
-  bloc_test: ^10.0.0
+  easy_localization: any
+  mockito: any
+  bloc_test: any
   skeletonizer: ^1.4.3
   carousel_slider: ^5.0.0
   smooth_page_indicator: ^1.2.1
