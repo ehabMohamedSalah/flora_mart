@@ -8,14 +8,14 @@ import 'package:flora_mart/presentation/auth/view_model/cubit/auth_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
-class FlowerCard extends StatelessWidget {
+class flowerCard extends StatelessWidget {
   final String? title;
   final String? imgCover;
   final num? price;
   final num? priceAfterDiscount;
   final num? discount;
   final VoidCallback onTap;
-  const FlowerCard(
+  const flowerCard(
       {super.key,
       this.title,
       this.imgCover,
