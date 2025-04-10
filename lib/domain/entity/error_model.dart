@@ -1,5 +1,6 @@
 /// message : "fail"
 /// errors : {"value":"ahmedmfmslf1gmail.com","msg":"Invalid email ","param":"email","location":"body"}
+library;
 
 class ErrorModel {
   ErrorModel({

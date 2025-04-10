@@ -198,7 +198,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           Row(
                             children: [
                               Text(AppStrings.gender,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontSize: 15, color: Colors.black54)),
                               const SizedBox(width: 40),
                               Row(
@@ -240,7 +240,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               child: Text(
                                 state.errorText!,
                                 style: AppTheme.lightTheme.textTheme.bodySmall
-                                    ?.copyWith(color: Color(0xFFB3261E)),
+                                    ?.copyWith(color: const Color(0xFFB3261E)),
                               ),
                             ),
                         ],
@@ -252,11 +252,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(AppStrings.bySigningUpYouAgreeToOur,
-                          style: TextStyle(fontSize: 12)),
+                          style: const TextStyle(fontSize: 12)),
                       GestureDetector(
                         onTap: () {},
                         child: Text(AppStrings.termsandConditions,
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontSize: 12,
                                 fontWeight: FontWeight.w500,
                                 decoration: TextDecoration.underline)),
@@ -307,14 +307,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(AppStrings.alreadyHaveAnAccount,
-                          style: TextStyle(fontSize: 17)),
+                          style: const TextStyle(fontSize: 17)),
                       InkWell(
                         onTap: () {
                           Navigator.pushReplacementNamed(
                               context, RouteManager.loginScreen);
                         },
                         child: Text(AppStrings.login,
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontSize: 15,
                                 fontWeight: FontWeight.w500,
                                 color: ColorManager.pinkBase,

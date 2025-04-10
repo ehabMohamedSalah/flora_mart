@@ -32,7 +32,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   Widget build(BuildContext context) {
     final email = ModalRoute.of(context)!.settings.arguments as String;
 
-    void _validateAndUpdatePassword() {
+    void validateAndUpdatePassword() {
       if (_formKey.currentState!.validate()) {
         AuthCubit.get(context).doIntent(
             ResetPassword(email: email, NewPassword: passwordController.text));
@@ -45,7 +45,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
         if (state is ResetPasswordLoadingState) {
           showDialog(
             context: context,
-            builder: (context) => Center(
+            builder: (context) => const Center(
               child: CircularProgressIndicator(
                 color: ColorManager.primaryColor,
               ),
@@ -60,7 +60,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                 tybeMessage: TybeMessage.positive);
 
             // Wait for 2 seconds, then navigate to login
-            Future.delayed(Duration(seconds: 2), () {
+            Future.delayed(const Duration(seconds: 2), () {
               Navigator.pop(context); // Close dialog
               Navigator.pushNamed(context, RouteManager.loginScreen);
             });
@@ -79,7 +79,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
           title: Text(AppStrings.password),
         ),
         body: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           child: Form(
             key: _formKey,
             child: Padding(
@@ -125,7 +125,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                   /* Confirm Button */
                   CustomTextButton(
                     borderColor: ColorManager.pinkBase,
-                    onPressed: _validateAndUpdatePassword,
+                    onPressed: validateAndUpdatePassword,
                     text: AppStrings.confirm,
                     color: ColorManager.primaryColor,
                     textColor: ColorManager.white,

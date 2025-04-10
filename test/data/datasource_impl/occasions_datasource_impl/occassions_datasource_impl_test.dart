@@ -1,12 +1,9 @@
-import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flora_mart/core/api/api_manager.dart';
 import 'package:flora_mart/core/api/api_result.dart';
 import 'package:flora_mart/core/api/endpoints.dart';
 import 'package:flora_mart/data/datasource_contract/occasion_datasource/occasions_datasource.dart';
 import 'package:flora_mart/data/datasource_impl/occasions_datasource_impl/occassions_datasource_impl.dart';
-import 'package:flora_mart/data/model/occasions/Metadata.dart';
-import 'package:flora_mart/data/model/occasions/Occasions.dart';
 import 'package:flora_mart/domain/entity/occassions_entity/OccasionsResponse.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';

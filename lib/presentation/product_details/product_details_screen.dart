@@ -31,7 +31,7 @@ class ProductDetailsScreen extends StatelessWidget {
                         "EGP ${product.priceAfterDiscount}",
                         style: AppTextStyle.semiBold20,
                       ),
-                      Spacer(),
+                      const Spacer(),
                       Text(AppStrings.status, style: AppTextStyle.medium16),
                       Text(
                           product.quantity != 0

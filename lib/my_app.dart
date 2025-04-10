@@ -6,8 +6,6 @@ import 'package:flora_mart/presentation/auth/forget_password/view/forget_passwor
 import 'package:flora_mart/presentation/auth/login/login_screen.dart';
 import 'package:flora_mart/presentation/auth/register/view/register_screen.dart';
 
-import 'package:flora_mart/presentation/tabs/home_tab/home_screen.dart';
-import 'package:flora_mart/presentation/tabs/home_tab/widgets/occasion_widget.dart';
 import 'package:flora_mart/presentation/tabs/home_tab/widgets/occasions/view/occasion_widget.dart';
 import 'package:flora_mart/presentation/tabs/main_screen/main_screen.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +15,7 @@ import 'config/theme/app_theme.dart';
 import 'core/utils/routes_manager.dart';
 
 class MyApp extends StatelessWidget {
-  MyApp({super.key});
+  const MyApp({super.key});
 
   @override
   Widget build(
@@ -32,7 +30,7 @@ class MyApp extends StatelessWidget {
     }
 
     return ScreenUtilInit(
-      designSize: Size(375, 852),
+      designSize: const Size(375, 852),
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
@@ -47,16 +45,16 @@ class MyApp extends StatelessWidget {
           // },
 
           routes: {
-            RouteManager.mainScreen: (context) => MainScreen(),
-            RouteManager.occasionScreen:(context)=>OccasionScreen( ),
-            RouteManager.loginScreen: (context) => SignInScreen(),
-            RouteManager.registerScreen: (context) => RegisterScreen(),
+            RouteManager.mainScreen: (context) => const MainScreen(),
+            RouteManager.occasionScreen:(context)=>const OccasionScreen( ),
+            RouteManager.loginScreen: (context) => const SignInScreen(),
+            RouteManager.registerScreen: (context) => const RegisterScreen(),
             RouteManager.forgetPasswordScreen: (context) =>
-                ForgetPasswordScreen(),
+                const ForgetPasswordScreen(),
             RouteManager.emailVerificationScreen: (context) =>
-                VerifyResetCodeScreen(),
+                const VerifyResetCodeScreen(),
             RouteManager.resetPasswordScreen: (context) =>
-                ResetPasswordScreen(),
+                const ResetPasswordScreen(),
           },
 
           theme: AppTheme.lightTheme,

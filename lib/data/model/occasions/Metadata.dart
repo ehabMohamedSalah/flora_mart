@@ -2,6 +2,7 @@
 /// limit : 10
 /// totalPages : 2
 /// totalItems : 15
+library;
 
 class Metadata {
   Metadata({

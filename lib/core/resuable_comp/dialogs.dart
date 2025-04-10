@@ -23,10 +23,10 @@ class Dialogs {
             alignment: Alignment.center,
             title: Row(
               children: [
-                Icon(Icons.lock_outline, color: Colors.redAccent),
-                SizedBox(width: 10),
+                const Icon(Icons.lock_outline, color: Colors.redAccent),
+                const SizedBox(width: 10),
                 Text(AppStrings.restrictedAccess,
-                    style: TextStyle(fontSize: 18)),
+                    style: const TextStyle(fontSize: 18)),
               ],
             ),
             content: Text(
@@ -37,7 +37,7 @@ class Dialogs {
               TextButton(
                 onPressed: backButton,
                 child:
-                    Text(AppStrings.back, style: TextStyle(color: Colors.grey)),
+                    Text(AppStrings.back, style: const TextStyle(color: Colors.grey)),
               ),
               ElevatedButton(
                 onPressed: () {

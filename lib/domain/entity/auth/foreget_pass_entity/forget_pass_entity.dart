@@ -1,6 +1,7 @@
 /// message : "success"
 /// info : "OTP sent to your email"
 /// code : 404
+library;
 
 class ForgetPasswordEntity {
   ForgetPasswordEntity({

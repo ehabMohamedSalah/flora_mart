@@ -2,6 +2,7 @@
 /// limit : 10
 /// totalPages : 12
 /// totalItems : 119
+library;
 
 class MetadataEntity {
   num? currentPage;

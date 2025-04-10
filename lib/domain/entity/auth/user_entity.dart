@@ -17,6 +17,7 @@
 /// createdAt : "2025-03-23T10:22:25.485Z"
 /// isVerified : false
 /// createdAt : "2025-02-14T16:36:21.143Z"
+library;
 
 class UserEntity {
   String? firstName;

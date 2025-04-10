@@ -12,6 +12,7 @@ class CategoriesRepoImpl extends CategoriesRepo {
   @factoryMethod
   CategoriesRepoImpl(this.categoriesDatasource);
 
+  @override
   Future<ApiResult<List<CategoriesEntity>>> getAllCategories({
     required String id,
     required String name,

@@ -5,6 +5,7 @@
 /// createdAt : "2024-11-19T08:06:21.263Z"
 /// updatedAt : "2024-11-19T08:06:21.263Z"
 /// productsCount : 8
+library;
 
 class CategoriesEntity {
   String? id;

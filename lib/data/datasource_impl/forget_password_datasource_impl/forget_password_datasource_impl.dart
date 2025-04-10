@@ -13,6 +13,7 @@ class ForgetpasswordDataSourceRepoImpl implements ForgetpasswordDataSourseRepo {
 
   ForgetpasswordDataSourceRepoImpl({required this.apiManager});
 
+  @override
   Future<ApiResult<bool>> SendEmailVerification({required String email}) async {
     return await executeApi<bool>(() async {
       var apiResponse = await apiManager.postRequest(

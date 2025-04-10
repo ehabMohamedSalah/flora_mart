@@ -3,7 +3,6 @@ import 'package:flora_mart/presentation/tabs/home_tab/widgets/occasions/view_mod
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../../../core/di/di.dart';
-import '../../../../../../../core/resuable_comp/flower_card_resuble/flower_card.dart';
 import '../../../../../../../data/model/products/Products.dart';
 import '../../view_model/occasions_cubit.dart';
 import '../../view_model/occasions_state.dart';
@@ -12,9 +11,9 @@ class ProductsOfOccasionWidget extends StatelessWidget {
   final String occasionId; // using lowerCamelCase and final
 
   const ProductsOfOccasionWidget({
-    Key? key,
+    super.key,
     required this.occasionId,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

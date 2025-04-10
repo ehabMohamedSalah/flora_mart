@@ -1,6 +1,4 @@
 
-import 'package:bloc/bloc.dart';
-import 'package:flora_mart/core/api/api_result.dart';
 import 'package:flora_mart/data/model/BestSellerModel.dart';
 import 'package:flora_mart/domain/usecase/get_best_sellers_usecase.dart';
 import 'package:flora_mart/presentation/tabs/home_tab/view_model/cubit/home_intent.dart';

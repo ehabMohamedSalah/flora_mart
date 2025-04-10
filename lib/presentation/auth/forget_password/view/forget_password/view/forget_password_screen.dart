@@ -43,7 +43,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
         if (state is SendEmailVerificationLoadingState) {
           showDialog(
             context: context,
-            builder: (context) => Center(
+            builder: (context) => const Center(
               child: CircularProgressIndicator(
                 color: ColorManager.primaryColor,
               ),
@@ -74,7 +74,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
           ),
         ),
         body: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
       child: Form(
         key: _formKey,
         child: Column(
@@ -94,7 +94,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
               child: Text(
                 AppStrings.pleaseEnterEmailsAssociatedToUrAccount,
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: const TextStyle(
                     fontSize: 14,
                     color: ColorManager.grey,
                     fontWeight: FontWeight.w400),
@@ -104,7 +104,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
 
             /* Email Field */
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: CustomTextField(
                 labelText: AppStrings.email,
                 hintText: AppStrings.enterYourEmail,
@@ -118,7 +118,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
 
             /* Confirm Button */
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: CustomTextButton(
                 borderColor: ColorManager.pinkBase,
                 onPressed: _validateAndContinue,

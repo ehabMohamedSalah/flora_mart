@@ -14,13 +14,13 @@ class CategoryWidget extends StatelessWidget {
           Container(
             width: 68.w,
             height: 64.h,
-            child: Icon(Icons.card_giftcard, size: 24.sp,color: ColorManager.pink,),
             decoration: BoxDecoration(
               color: ColorManager.lightPink,
               borderRadius: BorderRadius.circular(20),
             ),
+            child: Icon(Icons.card_giftcard, size: 24.sp,color: ColorManager.pink,),
           ),
-          Text("Gift card")
+          const Text("Gift card")
         ],
       ),
     );

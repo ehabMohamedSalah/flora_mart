@@ -48,15 +48,15 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  CustomSearchBar(margin: EdgeInsets.zero),
+                  const CustomSearchBar(margin: EdgeInsets.zero),
                   SizedBox(width: 10.w),
                   Container(
-                    padding: EdgeInsets.all(12),
+                    padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
                       border: Border.all(color: ColorManager.white70, width: 1),
                     ),
-                    child: Icon(Icons.format_align_left,
+                    child: const Icon(Icons.format_align_left,
                         color: ColorManager.white70, size: 24),
                   ),
                 ],
@@ -95,11 +95,11 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
 
   FloatingActionButton _buildFloatingActionButton() {
     return FloatingActionButton.extended(
-      shape: RoundedRectangleBorder(
+      shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(50)),
       ),
       onPressed: () {},
-      icon: Icon(Icons.tune),
+      icon: const Icon(Icons.tune),
       label: Text(AppStrings.filter),
     );
   }

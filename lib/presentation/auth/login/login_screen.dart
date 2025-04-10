@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flora_mart/core/cache/shared_pref.dart';
 import 'package:flora_mart/core/constant.dart';
 import 'package:flora_mart/core/di/di.dart';
@@ -205,7 +204,7 @@ class _SignInScreenState extends State<SignInScreen> {
                             },
                             child: Text(
                               AppStrings.signUp,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 decorationColor: ColorManager.pinkBase,
                                 color: ColorManager.pinkBase,
                                 fontWeight: FontWeight.bold,

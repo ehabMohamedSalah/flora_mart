@@ -1,10 +1,6 @@
 import 'package:flora_mart/core/di/di.dart';
 import 'package:flora_mart/core/utils/routes_manager.dart';
 import 'package:flora_mart/data/model/occasions/Occasions.dart';
-import 'package:flora_mart/domain/entity/occassions_entity/OccasionsResponse.dart';
-import 'package:flora_mart/presentation/tabs/home_tab/view_model/cubit/home_cubit.dart';
-import 'package:flora_mart/presentation/tabs/home_tab/view_model/cubit/home_intent.dart';
-import 'package:flora_mart/presentation/tabs/home_tab/widgets/occasion_widget.dart';
 import 'package:flora_mart/presentation/tabs/home_tab/widgets/occasions/view/widget/product_of_occasions_widget.dart';
 import 'package:flora_mart/presentation/tabs/home_tab/widgets/occasions/view_model/occasions_cubit.dart';
 import 'package:flora_mart/presentation/tabs/home_tab/widgets/occasions/view_model/occasions_intent.dart';
@@ -12,13 +8,13 @@ import 'package:flora_mart/presentation/tabs/home_tab/widgets/occasions/view_mod
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../../../core/resuable_comp/app_bar.dart';
 import '../../../../../../core/resuable_comp/custom_tab_bar_widget.dart';
 import '../../../../../../core/utils/string_manager.dart';
-import '../../image_widget.dart';
 
 
 class OccasionScreen extends StatefulWidget {
+  const OccasionScreen({super.key});
+
   @override
   _OccasionScreenState createState() => _OccasionScreenState();
 }
@@ -79,7 +75,7 @@ class _OccasionScreenState extends State<OccasionScreen> with SingleTickerProvid
         },
         builder: (context, state) {
           if (state is GetOccasionLoading || _tabController == null) {
-            return Scaffold(
+            return const Scaffold(
 
               body: Center(child: CircularProgressIndicator()),
             );
@@ -98,7 +94,7 @@ class _OccasionScreenState extends State<OccasionScreen> with SingleTickerProvid
                       RouteManager.homeScreen,
                           (route) => false,
                     );                  },
-                  icon: Icon(Icons.arrow_back_ios_new_outlined),
+                  icon: const Icon(Icons.arrow_back_ios_new_outlined),
               ),
               title: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -118,7 +114,7 @@ class _OccasionScreenState extends State<OccasionScreen> with SingleTickerProvid
                 ],
               ),
               bottom: PreferredSize(
-                preferredSize: Size.fromHeight(50),
+                preferredSize: const Size.fromHeight(50),
                 child: CustomTabBar(
                   controller: _tabController!,
                   onTabChanged: _onTabChanged,

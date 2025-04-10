@@ -27,7 +27,7 @@ class _VerifyResetCodeScreenState extends State<VerifyResetCodeScreen> {
   @override
   void initState() {
     super.initState();
-    endTime = DateTime.now().add(Duration(seconds: 60));
+    endTime = DateTime.now().add(const Duration(seconds: 60));
   }
 
   @override
@@ -41,7 +41,7 @@ class _VerifyResetCodeScreenState extends State<VerifyResetCodeScreen> {
           showDialog(
             context: context,
             barrierDismissible: false,
-            builder: (context) => Center(
+            builder: (context) => const Center(
               child: CircularProgressIndicator(
                 color: ColorManager.primaryColor,
               ),
@@ -90,7 +90,7 @@ class _VerifyResetCodeScreenState extends State<VerifyResetCodeScreen> {
           title: Text(AppStrings.password),
         ),
         body: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
@@ -148,7 +148,7 @@ class _VerifyResetCodeScreenState extends State<VerifyResetCodeScreen> {
                           ? () {
                         setState(() {
                           isResendEnabled = false;
-                          endTime = DateTime.now().add(Duration(seconds: 60));
+                          endTime = DateTime.now().add(const Duration(seconds: 60));
                         });
 
                         AuthCubit.get(context).doIntent(
@@ -169,7 +169,7 @@ class _VerifyResetCodeScreenState extends State<VerifyResetCodeScreen> {
                   ),
                 ],
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

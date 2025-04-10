@@ -3,7 +3,6 @@ import 'package:flora_mart/core/utils/colors_manager.dart';
 import 'package:flora_mart/core/utils/string_manager.dart';
 import 'package:flora_mart/presentation/best_seller/best_seller_screen.dart';
 import 'package:flora_mart/presentation/best_seller/bloc_scope/best_seller_bloc_scope.dart';
-import 'package:flora_mart/presentation/tabs/home_tab/bloc_scope/home_bloc_scope.dart';
 import 'package:flora_mart/presentation/tabs/home_tab/view_model/cubit/home_cubit.dart';
 import 'package:flora_mart/presentation/tabs/home_tab/view_model/cubit/home_intent.dart';
 import 'package:flora_mart/presentation/tabs/home_tab/widgets/best_seller_widget.dart';
@@ -42,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 25.h,
               width: 89.w,
             ),
-            CustomSearchBar(
+            const CustomSearchBar(
               margin: EdgeInsets.all(3),
             ),
           ],
@@ -53,9 +52,9 @@ class _HomeScreenState extends State<HomeScreen> {
         child: CustomScrollView(
           slivers: [
             // address
-            SliverToBoxAdapter(
+            const SliverToBoxAdapter(
               child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16),
+                padding: EdgeInsets.symmetric(vertical: 16),
                 child: Row(
                   children: [
                     Icon(Icons.location_on_outlined),
@@ -80,12 +79,12 @@ class _HomeScreenState extends State<HomeScreen> {
                         AppStrings.categories,
                         style: Theme.of(context).textTheme.titleLarge,
                       ),
-                      Spacer(),
+                      const Spacer(),
                       GestureDetector(
                         onTap: widget.onViewAllTapped,
                         child: Text(
                           AppStrings.viewAll,
-                          style: TextStyle(
+                          style: const TextStyle(
                             decoration: TextDecoration.underline,
                             decorationColor: ColorManager.pinkBase,
                             decorationThickness: 2.0,
@@ -101,11 +100,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       scrollDirection: Axis.horizontal,
                       itemCount: 20,
                       itemBuilder: (context, index) {
-                        return CategoryWidget();
+                        return const CategoryWidget();
                       },
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                 ],
@@ -122,13 +121,13 @@ class _HomeScreenState extends State<HomeScreen> {
                         AppStrings.bestSeller,
                         style: Theme.of(context).textTheme.titleLarge,
                       ),
-                      Spacer(),
+                      const Spacer(),
                       GestureDetector(
                         onTap: () {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => BestSellerBlocScope(
+                              builder: (context) => const BestSellerBlocScope(
                                 child: BestSellerScreen(),
                               ),
                             ),
@@ -136,7 +135,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         },
                         child: Text(
                           AppStrings.viewAll,
-                          style: TextStyle(
+                          style: const TextStyle(
                             decoration: TextDecoration.underline,
                             decorationColor: ColorManager.pinkBase,
                             decorationThickness: 2.0,
@@ -172,10 +171,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         AppStrings.occasion,
                         style: Theme.of(context).textTheme.titleLarge,
                       ),
-                      Spacer(),
+                      const Spacer(),
                       Text(
                         AppStrings.viewAll,
-                        style: TextStyle(
+                        style: const TextStyle(
                           decoration: TextDecoration.underline,
                           decorationColor: ColorManager.pinkBase,
                           decorationThickness: 2.0,

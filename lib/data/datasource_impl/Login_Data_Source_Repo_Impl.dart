@@ -49,7 +49,7 @@ class LoginDatasourceImpl implements LoginDataSourceRepo {
                 Constant.isRememberMe, rememberMe==true ? rememberMe : false);
 
             setRememberMe
-                ? print('isRememberMe saved: ${rememberMe} ✅✅')
+                ? print('isRememberMe saved: $rememberMe ✅✅')
                 : print('isRememberMe not saved⛔⛔, setting to null');
             // ========== Remember me Token  ========= \\
           } else {

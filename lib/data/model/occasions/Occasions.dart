@@ -5,6 +5,7 @@
 /// createdAt : "2024-11-18T12:36:18.366Z"
 /// updatedAt : "2024-11-18T12:36:18.366Z"
 /// productsCount : 4
+library;
 
 class Occasions {
   Occasions({

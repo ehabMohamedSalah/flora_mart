@@ -80,7 +80,7 @@ class flowerCard extends StatelessWidget {
                   Flexible(
                       child: Text("${price ?? "0"}",
                           overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
+                          style: const TextStyle(
                             decoration: TextDecoration.lineThrough,
                             color: Colors.grey,
                           ))),
@@ -89,11 +89,11 @@ class flowerCard extends StatelessWidget {
                       child: Text(
                     "${discount ?? "0"}%",
                     overflow: TextOverflow.ellipsis,
-                    style: TextStyle(color: ColorManager.green),
+                    style: const TextStyle(color: ColorManager.green),
                   )),
                 ],
               ),
-              Spacer(),
+              const Spacer(),
               ElevatedButton(
                   onPressed: AuthCubit.get(context).isguest == true
                       ? () {
@@ -105,14 +105,14 @@ class flowerCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     // spacing: 8,
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.add_shopping_cart,
                         color: Colors.white,
                       ),
                       SizedBox(width: Config.screenWidth! * 0.01),
                       Text(
                         AppStrings.addtocart,
-                        style: TextStyle(color: Colors.white),
+                        style: const TextStyle(color: Colors.white),
                       ),
                     ],
                   )),

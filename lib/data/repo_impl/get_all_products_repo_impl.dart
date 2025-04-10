@@ -1,6 +1,5 @@
 import 'package:flora_mart/core/api/api_result.dart';
 import 'package:flora_mart/data/datasource_contract/get_all_products_datasource.dart';
-import 'package:flora_mart/domain/entity/product_entity.dart';
 import 'package:flora_mart/domain/repo_contract/get_all_products_repo.dart';
 import 'package:injectable/injectable.dart';
 

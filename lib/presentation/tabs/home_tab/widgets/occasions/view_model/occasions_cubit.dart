@@ -1,10 +1,6 @@
-import 'package:bloc/bloc.dart';
-import 'package:flora_mart/data/model/occasions/Occasions.dart';
 import 'package:flora_mart/domain/entity/occassions_entity/OccasionsResponse.dart';
 import 'package:flora_mart/domain/usecase/get_all_products_usecase.dart';
 import 'package:flora_mart/domain/usecase/occasions_usecase.dart';
-import 'package:flora_mart/presentation/tabs/home_tab/view_model/cubit/home_intent.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 

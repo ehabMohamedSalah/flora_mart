@@ -9,7 +9,6 @@ import 'package:flora_mart/domain/entity/auth/auth_response_entity.dart';
 import 'package:flora_mart/domain/usecase/changeGuest_usecase.dart';
 import 'package:flora_mart/domain/usecase/check_guest_usecase.dart';
 import 'package:flora_mart/domain/usecase/register_usecase.dart';
-import 'package:bloc/bloc.dart';
 import 'package:flora_mart/core/api/api_result.dart';
 import 'package:flora_mart/data/model/UserModel.dart';
 import 'package:flora_mart/domain/usecase/login_Usecase.dart';

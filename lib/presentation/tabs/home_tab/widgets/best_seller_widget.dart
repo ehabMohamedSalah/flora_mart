@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'image_widget.dart';
 
@@ -22,7 +21,7 @@ class BestSellerWidget extends StatelessWidget {
             "Gift card",
             style: Theme.of(context).textTheme.titleSmall,
           ),
-          Text("600 EGP")
+          const Text("600 EGP")
         ],
       ),
     );

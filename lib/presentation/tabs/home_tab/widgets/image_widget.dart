@@ -15,9 +15,9 @@ class ImageWidget extends StatelessWidget {
       height: 150.h,
       imageUrl: image,
       fit: BoxFit.cover,
-      placeholder: (context, url) => Center(child: CircularProgressIndicator()),
+      placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
       errorWidget: (context, url, error) =>
-          Center(child: Icon(Icons.error, color: Colors.red)),
+          const Center(child: Icon(Icons.error, color: Colors.red)),
     );
   }
 }

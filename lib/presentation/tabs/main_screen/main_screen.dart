@@ -32,27 +32,27 @@ class _MainScreenState extends State<MainScreen> {
           HomeBlocScope(
             child: HomeScreen(onViewAllTapped: () => _onItemTapped(1)),
           ),
-          CategoriesScreen(),
-          CartScreen(),
-          ProfileScreen(),
+          const CategoriesScreen(),
+          const CartScreen(),
+          const ProfileScreen(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: const Icon(Icons.home),
             label: AppStrings.home,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.category_outlined),
+            icon: const Icon(Icons.category_outlined),
             label: AppStrings.category,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart_outlined),
+            icon: const Icon(Icons.shopping_cart_outlined),
             label: AppStrings.cart,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person_outline),
+            icon: const Icon(Icons.person_outline),
             label: AppStrings.profile,
           ),
         ],

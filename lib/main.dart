@@ -19,13 +19,13 @@ void main() async {
   final authCubit = getIt<AuthCubit>()..doIntent(CheckAuthIntent());
   runApp(
       EasyLocalization(
-      supportedLocales: [Locale('en'), Locale('ar')],
+      supportedLocales: const [Locale('en'), Locale('ar')],
       path: 'assets/translations',
       // <-- change the path of the translation files
-      fallbackLocale: Locale('en'),
-      startLocale: Locale("en"),
+      fallbackLocale: const Locale('en'),
+      startLocale: const Locale("en"),
       child: BlocProvider<AuthCubit>(
         create: (context) => authCubit,
-        child: MyApp(),
+        child: const MyApp(),
       ),));
 }
