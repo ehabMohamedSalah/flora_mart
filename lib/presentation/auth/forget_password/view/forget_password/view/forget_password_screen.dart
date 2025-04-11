@@ -14,12 +14,10 @@ import '../../../../view_model/cubit/auth_cubit.dart';
 import '../../../../view_model/cubit/auth_intent.dart';
 
 class ForgetPasswordScreen extends StatefulWidget {
-
   const ForgetPasswordScreen({super.key});
 
   @override
-  State<ForgetPasswordScreen> createState() =>
-      _ForgetPasswordScreenState();
+  State<ForgetPasswordScreen> createState() => _ForgetPasswordScreenState();
 }
 
 class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
@@ -43,7 +41,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
         if (state is SendEmailVerificationLoadingState) {
           showDialog(
             context: context,
-            builder: (context) => Center(
+            builder: (context) => const Center(
               child: CircularProgressIndicator(
                 color: ColorManager.primaryColor,
               ),
@@ -74,64 +72,64 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
           ),
         ),
         body: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
-      child: Form(
-        key: _formKey,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            SizedBox(height: Config.screenHight! * 0.03),
-            Align(
-              alignment: Alignment.center,
-              child: Text(
-                AppStrings.forgetpassword,
-                style: AppTextStyle.medium18,
-              ),
-            ),
-            SizedBox(height: Config.screenHight! * 0.012),
-            Align(
-              alignment: Alignment.center,
-              child: Text(
-                AppStrings.pleaseEnterEmailsAssociatedToUrAccount,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontSize: 14,
-                    color: ColorManager.grey,
-                    fontWeight: FontWeight.w400),
-              ),
-            ),
-            SizedBox(height: Config.screenHight! * 0.05),
+          physics: const BouncingScrollPhysics(),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                SizedBox(height: Config.screenHight! * 0.03),
+                Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    AppStrings.forgetpassword,
+                    style: AppTextStyle.medium18,
+                  ),
+                ),
+                SizedBox(height: Config.screenHight! * 0.012),
+                Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    AppStrings.pleaseEnterEmailsAssociatedToUrAccount,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                        fontSize: 14,
+                        color: ColorManager.grey,
+                        fontWeight: FontWeight.w400),
+                  ),
+                ),
+                SizedBox(height: Config.screenHight! * 0.05),
 
-            /* Email Field */
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.0),
-              child: CustomTextField(
-                labelText: AppStrings.email,
-                hintText: AppStrings.enterYourEmail,
-                obscureText: false,
-                keyboard: TextInputType.emailAddress,
-                controller: emailController,
-                validator: Validator.email,
-              ),
-            ),
-            SizedBox(height: Config.screenHight! * 0.06),
+                /* Email Field */
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: CustomTextField(
+                    labelText: AppStrings.email,
+                    hintText: AppStrings.enterYourEmail,
+                    obscureText: false,
+                    keyboard: TextInputType.emailAddress,
+                    controller: emailController,
+                    validator: Validator.email,
+                  ),
+                ),
+                SizedBox(height: Config.screenHight! * 0.06),
 
-            /* Confirm Button */
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.0),
-              child: CustomTextButton(
-                borderColor: ColorManager.pinkBase,
-                onPressed: _validateAndContinue,
-                text: AppStrings.confirm,
-                color: ColorManager.primaryColor,
-                textColor: Colors.white,
-              ),
+                /* Confirm Button */
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: CustomTextButton(
+                    borderColor: ColorManager.pinkBase,
+                    onPressed: _validateAndContinue,
+                    text: AppStrings.confirm,
+                    color: ColorManager.primaryColor,
+                    textColor: Colors.white,
+                  ),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
-    ),
-    ),
     );
   }
 }

@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flora_mart/data/model/Home/Categories.dart';
 import 'package:flora_mart/data/model/products/Products.dart';
 import 'BestSeller.dart';

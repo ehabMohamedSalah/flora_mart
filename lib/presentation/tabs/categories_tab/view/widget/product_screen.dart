@@ -30,12 +30,14 @@ class ProductScreen extends StatelessWidget {
                 child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(
+                const Icon(
                   Icons.no_sim_sharp,
                   size: 35,
                   color: ColorManager.white70,
                 ),
-                SizedBox(width: 10.w,),
+                SizedBox(
+                  width: 10.w,
+                ),
                 Text(
                   "No Product Found !!",
                   style: AppTheme.lightTheme.textTheme.bodyLarge,

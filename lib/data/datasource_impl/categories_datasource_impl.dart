@@ -20,30 +20,20 @@ class CategoriesDatasourceImpl extends CategoriesDatasource {
       required num productsCount}) async {
     try {
       var response = await apiManager.getRequest(
-        Endpoint: EndPoint.allCategoriesEndpoint,
+        endpoint: EndPoint.allCategoriesEndpoint,
       );
-
-      print("📌 Full API Response: ${response.data}");
 
       AllCategoriesResponse allCategoriesResponse =
           AllCategoriesResponse.fromJson(response.data);
 
-      print(
-          "📌 Parsed Categories Response: ${allCategoriesResponse.categories?.length}");
-
       var filteredCategories = allCategoriesResponse.categories;
-
-      print("📌 Filtered Categories: ${filteredCategories?.length}");
 
       if (filteredCategories != null && filteredCategories.isNotEmpty) {
         return SuccessApiResult(filteredCategories);
       } else {
-        print(
-            "⚠️ [Datasource] No matching categories found for id=$id, name=$name, productsCount=$productsCount");
         return ErrorApiResult(Exception("No matching categories found"));
       }
     } catch (err) {
-      print("❌ [Datasource] Error: $err");
       return ErrorApiResult(
           Exception("Server connection error: ${err.toString()}"));
     }

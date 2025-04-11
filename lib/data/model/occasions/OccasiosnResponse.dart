@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import '../../../domain/entity/occassions_entity/OccasionsResponse.dart';
 import 'Metadata.dart';
 import 'Occasions.dart';
@@ -8,13 +10,15 @@ import 'Occasions.dart';
 
 class OccasiosnResponse {
   OccasiosnResponse({
-      this.message, 
-      this.metadata, 
-      this.occasions,});
+    this.message,
+    this.metadata,
+    this.occasions,
+  });
 
   OccasiosnResponse.fromJson(dynamic json) {
     message = json['message'];
-    metadata = json['metadata'] != null ? Metadata.fromJson(json['metadata']) : null;
+    metadata =
+        json['metadata'] != null ? Metadata.fromJson(json['metadata']) : null;
     if (json['occasions'] != null) {
       occasions = [];
       json['occasions'].forEach((v) {
@@ -25,13 +29,16 @@ class OccasiosnResponse {
   String? message;
   Metadata? metadata;
   List<Occasions>? occasions;
-OccasiosnResponse copyWith({  String? message,
-  Metadata? metadata,
-  List<Occasions>? occasions,
-}) => OccasiosnResponse(  message: message ?? this.message,
-  metadata: metadata ?? this.metadata,
-  occasions: occasions ?? this.occasions,
-);
+  OccasiosnResponse copyWith({
+    String? message,
+    Metadata? metadata,
+    List<Occasions>? occasions,
+  }) =>
+      OccasiosnResponse(
+        message: message ?? this.message,
+        metadata: metadata ?? this.metadata,
+        occasions: occasions ?? this.occasions,
+      );
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['message'] = message;
@@ -44,11 +51,11 @@ OccasiosnResponse copyWith({  String? message,
     return map;
   }
 
-  OccasiosnResponseEntity toOccasiosnResponseEntity(){
-   return OccasiosnResponseEntity(
+  OccasiosnResponseEntity toOccasiosnResponseEntity() {
+    return OccasiosnResponseEntity(
       message: message,
-     metadata: metadata,
-     occasions: occasions,
+      metadata: metadata,
+      occasions: occasions,
     );
   }
 }

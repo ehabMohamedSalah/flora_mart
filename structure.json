@@ -1,0 +1,63 @@
+{
+  "lib": {
+    "data": {
+      "models": {
+        "cart": ["cart_response.dart"],
+        "": ["upload_profile_photo_model.dart", "get_logged_user_data_model.dart"]
+      },
+      "repo_impl": [
+        "cart_repo_impl.dart",
+        "update_profile_repo_impl.dart",
+        "profile_repo_impl.dart",
+        "logout_repo_impl.dart"
+      ],
+      "datasource_contract": [
+        "cart_datasource.dart",
+        "logout_datasource.dart",
+        "update_profile_datasource.dart",
+        "profile_datasource.dart"
+      ],
+      "datasource_impl": [
+        "cart_datasource_impl.dart",
+        "logout_datasource_impl.dart",
+        "profile_datasource_impl.dart",
+        "update_profiel_datasource_impl.dart"
+      ]
+    },
+    "domain": {
+      "repo_contract": [
+        "cart_repo.dart",
+        "logout_repo_contract.dart",
+        "update_profile_repo.dart",
+        "profile_repo.dart"
+      ],
+      "usecase": [
+        "cart_usecase.dart",
+        "logout_usecase.dart",
+        "get_profile_details_usecase.dart",
+        "update_profile_usecase.dart",
+        "upload_profile_photo_usecase.dart"
+      ],
+      "entity": [
+        "upload_profile_photo_entity.dart",
+        "get_logged_user_data_entity.dart"
+      ]
+    },
+    "presentation": {
+      "Language_bottom_sheet": {
+        "Wigets": ["language_widget.dart"],
+        "": ["bottom_sheet.dart"]
+      },
+      "edit_profile_screen": {
+        "view_model": [
+          "edit_profile_cubit.dart",
+          "edit_profile_state.dart",
+          "edit_profile_intent.dart"
+        ],
+        "": [
+          "edit_profile_screen.dart"
+        ]
+      }
+    }
+  }
+}

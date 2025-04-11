@@ -8,7 +8,7 @@ class AppTheme {
     fontFamily: 'Inter',
 
     // 🎨 ألوان التطبيق
-    colorScheme: ColorScheme.light(
+    colorScheme: const ColorScheme.light(
       primary: ColorManager.primaryColor, // اللون الأساسي
       secondary: Colors.black87,
       surface: Colors.white, // سطح البطاقات
@@ -20,34 +20,33 @@ class AppTheme {
     ),
 
     // 📝 نصوص التطبيق
-    textTheme: TextTheme(
-      titleLarge: TextStyle(
-        fontSize: 20,
-        fontWeight: FontWeight.bold,
-        color: Colors.black87,
-      ),
-      bodyLarge: TextStyle(
-        fontSize: 16,
-        color: Colors.black54,
-      ),
-      bodyMedium: TextStyle(
-        fontSize: 14,
-        color: Colors.black,
-        fontWeight: FontWeight.w700,
-      ),
-      labelLarge: TextStyle(
-        fontSize: 16,
-        fontWeight: FontWeight.bold,
-        color: Colors.white,
-      ),
-      bodySmall: TextStyle(
-        fontSize: 13,
-        color: ColorManager.grey,
-      )
-    ),
+    textTheme: const TextTheme(
+        titleLarge: TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+          color: Colors.black87,
+        ),
+        bodyLarge: TextStyle(
+          fontSize: 16,
+          color: Colors.black54,
+        ),
+        bodyMedium: TextStyle(
+          fontSize: 14,
+          color: Colors.black,
+          fontWeight: FontWeight.w700,
+        ),
+        labelLarge: TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
+          color: Colors.white,
+        ),
+        bodySmall: TextStyle(
+          fontSize: 13,
+          color: ColorManager.grey,
+        )),
 
     // 🔹 شريط التطبيق العلوي (AppBar)
-    appBarTheme: AppBarTheme(
+    appBarTheme: const AppBarTheme(
       backgroundColor: Colors.white,
       elevation: 0,
       iconTheme: IconThemeData(color: Colors.black87),
@@ -74,27 +73,27 @@ class AppTheme {
       fillColor: Colors.white,
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
-        borderSide: BorderSide(color: Colors.black12),
+        borderSide: const BorderSide(color: Colors.black12),
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
-        borderSide: BorderSide(color: Colors.black12),
+        borderSide: const BorderSide(color: Colors.black12),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
-        borderSide: BorderSide(color: Colors.pinkAccent),
+        borderSide: const BorderSide(color: Colors.pinkAccent),
       ),
     ),
 
     // 🏠 تصميم شريط التنقل السفلي (Bottom Navigation Bar)
-    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: Colors.white,
       selectedItemColor: ColorManager.primaryColor,
       unselectedItemColor: Colors.black54,
       showUnselectedLabels: true,
     ),
 
-    tabBarTheme: TabBarTheme(
+    tabBarTheme: const TabBarTheme(
       labelColor: ColorManager.primaryColor,
       dividerColor: Colors.transparent,
       indicatorSize: TabBarIndicatorSize.tab,

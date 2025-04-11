@@ -6,15 +6,18 @@
 /// updatedAt : "2024-11-18T12:36:18.366Z"
 /// productsCount : 4
 
+// ignore_for_file: dangling_library_doc_comments, file_names
+
 class Occasions {
   Occasions({
-      this.id, 
-      this.name, 
-      this.slug, 
-      this.image, 
-      this.createdAt, 
-      this.updatedAt, 
-      this.productsCount,});
+    this.id,
+    this.name,
+    this.slug,
+    this.image,
+    this.createdAt,
+    this.updatedAt,
+    this.productsCount,
+  });
 
   Occasions.fromJson(dynamic json) {
     id = json['_id'];
@@ -32,21 +35,24 @@ class Occasions {
   String? createdAt;
   String? updatedAt;
   int? productsCount;
-Occasions copyWith({  String? id,
-  String? name,
-  String? slug,
-  String? image,
-  String? createdAt,
-  String? updatedAt,
-  int? productsCount,
-}) => Occasions(  id: id ?? this.id,
-  name: name ?? this.name,
-  slug: slug ?? this.slug,
-  image: image ?? this.image,
-  createdAt: createdAt ?? this.createdAt,
-  updatedAt: updatedAt ?? this.updatedAt,
-  productsCount: productsCount ?? this.productsCount,
-);
+  Occasions copyWith({
+    String? id,
+    String? name,
+    String? slug,
+    String? image,
+    String? createdAt,
+    String? updatedAt,
+    int? productsCount,
+  }) =>
+      Occasions(
+        id: id ?? this.id,
+        name: name ?? this.name,
+        slug: slug ?? this.slug,
+        image: image ?? this.image,
+        createdAt: createdAt ?? this.createdAt,
+        updatedAt: updatedAt ?? this.updatedAt,
+        productsCount: productsCount ?? this.productsCount,
+      );
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['_id'] = id;
@@ -58,5 +64,4 @@ Occasions copyWith({  String? id,
     map['productsCount'] = productsCount;
     return map;
   }
-
 }

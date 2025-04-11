@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flora_mart/data/repo_impl/Login_Repo_Impl.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
@@ -7,7 +9,6 @@ import 'package:flora_mart/data/model/UserModel.dart';
 import 'package:flora_mart/data/datasource_contract/Login_Data_Source_Repo.dart';
 
 import 'Login_Repo_Impl_test.mocks.dart';
-
 
 @GenerateMocks([LoginDataSourceRepo])
 void main() {
@@ -78,7 +79,7 @@ void main() {
     )).thenThrow(Exception("Email or password cannot be empty"));
 
     expect(
-          () => signinRepo.login(email: '', password: '', rememberMe: rememberMe),
+      () => signinRepo.login(email: '', password: '', rememberMe: rememberMe),
       throwsA(isA<Exception>()),
     );
   });

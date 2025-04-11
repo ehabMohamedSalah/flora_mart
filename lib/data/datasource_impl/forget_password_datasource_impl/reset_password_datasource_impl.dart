@@ -17,17 +17,14 @@ class Resetpassworddatasourcerepoimpl implements ResetpasswordDataSourceRepo {
       {required String email, required String password}) async {
     return await executeApi<bool>(() async {
       ("email  : $email ");
-      print("password  : $password ");
       var apiResponse = await apiManager.put(
-        Endpoint: EndPoint.resetPasswordEndpoint,
+        endpoint: EndPoint.resetPasswordEndpoint,
         data: {"email": email, "newPassword": password},
       );
       if (apiResponse.data != null &&
           apiResponse.data["message"] == "success") {
-        print("PassWord Changed✅");
         return true;
       } else {
-        print("⛔⛔⛔");
         return false;
       }
     });

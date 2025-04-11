@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flora_mart/core/api/api_result.dart';
 import 'package:injectable/injectable.dart';
 
@@ -12,6 +14,6 @@ class Forgetpasswordrepoimpl implements ForgetpasswordRepo {
 
   @override
   Future<ApiResult<bool>> SendEmailVerification({required String email}) {
-    return forgetpassword_data_sourse_repo.SendEmailVerification(email: email);
+    return forgetpassword_data_sourse_repo.sendEmailVerification(email: email);
   }
 }

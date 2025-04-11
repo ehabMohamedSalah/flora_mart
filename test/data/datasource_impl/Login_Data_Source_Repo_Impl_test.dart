@@ -8,7 +8,6 @@ import 'package:flora_mart/core/api/api_result.dart';
 import 'package:flora_mart/core/api/endpoints.dart';
 import 'package:flora_mart/core/cache/shared_pref.dart';
 import 'package:flora_mart/core/constant.dart';
-import 'package:flora_mart/data/datasource_contract/Login_Data_Source_Repo.dart';
 import 'package:flora_mart/data/model/UserModel.dart';
 
 import 'Login_Data_Source_Repo_Impl_test.mocks.dart';
@@ -37,18 +36,15 @@ void main() {
       'email': email,
     };
 
-
     test('should return UserModel on successful login', () async {
-
       when(mockApiManager.postRequest(
         endpoint: EndPoint.signInEndpoint,
         body: anyNamed('body'),
       )).thenAnswer((_) async => Response(
-        data: mockResponse,
-        statusCode: 200,
-        requestOptions: RequestOptions(path: EndPoint.signInEndpoint),
-      ));
-
+            data: mockResponse,
+            statusCode: 200,
+            requestOptions: RequestOptions(path: EndPoint.signInEndpoint),
+          ));
 
       when(mockCacheHelper.setData<String>(Constant.tokenKey, token))
           .thenAnswer((_) async => true);
@@ -62,7 +58,8 @@ void main() {
       );
 
       expect(result, isA<SuccessApiResult<UserModel>>());
-      expect((result as SuccessApiResult<UserModel>).data?.token, equals(token));
+      expect(
+          (result as SuccessApiResult<UserModel>).data?.token, equals(token));
     });
 
     test('should return error on failed login', () async {
@@ -71,7 +68,6 @@ void main() {
         body: anyNamed('body'),
       )).thenThrow(Exception('Login failed'));
 
-
       final result = await loginDatasource.login(
         email: email,
         password: password,
@@ -79,9 +75,8 @@ void main() {
       );
 
       expect(result, isA<ErrorApiResult<UserModel>>());
-      expect((result as ErrorApiResult<UserModel>).exception.toString(), contains('Login failed'));
+      expect((result as ErrorApiResult<UserModel>).exception.toString(),
+          contains('Login failed'));
     });
-
   });
-
 }

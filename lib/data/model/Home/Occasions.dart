@@ -5,6 +5,8 @@
 /// createdAt : "2024-11-18T12:36:18.366Z"
 /// updatedAt : "2024-11-18T12:36:18.366Z"
 
+// ignore_for_file: dangling_library_doc_comments, file_names
+
 class Occasions {
   Occasions({
     this.id,

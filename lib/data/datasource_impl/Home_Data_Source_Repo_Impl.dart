@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'dart:developer';
 import 'package:flora_mart/core/api/api_excuter.dart';
 import 'package:flora_mart/core/api/api_manager.dart';
@@ -19,7 +21,7 @@ class HomeDatasourceImpl implements HomeDataSourceRepo {
     return await executeApi<HomeResponse>(
       () async {
         var apiResponse = await apiManager.getRequest(
-          Endpoint: EndPoint.homeEndpoint,
+          endpoint: EndPoint.homeEndpoint,
         );
 
         log('API Response: ${apiResponse.statusCode}');

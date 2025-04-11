@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flora_mart/domain/repo_contract/guest_repo.dart';
 import 'package:injectable/injectable.dart';
 

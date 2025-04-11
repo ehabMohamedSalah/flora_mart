@@ -41,7 +41,7 @@ dependencies:
   bloc: any
   injectable: ^2.5.0
   shimmer:
-  build_runner: any
+  build_runner: ^2.4.15
   # add get_it
   get_it:
   flutter_svg: any
@@ -78,7 +78,6 @@ dev_dependencies:
   flutter_lints: ^4.0.0
   injectable_generator:
   # add build runner if not already added
-  build_runner:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

@@ -17,7 +17,7 @@ class BestSellerDataSourceImpl implements BestSellerDataSource {
   Future<ApiResult<List<BestSellerModel>>> getBestSellers() async {
     return await executeApi<List<BestSellerModel>>(() async {
       var response = await apiManager.getRequest(
-        Endpoint: EndPoint.bestSellerEndpoint,
+        endpoint: EndPoint.bestSellerEndpoint,
       );
 
       List<dynamic> bestSellerList = response.data['bestSeller'] ?? [];

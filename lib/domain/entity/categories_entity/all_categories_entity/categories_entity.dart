@@ -6,6 +6,8 @@
 /// updatedAt : "2024-11-19T08:06:21.263Z"
 /// productsCount : 8
 
+// ignore_for_file: dangling_library_doc_comments
+
 class CategoriesEntity {
   String? id;
   String? name;
@@ -27,5 +29,4 @@ class CategoriesEntity {
   String toString() {
     return 'CategoriesEntity{id: $id, name: $name, slug: $slug, image: $image, createdAt: $createdAt, updatedAt: $updatedAt, productsCount: $productsCount}';
   }
-
 }

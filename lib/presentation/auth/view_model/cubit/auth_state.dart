@@ -1,8 +1,9 @@
+// ignore_for_file: must_be_immutable
+
 part of 'auth_cubit.dart';
 
 @immutable
 sealed class AuthState {}
-
 
 final class AuthInitial extends AuthState {}
 
@@ -27,7 +28,6 @@ final class CeckGuestState extends AuthState {
 
   CeckGuestState(this.isGuest);
 }
-
 
 ///  FORGOT PASSWORD STATES  ///
 
@@ -76,6 +76,7 @@ final class ResetPasswordErrorState extends AuthState {
   String? message;
   ResetPasswordErrorState({required this.message});
 }
+
 final class RegisterViewModelLoading extends AuthState {}
 
 final class RegisterViewModelSuccess extends AuthState {

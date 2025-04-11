@@ -75,7 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
       title: Row(
         children: [
           Image.asset("assets/images/Logo.png", height: 25.h, width: 89.w),
-          CustomSearchBar(margin: EdgeInsets.all(3)),
+          const CustomSearchBar(margin: EdgeInsets.all(3)),
         ],
       ),
     );

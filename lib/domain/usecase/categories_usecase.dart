@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flora_mart/core/api/api_result.dart';
 import 'package:flora_mart/domain/entity/categories_entity/all_categories_entity/categories_entity.dart';
 import 'package:flora_mart/domain/repo_contract/categories_repo.dart';

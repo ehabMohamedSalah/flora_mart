@@ -3,12 +3,15 @@
 /// limit : 40
 /// totalItems : 12
 
+// ignore_for_file: dangling_library_doc_comments, file_names
+
 class Metadata {
   Metadata({
-      this.currentPage, 
-      this.totalPages, 
-      this.limit, 
-      this.totalItems,});
+    this.currentPage,
+    this.totalPages,
+    this.limit,
+    this.totalItems,
+  });
 
   Metadata.fromJson(dynamic json) {
     currentPage = json['currentPage'];
@@ -29,5 +32,4 @@ class Metadata {
     map['totalItems'] = totalItems;
     return map;
   }
-
 }

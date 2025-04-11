@@ -63,6 +63,6 @@ class CustomSearchDelegate extends SearchDelegate {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    return Scaffold(body: Center());
+    return const Scaffold(body: Center());
   }
 }

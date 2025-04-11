@@ -1,4 +1,3 @@
-
 import 'package:flora_mart/core/utils/colors_manager.dart';
 import 'package:flora_mart/core/utils/routes_manager.dart';
 import 'package:flutter/material.dart';
@@ -27,6 +26,7 @@ class _VerifyResetCodeScreenState extends State<VerifyResetCodeScreen> {
   @override
   void initState() {
     super.initState();
+    // ignore: prefer_const_constructors
     endTime = DateTime.now().add(Duration(seconds: 60));
   }
 
@@ -41,7 +41,7 @@ class _VerifyResetCodeScreenState extends State<VerifyResetCodeScreen> {
           showDialog(
             context: context,
             barrierDismissible: false,
-            builder: (context) => Center(
+            builder: (context) => const Center(
               child: CircularProgressIndicator(
                 color: ColorManager.primaryColor,
               ),
@@ -90,7 +90,7 @@ class _VerifyResetCodeScreenState extends State<VerifyResetCodeScreen> {
           title: Text(AppStrings.password),
         ),
         body: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
@@ -99,7 +99,8 @@ class _VerifyResetCodeScreenState extends State<VerifyResetCodeScreen> {
                 alignment: Alignment.center,
                 child: Text(
                   AppStrings.emailVerification,
-                  style: AppTextStyle.medium20.copyWith(color: ColorManager.blackBase),
+                  style: AppTextStyle.medium20
+                      .copyWith(color: ColorManager.blackBase),
                 ),
               ),
               SizedBox(height: Config.screenHight! * 0.012),
@@ -108,7 +109,8 @@ class _VerifyResetCodeScreenState extends State<VerifyResetCodeScreen> {
                 child: Text(
                   AppStrings.sendedCode,
                   textAlign: TextAlign.center,
-                  style: AppTextStyle.regular14.copyWith(color: ColorManager.grey),
+                  style:
+                      AppTextStyle.regular14.copyWith(color: ColorManager.grey),
                 ),
               ),
               SizedBox(height: Config.screenHight! * 0.05),
@@ -146,38 +148,37 @@ class _VerifyResetCodeScreenState extends State<VerifyResetCodeScreen> {
                     child: GestureDetector(
                       onTap: isResendEnabled
                           ? () {
-                        setState(() {
-                          isResendEnabled = false;
-                          endTime = DateTime.now().add(Duration(seconds: 60));
-                        });
+                              setState(() {
+                                isResendEnabled = false;
+                                endTime = DateTime.now()
+                                    .add(const Duration(seconds: 60));
+                              });
 
-                        AuthCubit.get(context).doIntent(
-                          ForgetPassword(email: email),
-                        );
-                      }
+                              AuthCubit.get(context).doIntent(
+                                ForgetPassword(email: email),
+                              );
+                            }
                           : null,
                       child: Text(AppStrings.resend,
                           style: AppTextStyle.regular16.copyWith(
-                            color:
-                                 Theme.of(context).primaryColor,
+                            color: Theme.of(context).primaryColor,
                             decoration: TextDecoration.underline,
-                            decorationColor:
-                                 Theme.of(context).primaryColor,
+                            decorationColor: Theme.of(context).primaryColor,
                             decorationThickness: 2,
                           )),
                     ),
                   ),
                 ],
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   TimerCountdown(
-                    colonsTextStyle:
-                    AppTextStyle.regular12.copyWith(color: ColorManager.grey),
-                    timeTextStyle:
-                    AppTextStyle.regular12.copyWith(color: ColorManager.grey),
+                    colonsTextStyle: AppTextStyle.regular12
+                        .copyWith(color: ColorManager.grey),
+                    timeTextStyle: AppTextStyle.regular12
+                        .copyWith(color: ColorManager.grey),
                     format: CountDownTimerFormat.secondsOnly,
                     endTime: endTime,
                     onEnd: () {
@@ -195,4 +196,3 @@ class _VerifyResetCodeScreenState extends State<VerifyResetCodeScreen> {
     );
   }
 }
-

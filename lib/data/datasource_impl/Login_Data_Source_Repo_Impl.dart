@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print, file_names, unnecessary_brace_in_string_interps
+
 import 'package:flora_mart/core/api/api_excuter.dart';
 import 'package:flora_mart/core/api/api_manager.dart';
 import 'package:flora_mart/core/api/api_result.dart';
@@ -32,8 +34,8 @@ class LoginDatasourceImpl implements LoginDataSourceRepo {
           },
         );
 
-        print('API Response: ${apiResponse.data}'); // Print full response
-        print('API Response: ${apiResponse.statusCode}'); // Print full response
+        // Print full response
+        // Print full response
         // Print full response
 
         var response = UserModel.fromJson(apiResponse.data ?? {});
@@ -42,11 +44,10 @@ class LoginDatasourceImpl implements LoginDataSourceRepo {
           bool setToken = await cacheHelper.setData<String>(
               Constant.tokenKey, response.token ?? "");
           if (setToken) {
-            print('Token saved: ${response.token} ✅✅');
             // ========== Remember me Token  ========= \\
 
             bool setRememberMe = await cacheHelper.setData<bool>(
-                Constant.isRememberMe, rememberMe==true ? rememberMe : false);
+                Constant.isRememberMe, rememberMe == true ? rememberMe : false);
 
             setRememberMe
                 ? print('isRememberMe saved: ${rememberMe} ✅✅')

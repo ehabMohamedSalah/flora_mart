@@ -26,7 +26,7 @@ class ImageWidget extends StatelessWidget {
         ),
       ),
       errorWidget: (context, url, error) =>
-          Center(child: Icon(Icons.error, color: Colors.red)),
+          const Center(child: Icon(Icons.error, color: Colors.red)),
     );
   }
 }
