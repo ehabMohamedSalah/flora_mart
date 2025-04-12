@@ -1,6 +1,6 @@
 import 'package:flora_mart/core/utils/config.dart';
 import 'package:flora_mart/core/utils/string_manager.dart';
-import 'package:flora_mart/presentation/tabs/home_tab/widgets/Category%20widget.dart';
+import 'package:flora_mart/presentation/tabs/home_tab/widgets/category_widget.dart';
 import 'package:flora_mart/presentation/tabs/home_tab/widgets/home_screen_slivers/TitleRow.dart';
 import 'package:flutter/material.dart';
 
