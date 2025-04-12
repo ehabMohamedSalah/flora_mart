@@ -1,5 +1,4 @@
 import 'package:flora_mart/data/model/products/Products.dart';
-import 'package:flora_mart/domain/entity/product_entity.dart';
 
 sealed class ProductState {}
 

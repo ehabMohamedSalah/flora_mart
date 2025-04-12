@@ -1,3 +1,5 @@
+// ignore_for_file: annotate_overrides, avoid_print
+
 import 'package:flora_mart/core/api/api_result.dart';
 import 'package:flora_mart/data/datasource_contract/categories_datasource.dart';
 import 'package:flora_mart/data/model/categories/all_categories/categories.dart';

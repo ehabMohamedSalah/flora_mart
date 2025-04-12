@@ -31,9 +31,9 @@ class _ImageSliderWidgetState extends State<ImageSliderWidget> {
             viewportFraction: 1.1,
             enableInfiniteScroll: false,
             autoPlay: true,
-            autoPlayInterval: Duration(seconds: 3),
+            autoPlayInterval: const Duration(seconds: 3),
             autoPlayCurve: Curves.slowMiddle,
-            scrollPhysics: BouncingScrollPhysics(),
+            scrollPhysics: const BouncingScrollPhysics(),
             disableCenter: true,
             onPageChanged: (index, reason) {
               setState(() {
@@ -46,7 +46,7 @@ class _ImageSliderWidgetState extends State<ImageSliderWidget> {
             return Builder(
               builder: (BuildContext context) {
                 return Container(
-                  margin: EdgeInsets.symmetric(horizontal: 5.0),
+                  margin: const EdgeInsets.symmetric(horizontal: 5.0),
                   child: CachedNetworkImage(
                     imageUrl: i,
                     fit: BoxFit.fill,
@@ -73,14 +73,14 @@ class _ImageSliderWidgetState extends State<ImageSliderWidget> {
           child: SafeArea(
             child: IconButton(
               onPressed: () => Navigator.pop(context),
-              icon: Icon(
+              icon: const Icon(
                 Icons.arrow_back_ios_new,
               ),
             ),
           ),
         ),
         Container(
-          margin: EdgeInsets.only(bottom: 10),
+          margin: const EdgeInsets.only(bottom: 10),
           child: AnimatedSmoothIndicator(
             activeIndex: currentIndex,
             onDotClicked: (index) =>

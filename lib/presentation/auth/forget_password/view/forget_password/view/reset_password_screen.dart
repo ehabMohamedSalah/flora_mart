@@ -1,3 +1,5 @@
+// ignore_for_file: no_leading_underscores_for_local_identifiers, use_build_context_synchronously
+
 import 'package:flora_mart/core/resuable_comp/text_button.dart';
 import 'package:flora_mart/core/utils/colors_manager.dart';
 import 'package:flora_mart/core/utils/routes_manager.dart';
@@ -45,7 +47,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
         if (state is ResetPasswordLoadingState) {
           showDialog(
             context: context,
-            builder: (context) => Center(
+            builder: (context) => const Center(
               child: CircularProgressIndicator(
                 color: ColorManager.primaryColor,
               ),
@@ -60,7 +62,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                 tybeMessage: TybeMessage.positive);
 
             // Wait for 2 seconds, then navigate to login
-            Future.delayed(Duration(seconds: 2), () {
+            Future.delayed(const Duration(seconds: 2), () {
               Navigator.pop(context); // Close dialog
               Navigator.pushNamed(context, RouteManager.loginScreen);
             });
@@ -79,7 +81,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
           title: Text(AppStrings.password),
         ),
         body: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           child: Form(
             key: _formKey,
             child: Padding(
@@ -118,8 +120,8 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                   CustomPasswordField(
                     label: AppStrings.confirmPassword,
                     controller: confirmPasswordController,
-                    validator: (value) =>
-                        Validator.confirmPassword(value, passwordController.text),
+                    validator: (value) => Validator.confirmPassword(
+                        value, passwordController.text),
                   ),
 
                   /* Confirm Button */

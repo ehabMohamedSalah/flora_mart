@@ -59,7 +59,8 @@ class FlowerCard extends StatelessWidget {
                 )),
               ),
               SizedBox(height: Config.screenHight! * 0.01),
-              Center(
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Text(
                   title ?? "",
                   overflow: TextOverflow.ellipsis,
@@ -67,33 +68,36 @@ class FlowerCard extends StatelessWidget {
                 ),
               ),
               SizedBox(height: Config.screenHight! * 0.005),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                // spacing: 5,
-                children: [
-                  Text(
-                    "EGP ${priceAfterDiscount ?? "0"}",
-                    overflow: TextOverflow.ellipsis,
-                    style: Theme.of(context).textTheme.bodyMedium,
-                  ),
-                  SizedBox(width: Config.screenWidth! * 0.02),
-                  Flexible(
-                      child: Text("${price ?? "0"}",
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            decoration: TextDecoration.lineThrough,
-                            color: Colors.grey,
-                          ))),
-                  SizedBox(width: Config.screenWidth! * 0.02),
-                  Flexible(
-                      child: Text(
-                    "${discount ?? "0"}%",
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(color: ColorManager.green),
-                  )),
-                ],
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  // spacing: 5,
+                  children: [
+                    Text(
+                      "EGP ${priceAfterDiscount ?? "0"}",
+                      overflow: TextOverflow.ellipsis,
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                    SizedBox(width: Config.screenWidth! * 0.02),
+                    Flexible(
+                        child: Text("${price ?? "0"}",
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(
+                              decoration: TextDecoration.lineThrough,
+                              color: Colors.grey,
+                            ))),
+                    SizedBox(width: Config.screenWidth! * 0.02),
+                    Flexible(
+                        child: Text(
+                      "${discount ?? "0"}%",
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(color: ColorManager.green),
+                    )),
+                  ],
+                ),
               ),
-              Spacer(),
+              const Spacer(),
               ElevatedButton(
                   onPressed: AuthCubit.get(context).isguest == true
                       ? () {
@@ -105,14 +109,14 @@ class FlowerCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     // spacing: 8,
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.add_shopping_cart,
                         color: Colors.white,
                       ),
                       SizedBox(width: Config.screenWidth! * 0.01),
                       Text(
                         AppStrings.addtocart,
-                        style: TextStyle(color: Colors.white),
+                        style: const TextStyle(color: Colors.white),
                       ),
                     ],
                   )),

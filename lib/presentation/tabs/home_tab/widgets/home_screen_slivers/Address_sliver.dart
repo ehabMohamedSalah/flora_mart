@@ -1,10 +1,12 @@
+// ignore_for_file: file_names
+
 import 'package:flora_mart/core/utils/colors_manager.dart';
 import 'package:flutter/material.dart';
 
 Widget buildAddress() {
-  return SliverToBoxAdapter(
+  return const SliverToBoxAdapter(
     child: Padding(
-      padding: const EdgeInsets.symmetric(vertical: 16),
+      padding: EdgeInsets.symmetric(vertical: 16),
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Row(

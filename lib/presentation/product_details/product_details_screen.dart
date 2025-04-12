@@ -1,8 +1,10 @@
+import 'package:flora_mart/core/resuable_comp/dialogs.dart';
 import 'package:flora_mart/core/resuable_comp/toast_message.dart';
 import 'package:flora_mart/core/utils/config.dart';
 import 'package:flora_mart/core/utils/string_manager.dart';
 import 'package:flora_mart/core/utils/text_style_manager.dart';
 import 'package:flora_mart/data/model/products/Products.dart';
+import 'package:flora_mart/presentation/auth/view_model/cubit/auth_cubit.dart';
 import 'package:flora_mart/presentation/product_details/widgets/image_slider_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -31,7 +33,7 @@ class ProductDetailsScreen extends StatelessWidget {
                         "EGP ${product.priceAfterDiscount}",
                         style: AppTextStyle.semiBold20,
                       ),
-                      Spacer(),
+                      const Spacer(),
                       Text(AppStrings.status, style: AppTextStyle.medium16),
                       Text(
                           product.quantity != 0
@@ -63,11 +65,14 @@ class ProductDetailsScreen extends StatelessWidget {
                       style: AppTextStyle.regular14),
                   SizedBox(height: Config.screenHight! * 0.03),
                   ElevatedButton(
-                      onPressed: () {
-                        toastMessage(
-                            message: AppStrings.addedtocart,
-                            tybeMessage: TybeMessage.positive);
-                      },
+                      onPressed: AuthCubit.get(context).isguest == true
+                          ? () => Dialogs.restrictedAccess(
+                              context, () => Navigator.pop(context))
+                          : () {
+                              toastMessage(
+                                  message: AppStrings.addedtocart,
+                                  tybeMessage: TybeMessage.positive);
+                            },
                       child: Text(
                         AppStrings.addtocart,
                         style: TextStyle(

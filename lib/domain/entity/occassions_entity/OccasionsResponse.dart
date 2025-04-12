@@ -1,7 +1,7 @@
+// ignore_for_file: file_names
+
 import '../../../data/model/occasions/Metadata.dart';
 import '../../../data/model/occasions/Occasions.dart';
-
-
 
 /// message : "success"
 /// metadata : {"currentPage":1,"limit":10,"totalPages":2,"totalItems":15}
@@ -11,13 +11,10 @@ class OccasiosnResponseEntity {
   OccasiosnResponseEntity({
     this.message,
     this.metadata,
-    this.occasions,});
-
+    this.occasions,
+  });
 
   String? message;
   Metadata? metadata;
   List<Occasions>? occasions;
-
-
-
 }

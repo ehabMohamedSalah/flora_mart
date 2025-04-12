@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:flora_mart/core/cache/shared_pref.dart';
 import 'package:flora_mart/core/constant.dart';
 import 'package:flora_mart/data/datasource_contract/guest_datasource.dart';

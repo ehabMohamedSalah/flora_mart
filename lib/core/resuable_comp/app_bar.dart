@@ -12,7 +12,7 @@ class AppBarWidget extends StatelessWidget {
       children: [
         IconButton(
           onPressed: onpressed,
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back_ios_new,
             color: Colors.black,
             size: 25,

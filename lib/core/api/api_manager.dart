@@ -3,39 +3,46 @@ import 'package:injectable/injectable.dart';
 
 import '../constant.dart';
 
-
 @singleton
-class ApiManager{
+class ApiManager {
   static late Dio dio;
   static init() {
     dio = Dio(
       BaseOptions(
-          baseUrl: Constant.baseUrl,
-      ),);
+        baseUrl: Constant.baseUrl,
+      ),
+    );
   }
 
-  Future<Response> getRequest({required String Endpoint, Map<String, dynamic>? queryParameters, Map<String, dynamic>? headers}) async {
-    var response = await dio.get(Endpoint, queryParameters: queryParameters, options: Options(
-      headers: headers,
-    ));
+  Future<Response> getRequest(
+      {required String endpoint,
+      Map<String, dynamic>? queryParameters,
+      Map<String, dynamic>? headers}) async {
+    var response = await dio.get(endpoint,
+        queryParameters: queryParameters,
+        options: Options(
+          headers: headers,
+        ));
     return response;
   }
 
-  Future<Response> postRequest({required String endpoint, Map<String, dynamic>? body, Map<String, dynamic>? headers}) async {
-    var response = await dio.post(endpoint, data: body, options: Options(
-        headers: headers
-    ));
+  Future<Response> postRequest(
+      {required String endpoint,
+      Map<String, dynamic>? body,
+      Map<String, dynamic>? headers}) async {
+    var response = await dio.post(endpoint,
+        data: body, options: Options(headers: headers));
     return response;
   }
 
   Future<Response> put({
-    required String Endpoint,
+    required String endpoint,
     Map<String, dynamic>? queryParameters,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? data, // ✅ Add this parameter for the request body
   }) async {
     var response = await dio.put(
-      Endpoint,
+      endpoint,
       queryParameters: queryParameters,
       data: data, // ✅ Pass the request body here
       options: Options(
@@ -45,18 +52,27 @@ class ApiManager{
     return response;
   }
 
-
-  Future<Response> delete({required String Endpoint, Map<String, dynamic>? queryParameters, Map<String, dynamic>? headers}) async {
-    var response = await dio.delete(Endpoint, queryParameters: queryParameters, options: Options(
-      headers: headers,
-    ));
+  Future<Response> delete(
+      {required String endpoint,
+      Map<String, dynamic>? queryParameters,
+      Map<String, dynamic>? headers}) async {
+    var response = await dio.delete(endpoint,
+        queryParameters: queryParameters,
+        options: Options(
+          headers: headers,
+        ));
     return response;
   }
 
-  Future<Response> patchRequest({required String endpoint, Map<String, dynamic>? body, Map<String, dynamic>? headers}) async {
-    var response = await dio.patch(endpoint, data: body, options: Options(
-      headers: headers,
-    ));
+  Future<Response> patchRequest(
+      {required String endpoint,
+      Map<String, dynamic>? body,
+      Map<String, dynamic>? headers}) async {
+    var response = await dio.patch(endpoint,
+        data: body,
+        options: Options(
+          headers: headers,
+        ));
     return response;
   }
 }

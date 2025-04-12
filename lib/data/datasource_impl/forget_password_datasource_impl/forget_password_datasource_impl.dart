@@ -8,12 +8,12 @@ import '../../datasource_contract/forget_password_datasource/forget_password_dat
 
 @Injectable(as: ForgetpasswordDataSourseRepo)
 class ForgetpasswordDataSourceRepoImpl implements ForgetpasswordDataSourseRepo {
-  @override
   final ApiManager apiManager;
 
   ForgetpasswordDataSourceRepoImpl({required this.apiManager});
 
-  Future<ApiResult<bool>> SendEmailVerification({required String email}) async {
+  @override
+  Future<ApiResult<bool>> sendEmailVerification({required String email}) async {
     return await executeApi<bool>(() async {
       var apiResponse = await apiManager.postRequest(
         endpoint: EndPoint.forgetPasswordEndpoints,
@@ -23,7 +23,6 @@ class ForgetpasswordDataSourceRepoImpl implements ForgetpasswordDataSourseRepo {
       );
       if (apiResponse.data != null &&
           apiResponse.data["message"] == "success") {
-        print("SENT✅");
         return true;
       } else {
         return false;

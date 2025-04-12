@@ -1,10 +1,7 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flora_mart/core/di/di.dart';
-import 'package:flora_mart/core/utils/routes_manager.dart';
 import 'package:flora_mart/data/model/occasions/Occasions.dart';
-import 'package:flora_mart/domain/entity/occassions_entity/OccasionsResponse.dart';
-import 'package:flora_mart/presentation/tabs/home_tab/view_model/cubit/home_cubit.dart';
-import 'package:flora_mart/presentation/tabs/home_tab/view_model/cubit/home_intent.dart';
-import 'package:flora_mart/presentation/tabs/home_tab/widgets/occasion_widget.dart';
 import 'package:flora_mart/presentation/tabs/home_tab/widgets/occasions/view/widget/product_of_occasions_widget.dart';
 import 'package:flora_mart/presentation/tabs/home_tab/widgets/occasions/view_model/occasions_cubit.dart';
 import 'package:flora_mart/presentation/tabs/home_tab/widgets/occasions/view_model/occasions_intent.dart';
@@ -12,11 +9,8 @@ import 'package:flora_mart/presentation/tabs/home_tab/widgets/occasions/view_mod
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../../../core/resuable_comp/app_bar.dart';
 import '../../../../../../core/resuable_comp/custom_tab_bar_widget.dart';
 import '../../../../../../core/utils/string_manager.dart';
-import '../../image_widget.dart';
-
 
 class OccasionScreen extends StatefulWidget {
   final String? selectedOccasionId;
@@ -26,7 +20,8 @@ class OccasionScreen extends StatefulWidget {
   _OccasionScreenState createState() => _OccasionScreenState();
 }
 
-class _OccasionScreenState extends State<OccasionScreen> with SingleTickerProviderStateMixin {
+class _OccasionScreenState extends State<OccasionScreen>
+    with SingleTickerProviderStateMixin {
   TabController? _tabController;
   int selectedIndex = 0;
   List<Occasions> occasionsList = [];
@@ -39,7 +34,6 @@ class _OccasionScreenState extends State<OccasionScreen> with SingleTickerProvid
     cubit = getIt<OccasionsCubit>(); // inject once
     Future.delayed(Duration.zero, () {
       cubit.doIntent(GetOccaisonIntent());
-
     });
   }
 
@@ -96,13 +90,12 @@ class _OccasionScreenState extends State<OccasionScreen> with SingleTickerProvid
         },
         builder: (context, state) {
           if (state is GetOccasionLoading || _tabController == null) {
-            return Scaffold(
-
+            return const Scaffold(
               body: Center(child: CircularProgressIndicator()),
             );
           } else if (state is GetOccasionError) {
             return Scaffold(
-               body: Center(child: Text("Error: ${state.message}")),
+              body: Center(child: Text("Error: ${state.message}")),
             );
           }
 
@@ -113,20 +106,21 @@ class _OccasionScreenState extends State<OccasionScreen> with SingleTickerProvid
                 children: [
                   Align(
                       alignment: Alignment.centerLeft,
-                      child: Text(AppStrings.occasion,style: Theme.of(context).textTheme.titleLarge,)),
+                      child: Text(
+                        AppStrings.occasion,
+                        style: Theme.of(context).textTheme.titleLarge,
+                      )),
                   Align(
                     alignment: Alignment.centerLeft,
-
                     child: Text(
                       AppStrings.bloomWithOurExquisiteBestSellers,
                       style: Theme.of(context).textTheme.bodySmall,
                     ),
                   ),
-
                 ],
               ),
               bottom: PreferredSize(
-                preferredSize: Size.fromHeight(50),
+                preferredSize: const Size.fromHeight(50),
                 child: CustomTabBar(
                   controller: _tabController!,
                   onTabChanged: _onTabChanged,
@@ -143,8 +137,8 @@ class _OccasionScreenState extends State<OccasionScreen> with SingleTickerProvid
                     controller: _tabController!,
                     children: occasionsList
                         .map((o) => ProductsOfOccasionWidget(
-                       occasionId: o.id??"",
-                    ))
+                              occasionId: o.id ?? "",
+                            ))
                         .toList(),
                   ),
                 ),

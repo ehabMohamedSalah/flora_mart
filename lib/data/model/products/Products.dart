@@ -17,6 +17,8 @@
 /// rateAvg : 3.5
 /// rateCount : 30
 /// id : "673e1cd711599201718280fb"
+// ignore_for_file: file_names
+
 library;
 
 class Products {

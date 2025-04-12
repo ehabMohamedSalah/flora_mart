@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flora_mart/data/model/User.dart';
 
 /// message : "success"
@@ -6,9 +8,10 @@ import 'package:flora_mart/data/model/User.dart';
 
 class UserModel {
   UserModel({
-      this.message, 
-      this.user, 
-      this.token,});
+    this.message,
+    this.user,
+    this.token,
+  });
 
   UserModel.fromJson(dynamic json) {
     message = json['message'];
@@ -28,7 +31,6 @@ class UserModel {
     map['token'] = token;
     return map;
   }
-
 }
 
 /// _id : "67ddc3df836ee8be70625150"
@@ -42,4 +44,3 @@ class UserModel {
 /// wishlist : []
 /// addresses : []
 /// createdAt : "2025-03-21T19:54:07.985Z"
-

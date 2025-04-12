@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flora_mart/data/model/products/Products.dart';
 
 /// _id : "673e1cd711599201718280fb"

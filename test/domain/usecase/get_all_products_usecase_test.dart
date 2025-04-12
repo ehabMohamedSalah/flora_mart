@@ -1,6 +1,5 @@
 import 'package:flora_mart/core/api/api_result.dart';
 import 'package:flora_mart/data/model/products/Products.dart';
-import 'package:flora_mart/domain/entity/product_entity.dart';
 import 'package:flora_mart/domain/repo_contract/get_all_products_repo.dart';
 import 'package:flora_mart/domain/usecase/get_all_products_usecase.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -11,9 +10,9 @@ import 'get_all_products_usecase_test.mocks.dart';
 
 @GenerateMocks([GetAllProductsRepo])
 void main() {
-
   provideDummy<ApiResult<List<Products>>>(SuccessApiResult([]));
-  provideDummy<ApiResult<List<Products>>>(ErrorApiResult(Exception("Dummy error")));
+  provideDummy<ApiResult<List<Products>>>(
+      ErrorApiResult(Exception("Dummy error")));
 
   late GetAllProductsUsecase getAllProductsUsecase;
   late MockGetAllProductsRepo mockGetAllProductsRepo;
@@ -27,7 +26,9 @@ void main() {
     const String testTypeId = 'category123';
     const String testType = 'category';
 
-    test('should return SuccessApiResult when products are retrieved successfully', () async {
+    test(
+        'should return SuccessApiResult when products are retrieved successfully',
+        () async {
       // Arrange
       final List<Products> productList = [
         Products(
@@ -35,7 +36,8 @@ void main() {
             title: "Wdding Flower",
             slug: "wdding-flower",
             description: "This is a Pack of White Widding Flowers",
-            imgCover: "https://flower.elevateegy.com/uploads/fefa790a-f0c1-42a0-8699-34e8fc065812-cover_image.png",
+            imgCover:
+                "https://flower.elevateegy.com/uploads/fefa790a-f0c1-42a0-8699-34e8fc065812-cover_image.png",
             images: [
               "https://flower.elevateegy.com/uploads/66c36d5d-c067-46d9-b339-d81be57e0149-image_one.png",
               "https://flower.elevateegy.com/uploads/f27e1903-74cf-4ed6-a42c-e43e35b6dd14-image_three.png",
@@ -57,7 +59,8 @@ void main() {
             title: "Red Wdding Flower",
             slug: "red-wdding-flower",
             description: "This is a Pack of Red Widding Flowers",
-            imgCover: "https://flower.elevateegy.com/uploads/5452abf4-2040-43d7-bb3d-3ae8f53c4576-cover_image.png",
+            imgCover:
+                "https://flower.elevateegy.com/uploads/5452abf4-2040-43d7-bb3d-3ae8f53c4576-cover_image.png",
             images: [
               "https://flower.elevateegy.com/uploads/ba028e59-410f-43ac-aed5-f4f97c102b98-image_four.png",
               "https://flower.elevateegy.com/uploads/f89bc954-eb0d-4efb-928f-6717f77b69ed-image_one.png",
@@ -76,33 +79,38 @@ void main() {
             rateAvg: 5,
             rateCount: 0),
       ];
-      when(mockGetAllProductsRepo.getAllProducts(testTypeId,testType))
+      when(mockGetAllProductsRepo.getAllProducts(testTypeId, testType))
           .thenAnswer((_) async => SuccessApiResult(productList));
 
       // Act
-      final result = await getAllProductsUsecase.execute(testTypeId,testType);
+      final result = await getAllProductsUsecase.execute(testTypeId, testType);
 
       // Assert
       expect(result, isA<SuccessApiResult<List<Products>>>());
       expect((result as SuccessApiResult).data, isNotEmpty);
       //expect(result.data!.length, 2);
-      verify(mockGetAllProductsRepo.getAllProducts(testTypeId,testType)).called(1);
+      verify(mockGetAllProductsRepo.getAllProducts(testTypeId, testType))
+          .called(1);
       verifyNoMoreInteractions(mockGetAllProductsRepo);
     });
 
-    test('should return ErrorApiResult when an error occurs while retrieving products', () async {
+    test(
+        'should return ErrorApiResult when an error occurs while retrieving products',
+        () async {
       // Arrange
       final error = Exception('Failed to load products');
-      when(mockGetAllProductsRepo.getAllProducts(testTypeId,testType))
+      when(mockGetAllProductsRepo.getAllProducts(testTypeId, testType))
           .thenAnswer((_) async => ErrorApiResult(error));
 
       // Act
-      final result = await getAllProductsUsecase.execute(testTypeId,testType);
+      final result = await getAllProductsUsecase.execute(testTypeId, testType);
 
       // Assert
       expect(result, isA<ErrorApiResult<List<Products>>>());
-      expect((result as ErrorApiResult).exception.toString(), contains('Failed to load products'));
-      verify(mockGetAllProductsRepo.getAllProducts(testTypeId,testType)).called(1);
+      expect((result as ErrorApiResult).exception.toString(),
+          contains('Failed to load products'));
+      verify(mockGetAllProductsRepo.getAllProducts(testTypeId, testType))
+          .called(1);
       verifyNoMoreInteractions(mockGetAllProductsRepo);
     });
   });

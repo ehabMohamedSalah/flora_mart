@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_import, non_constant_identifier_names, avoid_print
+
 import 'dart:developer';
 
 import 'package:flora_mart/core/cache/shared_pref.dart';

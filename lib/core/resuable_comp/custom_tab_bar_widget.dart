@@ -19,7 +19,7 @@ class CustomTabBar extends StatelessWidget {
     return TabBar(
       onTap: onTabChanged,
       controller: controller,
-      physics: BouncingScrollPhysics(),
+      physics: const BouncingScrollPhysics(),
       isScrollable: true,
       labelColor: Theme.of(context).colorScheme.primary,
       tabs: tabs.map((title) => Tab(text: title)).toList(),

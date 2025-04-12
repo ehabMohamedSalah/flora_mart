@@ -1,10 +1,8 @@
-import 'package:bloc/bloc.dart';
-import 'package:flora_mart/data/model/occasions/Occasions.dart';
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flora_mart/domain/entity/occassions_entity/OccasionsResponse.dart';
 import 'package:flora_mart/domain/usecase/get_all_products_usecase.dart';
 import 'package:flora_mart/domain/usecase/occasions_usecase.dart';
-import 'package:flora_mart/presentation/tabs/home_tab/view_model/cubit/home_intent.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
@@ -13,18 +11,15 @@ import '../../../../../../data/model/products/Products.dart';
 import 'occasions_intent.dart';
 import 'occasions_state.dart';
 
-
-
 @injectable
 class OccasionsCubit extends Cubit<OccasionsState> {
-
   final OccassionsUsecase getHomeOccasionUseCase;
   final GetAllProductsUsecase getAllProductsUsecase;
 
   OccasionsCubit(
-      this.getHomeOccasionUseCase,
-      this.getAllProductsUsecase,)
-      : super(OccasionsInitial());
+    this.getHomeOccasionUseCase,
+    this.getAllProductsUsecase,
+  ) : super(OccasionsInitial());
 
   static OccasionsCubit get(context) => BlocProvider.of(context);
 
@@ -39,22 +34,14 @@ class OccasionsCubit extends Cubit<OccasionsState> {
     }
   }
 
-
   _getHomeOccasion({required GetOccaisonIntent intent}) async {
     emit(GetOccasionLoading());
     final result = await getHomeOccasionUseCase.invoke();
-    print(result);
     if (result is SuccessApiResult<OccasiosnResponseEntity>) {
-      print("success");
       emit(GetOccasionSuccess(occasions: result.data));
-    }
-    else if (result is ErrorApiResult<OccasiosnResponseEntity>) {
-      print("fail");
-      print(result.exception.toString());
-
+    } else if (result is ErrorApiResult<OccasiosnResponseEntity>) {
       emit(GetOccasionError(message: result.exception.toString()));
     } else {
-      print("fail");
       emit(GetOccasionError(message: "Unknown error occurred"));
     }
   }
@@ -67,18 +54,12 @@ class OccasionsCubit extends Cubit<OccasionsState> {
       "occasion",
     );
 
-    print(result);
-
     if (result is SuccessApiResult<List<Products>>) {
-      print("success");
       emit(GetProductsSuccess(result.data ?? []));
     } else if (result is ErrorApiResult<List<Products>>) {
-      print("fail");
       emit(GetProductsError("Error: ${result.exception}"));
     } else {
-      print("fail");
       emit(GetProductsError("Unknown error occurred"));
     }
   }
 }
-

@@ -17,7 +17,7 @@ class CustomSearchBar extends StatelessWidget {
             width: 1,
           ),
         ),
-        child: TextField(
+        child: const TextField(
           decoration: InputDecoration(
             hintText: 'Search',
             hintStyle: TextStyle(color: Colors.grey),
