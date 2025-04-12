@@ -18,7 +18,7 @@ class BestSellersSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           TitleRowWidget(
-              title: AppStrings.occasion,
+              title: AppStrings.bestSeller,
               onTap: () {
                 Navigator.push(
                   context,

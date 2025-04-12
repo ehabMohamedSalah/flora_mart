@@ -22,7 +22,7 @@ class CategoriesSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          TitleRowWidget(title: AppStrings.occasion, onTap: onSeeAllTap),
+          TitleRowWidget(title: AppStrings.categories, onTap: onSeeAllTap),
           const SizedBox(height: 10),
           SizedBox(
             height: Config.screenHight! * 0.15,
