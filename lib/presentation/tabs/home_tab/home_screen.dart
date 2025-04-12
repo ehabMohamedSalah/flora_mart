@@ -43,15 +43,16 @@ class _HomeScreenState extends State<HomeScreen> {
               child: CustomScrollView(
                 slivers: [
                   buildAddress(),
-                  // Show actual categories if data is available
-                  buildCategories(homeData?.categories?.take(10).toList() ?? [],
-                      widget.onViewAllTapped, context, widget.onCategoryTapped),
-                  // Show actual best sellers if data is available
-                  buildBestSellers(
-                      homeData?.bestSeller?.take(10).toList() ?? [], context),
-                  // Show actual occasions if data is available
-                  buildOccasions(
-                      homeData?.occasions?.take(10).toList() ?? [], context),
+                  CategoriesSection(
+                    categories: homeData?.categories?.take(10).toList() ?? [],
+                    onSeeAllTap: widget.onViewAllTapped,
+                    onCategoryTapped: widget.onCategoryTapped,
+                  ),
+                  BestSellersSection(
+                    bestSellers: homeData?.bestSeller?.take(10).toList() ?? [],
+                  ),
+                  OccasionsSection(
+                      occasions: homeData?.occasions?.take(10).toList() ?? []),
                 ],
               ),
             );

@@ -61,7 +61,7 @@ class _MainScreenState extends State<MainScreen> {
         children: [
           HomeBlocScope(
             child: HomeScreen(
-              onViewAllTapped: () => _onItemTapped(1),
+              onViewAllTapped: () => _onCategoryTapped(""),
               onCategoryTapped: (categoryId) {
                 _onCategoryTapped(
                     categoryId); // Update the category before navigating
