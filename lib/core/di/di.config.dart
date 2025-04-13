@@ -12,8 +12,12 @@
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
+import '../../data/datasource_contract/Home_Data_Source_Repo.dart' as _i755;
+import '../../data/datasource_contract/Login_Data_Source_Repo.dart' as _i557;
 import '../../data/datasource_contract/auth_datasource.dart' as _i214;
 import '../../data/datasource_contract/best_seller_datasource.dart' as _i575;
+import '../../data/datasource_contract/cart_datasource/cart_datasource.dart'
+    as _i770;
 import '../../data/datasource_contract/categories_datasource.dart' as _i546;
 import '../../data/datasource_contract/forget_password_datasource/forget_password_datasource.dart'
     as _i206;
@@ -24,12 +28,14 @@ import '../../data/datasource_contract/forget_password_datasource/verify_reset_c
 import '../../data/datasource_contract/get_all_products_datasource.dart'
     as _i466;
 import '../../data/datasource_contract/guest_datasource.dart' as _i623;
-import '../../data/datasource_contract/Home_Data_Source_Repo.dart' as _i755;
-import '../../data/datasource_contract/Login_Data_Source_Repo.dart' as _i557;
 import '../../data/datasource_contract/occasion_datasource/occasions_datasource.dart'
     as _i331;
+import '../../data/datasource_impl/Home_Data_Source_Repo_Impl.dart' as _i437;
+import '../../data/datasource_impl/Login_Data_Source_Repo_Impl.dart' as _i878;
 import '../../data/datasource_impl/auth_datasource_impl.dart' as _i422;
 import '../../data/datasource_impl/best_seller_datasource_impl.dart' as _i378;
+import '../../data/datasource_impl/cart_datasource_impl/cart_datasource_impl.dart'
+    as _i274;
 import '../../data/datasource_impl/categories_datasource_impl.dart' as _i71;
 import '../../data/datasource_impl/forget_password_datasource_impl/forget_password_datasource_impl.dart'
     as _i319;
@@ -40,12 +46,13 @@ import '../../data/datasource_impl/forget_password_datasource_impl/verify_reset_
 import '../../data/datasource_impl/get_all_products_datasource_impl.dart'
     as _i97;
 import '../../data/datasource_impl/guest_datasource_impl.dart' as _i48;
-import '../../data/datasource_impl/Home_Data_Source_Repo_Impl.dart' as _i437;
-import '../../data/datasource_impl/Login_Data_Source_Repo_Impl.dart' as _i878;
 import '../../data/datasource_impl/occasions_datasource_impl/occassions_datasource_impl.dart'
     as _i626;
+import '../../data/repo_impl/Home_Repo_Impl.dart' as _i420;
+import '../../data/repo_impl/Login_Repo_Impl.dart' as _i722;
 import '../../data/repo_impl/auth_repo_impl.dart' as _i540;
 import '../../data/repo_impl/best_seller_repo_impl.dart' as _i133;
+import '../../data/repo_impl/cart_repo_impl/cart_repo_impl.dart' as _i826;
 import '../../data/repo_impl/categories_repo_impl.dart' as _i807;
 import '../../data/repo_impl/forget_password_repo_impl/forget_password_repo_impl.dart'
     as _i210;
@@ -55,11 +62,11 @@ import '../../data/repo_impl/forget_password_repo_impl/verify_reset_code_repo_im
     as _i721;
 import '../../data/repo_impl/get_all_products_repo_impl.dart' as _i883;
 import '../../data/repo_impl/guest_repo_impl.dart' as _i905;
-import '../../data/repo_impl/home_repo_impl.dart' as _i216;
-import '../../data/repo_impl/Login_Repo_Impl.dart' as _i722;
 import '../../data/repo_impl/occasions_repo_impl.dart' as _i750;
+import '../../domain/repo_contract/Login_Repo.dart' as _i831;
 import '../../domain/repo_contract/auth_repo.dart' as _i233;
 import '../../domain/repo_contract/best_seller_repo.dart' as _i64;
+import '../../domain/repo_contract/cart_repo/cart_repo.dart' as _i64;
 import '../../domain/repo_contract/categories_repo.dart' as _i41;
 import '../../domain/repo_contract/forget_password_repo_contract/forget_password_repo.dart'
     as _i976;
@@ -69,9 +76,8 @@ import '../../domain/repo_contract/forget_password_repo_contract/verify_reset_co
     as _i544;
 import '../../domain/repo_contract/get_all_products_repo.dart' as _i697;
 import '../../domain/repo_contract/guest_repo.dart' as _i234;
-import '../../domain/repo_contract/home_repo.dart' as _i820;
-import '../../domain/repo_contract/Login_Repo.dart' as _i831;
 import '../../domain/repo_contract/occasions_repo.dart' as _i130;
+import '../../domain/usecase/cart_usecases/add_to_cart_usecase.dart' as _i971;
 import '../../domain/usecase/categories_usecase.dart' as _i1036;
 import '../../domain/usecase/changeGuest_usecase.dart' as _i285;
 import '../../domain/usecase/check_guest_usecase.dart' as _i304;
@@ -90,6 +96,8 @@ import '../../domain/usecase/register_usecase.dart' as _i626;
 import '../../presentation/auth/view_model/cubit/auth_cubit.dart' as _i351;
 import '../../presentation/best_seller/view_model/cubit/best_seller_cubit.dart'
     as _i165;
+import '../../presentation/tabs/cart_tab/view_model/cubit/cart_cubit.dart'
+    as _i1071;
 import '../../presentation/tabs/categories_tab/view_model/categories_cubit.dart'
     as _i196;
 import '../../presentation/tabs/categories_tab/view_model/product_cubit.dart'
@@ -122,6 +130,8 @@ extension GetItInjectableX on _i174.GetIt {
             apiManager: gh<_i1047.ApiManager>()));
     gh.factory<_i623.GuestDatasource>(
         () => _i48.GuestDatasourceImpl(gh<_i299.CacheHelper>()));
+    gh.factory<_i979.HomeCubit>(
+        () => _i979.HomeCubit(gh<_i1069.HomeUsecase>()));
     gh.factory<_i206.ForgetpasswordDataSourseRepo>(() =>
         _i319.ForgetpasswordDataSourceRepoImpl(
             apiManager: gh<_i1047.ApiManager>()));
@@ -131,20 +141,22 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i437.HomeDatasourceImpl(gh<_i1047.ApiManager>()));
     gh.factory<_i575.BestSellerDataSource>(
         () => _i378.BestSellerDataSourceImpl(gh<_i1047.ApiManager>()));
-    gh.factory<_i216.homeRepoImpl>(
-        () => _i216.homeRepoImpl(gh<_i755.HomeDataSourceRepo>()));
+    gh.factory<_i420.homeRepoImpl>(
+        () => _i420.homeRepoImpl(gh<_i755.HomeDataSourceRepo>()));
     gh.factory<_i331.OccassionsDataSource>(
         () => _i626.OccasionsDatasourceImpl(gh<_i1047.ApiManager>()));
     gh.factory<_i233.AuthRepo>(
         () => _i540.AuthRepoImpl(gh<_i214.AuthDatasource>()));
+    gh.factory<_i770.CartDatasource>(() => _i274.CartDatasourceImpl(
+          apiManager: gh<_i1047.ApiManager>(),
+          cacheHelper: gh<_i299.CacheHelper>(),
+        ));
     gh.factory<_i557.LoginDataSourceRepo>(() => _i878.LoginDatasourceImpl(
           gh<_i1047.ApiManager>(),
           gh<_i299.CacheHelper>(),
         ));
     gh.factory<_i466.GetAllProductsDatasource>(
         () => _i97.GetAllProductsDatasourceImpl(gh<_i1047.ApiManager>()));
-    gh.factory<_i1069.HomeUsecase>(
-        () => _i1069.HomeUsecase(homeRepo: gh<_i820.HomeRepo>()));
     gh.factory<_i234.GuestRepo>(
         () => _i905.GuestRepoImpl(gh<_i623.GuestDatasource>()));
     gh.factory<_i544.VerifyresetcodeRepo>(() => _i721.Verifyresetcoderepoimpl(
@@ -170,12 +182,12 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i896.OccassionsUsecase(gh<_i130.OccasionsRepo>()));
     gh.factory<_i831.LoginRepo>(
         () => _i722.SigninRepoImpl(gh<_i557.LoginDataSourceRepo>()));
-    gh.factory<_i979.HomeCubit>(
-        () => _i979.HomeCubit(gh<_i1069.HomeUsecase>()));
     gh.factory<_i285.ChangeguestUsecase>(
         () => _i285.ChangeguestUsecase(gh<_i234.GuestRepo>()));
     gh.factory<_i304.CheckGuestUseCase>(
         () => _i304.CheckGuestUseCase(gh<_i234.GuestRepo>()));
+    gh.factory<_i64.CartRepo>(
+        () => _i826.CartRepoImpl(gh<_i770.CartDatasource>()));
     gh.factory<_i181.LoginUsecase>(
         () => _i181.LoginUsecase(loginRepo: gh<_i831.LoginRepo>()));
     gh.factory<_i626.RegisterUsecase>(
@@ -196,6 +208,8 @@ extension GetItInjectableX on _i174.GetIt {
         ));
     gh.factory<_i814.GetBestSellersUseCase>(
         () => _i814.GetBestSellersUseCase(gh<_i64.BestSellerRepo>()));
+    gh.factory<_i971.AddToCartUsecase>(
+        () => _i971.AddToCartUsecase(gh<_i64.CartRepo>()));
     gh.factory<_i196.CategoriesCubit>(
         () => _i196.CategoriesCubit(gh<_i1036.CategoriesUsecase>()));
     gh.factory<_i351.AuthCubit>(() => _i351.AuthCubit(
@@ -209,6 +223,8 @@ extension GetItInjectableX on _i174.GetIt {
         ));
     gh.factory<_i165.BestSellerCubit>(
         () => _i165.BestSellerCubit(gh<_i814.GetBestSellersUseCase>()));
+    gh.factory<_i1071.CartCubit>(
+        () => _i1071.CartCubit(gh<_i971.AddToCartUsecase>()));
     return this;
   }
 }
