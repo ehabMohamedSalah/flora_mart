@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flora_mart/core/utils/colors_manager.dart';
 import 'package:flora_mart/core/utils/string_manager.dart';
 import 'package:flora_mart/presentation/tabs/cart_tab/cart_screen.dart';
@@ -69,26 +71,26 @@ class _MainScreenState extends State<MainScreen> {
             ),
           ),
           CategoriesScreen(selectedCategoryId: widget.selectedCategoryId),
-          CartScreen(),
-          ProfileScreen(),
+          const CartScreen(),
+          const ProfileScreen(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: const Icon(Icons.home),
             label: AppStrings.home,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.category_outlined),
+            icon: const Icon(Icons.category_outlined),
             label: AppStrings.category,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart_outlined),
+            icon: const Icon(Icons.shopping_cart_outlined),
             label: AppStrings.cart,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person_outline),
+            icon: const Icon(Icons.person_outline),
             label: AppStrings.profile,
           ),
         ],

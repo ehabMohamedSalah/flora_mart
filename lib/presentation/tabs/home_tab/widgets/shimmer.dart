@@ -17,7 +17,7 @@ Widget buildSkeletonLoader() {
 }
 
 LinearGradient _greyShimmerGradient() {
-  return LinearGradient(
+  return const LinearGradient(
     colors: [
       Color(0xFFF5F5F5), // Very light grey
       Color(0xFFE0E0E0), // Light grey

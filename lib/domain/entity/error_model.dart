@@ -1,6 +1,8 @@
 /// message : "fail"
 /// errors : {"value":"ahmedmfmslf1gmail.com","msg":"Invalid email ","param":"email","location":"body"}
 
+// ignore_for_file: dangling_library_doc_comments
+
 class ErrorModel {
   ErrorModel({
     this.message,

@@ -107,8 +107,7 @@ void main() {
         ' should check guest and return correct state',
         build: () {
           // Update to use ApiResult instead of Result
-          when(checkGuestUseCase.call())
-              .thenAnswer((_) async => Success(true));
+          when(checkGuestUseCase.call()).thenAnswer((_) async => Success(true));
           return authCubit;
         },
         act: (cubit) {
@@ -190,7 +189,6 @@ void main() {
     },
   );
   group('LoginCubit', () {
-    late LoginUsecase signInUsecase;
     late CheckGuestUseCase checkGuestUseCase;
     late LoginUsecase loginUsecase;
     late ChangeguestUsecase changeGuestUsecase;
@@ -203,7 +201,6 @@ void main() {
     const testEmail = 'test@example.com';
     const testPassword = 'password123';
     const testRememberMe = true;
-    final testUserModel = UserModel(token: 'test_token');
 
     setUp(() {
       SharedPreferences.setMockInitialValues({});
@@ -231,8 +228,6 @@ void main() {
     blocTest<AuthCubit, AuthState>(
       'emits [LoginLoading, LoginSuccess] when sign in succeeds',
       build: () {
-        ApiResult<UserModel> userModelApiResult =
-            SuccessApiResult(testUserModel);
         provideDummy<ApiResult<UserModel>>(
             SuccessApiResult<UserModel>(UserModel(token: 'dummy_token')));
 

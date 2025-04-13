@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'Metadata.dart';
 import 'Products.dart';
 
@@ -7,13 +9,15 @@ import 'Products.dart';
 
 class Productresponse {
   Productresponse({
-      this.message, 
-      this.metadata, 
-      this.products,});
+    this.message,
+    this.metadata,
+    this.products,
+  });
 
   Productresponse.fromJson(dynamic json) {
     message = json['message'];
-    metadata = json['metadata'] != null ? Metadata.fromJson(json['metadata']) : null;
+    metadata =
+        json['metadata'] != null ? Metadata.fromJson(json['metadata']) : null;
     if (json['products'] != null) {
       products = [];
       json['products'].forEach((v) {
@@ -36,5 +40,4 @@ class Productresponse {
     }
     return map;
   }
-
 }

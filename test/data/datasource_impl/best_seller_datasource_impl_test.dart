@@ -55,7 +55,7 @@ void main() {
         );
 
         when(apiManager.getRequest(
-          Endpoint: EndPoint.bestSellerEndpoint,
+          endpoint: EndPoint.bestSellerEndpoint,
         )).thenAnswer((_) async => mockResponse);
 
         // Act
@@ -67,7 +67,7 @@ void main() {
         expect(successResult.data?.length, equals(1));
         expect(successResult.data?.first.id, equals('1'));
         verify(apiManager.getRequest(
-          Endpoint: EndPoint.bestSellerEndpoint,
+          endpoint: EndPoint.bestSellerEndpoint,
         )).called(1);
       },
     );
@@ -77,15 +77,12 @@ void main() {
       () async {
         // Arrange
         when(apiManager.getRequest(
-          Endpoint: EndPoint.bestSellerEndpoint,
+          endpoint: EndPoint.bestSellerEndpoint,
         )).thenThrow(DioException(
           requestOptions: RequestOptions(path: ''),
           response: Response(
             requestOptions: RequestOptions(path: ''),
-            data: {
-              'message': 'Network Error',
-              'status': 'error'
-            },
+            data: {'message': 'Network Error', 'status': 'error'},
           ),
           type: DioExceptionType.badResponse,
         ));
@@ -96,7 +93,7 @@ void main() {
         // Assert
         expect(result, isA<ErrorApiResult<List<BestSellerModel>>>());
         verify(apiManager.getRequest(
-          Endpoint: EndPoint.bestSellerEndpoint,
+          endpoint: EndPoint.bestSellerEndpoint,
         )).called(1);
       },
     );
@@ -107,13 +104,11 @@ void main() {
         // Arrange
         final mockResponse = Response(
           requestOptions: RequestOptions(path: ''),
-          data: {
-            'bestSeller': []
-          },
+          data: {'bestSeller': []},
         );
 
         when(apiManager.getRequest(
-          Endpoint: EndPoint.bestSellerEndpoint,
+          endpoint: EndPoint.bestSellerEndpoint,
         )).thenAnswer((_) async => mockResponse);
 
         // Act
@@ -124,7 +119,7 @@ void main() {
         final successResult = result as SuccessApiResult<List<BestSellerModel>>;
         expect(successResult.data?.isEmpty, isTrue);
         verify(apiManager.getRequest(
-          Endpoint: EndPoint.bestSellerEndpoint,
+          endpoint: EndPoint.bestSellerEndpoint,
         )).called(1);
       },
     );

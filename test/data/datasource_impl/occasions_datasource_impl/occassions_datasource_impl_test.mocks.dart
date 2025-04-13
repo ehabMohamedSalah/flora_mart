@@ -38,13 +38,13 @@ class MockApiManager extends _i1.Mock implements _i3.ApiManager {
 
   @override
   _i4.Future<_i2.Response<dynamic>> getRequest({
-    required String? Endpoint,
+    required String? endpoint,
     Map<String, dynamic>? queryParameters,
     Map<String, dynamic>? headers,
   }) =>
       (super.noSuchMethod(
             Invocation.method(#getRequest, [], {
-              #Endpoint: Endpoint,
+              #endpoint: endpoint,
               #queryParameters: queryParameters,
               #headers: headers,
             }),
@@ -52,7 +52,7 @@ class MockApiManager extends _i1.Mock implements _i3.ApiManager {
               _FakeResponse_0<dynamic>(
                 this,
                 Invocation.method(#getRequest, [], {
-                  #Endpoint: Endpoint,
+                  #endpoint: endpoint,
                   #queryParameters: queryParameters,
                   #headers: headers,
                 }),
@@ -88,14 +88,14 @@ class MockApiManager extends _i1.Mock implements _i3.ApiManager {
 
   @override
   _i4.Future<_i2.Response<dynamic>> put({
-    required String? Endpoint,
+    required String? endpoint,
     Map<String, dynamic>? queryParameters,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? data,
   }) =>
       (super.noSuchMethod(
             Invocation.method(#put, [], {
-              #Endpoint: Endpoint,
+              #endpoint: endpoint,
               #queryParameters: queryParameters,
               #headers: headers,
               #data: data,
@@ -104,7 +104,7 @@ class MockApiManager extends _i1.Mock implements _i3.ApiManager {
               _FakeResponse_0<dynamic>(
                 this,
                 Invocation.method(#put, [], {
-                  #Endpoint: Endpoint,
+                  #endpoint: endpoint,
                   #queryParameters: queryParameters,
                   #headers: headers,
                   #data: data,
@@ -116,13 +116,13 @@ class MockApiManager extends _i1.Mock implements _i3.ApiManager {
 
   @override
   _i4.Future<_i2.Response<dynamic>> delete({
-    required String? Endpoint,
+    required String? endpoint,
     Map<String, dynamic>? queryParameters,
     Map<String, dynamic>? headers,
   }) =>
       (super.noSuchMethod(
             Invocation.method(#delete, [], {
-              #Endpoint: Endpoint,
+              #endpoint: endpoint,
               #queryParameters: queryParameters,
               #headers: headers,
             }),
@@ -130,7 +130,7 @@ class MockApiManager extends _i1.Mock implements _i3.ApiManager {
               _FakeResponse_0<dynamic>(
                 this,
                 Invocation.method(#delete, [], {
-                  #Endpoint: Endpoint,
+                  #endpoint: endpoint,
                   #queryParameters: queryParameters,
                   #headers: headers,
                 }),

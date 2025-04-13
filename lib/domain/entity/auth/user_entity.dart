@@ -18,6 +18,8 @@
 /// isVerified : false
 /// createdAt : "2025-02-14T16:36:21.143Z"
 
+// ignore_for_file: dangling_library_doc_comments
+
 class UserEntity {
   String? firstName;
   String? lastName;
@@ -47,5 +49,3 @@ class UserEntity {
     this.createdAt,
   });
 }
-
-

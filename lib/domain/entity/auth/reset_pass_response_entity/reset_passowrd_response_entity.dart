@@ -2,15 +2,16 @@
 /// code : 400
 /// token : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YjI0Y2Q1ODZhMDI0ZjA2ZWEyNzc3YyIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzM5ODU2NDIyfQ.xXnCxBWkjHgYf1dPEuX6MfqIF7aBg8Vg2GGBG_W_DEM"
 
+// ignore_for_file: dangling_library_doc_comments
+
 class ResetPasswordResponseEntity {
   ResetPasswordResponseEntity({
     this.message,
     this.code,
-    this.token,});
+    this.token,
+  });
 
-   String? message;
+  String? message;
   int? code;
   String? token;
-
-
 }

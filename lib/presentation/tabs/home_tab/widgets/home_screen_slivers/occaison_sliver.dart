@@ -15,7 +15,7 @@ Widget buildOccasions(List occasions, BuildContext context) {
         buildTitleRow(AppStrings.occasion, () {
           Navigator.pushNamed(context, RouteManager.occasionScreen);
         }, context),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         SizedBox(
           height: Config.screenHight! * 0.23,
           child: ListView.builder(

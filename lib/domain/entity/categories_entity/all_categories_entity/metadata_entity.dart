@@ -3,6 +3,8 @@
 /// totalPages : 12
 /// totalItems : 119
 
+// ignore_for_file: dangling_library_doc_comments
+
 class MetadataEntity {
   num? currentPage;
   num? limit;

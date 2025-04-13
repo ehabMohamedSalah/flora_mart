@@ -5,6 +5,8 @@
 /// createdAt : "2024-11-19T08:06:21.263Z"
 /// updatedAt : "2024-11-19T08:06:21.263Z"
 
+// ignore_for_file: dangling_library_doc_comments, file_names
+
 class Categories {
   Categories({
     this.id,

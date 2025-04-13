@@ -1,5 +1,8 @@
 ///  Auth Intent ///
+// ignore_for_file: non_constant_identifier_names, dangling_library_doc_comments
+
 sealed class AuthIntent {}
+
 class SignInIntent extends AuthIntent {
   final String email;
   final bool rememberMe;
@@ -19,6 +22,7 @@ class ChangeGuestIntent extends AuthIntent {
 
   ChangeGuestIntent({required this.isGuest});
 }
+
 class CheckAuthIntent extends AuthIntent {}
 
 class RegisterUserIntent extends AuthIntent {

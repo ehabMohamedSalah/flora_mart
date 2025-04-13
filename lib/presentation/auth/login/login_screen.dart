@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flora_mart/core/cache/shared_pref.dart';
 import 'package:flora_mart/core/constant.dart';
 import 'package:flora_mart/core/di/di.dart';
@@ -63,7 +62,8 @@ class _SignInScreenState extends State<SignInScreen> {
       body: BlocListener<AuthCubit, AuthState>(
         listener: (context, state) {
           if (state is LoginSuccessState) {
-            Navigator.pushNamedAndRemoveUntil(context, RouteManager.mainScreen, (_) => false);
+            Navigator.pushNamedAndRemoveUntil(
+                context, RouteManager.mainScreen, (_) => false);
             toastMessage(
               message: AppStrings.loginSuccessfully,
               tybeMessage: TybeMessage.positive,
@@ -186,9 +186,9 @@ class _SignInScreenState extends State<SignInScreen> {
                         color: ColorManager.white,
                         textColor: ColorManager.grey,
                         onPressed: () {
-                          AuthCubit.get(context).doIntent(ChangeGuestIntent(isGuest: true));
+                          AuthCubit.get(context)
+                              .doIntent(ChangeGuestIntent(isGuest: true));
                           Navigator.pushNamed(context, RouteManager.mainScreen);
-
                         },
                       ),
                       Row(
@@ -201,11 +201,12 @@ class _SignInScreenState extends State<SignInScreen> {
                           SizedBox(width: 5.w),
                           InkWell(
                             onTap: () {
-                              Navigator.pushReplacementNamed(context, RouteManager.registerScreen);
+                              Navigator.pushReplacementNamed(
+                                  context, RouteManager.registerScreen);
                             },
                             child: Text(
                               AppStrings.signUp,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 decorationColor: ColorManager.pinkBase,
                                 color: ColorManager.pinkBase,
                                 fontWeight: FontWeight.bold,

@@ -1,4 +1,6 @@
 // Best Seller Section
+// ignore_for_file: file_names
+
 import 'package:flora_mart/core/utils/config.dart';
 import 'package:flora_mart/core/utils/string_manager.dart';
 import 'package:flora_mart/presentation/best_seller/best_seller_screen.dart';
@@ -16,13 +18,13 @@ Widget buildBestSellers(List bestSellers, BuildContext context) {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => BestSellerBlocScope(
+              builder: (context) => const BestSellerBlocScope(
                 child: BestSellerScreen(),
               ),
             ),
           );
         }, context),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         SizedBox(
           height: Config.screenHight! * 0.25,
           child: ListView.builder(

@@ -1,13 +1,15 @@
 import 'package:flora_mart/core/utils/config.dart';
 import 'package:flora_mart/core/utils/string_manager.dart';
-import 'package:flora_mart/presentation/tabs/home_tab/widgets/Category%20widget.dart';
+import 'package:flora_mart/presentation/tabs/home_tab/widgets/category_widget.dart';
 import 'package:flora_mart/presentation/tabs/home_tab/widgets/home_screen_slivers/TitleRow.dart';
 import 'package:flutter/material.dart';
 
-Widget buildCategories(List categories,
-    VoidCallback onTap,
-    BuildContext context,
-    Function(String) onCategoryTapped,) {
+Widget buildCategories(
+  List categories,
+  VoidCallback onTap,
+  BuildContext context,
+  Function(String) onCategoryTapped,
+) {
   return SliverToBoxAdapter(
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -15,7 +17,7 @@ Widget buildCategories(List categories,
         buildTitleRow(AppStrings.categories, () {
           onTap();
         }, context),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         SizedBox(
           height: Config.screenHight! * 0.15,
           child: ListView.builder(
@@ -30,7 +32,7 @@ Widget buildCategories(List categories,
             },
           ),
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
       ],
     ),
   );

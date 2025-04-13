@@ -3,12 +3,15 @@
 /// totalPages : 2
 /// totalItems : 15
 
+// ignore_for_file: dangling_library_doc_comments, file_names
+
 class Metadata {
   Metadata({
-      this.currentPage, 
-      this.limit, 
-      this.totalPages, 
-      this.totalItems,});
+    this.currentPage,
+    this.limit,
+    this.totalPages,
+    this.totalItems,
+  });
 
   Metadata.fromJson(dynamic json) {
     currentPage = json['currentPage'];
@@ -20,15 +23,18 @@ class Metadata {
   int? limit;
   int? totalPages;
   int? totalItems;
-Metadata copyWith({  int? currentPage,
-  int? limit,
-  int? totalPages,
-  int? totalItems,
-}) => Metadata(  currentPage: currentPage ?? this.currentPage,
-  limit: limit ?? this.limit,
-  totalPages: totalPages ?? this.totalPages,
-  totalItems: totalItems ?? this.totalItems,
-);
+  Metadata copyWith({
+    int? currentPage,
+    int? limit,
+    int? totalPages,
+    int? totalItems,
+  }) =>
+      Metadata(
+        currentPage: currentPage ?? this.currentPage,
+        limit: limit ?? this.limit,
+        totalPages: totalPages ?? this.totalPages,
+        totalItems: totalItems ?? this.totalItems,
+      );
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['currentPage'] = currentPage;
@@ -37,5 +43,4 @@ Metadata copyWith({  int? currentPage,
     map['totalItems'] = totalItems;
     return map;
   }
-
 }

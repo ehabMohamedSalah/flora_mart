@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flora_mart/core/api/api_result.dart';
 import 'package:flora_mart/data/model/UserModel.dart';
 import 'package:injectable/injectable.dart';
@@ -18,6 +20,7 @@ class SigninRepoImpl implements LoginRepo {
     required bool rememberMe,
     required String password,
   }) async {
-    return loginDataSourceContract.login(rememberMe: rememberMe,email: email, password: password);
+    return loginDataSourceContract.login(
+        rememberMe: rememberMe, email: email, password: password);
   }
 }

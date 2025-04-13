@@ -6,7 +6,7 @@ import 'package:flora_mart/presentation/best_seller/view_model/cubit/best_seller
 import 'package:flora_mart/core/utils/string_manager.dart';
 
 class BestSellerScreen extends StatefulWidget {
-  const BestSellerScreen({Key? key}) : super(key: key);
+  const BestSellerScreen({super.key});
 
   @override
   State<BestSellerScreen> createState() => _BestSellerScreenState();
@@ -29,7 +29,7 @@ class _BestSellerScreenState extends State<BestSellerScreen> {
         builder: (context, state) {
           switch (state) {
             case GetBestSellersLoading():
-              return Center(child: CircularProgressIndicator());
+              return const Center(child: CircularProgressIndicator());
 
             case GetBestSellersSuccess():
               return FlowerCardBuilder(
@@ -42,7 +42,7 @@ class _BestSellerScreenState extends State<BestSellerScreen> {
               );
 
             default:
-              return SizedBox();
+              return const SizedBox();
           }
         },
       ),

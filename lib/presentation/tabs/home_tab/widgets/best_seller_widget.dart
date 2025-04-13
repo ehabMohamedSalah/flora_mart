@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flora_mart/data/model/Home/BestSeller.dart';
 import 'package:flora_mart/presentation/product_details/product_details_screen.dart';
 import 'package:flutter/material.dart';

@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flora_mart/core/utils/colors_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
