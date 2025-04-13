@@ -55,7 +55,7 @@ import '../../data/repo_impl/forget_password_repo_impl/verify_reset_code_repo_im
     as _i721;
 import '../../data/repo_impl/get_all_products_repo_impl.dart' as _i883;
 import '../../data/repo_impl/guest_repo_impl.dart' as _i905;
-import '../../data/repo_impl/home_repo_impl.dart' as _i216;
+import '../../data/repo_impl/Home_Repo_Impl.dart' as _i420;
 import '../../data/repo_impl/Login_Repo_Impl.dart' as _i722;
 import '../../data/repo_impl/occasions_repo_impl.dart' as _i750;
 import '../../domain/repo_contract/auth_repo.dart' as _i233;
@@ -69,7 +69,7 @@ import '../../domain/repo_contract/forget_password_repo_contract/verify_reset_co
     as _i544;
 import '../../domain/repo_contract/get_all_products_repo.dart' as _i697;
 import '../../domain/repo_contract/guest_repo.dart' as _i234;
-import '../../domain/repo_contract/home_repo.dart' as _i820;
+import '../../domain/repo_contract/Home_Repo.dart' as _i820;
 import '../../domain/repo_contract/Login_Repo.dart' as _i831;
 import '../../domain/repo_contract/occasions_repo.dart' as _i130;
 import '../../domain/usecase/categories_usecase.dart' as _i1036;
@@ -131,8 +131,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i437.HomeDatasourceImpl(gh<_i1047.ApiManager>()));
     gh.factory<_i575.BestSellerDataSource>(
         () => _i378.BestSellerDataSourceImpl(gh<_i1047.ApiManager>()));
-    gh.factory<_i216.homeRepoImpl>(
-        () => _i216.homeRepoImpl(gh<_i755.HomeDataSourceRepo>()));
+    gh.factory<_i820.HomeRepo>(
+        () => _i420.homeRepoImpl(gh<_i755.HomeDataSourceRepo>()));
     gh.factory<_i331.OccassionsDataSource>(
         () => _i626.OccasionsDatasourceImpl(gh<_i1047.ApiManager>()));
     gh.factory<_i233.AuthRepo>(
