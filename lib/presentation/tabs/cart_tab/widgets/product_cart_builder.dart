@@ -1,25 +1,36 @@
-import 'package:flora_mart/data/model/products/Products.dart';
+import 'package:flora_mart/data/model/cart/CartItems.dart';
+import 'package:flora_mart/presentation/product_details/product_details_screen.dart';
 import 'package:flora_mart/presentation/tabs/cart_tab/widgets/product_cart_widget.dart';
 import 'package:flutter/material.dart';
 
 class ProductCartBuilder extends StatelessWidget {
-  final List<Products> products;
-  const ProductCartBuilder({super.key, required this.products});
+  final List<CartItems> cartItem;
+  const ProductCartBuilder({super.key, required this.cartItem});
 
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
-        itemBuilder: (context, index) => ProductCartWidget(
-              onTap: () {},
-              price: products[index].price,
-              priceAfterDiscount: products[index].priceAfterDiscount,
-              imgCover: products[index].imgCover,
-              title: products[index].title,
-              discription: products[index].description,
+        itemBuilder: (context, index) => InkWell(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ProductDetailsScreen(
+                          product: cartItem[index].product!.toProducts()),
+                    ));
+              },
+              child: ProductCartWidget(
+                onTap: () {},
+                price: cartItem[index].price,
+                priceAfterDiscount: cartItem[index].product?.priceAfterDiscount,
+                imgCover: cartItem[index].product?.imgCover,
+                title: cartItem[index].product?.title,
+                discription: cartItem[index].product?.description,
+              ),
             ),
         separatorBuilder: (context, index) => const SizedBox(
               height: 10,
             ),
-        itemCount: products.length);
+        itemCount: cartItem.length);
   }
 }

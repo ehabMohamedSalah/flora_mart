@@ -34,19 +34,30 @@ class FlowerCardBuilder extends StatelessWidget {
                         ProductDetailsScreen(product: products[index]),
                   ));
             },
-            child: FlowerCard(
-              discount: products[index].discount,
-              price: products[index].price,
-              priceAfterDiscount: products[index].priceAfterDiscount,
-              imgCover: products[index].imgCover,
-              title: products[index].title,
-              onTap: () {
-                CartCubit.get(context).addToCard(
-                    productId: products[index].id ?? "", quantity: 1);
-                toastMessage(
-                    message: AppStrings.addedtocart,
-                    tybeMessage: TybeMessage.positive);
+            child: BlocListener<CartCubit, CartState>(
+              listener: (context, state) {
+                if (state is AddToCartSuccessState) {
+                  toastMessage(
+                      message: AppStrings.addedtocart,
+                      tybeMessage: TybeMessage.positive);
+                }
+                if (state is AddToCartErrorState) {
+                  toastMessage(
+                      message: state.message,
+                      tybeMessage: TybeMessage.negative);
+                }
               },
+              child: FlowerCard(
+                discount: products[index].discount,
+                price: products[index].price,
+                priceAfterDiscount: products[index].priceAfterDiscount,
+                imgCover: products[index].imgCover,
+                title: products[index].title,
+                onTap: () {
+                  CartCubit.get(context).addToCard(
+                      productId: products[index].id ?? "", quantity: 1);
+                },
+              ),
             ),
           ),
           itemCount: products.length,

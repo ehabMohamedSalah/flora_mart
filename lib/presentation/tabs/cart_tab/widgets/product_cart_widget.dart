@@ -80,12 +80,13 @@ class _ProductCartWidgetState extends State<ProductCartWidget> {
                 children: [
                   Row(
                     children: [
-                      Text(
-                        widget.title ?? "",
-                        overflow: TextOverflow.ellipsis,
-                        style: Theme.of(context).textTheme.bodyMedium,
+                      Expanded(
+                        child: Text(
+                          widget.title ?? "",
+                          overflow: TextOverflow.ellipsis,
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
                       ),
-                      const Spacer(),
                       IconButton(
                           onPressed: () {},
                           icon: const Icon(Icons.delete_outline_outlined,

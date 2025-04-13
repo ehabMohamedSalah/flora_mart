@@ -19,6 +19,8 @@
 /// id : "673e2bd91159920171828139"
 library;
 
+import 'package:flora_mart/data/model/products/Products.dart';
+
 class Product {
   Product({
     this.rateAvg,
@@ -101,5 +103,28 @@ class Product {
     map['sold'] = sold;
     map['discount'] = discount;
     return map;
+  }
+
+  toProducts() {
+    return Products(
+      category: category,
+      description: description,
+      discount: discount,
+      id: id,
+      imgCover: imgCover,
+      images: images,
+      occasion: occasion,
+      price: price,
+      priceAfterDiscount: priceAfterDiscount,
+      quantity: quantity,
+      rateAvg: rateAvg,
+      rateCount: rateCount,
+      sold: sold,
+      title: title,
+      v: v,
+      createdAt: createdAt,
+      slug: slug,
+      updatedAt: updatedAt,
+    );
   }
 }

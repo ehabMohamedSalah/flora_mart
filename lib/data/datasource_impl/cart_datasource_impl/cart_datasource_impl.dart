@@ -5,6 +5,7 @@ import 'package:flora_mart/core/api/endpoints.dart';
 import 'package:flora_mart/core/cache/shared_pref.dart';
 import 'package:flora_mart/core/constant.dart';
 import 'package:flora_mart/data/datasource_contract/cart_datasource/cart_datasource.dart';
+import 'package:flora_mart/data/model/cart/CartItems.dart';
 import 'package:flora_mart/data/model/cart/cart_response.dart';
 import 'package:injectable/injectable.dart';
 import 'package:logger/logger.dart';
@@ -22,10 +23,11 @@ class CartDatasourceImpl implements CartDatasource {
   Future<ApiResult> addToCart(
       {required String productId, required int quantity}) {
     return executeApi(() async {
+      String token = await cacheHelper.getData<String>(Constant.tokenKey);
+      logger.i("token $token");
       var apiResult = await apiManager
           .postRequest(endpoint: EndPoint.cartEndpoint, headers: {
-        "Authorization":
-            "Bearer ${cacheHelper.getData<String>(Constant.tokenKey)}"
+        "Authorization": "Bearer $token"
       }, body: {
         "product": productId,
         "quantity": quantity,
@@ -37,9 +39,19 @@ class CartDatasourceImpl implements CartDatasource {
   }
 
   @override
-  Future<ApiResult> getCartItems() {
-    // TODO: implement getCartItems
-    throw UnimplementedError();
+  Future<ApiResult<List<CartItems>>> getCartItems() {
+    return executeApi(() async {
+      String token = await cacheHelper.getData<String>(Constant.tokenKey);
+      logger.i("token $token");
+      var apiResult = await apiManager.getRequest(
+        endpoint: EndPoint.cartEndpoint,
+        headers: {"Authorization": "Bearer $token"},
+      );
+      CartResponse result = CartResponse.fromJson(apiResult.data ?? {});
+      List<CartItems> listProdcts = result.cart?.cartItems ?? [];
+      logger.i("${result.message}");
+      return listProdcts;
+    });
   }
 
   @override

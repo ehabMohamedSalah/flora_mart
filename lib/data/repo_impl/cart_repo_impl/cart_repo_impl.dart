@@ -1,5 +1,6 @@
 import 'package:flora_mart/core/api/api_result.dart';
 import 'package:flora_mart/data/datasource_contract/cart_datasource/cart_datasource.dart';
+import 'package:flora_mart/data/model/cart/CartItems.dart';
 import 'package:flora_mart/domain/repo_contract/cart_repo/cart_repo.dart';
 import 'package:injectable/injectable.dart';
 
@@ -16,9 +17,8 @@ class CartRepoImpl implements CartRepo {
   }
 
   @override
-  Future<ApiResult> getCartItems() {
-    // TODO: implement getCartItems
-    throw UnimplementedError();
+  Future<ApiResult<List<CartItems>>> getCartItems() {
+    return cartDatasource.getCartItems();
   }
 
   @override
