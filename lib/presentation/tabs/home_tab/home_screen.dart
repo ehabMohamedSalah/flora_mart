@@ -1,15 +1,14 @@
-import 'package:flora_mart/core/resuable_comp/search_bar/custom_searchbar_widget.dart';
-import 'package:flora_mart/presentation/tabs/home_tab/view_model/cubit/home_cubit.dart';
-import 'package:flora_mart/presentation/tabs/home_tab/view_model/cubit/home_intent.dart';
-import 'package:flora_mart/presentation/tabs/home_tab/widgets/home_screen_slivers/Address_sliver.dart';
 import 'package:flora_mart/presentation/tabs/home_tab/widgets/shimmer.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'widgets/home_screen_slivers/Address_sliver.dart';
 import 'widgets/home_screen_slivers/Best_Seller_sliver.dart';
 import 'widgets/home_screen_slivers/categories_sliver.dart';
 import 'widgets/home_screen_slivers/occaison_sliver.dart';
+import 'package:flora_mart/presentation/tabs/home_tab/view_model/cubit/home_cubit.dart';
+import 'package:flora_mart/presentation/tabs/home_tab/view_model/cubit/home_intent.dart';
+import 'package:flora_mart/core/resuable_comp/search_bar/custom_searchbar_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   final VoidCallback onViewAllTapped;
@@ -43,16 +42,17 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: CustomScrollView(
                 slivers: [
-                  const SliverToBoxAdapter(child: BuildAdress()),
-                  // Show actual categories if data is available
-                  buildCategories(homeData?.categories?.take(10).toList() ?? [],
-                      widget.onViewAllTapped, context, widget.onCategoryTapped),
-                  // Show actual best sellers if data is available
-                  buildBestSellers(
-                      homeData?.bestSeller?.take(10).toList() ?? [], context),
-                  // Show actual occasions if data is available
-                  buildOccasions(
-                      homeData?.occasions?.take(10).toList() ?? [], context),
+                  buildAddress(),
+                  CategoriesSection(
+                    categories: homeData?.categories?.take(10).toList() ?? [],
+                    onSeeAllTap: widget.onViewAllTapped,
+                    onCategoryTapped: widget.onCategoryTapped,
+                  ),
+                  BestSellersSection(
+                    bestSellers: homeData?.bestSeller?.take(10).toList() ?? [],
+                  ),
+                  OccasionsSection(
+                      occasions: homeData?.occasions?.take(10).toList() ?? []),
                 ],
               ),
             );
