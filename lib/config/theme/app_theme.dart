@@ -7,13 +7,24 @@ class AppTheme {
     scaffoldBackgroundColor: ColorManager.backgroundColor,
     fontFamily: 'Inter',
 
+    switchTheme: SwitchThemeData(
+      thumbColor: WidgetStateProperty.all(ColorManager.white),
+      trackColor: MaterialStateProperty.all(ColorManager.primaryColor),
+      overlayColor: MaterialStateProperty.all(ColorManager.white70),
+      trackOutlineColor: MaterialStateProperty.all(ColorManager.primaryColor),
+    ),
+
     // 🎨 ألوان التطبيق
     colorScheme: const ColorScheme.light(
-      primary: ColorManager.primaryColor, // اللون الأساسي
+      primary: ColorManager.primaryColor,
+      // اللون الأساسي
       secondary: Colors.black87,
-      surface: Colors.white, // سطح البطاقات
-      onPrimary: Colors.white, // لون النص على اللون الأساسي
-      onSecondary: Colors.black, // لون النص على الخلفية
+      surface: Colors.white,
+      // سطح البطاقات
+      onPrimary: Colors.white,
+      // لون النص على اللون الأساسي
+      onSecondary: Colors.black,
+      // لون النص على الخلفية
       error: ColorManager.errorColor,
       onError: Colors.white,
       onSurface: Colors.black87, // لون النص على البطاقات
@@ -21,6 +32,10 @@ class AppTheme {
 
     // 📝 نصوص التطبيق
     textTheme: const TextTheme(
+        titleSmall: TextStyle(
+          fontSize: 11,
+          color: Colors.white,
+        ),
         titleLarge: TextStyle(
           fontSize: 20,
           fontWeight: FontWeight.bold,
