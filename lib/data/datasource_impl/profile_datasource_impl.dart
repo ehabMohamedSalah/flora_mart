@@ -19,26 +19,20 @@ class ProfileDatasourceImpl implements ProfileDatasource {
   Future<ApiResult<GetLoggedUserDataModel>> getLoggedUserData() async {
     try {
       String token = await cacheHelper.getData<String>(Constant.tokenKey);
-      print('Token: $token');
       var response = await apiManager.getRequest(
         endpoint: EndPoint.mainProfile,
         headers: {"Authorization": "Bearer $token"},
       );
-      print('Response: ${response.data}');
 
       GetLoggedUserDataModel getLoggedUserDataModel =
           GetLoggedUserDataModel.fromJson(response.data);
 
       if (getLoggedUserDataModel.user != null) {
-        print('SuccessProfile:${SuccessApiResult(getLoggedUserDataModel)}');
         return SuccessApiResult(getLoggedUserDataModel);
       }
-      print(
-          'Error: ${getLoggedUserDataModel.message ?? "An unknown error occurred"}');
       return ErrorApiResult(Exception(
           getLoggedUserDataModel.message ?? "An unknown error occurred"));
     } catch (err) {
-      print('Error: ${err.toString()}');
       return ErrorApiResult(
           Exception("Server connection error: ${err.toString()}"));
     }

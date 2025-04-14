@@ -12,7 +12,6 @@ class GetProfileDetailsUsecase {
   Future<ApiResult<GetLoggedUserDataEntity>> call() async {
     ApiResult<GetLoggedUserDataEntity> result =
         await profileRepo.getLoggedUserData();
-    print('Result from ProfileRepo: $result');
 
     return result;
   }

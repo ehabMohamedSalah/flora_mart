@@ -1,14 +1,20 @@
 import 'package:badges/badges.dart' as badges;
 import 'package:flora_mart/config/theme/app_theme.dart';
 import 'package:flora_mart/core/di/di.dart';
+import 'package:flora_mart/core/resuable_comp/toast_message.dart';
 import 'package:flora_mart/core/utils/colors_manager.dart';
+import 'package:flora_mart/core/utils/routes_manager.dart';
 import 'package:flora_mart/core/utils/string_manager.dart';
 import 'package:flora_mart/domain/entity/auth/user_entity.dart';
+import 'package:flora_mart/presentation/Language_bottom_sheet/Wigets/language_button.dart';
+import 'package:flora_mart/presentation/auth/view_model/cubit/auth_cubit.dart';
+import 'package:flora_mart/presentation/auth/view_model/cubit/auth_intent.dart';
 import 'package:flora_mart/presentation/tabs/profile_tab/view/widget/item_carts_profile_widget.dart';
 import 'package:flora_mart/presentation/tabs/profile_tab/view_model/main_profile_cubit.dart';
 import 'package:flora_mart/presentation/tabs/profile_tab/view_model/main_profile_intent.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -19,7 +25,6 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   bool isNotificationTurn = true;
-  String selectLanguage = "English";
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -27,12 +32,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
     super.initState();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<MainProfileCubit>()
-        ..onIntent(DataProfileCubitIntent()),
+      create: (context) =>
+          getIt<MainProfileCubit>()..onIntent(DataProfileCubitIntent()),
       child: Scaffold(
         key: _scaffoldKey,
         appBar: buildAppBar(),
@@ -133,11 +137,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                       ),
                       const SizedBox(height: 12),
-                      ItemCartsProfileWidget(
-                        title: AppStrings.languageItem,
-                        icon: Icons.translate_outlined,
-                        textLanguage: selectLanguage,
-                        onAction: () {},
+                      Row(
+                        children: [
+                          const Icon(
+                            Icons.translate_outlined,
+                            color: ColorManager.black,
+                            size: 25,
+                          ),
+                          SizedBox(width: 5.w),
+                          Text(
+                            AppStrings.changeLanguage,
+                            style: AppTheme.lightTheme.textTheme.bodySmall
+                                ?.copyWith(color: ColorManager.black),
+                          ),
+                          const Spacer(),
+                          const LanguageButton(),
+                        ],
                       ),
                       ItemCartsProfileWidget(
                         title: AppStrings.aboutUs,
@@ -150,21 +165,59 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         onAction: () {},
                       ),
                       const SizedBox(height: 12),
-                      Container(
-                        decoration: BoxDecoration(
-                          border: Border(
-                            top: BorderSide.lerp(
-                                BorderSide.none,
-                                const BorderSide(
-                                    color: ColorManager.white70, width: 3),
-                                0.5),
+                      BlocListener<AuthCubit, AuthState>(
+                        listener: (context, state) {
+                          if (state is LogoutLoadingState) {
+                            showDialog(
+                              context: context,
+                              builder: (context) => const Center(
+                                child: CircularProgressIndicator(
+                                  color: ColorManager.primaryColor,
+                                ),
+                              ),
+                            );
+                          }
+
+                          if (state is LogoutSuccessState) {
+                            toastMessage(
+                                message:
+                                    "Logout Successfully , continue as guest !!",
+                                tybeMessage: TybeMessage.positive);
+
+                            // Wait for 2 seconds, then navigate to login
+                            Future.delayed(const Duration(seconds: 2), () {
+                              AuthCubit.get(context)
+                                  .doIntent(ChangeGuestIntent(isGuest: true));
+                              Navigator.pushNamed(
+                                  context, RouteManager.mainScreen);
+                            });
+                          }
+
+                          if (state is LogoutFailureState) {
+                            Navigator.pop(context);
+                            toastMessage(
+                                message: "Error : ${state.message}",
+                                tybeMessage: TybeMessage.negative);
+                          }
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            border: Border(
+                              top: BorderSide.lerp(
+                                  BorderSide.none,
+                                  const BorderSide(
+                                      color: ColorManager.white70, width: 3),
+                                  0.5),
+                            ),
                           ),
-                        ),
-                        child: ItemCartsProfileWidget(
-                          title: AppStrings.logout,
-                          icon: Icons.logout_outlined,
-                          iconArrow: Icons.keyboard_arrow_right_outlined,
-                          onAction: () {},
+                          child: ItemCartsProfileWidget(
+                            title: AppStrings.logout,
+                            icon: Icons.logout_outlined,
+                            iconArrow: Icons.keyboard_arrow_right_outlined,
+                            onAction: () {
+                              context.read<AuthCubit>().doIntent(LogoutIntent());
+                            },
+                          ),
                         ),
                       ),
                     ],

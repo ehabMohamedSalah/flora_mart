@@ -14,19 +14,14 @@ class ProfileRepoImpl implements ProfileRepo {
 
   @override
   Future<ApiResult<GetLoggedUserDataEntity>> getLoggedUserData() async {
-    ApiResult<GetLoggedUserDataModel> result = await profileDatasource
-        .getLoggedUserData();
-
-    print('Datasource result: $result');
+    ApiResult<GetLoggedUserDataModel> result =
+        await profileDatasource.getLoggedUserData();
 
     if (result is SuccessApiResult<GetLoggedUserDataModel>) {
-      print('Success result: ${result.data}');
       return SuccessApiResult(result.data!.toGetLoggedUserDataEntity());
     } else if (result is ErrorApiResult<GetLoggedUserDataModel>) {
-      print('Error result: ${result.exception}');
       return ErrorApiResult(result.exception);
     }
-    print('Unknown error occurred');
     return ErrorApiResult(Exception("Unknown error occurred"));
   }
 }
