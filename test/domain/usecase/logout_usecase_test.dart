@@ -18,8 +18,6 @@ void main() {
   });
 
   group('LogoutUsecase Tests', () {
-    const String testToken = 'dummy_token';
-
     test('should return SuccessApiResult when logout is successful', () async {
       // Arrange
       when(mockLogoutRepoContract.logout())
@@ -46,7 +44,8 @@ void main() {
 
       // Assert
       expect(result, isA<ErrorApiResult<bool>>());
-      expect((result as ErrorApiResult).exception.toString(), contains('Logout failed'));
+      expect((result as ErrorApiResult).exception.toString(),
+          contains('Logout failed'));
       verify(mockLogoutRepoContract.logout()).called(1);
       verifyNoMoreInteractions(mockLogoutRepoContract);
     });

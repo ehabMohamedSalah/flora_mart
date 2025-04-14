@@ -1,3 +1,5 @@
+// ignore_for_file: use_super_parameters
+
 import 'package:flora_mart/core/utils/colors_manager.dart';
 import 'package:flora_mart/presentation/Language_bottom_sheet/Wigets/coustom_circle_check_box.dart';
 import 'package:flutter/material.dart';

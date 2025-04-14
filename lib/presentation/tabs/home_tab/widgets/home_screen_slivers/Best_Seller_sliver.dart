@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flora_mart/core/utils/config.dart';
 import 'package:flora_mart/core/utils/string_manager.dart';
 import 'package:flora_mart/presentation/best_seller/best_seller_screen.dart';

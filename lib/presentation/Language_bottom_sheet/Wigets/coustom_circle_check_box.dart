@@ -23,7 +23,7 @@ class CoustomCircleCheckBox extends StatelessWidget {
               child: Container(
                 width: 12,
                 height: 12,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   shape: BoxShape.circle,
                   color: ColorManager.pink,
                 ),

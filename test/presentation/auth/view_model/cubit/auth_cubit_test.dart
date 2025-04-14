@@ -54,7 +54,7 @@ void main() {
         mockVerifyresetcodeUseCase = MockVerifyresetcodeUseCase();
         mockResetpasswordUsecase = MockResetpasswordUsecase();
         registerUsecase = MockRegisterUsecase();
-        logoutUsecase = MockLogoutUsecase();// Add this line
+        logoutUsecase = MockLogoutUsecase(); // Add this line
 
         authCubit = AuthCubit(
             mockVerifyresetcodeUseCase,
@@ -141,21 +141,19 @@ void main() {
         ],
       );
 
-      const String testToken = 'ayaallahemara@gmail.com';
-
       blocTest<AuthCubit, AuthState>(
         'emits [LogoutLoadingState, LogoutSuccessState] when logout is successful',
         build: () {
-            provideDummy<ApiResult<bool>>(SuccessApiResult(true));
-            when(logoutUsecase.invoke())
-                .thenAnswer((_) async => SuccessApiResult(true));
-            return authCubit;
-          },
-          act: (cubit) => cubit.doIntent(LogoutIntent()),
-          expect: () => [
+          provideDummy<ApiResult<bool>>(SuccessApiResult(true));
+          when(logoutUsecase.invoke())
+              .thenAnswer((_) async => SuccessApiResult(true));
+          return authCubit;
+        },
+        act: (cubit) => cubit.doIntent(LogoutIntent()),
+        expect: () => [
           isA<LogoutLoadingState>(),
           isA<LogoutSuccessState>(),
-          ],
+        ],
       );
 
       const String testEmail = 'ayaallahemara@gmail.com';
@@ -278,7 +276,4 @@ void main() {
       ],
     );
   });
-
-
-
 }

@@ -12,7 +12,7 @@ class LogoutDatasourceImpl implements LogoutDatasource {
   final ApiManager apiManager;
   final CacheHelper cacheHelper;
 
-  LogoutDatasourceImpl({required this.apiManager,required this.cacheHelper});
+  LogoutDatasourceImpl({required this.apiManager, required this.cacheHelper});
 
   @override
   Future<ApiResult<bool>> logout() async {
@@ -27,16 +27,16 @@ class LogoutDatasourceImpl implements LogoutDatasource {
         if (apiResponse.data != null &&
             apiResponse.data["message"] == "success") {
           bool removeToken = await cacheHelper.logout();
-          if (removeToken)
+          if (removeToken) {
             return true;
-          else
+          } else {
             return false;
+          }
         } else {
           return false;
         }
       });
-    }
-    catch (err) {
+    } catch (err) {
       return ErrorApiResult(
           Exception("Server connection error: ${err.toString()}"));
     }
