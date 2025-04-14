@@ -9,18 +9,9 @@ class GetProfileDetailsUsecase {
 
   GetProfileDetailsUsecase(this.profileRepo);
 
-  Future<ApiResult<GetLoggedUserDataEntity>> call({
-    required String firstName,
-    required String email,
-  }) async {
-    print(
-        'UpdateProfileUsecase called with firstName: $firstName, email: $email');
-
+  Future<ApiResult<GetLoggedUserDataEntity>> call() async {
     ApiResult<GetLoggedUserDataEntity> result =
-        await profileRepo.getLoggedUserData(
-      firstName: firstName,
-      email: email,
-    );
+        await profileRepo.getLoggedUserData();
     print('Result from ProfileRepo: $result');
 
     return result;

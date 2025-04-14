@@ -23,10 +23,7 @@ class MainProfileCubit extends Cubit<MainProfileState> {
   Future<void> _getProfileData(DataProfileCubitIntent intent) async {
     emit(MainProfileLoading());
 
-    final result = await getProfileDetailsUsecase(
-      firstName: intent.firstName,
-      email: intent.email,
-    );
+    final result = await getProfileDetailsUsecase.call();
 
     if (result is SuccessApiResult<GetLoggedUserDataEntity>) {
       emit(MainProfileSuccess(result.data!));

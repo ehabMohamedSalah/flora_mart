@@ -13,12 +13,9 @@ class ProfileRepoImpl implements ProfileRepo {
   ProfileRepoImpl(this.profileDatasource);
 
   @override
-  Future<ApiResult<GetLoggedUserDataEntity>> getLoggedUserData(
-      {required String firstName, required String email}) async {
-    print('Fetching data for: $firstName, $email');
-
+  Future<ApiResult<GetLoggedUserDataEntity>> getLoggedUserData() async {
     ApiResult<GetLoggedUserDataModel> result = await profileDatasource
-        .getLoggedUserData(firstName: firstName, email: email);
+        .getLoggedUserData();
 
     print('Datasource result: $result');
 
