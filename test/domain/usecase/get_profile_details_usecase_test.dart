@@ -1,7 +1,6 @@
 // ignore_for_file: file_names
 
 import 'package:flora_mart/core/api/api_result.dart';
-import 'package:flora_mart/domain/entity/auth/user_entity.dart';
 import 'package:flora_mart/domain/entity/get_logged_user_data_entity.dart';
 import 'package:flora_mart/domain/repo_contract/profile_repo.dart';
 import 'package:flora_mart/domain/usecase/get_profile_details_usecase.dart';
