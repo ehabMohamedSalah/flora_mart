@@ -10,4 +10,5 @@ class EndPoint {
   static const String bestSellerEndpoint = "/v1/best-seller";
   static const String allCategoriesEndpoint="/v1/categories";
   static const String homeEndpoint = "/v1/home";
+  static const String logoutEndpoint = "/v1/auth/logout";
 }

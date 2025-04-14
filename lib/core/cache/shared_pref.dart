@@ -92,4 +92,9 @@ class CacheHelper {
     await _ensureInitialized();
     return await _sharedPrefs!.remove(key);
   }
+
+  Future<bool> logout() async {
+    await _ensureInitialized();
+    return await _sharedPrefs!.clear();
+  }
 }
