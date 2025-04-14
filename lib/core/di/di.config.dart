@@ -11,6 +11,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
+import 'package:logger/logger.dart' as _i974;
 
 import '../../data/datasource_contract/auth_datasource.dart' as _i214;
 import '../../data/datasource_contract/best_seller_datasource.dart' as _i575;
@@ -111,6 +112,7 @@ import '../../presentation/tabs/home_tab/widgets/occasions/view_model/occasions_
     as _i790;
 import '../api/api_manager.dart' as _i1047;
 import '../cache/shared_pref.dart' as _i299;
+import '../logger/logger_module.dart' as _i279;
 
 extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -123,8 +125,11 @@ extension GetItInjectableX on _i174.GetIt {
       environment,
       environmentFilter,
     );
+    final loggerModule = _$LoggerModule();
     gh.singleton<_i1047.ApiManager>(() => _i1047.ApiManager());
     gh.singleton<_i299.CacheHelper>(() => _i299.CacheHelper());
+    gh.lazySingleton<_i974.Logger>(() => loggerModule.loggerProvider);
+    gh.lazySingleton<_i974.PrettyPrinter>(() => loggerModule.prettyPrinter);
     gh.factory<_i99.ResetpasswordDataSourceRepo>(() =>
         _i486.Resetpassworddatasourcerepoimpl(
             apiManager: gh<_i1047.ApiManager>()));
@@ -237,3 +242,5 @@ extension GetItInjectableX on _i174.GetIt {
     return this;
   }
 }
+
+class _$LoggerModule extends _i279.LoggerModule {}
