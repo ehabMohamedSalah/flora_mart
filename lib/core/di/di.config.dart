@@ -72,6 +72,7 @@ import '../../domain/repo_contract/forget_password_repo_contract/verify_reset_co
     as _i544;
 import '../../domain/repo_contract/get_all_products_repo.dart' as _i697;
 import '../../domain/repo_contract/guest_repo.dart' as _i234;
+import '../../domain/repo_contract/Home_Repo.dart' as _i820;
 import '../../domain/repo_contract/Login_Repo.dart' as _i831;
 import '../../domain/repo_contract/logout_repo_contract.dart' as _i656;
 import '../../domain/repo_contract/occasions_repo.dart' as _i130;
@@ -144,6 +145,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i575.BestSellerDataSource>(
         () => _i378.BestSellerDataSourceImpl(gh<_i1047.ApiManager>()));
     gh.factory<_i420.homeRepoImpl>(
+    gh.factory<_i820.HomeRepo>(
         () => _i420.homeRepoImpl(gh<_i755.HomeDataSourceRepo>()));
     gh.factory<_i331.OccassionsDataSource>(
         () => _i626.OccasionsDatasourceImpl(gh<_i1047.ApiManager>()));
