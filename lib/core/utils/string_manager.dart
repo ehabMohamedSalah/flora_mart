@@ -88,4 +88,11 @@ class AppStrings {
   static String get viewAll => "viewAll".tr();
   static String get filter => "filter".tr();
   static String get bloomWithOurExquisiteBestSellers => "BloomWithOurExquisiteBestSellers".tr();
+  static String get myOrders => "myOrders".tr();
+  static String get savedAddress => "savedAddress".tr();
+  static String get notification => "notification".tr();
+  static String get languageItem => "languageItem".tr();
+  static String get aboutUs => "aboutUs".tr();
+  static String get termsAndConditions => "termsAndConditions".tr();
+  static String get logout => "logout".tr();
 }

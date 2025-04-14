@@ -1,5 +1,7 @@
 // ignore_for_file: file_names
 
+import 'package:flora_mart/domain/entity/auth/user_entity.dart';
+
 class User {
   User({
     this.id,
@@ -25,9 +27,9 @@ class User {
     photo = json['photo'];
     role = json['role'];
     wishlist =
-        json['wishlist'] != null ? List<dynamic>.from(json['wishlist']) : [];
+    json['wishlist'] != null ? List<dynamic>.from(json['wishlist']) : [];
     addresses =
-        json['addresses'] != null ? List<dynamic>.from(json['addresses']) : [];
+    json['addresses'] != null ? List<dynamic>.from(json['addresses']) : [];
     createdAt = json['createdAt'];
   }
 
@@ -57,5 +59,27 @@ class User {
     map['addresses'] = addresses;
     map['createdAt'] = createdAt;
     return map;
+  }
+
+  UserEntity toUserEntity() {
+    return UserEntity(
+        id: id,
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        gender: gender,
+        phone: phone,
+        photo: photo,
+        role: role,
+        wishlist: wishlist,
+        addresses: addresses,
+        createdAt: createdAt);
+  }
+
+  factory User.fromEntity(UserEntity entity) {
+    return User(
+        firstName: entity.firstName,
+        email: entity.email,
+    );
   }
 }

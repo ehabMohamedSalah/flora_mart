@@ -86,5 +86,12 @@
   "occasion": "Occasion",
   "viewAll": "View All",
   "filter": "Filter",
-  "BloomWithOurExquisiteBestSellers": "Bloom with our exquisite best sellers"
+  "BloomWithOurExquisiteBestSellers": "Bloom with our exquisite best sellers",
+  "myOrders": "My orders",
+  "savedAddress": "Saved address",
+  "notification": "Notification",
+  "languageItem": "Language",
+  "aboutUs": "About us",
+  "termsAndConditions": "Terms & conditions",
+  "logout": "Logout"
 }
