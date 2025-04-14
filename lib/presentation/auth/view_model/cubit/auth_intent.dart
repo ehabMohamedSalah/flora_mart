@@ -66,3 +66,9 @@ class ResetPassword extends AuthIntent {
 
   ResetPassword({required this.email, required this.NewPassword});
 }
+
+///  LOGOUT INTENT ///
+class LogoutIntent extends AuthIntent {
+
+  LogoutIntent();
+}

@@ -23,6 +23,7 @@ import 'package:injectable/injectable.dart';
 import '../../../../../../domain/usecase/forget_password_usecases/forget_password_usecase.dart';
 import '../../../../../../domain/usecase/forget_password_usecases/reset_password_usecase.dart';
 import '../../../../../../domain/usecase/forget_password_usecases/verify_reset_code_usecase.dart';
+import '../../../../domain/usecase/logout_usecase.dart';
 
 part 'auth_state.dart';
 
@@ -38,6 +39,7 @@ class AuthCubit extends Cubit<AuthState> {
   final ResetpasswordUsecase resetpasswordUsecase;
   String? startRoute;
   final cacheHelper = getIt<CacheHelper>();
+  final LogoutUsecase logoutUsecase;
 
   AuthCubit(
       this.verifyresetcodeUseCase,
@@ -46,7 +48,8 @@ class AuthCubit extends Cubit<AuthState> {
       this.checkGuestUseCase,
       this.changeGuestUsecase,
       this.registerUsecase,
-      this.signInUsecase)
+      this.signInUsecase,
+      this.logoutUsecase)
       : super(AuthInitial());
 
   void doIntent(AuthIntent authIntent) {
@@ -74,6 +77,9 @@ class AuthCubit extends Cubit<AuthState> {
         break;
       case CheckAuthIntent():
         _CheekAuth();
+        break;
+      case LogoutIntent():
+        _Logout(intent: authIntent);
         break;
     }
   }
@@ -212,6 +218,23 @@ class AuthCubit extends Cubit<AuthState> {
       emit(RegisterViewModelFailure(result.exception.toString()));
     } else {
       emit(RegisterViewModelFailure("Unknown error occurred"));
+    }
+  }
+
+  _Logout({required LogoutIntent intent}) async {
+    emit(LogoutLoadingState());
+    final result = await logoutUsecase.invoke(
+    );
+    switch (result) {
+      case SuccessApiResult():
+        {
+          emit(LogoutSuccessState());
+        }
+      case ErrorApiResult():
+        {
+          emit(LogoutFailureState(
+              message: result.exception.toString()));
+        }
     }
   }
 }

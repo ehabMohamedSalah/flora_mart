@@ -3,13 +3,13 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i9;
+import 'dart:async' as _i10;
 
-import 'package:flora_mart/core/api/api_result.dart' as _i14;
-import 'package:flora_mart/data/model/UserModel.dart' as _i18;
-import 'package:flora_mart/domain/common/result.dart' as _i10;
+import 'package:flora_mart/core/api/api_result.dart' as _i15;
+import 'package:flora_mart/data/model/UserModel.dart' as _i19;
+import 'package:flora_mart/domain/common/result.dart' as _i11;
 import 'package:flora_mart/domain/entity/auth/auth_response_entity.dart'
-    as _i20;
+    as _i21;
 import 'package:flora_mart/domain/repo_contract/auth_repo.dart' as _i7;
 import 'package:flora_mart/domain/repo_contract/forget_password_repo_contract/forget_password_repo.dart'
     as _i3;
@@ -19,18 +19,21 @@ import 'package:flora_mart/domain/repo_contract/forget_password_repo_contract/ve
     as _i4;
 import 'package:flora_mart/domain/repo_contract/guest_repo.dart' as _i2;
 import 'package:flora_mart/domain/repo_contract/Login_Repo.dart' as _i6;
-import 'package:flora_mart/domain/usecase/changeGuest_usecase.dart' as _i12;
-import 'package:flora_mart/domain/usecase/check_guest_usecase.dart' as _i8;
+import 'package:flora_mart/domain/repo_contract/logout_repo_contract.dart'
+    as _i8;
+import 'package:flora_mart/domain/usecase/changeGuest_usecase.dart' as _i13;
+import 'package:flora_mart/domain/usecase/check_guest_usecase.dart' as _i9;
 import 'package:flora_mart/domain/usecase/forget_password_usecases/forget_password_usecase.dart'
-    as _i13;
+    as _i14;
 import 'package:flora_mart/domain/usecase/forget_password_usecases/reset_password_usecase.dart'
-    as _i16;
+    as _i17;
 import 'package:flora_mart/domain/usecase/forget_password_usecases/verify_reset_code_usecase.dart'
-    as _i15;
-import 'package:flora_mart/domain/usecase/login_Usecase.dart' as _i17;
-import 'package:flora_mart/domain/usecase/register_usecase.dart' as _i19;
+    as _i16;
+import 'package:flora_mart/domain/usecase/login_Usecase.dart' as _i18;
+import 'package:flora_mart/domain/usecase/logout_usecase.dart' as _i22;
+import 'package:flora_mart/domain/usecase/register_usecase.dart' as _i20;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:mockito/src/dummies.dart' as _i11;
+import 'package:mockito/src/dummies.dart' as _i12;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -79,10 +82,16 @@ class _FakeAuthRepo_5 extends _i1.SmartFake implements _i7.AuthRepo {
     : super(parent, parentInvocation);
 }
 
+class _FakeLogoutRepoContract_6 extends _i1.SmartFake
+    implements _i8.LogoutRepoContract {
+  _FakeLogoutRepoContract_6(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
+}
+
 /// A class which mocks [CheckGuestUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockCheckGuestUseCase extends _i1.Mock implements _i8.CheckGuestUseCase {
+class MockCheckGuestUseCase extends _i1.Mock implements _i9.CheckGuestUseCase {
   MockCheckGuestUseCase() {
     _i1.throwOnMissingStub(this);
   }
@@ -96,24 +105,24 @@ class MockCheckGuestUseCase extends _i1.Mock implements _i8.CheckGuestUseCase {
           as _i2.GuestRepo);
 
   @override
-  _i9.Future<_i10.Result<bool>> call() =>
+  _i10.Future<_i11.Result<bool>> call() =>
       (super.noSuchMethod(
             Invocation.method(#call, []),
-            returnValue: _i9.Future<_i10.Result<bool>>.value(
-              _i11.dummyValue<_i10.Result<bool>>(
+            returnValue: _i10.Future<_i11.Result<bool>>.value(
+              _i12.dummyValue<_i11.Result<bool>>(
                 this,
                 Invocation.method(#call, []),
               ),
             ),
           )
-          as _i9.Future<_i10.Result<bool>>);
+          as _i10.Future<_i11.Result<bool>>);
 }
 
 /// A class which mocks [ChangeguestUsecase].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockChangeguestUsecase extends _i1.Mock
-    implements _i12.ChangeguestUsecase {
+    implements _i13.ChangeguestUsecase {
   MockChangeguestUsecase() {
     _i1.throwOnMissingStub(this);
   }
@@ -127,19 +136,19 @@ class MockChangeguestUsecase extends _i1.Mock
           as _i2.GuestRepo);
 
   @override
-  _i9.Future<bool> call({required bool? isGuest}) =>
+  _i10.Future<bool> call({required bool? isGuest}) =>
       (super.noSuchMethod(
             Invocation.method(#call, [], {#isGuest: isGuest}),
-            returnValue: _i9.Future<bool>.value(false),
+            returnValue: _i10.Future<bool>.value(false),
           )
-          as _i9.Future<bool>);
+          as _i10.Future<bool>);
 }
 
 /// A class which mocks [ForgetPasswordUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockForgetPasswordUseCase extends _i1.Mock
-    implements _i13.ForgetPasswordUseCase {
+    implements _i14.ForgetPasswordUseCase {
   MockForgetPasswordUseCase() {
     _i1.throwOnMissingStub(this);
   }
@@ -163,24 +172,24 @@ class MockForgetPasswordUseCase extends _i1.Mock
       );
 
   @override
-  _i9.Future<_i14.ApiResult<bool>> invoke({required String? email}) =>
+  _i10.Future<_i15.ApiResult<bool>> invoke({required String? email}) =>
       (super.noSuchMethod(
             Invocation.method(#invoke, [], {#email: email}),
-            returnValue: _i9.Future<_i14.ApiResult<bool>>.value(
-              _i11.dummyValue<_i14.ApiResult<bool>>(
+            returnValue: _i10.Future<_i15.ApiResult<bool>>.value(
+              _i12.dummyValue<_i15.ApiResult<bool>>(
                 this,
                 Invocation.method(#invoke, [], {#email: email}),
               ),
             ),
           )
-          as _i9.Future<_i14.ApiResult<bool>>);
+          as _i10.Future<_i15.ApiResult<bool>>);
 }
 
 /// A class which mocks [VerifyresetcodeUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockVerifyresetcodeUseCase extends _i1.Mock
-    implements _i15.VerifyresetcodeUseCase {
+    implements _i16.VerifyresetcodeUseCase {
   MockVerifyresetcodeUseCase() {
     _i1.throwOnMissingStub(this);
   }
@@ -203,24 +212,24 @@ class MockVerifyresetcodeUseCase extends _i1.Mock
   );
 
   @override
-  _i9.Future<_i14.ApiResult<bool>> check({required String? code}) =>
+  _i10.Future<_i15.ApiResult<bool>> check({required String? code}) =>
       (super.noSuchMethod(
             Invocation.method(#check, [], {#code: code}),
-            returnValue: _i9.Future<_i14.ApiResult<bool>>.value(
-              _i11.dummyValue<_i14.ApiResult<bool>>(
+            returnValue: _i10.Future<_i15.ApiResult<bool>>.value(
+              _i12.dummyValue<_i15.ApiResult<bool>>(
                 this,
                 Invocation.method(#check, [], {#code: code}),
               ),
             ),
           )
-          as _i9.Future<_i14.ApiResult<bool>>);
+          as _i10.Future<_i15.ApiResult<bool>>);
 }
 
 /// A class which mocks [ResetpasswordUsecase].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockResetpasswordUsecase extends _i1.Mock
-    implements _i16.ResetpasswordUsecase {
+    implements _i17.ResetpasswordUsecase {
   MockResetpasswordUsecase() {
     _i1.throwOnMissingStub(this);
   }
@@ -243,7 +252,7 @@ class MockResetpasswordUsecase extends _i1.Mock
   );
 
   @override
-  _i9.Future<_i14.ApiResult<bool>> invoke({
+  _i10.Future<_i15.ApiResult<bool>> invoke({
     required String? email,
     required String? password,
   }) =>
@@ -252,8 +261,8 @@ class MockResetpasswordUsecase extends _i1.Mock
               #email: email,
               #password: password,
             }),
-            returnValue: _i9.Future<_i14.ApiResult<bool>>.value(
-              _i11.dummyValue<_i14.ApiResult<bool>>(
+            returnValue: _i10.Future<_i15.ApiResult<bool>>.value(
+              _i12.dummyValue<_i15.ApiResult<bool>>(
                 this,
                 Invocation.method(#invoke, [], {
                   #email: email,
@@ -262,13 +271,13 @@ class MockResetpasswordUsecase extends _i1.Mock
               ),
             ),
           )
-          as _i9.Future<_i14.ApiResult<bool>>);
+          as _i10.Future<_i15.ApiResult<bool>>);
 }
 
 /// A class which mocks [LoginUsecase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockLoginUsecase extends _i1.Mock implements _i17.LoginUsecase {
+class MockLoginUsecase extends _i1.Mock implements _i18.LoginUsecase {
   MockLoginUsecase() {
     _i1.throwOnMissingStub(this);
   }
@@ -282,7 +291,7 @@ class MockLoginUsecase extends _i1.Mock implements _i17.LoginUsecase {
           as _i6.LoginRepo);
 
   @override
-  _i9.Future<_i14.ApiResult<_i18.UserModel>> invoke({
+  _i10.Future<_i15.ApiResult<_i19.UserModel>> invoke({
     required String? email,
     required bool? rememberMe,
     required String? password,
@@ -293,8 +302,8 @@ class MockLoginUsecase extends _i1.Mock implements _i17.LoginUsecase {
               #rememberMe: rememberMe,
               #password: password,
             }),
-            returnValue: _i9.Future<_i14.ApiResult<_i18.UserModel>>.value(
-              _i11.dummyValue<_i14.ApiResult<_i18.UserModel>>(
+            returnValue: _i10.Future<_i15.ApiResult<_i19.UserModel>>.value(
+              _i12.dummyValue<_i15.ApiResult<_i19.UserModel>>(
                 this,
                 Invocation.method(#invoke, [], {
                   #email: email,
@@ -304,13 +313,13 @@ class MockLoginUsecase extends _i1.Mock implements _i17.LoginUsecase {
               ),
             ),
           )
-          as _i9.Future<_i14.ApiResult<_i18.UserModel>>);
+          as _i10.Future<_i15.ApiResult<_i19.UserModel>>);
 }
 
 /// A class which mocks [RegisterUsecase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockRegisterUsecase extends _i1.Mock implements _i19.RegisterUsecase {
+class MockRegisterUsecase extends _i1.Mock implements _i20.RegisterUsecase {
   MockRegisterUsecase() {
     _i1.throwOnMissingStub(this);
   }
@@ -324,7 +333,7 @@ class MockRegisterUsecase extends _i1.Mock implements _i19.RegisterUsecase {
           as _i7.AuthRepo);
 
   @override
-  _i9.Future<_i14.ApiResult<_i20.AuthResponseEntity>> call({
+  _i10.Future<_i15.ApiResult<_i21.AuthResponseEntity>> call({
     required String? firstName,
     required String? lastName,
     required String? email,
@@ -344,8 +353,8 @@ class MockRegisterUsecase extends _i1.Mock implements _i19.RegisterUsecase {
               #gender: gender,
             }),
             returnValue:
-                _i9.Future<_i14.ApiResult<_i20.AuthResponseEntity>>.value(
-                  _i11.dummyValue<_i14.ApiResult<_i20.AuthResponseEntity>>(
+                _i10.Future<_i15.ApiResult<_i21.AuthResponseEntity>>.value(
+                  _i12.dummyValue<_i15.ApiResult<_i21.AuthResponseEntity>>(
                     this,
                     Invocation.method(#call, [], {
                       #firstName: firstName,
@@ -359,5 +368,45 @@ class MockRegisterUsecase extends _i1.Mock implements _i19.RegisterUsecase {
                   ),
                 ),
           )
-          as _i9.Future<_i14.ApiResult<_i20.AuthResponseEntity>>);
+          as _i10.Future<_i15.ApiResult<_i21.AuthResponseEntity>>);
+}
+
+/// A class which mocks [LogoutUsecase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockLogoutUsecase extends _i1.Mock implements _i22.LogoutUsecase {
+  MockLogoutUsecase() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i8.LogoutRepoContract get logoutRepoContract =>
+      (super.noSuchMethod(
+            Invocation.getter(#logoutRepoContract),
+            returnValue: _FakeLogoutRepoContract_6(
+              this,
+              Invocation.getter(#logoutRepoContract),
+            ),
+          )
+          as _i8.LogoutRepoContract);
+
+  @override
+  set logoutRepoContract(_i8.LogoutRepoContract? _logoutRepoContract) =>
+      super.noSuchMethod(
+        Invocation.setter(#logoutRepoContract, _logoutRepoContract),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  _i10.Future<_i15.ApiResult<bool>> invoke() =>
+      (super.noSuchMethod(
+            Invocation.method(#invoke, []),
+            returnValue: _i10.Future<_i15.ApiResult<bool>>.value(
+              _i12.dummyValue<_i15.ApiResult<bool>>(
+                this,
+                Invocation.method(#invoke, []),
+              ),
+            ),
+          )
+          as _i10.Future<_i15.ApiResult<bool>>);
 }

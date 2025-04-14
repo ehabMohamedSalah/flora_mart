@@ -9,6 +9,7 @@ import 'package:flora_mart/domain/usecase/forget_password_usecases/forget_passwo
 import 'package:flora_mart/domain/usecase/forget_password_usecases/reset_password_usecase.dart';
 import 'package:flora_mart/domain/usecase/forget_password_usecases/verify_reset_code_usecase.dart';
 import 'package:flora_mart/domain/usecase/login_Usecase.dart';
+import 'package:flora_mart/domain/usecase/logout_usecase.dart';
 import 'package:flora_mart/domain/usecase/register_usecase.dart';
 import 'package:flora_mart/presentation/auth/view_model/cubit/auth_cubit.dart';
 import 'package:flora_mart/presentation/auth/view_model/cubit/auth_intent.dart';
@@ -26,7 +27,8 @@ import 'auth_cubit_test.mocks.dart';
   VerifyresetcodeUseCase,
   ResetpasswordUsecase,
   LoginUsecase,
-  RegisterUsecase
+  RegisterUsecase,
+  LogoutUsecase
 ])
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -36,6 +38,7 @@ void main() {
       late CheckGuestUseCase checkGuestUseCase;
       late LoginUsecase loginUsecase;
       late ChangeguestUsecase changeGuestUsecase;
+      late LogoutUsecase logoutUsecase;
       late AuthCubit authCubit;
       late MockForgetPasswordUseCase mockForgetPasswordUseCase;
       late MockVerifyresetcodeUseCase mockVerifyresetcodeUseCase;
@@ -50,7 +53,8 @@ void main() {
         mockForgetPasswordUseCase = MockForgetPasswordUseCase();
         mockVerifyresetcodeUseCase = MockVerifyresetcodeUseCase();
         mockResetpasswordUsecase = MockResetpasswordUsecase();
-        registerUsecase = MockRegisterUsecase(); // Add this line
+        registerUsecase = MockRegisterUsecase();
+        logoutUsecase = MockLogoutUsecase();// Add this line
 
         authCubit = AuthCubit(
             mockVerifyresetcodeUseCase,
@@ -59,7 +63,8 @@ void main() {
             checkGuestUseCase,
             changeGuestUsecase,
             registerUsecase,
-            loginUsecase);
+            loginUsecase,
+            logoutUsecase);
       });
 
       // Add after the reset password test
@@ -136,6 +141,23 @@ void main() {
         ],
       );
 
+      const String testToken = 'ayaallahemara@gmail.com';
+
+      blocTest<AuthCubit, AuthState>(
+        'emits [LogoutLoadingState, LogoutSuccessState] when logout is successful',
+        build: () {
+            provideDummy<ApiResult<bool>>(SuccessApiResult(true));
+            when(logoutUsecase.invoke())
+                .thenAnswer((_) async => SuccessApiResult(true));
+            return authCubit;
+          },
+          act: (cubit) => cubit.doIntent(LogoutIntent()),
+          expect: () => [
+          isA<LogoutLoadingState>(),
+          isA<LogoutSuccessState>(),
+          ],
+      );
+
       const String testEmail = 'ayaallahemara@gmail.com';
       const String testPassword = 'Aya@1234';
       const String testCode = '123456';
@@ -191,6 +213,7 @@ void main() {
   group('LoginCubit', () {
     late CheckGuestUseCase checkGuestUseCase;
     late LoginUsecase loginUsecase;
+    late LogoutUsecase logoutUsecase;
     late ChangeguestUsecase changeGuestUsecase;
     late AuthCubit authCubit;
     late MockForgetPasswordUseCase mockForgetPasswordUseCase;
@@ -211,6 +234,7 @@ void main() {
       mockVerifyresetcodeUseCase = MockVerifyresetcodeUseCase();
       mockResetpasswordUsecase = MockResetpasswordUsecase();
       registerUsecase = MockRegisterUsecase();
+      logoutUsecase = MockLogoutUsecase();
 
       authCubit = AuthCubit(
           mockVerifyresetcodeUseCase,
@@ -219,7 +243,8 @@ void main() {
           checkGuestUseCase,
           changeGuestUsecase,
           registerUsecase,
-          loginUsecase);
+          loginUsecase,
+          logoutUsecase);
     });
 
     provideDummy<ApiResult<UserModel>>(
@@ -253,4 +278,7 @@ void main() {
       ],
     );
   });
+
+
+
 }
