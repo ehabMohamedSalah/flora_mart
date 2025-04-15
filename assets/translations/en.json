@@ -86,5 +86,12 @@
   "occasion": "Occasion",
   "viewAll": "View All",
   "filter": "Filter",
-  "BloomWithOurExquisiteBestSellers": "Bloom with our exquisite best sellers"
+  "BloomWithOurExquisiteBestSellers": "Bloom with our exquisite best sellers",
+  "items": "Items",
+  "checkout": "Checkout",
+  "cartIsempty": "Cart is empty",
+  "quantityUpdated": "Quantity updated",
+  "subTotal": "Sub Total",
+  "deliveryFee": "Delivery Fee",
+  "total": "Total"
 }

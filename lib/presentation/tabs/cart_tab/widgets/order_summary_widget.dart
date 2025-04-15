@@ -1,3 +1,4 @@
+import 'package:flora_mart/core/utils/string_manager.dart';
 import 'package:flutter/material.dart';
 
 class OrderSummaryWidget extends StatelessWidget {
@@ -10,10 +11,10 @@ class OrderSummaryWidget extends StatelessWidget {
     return Column(mainAxisSize: MainAxisSize.min, children: [
       Row(
         children: [
-          const Text("Sub Total",
+          Text(AppStrings.subTotal,
               overflow: TextOverflow.ellipsis,
               maxLines: 1,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.grey,
               )),
           const Spacer(),
@@ -25,16 +26,16 @@ class OrderSummaryWidget extends StatelessWidget {
               )),
         ],
       ),
-      const Row(
+      Row(
         children: [
-          Text("Delivery Fee",
+          Text(AppStrings.deliveryFee,
               overflow: TextOverflow.ellipsis,
               maxLines: 1,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.grey,
               )),
-          Spacer(),
-          Text("10\$",
+          const Spacer(),
+          const Text("10\$",
               overflow: TextOverflow.ellipsis,
               maxLines: 1,
               style: TextStyle(
@@ -49,7 +50,7 @@ class OrderSummaryWidget extends StatelessWidget {
       Row(
         children: [
           Text(
-            "Total",
+            AppStrings.total,
             overflow: TextOverflow.ellipsis,
             style: Theme.of(context).textTheme.bodyMedium,
           ),

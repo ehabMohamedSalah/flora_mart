@@ -8,6 +8,7 @@ import 'package:flora_mart/data/model/products/Products.dart';
 import 'package:flora_mart/presentation/auth/view_model/cubit/auth_cubit.dart';
 import 'package:flora_mart/presentation/product_details/widgets/image_slider_widget.dart';
 import 'package:flora_mart/presentation/tabs/cart_tab/view_model/cubit/cart_cubit.dart';
+import 'package:flora_mart/presentation/tabs/cart_tab/view_model/cubit/cart_intent.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -88,9 +89,10 @@ class ProductDetailsScreen extends StatelessWidget {
                                 ? () => Dialogs.restrictedAccess(
                                     context, () => Navigator.pop(context))
                                 : () {
-                                    CartCubit.get(context).addToCard(
-                                        productId: product.id ?? "",
-                                        quantity: 1);
+                                    CartCubit.get(context).doIntent(
+                                        AddToCartIntent(
+                                            productId: product.id ?? "",
+                                            quantity: 1));
                                   },
                             child: state is AddToCartLoadingState
                                 ? const CircularProgressIndicator()

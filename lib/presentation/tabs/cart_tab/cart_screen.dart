@@ -1,4 +1,5 @@
 import 'package:flora_mart/core/utils/config.dart';
+import 'package:flora_mart/core/utils/string_manager.dart';
 import 'package:flora_mart/core/utils/text_style_manager.dart';
 import 'package:flora_mart/data/model/cart/Cart.dart';
 import 'package:flora_mart/data/model/cart/CartItems.dart';
@@ -6,6 +7,7 @@ import 'package:flora_mart/data/model/cart/cart_response.dart';
 import 'package:flora_mart/presentation/auth/view_model/cubit/auth_cubit.dart';
 import 'package:flora_mart/presentation/auth/view_model/cubit/auth_intent.dart';
 import 'package:flora_mart/presentation/tabs/cart_tab/view_model/cubit/cart_cubit.dart';
+import 'package:flora_mart/presentation/tabs/cart_tab/view_model/cubit/cart_intent.dart';
 import 'package:flora_mart/presentation/tabs/cart_tab/widgets/order_summary_widget.dart';
 import 'package:flora_mart/presentation/tabs/cart_tab/widgets/product_cart_builder.dart';
 import 'package:flora_mart/presentation/tabs/home_tab/widgets/home_screen_slivers/Address_sliver.dart';
@@ -27,20 +29,21 @@ class CartScreen extends StatelessWidget {
             title: Row(
               spacing: 5,
               children: [
-                const Text("Cart"),
+                Text(AppStrings.cart),
                 BlocBuilder<CartCubit, CartState>(
                   buildWhen: (previous, current) =>
                       current is GetCartItemsSuccessState,
                   builder: (context, state) {
                     final count = CartCubit.get(context).productCount;
-                    return Text("(${(count).toString()} items)",
+                    return Text("(${(count).toString()} ${AppStrings.items})",
                         style: const TextStyle(color: Colors.grey));
                   },
                 ),
               ],
             )),
         body: RefreshIndicator(
-          onRefresh: () async => CartCubit.get(context).getCartItems(),
+          onRefresh: () async =>
+              CartCubit.get(context).doIntent(GetCartItemsIntent()),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Column(
@@ -61,9 +64,9 @@ class CartScreen extends StatelessWidget {
                       if (state is GetCartItemsSuccessState) {
                         final cartItems = state.cartItems.cart?.cartItems ?? [];
                         if (cartItems.isEmpty) {
-                          return const Center(
+                          return Center(
                             child: Text(
-                              "Cart is empty",
+                              AppStrings.cartIsempty,
                               style: AppTextStyle.regular25,
                             ),
                           );
@@ -94,7 +97,7 @@ class CartScreen extends StatelessWidget {
                             ElevatedButton(
                               onPressed: () {},
                               child: Text(
-                                "Checkout",
+                                AppStrings.checkout,
                                 style: TextStyle(
                                     color: Theme.of(context)
                                         .colorScheme
@@ -129,7 +132,7 @@ class CartScreen extends StatelessWidget {
                             const SizedBox(height: 20),
                             ElevatedButton(
                               onPressed: () {},
-                              child: const Text("Checkout"),
+                              child: Text(AppStrings.checkout),
                             ),
                             const SizedBox(height: 20),
                           ],

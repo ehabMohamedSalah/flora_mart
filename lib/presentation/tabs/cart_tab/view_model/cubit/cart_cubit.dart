@@ -4,6 +4,7 @@ import 'package:flora_mart/domain/usecase/cart_usecases/add_to_cart_usecase.dart
 import 'package:flora_mart/domain/usecase/cart_usecases/get_cart_items_usecase.dart';
 import 'package:flora_mart/domain/usecase/cart_usecases/remove_from_cart_usecase.dart';
 import 'package:flora_mart/domain/usecase/cart_usecases/update_product_quantity_usecase.dart';
+import 'package:flora_mart/presentation/tabs/cart_tab/view_model/cubit/cart_intent.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:logger/logger.dart';
@@ -23,14 +24,31 @@ class CartCubit extends Cubit<CartState> {
   final UpdateProductQuantityUsecase _updateProductQuantityUsecase;
   final Logger _logger;
 
+  doIntent(CartIntent intent) async {
+    switch (intent) {
+      case GetCartItemsIntent():
+        _getCartItems(GetCartItemsIntent());
+        break;
+      case AddToCartIntent():
+        _addToCard(intent);
+        break;
+      case RemoveFromCartIntent():
+        _removeFromCart(intent);
+        break;
+      case UpdateProductQuantityIntent():
+        _updateProductQuantity(intent);
+        break;
+    }
+  }
+
   static CartCubit get(context) => BlocProvider.of(context);
-  addToCard({required String productId, required int quantity}) async {
+  _addToCard(AddToCartIntent intent) async {
     emit(AddToCartLoadingState());
-    var result =
-        await _addToCartUsecase.call(productId: productId, quantity: quantity);
+    var result = await _addToCartUsecase.call(
+        productId: intent.productId, quantity: intent.quantity);
     switch (result) {
       case SuccessApiResult():
-        getCartItems();
+        await _getCartItems(GetCartItemsIntent());
         emit(AddToCartSuccessState());
         break;
       case ErrorApiResult():
@@ -42,7 +60,7 @@ class CartCubit extends Cubit<CartState> {
 
   int productCount = 0;
 
-  getCartItems() async {
+  _getCartItems(GetCartItemsIntent intent) async {
     emit(GetCartItemsLoadingState());
     var result = await _getCartItemsUsecase.call();
     switch (result) {
@@ -59,12 +77,12 @@ class CartCubit extends Cubit<CartState> {
     }
   }
 
-  removeFromCart({required String productId}) async {
+  _removeFromCart(RemoveFromCartIntent intent) async {
     emit(RemoveFromCartLoadingState());
-    var result = await _removeFromCartUsecase.call(productId: productId);
+    var result = await _removeFromCartUsecase.call(productId: intent.productId);
     switch (result) {
       case SuccessApiResult():
-        getCartItems();
+        await _getCartItems(GetCartItemsIntent());
         emit(RemoveFromCartSuccessState());
         break;
       case ErrorApiResult():
@@ -74,13 +92,12 @@ class CartCubit extends Cubit<CartState> {
     }
   }
 
-  updateProductQuantity(
-      {required String productId, required int quantity}) async {
+  _updateProductQuantity(UpdateProductQuantityIntent intent) async {
     var result = await _updateProductQuantityUsecase.call(
-        productId: productId, quantity: quantity);
+        productId: intent.productId, quantity: intent.quantity);
     switch (result) {
       case SuccessApiResult():
-        await getCartItems();
+        await _getCartItems(GetCartItemsIntent());
         emit(UpdateProductQuantitySuccessState());
         break;
       case ErrorApiResult():

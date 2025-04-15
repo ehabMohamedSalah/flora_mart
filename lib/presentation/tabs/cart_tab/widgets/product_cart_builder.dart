@@ -1,7 +1,9 @@
 import 'package:flora_mart/core/resuable_comp/toast_message.dart';
+import 'package:flora_mart/core/utils/string_manager.dart';
 import 'package:flora_mart/data/model/cart/cart_response.dart';
 import 'package:flora_mart/presentation/product_details/product_details_screen.dart';
 import 'package:flora_mart/presentation/tabs/cart_tab/view_model/cubit/cart_cubit.dart';
+import 'package:flora_mart/presentation/tabs/cart_tab/view_model/cubit/cart_intent.dart';
 import 'package:flora_mart/presentation/tabs/cart_tab/widgets/product_cart_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -25,10 +27,10 @@ class ProductCartBuilder extends StatelessWidget {
               },
               child: ProductCartWidget(
                 onTapDeleted: () {
-                  CartCubit.get(context).removeFromCart(
+                  CartCubit.get(context).doIntent(RemoveFromCartIntent(
                       productId:
                           cartResponse.cart?.cartItems?[index].product?.id ??
-                              "");
+                              ""));
                 },
                 price: cartResponse.cart?.cartItems?[index].price ?? 0,
                 quantity: cartResponse.cart?.cartItems?[index].quantity ?? 0,
@@ -46,12 +48,12 @@ class ProductCartBuilder extends StatelessWidget {
                     cartResponse.cart?.cartItems?[index].product?.description ??
                         "",
                 onUpdateQuantity: (String productId, num quantity) {
-                  CartCubit.get(context).updateProductQuantity(
+                  CartCubit.get(context).doIntent(UpdateProductQuantityIntent(
                     productId: productId,
                     quantity: quantity.toInt(),
-                  );
+                  ));
                   toastMessage(
-                      message: "Quantity updated",
+                      message: AppStrings.quantityUpdated,
                       tybeMessage: TybeMessage.positive);
                 },
               ),

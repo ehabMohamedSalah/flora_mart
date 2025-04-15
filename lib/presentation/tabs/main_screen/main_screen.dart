@@ -5,6 +5,7 @@ import 'package:flora_mart/core/utils/colors_manager.dart';
 import 'package:flora_mart/core/utils/string_manager.dart';
 import 'package:flora_mart/presentation/tabs/cart_tab/cart_screen.dart';
 import 'package:flora_mart/presentation/tabs/cart_tab/view_model/cubit/cart_cubit.dart';
+import 'package:flora_mart/presentation/tabs/cart_tab/view_model/cubit/cart_intent.dart';
 import 'package:flora_mart/presentation/tabs/categories_tab/view/categories_screen.dart';
 import 'package:flora_mart/presentation/tabs/home_tab/bloc_scope/home_bloc_scope.dart';
 import 'package:flora_mart/presentation/tabs/home_tab/home_screen.dart';
@@ -76,7 +77,8 @@ class _MainScreenState extends State<MainScreen> {
           CategoriesScreen(selectedCategoryId: widget.selectedCategoryId),
           BlocProvider(
             key: ValueKey(_selectedIndex == 2), // أو UniqueKey() لو حبيت
-            create: (context) => getIt<CartCubit>()..getCartItems(),
+            create: (context) =>
+                getIt<CartCubit>()..doIntent(GetCartItemsIntent()),
             child: const CartScreen(),
           ),
           const ProfileScreen(),
