@@ -96,5 +96,8 @@
   "changeLanguage": "Change Language",
   "english": "English",
   "arabic": "Arabic",
+  "update": "Update",
+  "changePassword": "Reset password",
+  "passwordChangedSuccessfully": "Password changed successfully",
   "BloomWithOurExquisiteBestSellers": "Bloom with our exquisite best sellers"
 }

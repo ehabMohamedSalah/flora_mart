@@ -114,12 +114,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         child: Row(
                           children: [
                             Switch(
-                                value: isNotificationTurn,
-                                onChanged: (newValue) {
-                                  setState(() {
-                                    isNotificationTurn = newValue;
-                                  });
-                                }),
+                              value: isNotificationTurn,
+                              onChanged: (newValue) {
+                                setState(() {
+                                  isNotificationTurn = newValue;
+                                });
+                              },
+                              activeColor: Colors.white,
+                              inactiveThumbColor: Colors.white,
+                              inactiveTrackColor: Colors.grey,
+                            ),
                             Text(
                               AppStrings.notification,
                               style: AppTheme.lightTheme.textTheme.bodySmall
