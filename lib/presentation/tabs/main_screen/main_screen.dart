@@ -75,6 +75,7 @@ class _MainScreenState extends State<MainScreen> {
           ),
           CategoriesScreen(selectedCategoryId: widget.selectedCategoryId),
           BlocProvider(
+            key: ValueKey(_selectedIndex == 2), // أو UniqueKey() لو حبيت
             create: (context) => getIt<CartCubit>()..getCartItems(),
             child: const CartScreen(),
           ),

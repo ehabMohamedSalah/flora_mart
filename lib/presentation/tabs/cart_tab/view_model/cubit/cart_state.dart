@@ -17,7 +17,7 @@ final class AddToCartLoadingState extends CartState {}
 
 // ignore: must_be_immutable
 final class GetCartItemsSuccessState extends CartState {
-  List<CartItems> cartItems;
+  CartResponse cartItems;
   GetCartItemsSuccessState({required this.cartItems});
 }
 
@@ -28,3 +28,21 @@ final class GetCartItemsErrorState extends CartState {
 }
 
 final class GetCartItemsLoadingState extends CartState {}
+
+final class RemoveFromCartSuccessState extends CartState {}
+
+// ignore: must_be_immutable
+final class RemoveFromCartErrorState extends CartState {
+  String message;
+  RemoveFromCartErrorState({required this.message});
+}
+
+final class RemoveFromCartLoadingState extends CartState {}
+
+final class UpdateProductQuantitySuccessState extends CartState {}
+
+// ignore: must_be_immutable
+final class UpdateProductQuantityErrorState extends CartState {
+  String message;
+  UpdateProductQuantityErrorState({required this.message});
+}

@@ -9,17 +9,24 @@ class ProductCartWidget extends StatefulWidget {
   final String? title;
   final String? imgCover;
   final String? discription;
+  final String? productId;
+  final num? quantity;
   final num? price;
   final num? priceAfterDiscount;
-  final VoidCallback onTap;
+  final VoidCallback onTapDeleted;
+  final Function(String productId, num quantity) onUpdateQuantity;
+
   const ProductCartWidget(
       {super.key,
       this.title,
       this.imgCover,
       this.price,
       this.priceAfterDiscount,
-      required this.onTap,
-      this.discription});
+      required this.onTapDeleted,
+      this.discription,
+      required this.onUpdateQuantity,
+      this.productId,
+      this.quantity});
 
   @override
   State<ProductCartWidget> createState() => _ProductCartWidgetState();
@@ -27,12 +34,13 @@ class ProductCartWidget extends StatefulWidget {
 
 class _ProductCartWidgetState extends State<ProductCartWidget> {
   late num unitPrice;
-  int quantity = 1;
+  late num quantity;
 
   @override
   void initState() {
     super.initState();
     unitPrice = widget.priceAfterDiscount ?? widget.price ?? 0;
+    quantity = widget.quantity ?? 1;
   }
 
   num get totalPrice => unitPrice * quantity;
@@ -88,7 +96,7 @@ class _ProductCartWidgetState extends State<ProductCartWidget> {
                         ),
                       ),
                       IconButton(
-                          onPressed: () {},
+                          onPressed: widget.onTapDeleted,
                           icon: const Icon(Icons.delete_outline_outlined,
                               color: ColorManager.red))
                     ],
@@ -112,6 +120,8 @@ class _ProductCartWidgetState extends State<ProductCartWidget> {
                             setState(() {
                               if (quantity > 1) quantity--;
                             });
+                            widget.onUpdateQuantity(
+                                widget.productId ?? "", quantity);
                           },
                           icon: const Icon(Icons.remove)),
                       Text("$quantity",
@@ -121,6 +131,8 @@ class _ProductCartWidgetState extends State<ProductCartWidget> {
                             setState(() {
                               quantity++;
                             });
+                            widget.onUpdateQuantity(
+                                widget.productId ?? "", quantity);
                           },
                           icon: const Icon(Icons.add)),
                     ],

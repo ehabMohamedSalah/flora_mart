@@ -4,10 +4,11 @@ import 'package:flora_mart/domain/repo_contract/cart_repo/cart_repo.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
-class GetCartItemsUsecase {
-  CartRepo cartRepo;
+class RemoveFromCartUsecase {
+  final CartRepo cartRepo;
   @factoryMethod
-  GetCartItemsUsecase(this.cartRepo);
+  RemoveFromCartUsecase(this.cartRepo);
 
-  Future<ApiResult<CartResponse>> call() async => await cartRepo.getCartItems();
+  Future<ApiResult<CartResponse>> call({required String productId}) async =>
+      await cartRepo.removeFromCart(productId: productId);
 }

@@ -1,9 +1,11 @@
 import 'package:flora_mart/core/api/api_result.dart';
-import 'package:flora_mart/data/model/cart/CartItems.dart';
+import 'package:flora_mart/data/model/cart/cart_response.dart';
 
 abstract class CartRepo {
   Future<ApiResult<dynamic>> addToCart(
       {required String productId, required int quantity});
-  Future<ApiResult<List<CartItems>>> getCartItems();
-  Future<ApiResult<dynamic>> removeFromCart({required String productId});
+  Future<ApiResult<CartResponse>> getCartItems();
+  Future<ApiResult<CartResponse>> removeFromCart({required String productId});
+  Future<ApiResult<CartResponse>> updateProductQuantity(
+      {required String productId, required int quantity});
 }
