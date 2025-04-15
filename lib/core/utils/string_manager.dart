@@ -87,13 +87,6 @@ class AppStrings {
   static String get occasion => "occasion".tr();
   static String get viewAll => "viewAll".tr();
   static String get filter => "filter".tr();
-
-  static String get changeLanguage => "changeLanguage".tr();
-
-  static String get english => "english".tr();
-
-  static String get arabic => "arabic".tr();
-  static String get bloomWithOurExquisiteBestSellers => "BloomWithOurExquisiteBestSellers".tr();
   static String get myOrders => "myOrders".tr();
   static String get savedAddress => "savedAddress".tr();
   static String get notification => "notification".tr();
@@ -101,4 +94,11 @@ class AppStrings {
   static String get aboutUs => "aboutUs".tr();
   static String get termsAndConditions => "termsAndConditions".tr();
   static String get logout => "logout".tr();
+  static String get lOGOUT => "lOGOUT".tr();
+  static String get changeLanguage => "changeLanguage".tr();
+  static String get english => "english".tr();
+  static String get arabic => "arabic".tr();
+  static String get bloomWithOurExquisiteBestSellers => "BloomWithOurExquisiteBestSellers".tr();
+  static String get confirmLogout => "confirmLogout".tr();
+  static String get cancel => "cancel".tr();
 }
