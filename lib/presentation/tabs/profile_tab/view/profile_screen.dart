@@ -16,6 +16,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../core/resuable_comp/dialogs.dart';
+
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
 
@@ -181,15 +183,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           if (state is LogoutSuccessState) {
                             toastMessage(
                                 message:
-                                    "Logout Successfully , continue as guest !!",
+                                    "Logout Successfully, Back to login",
                                 tybeMessage: TybeMessage.positive);
 
                             // Wait for 2 seconds, then navigate to login
                             Future.delayed(const Duration(seconds: 2), () {
-                              AuthCubit.get(context)
-                                  .doIntent(ChangeGuestIntent(isGuest: true));
-                              Navigator.pushNamed(
-                                  context, RouteManager.mainScreen);
+                              Navigator.pushNamedAndRemoveUntil(
+                                  context, RouteManager.loginScreen, (route) => false,);
                             });
                           }
 
@@ -215,7 +215,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             icon: Icons.logout_outlined,
                             iconArrow: Icons.keyboard_arrow_right_outlined,
                             onAction: () {
-                              context.read<AuthCubit>().doIntent(LogoutIntent());
+                              Dialogs.confirmLogout(context, () => Navigator.pop(context), () => context.read<AuthCubit>().doIntent(LogoutIntent()),);
                             },
                           ),
                         ),
