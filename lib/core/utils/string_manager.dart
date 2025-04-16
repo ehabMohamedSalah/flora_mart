@@ -101,4 +101,20 @@ class AppStrings {
   static String get bloomWithOurExquisiteBestSellers => "BloomWithOurExquisiteBestSellers".tr();
   static String get confirmLogout => "confirmLogout".tr();
   static String get cancel => "cancel".tr();
+
+  static String get changeLanguage => "changeLanguage".tr();
+
+  static String get english => "english".tr();
+
+  static String get arabic => "arabic".tr();
+
+  static String get update => "update".tr();
+
+  static String get changePassword => "changePassword".tr();
+
+  static String get passwordChangedSuccessfully =>
+      "passwordChangedSuccessfully".tr();
+
+  static String get bloomWithOurExquisiteBestSellers =>
+      "BloomWithOurExquisiteBestSellers".tr();
 }

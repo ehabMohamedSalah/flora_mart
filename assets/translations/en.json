@@ -93,11 +93,13 @@
   "aboutUs": "About us",
   "termsAndConditions": "Terms & conditions",
   "logout": "Logout",
-  "lOGOUT": "LOGOUT",
   "changeLanguage": "Change Language",
   "english": "English",
   "arabic": "Arabic",
-  "BloomWithOurExquisiteBestSellers": "Bloom with our exquisite best sellers",
+  "update": "Update",
+  "changePassword": "Reset password",
+  "passwordChangedSuccessfully": "Password changed successfully",
+  "BloomWithOurExquisiteBestSellers": "Bloom with our exquisite best sellers"
   "confirmLogout": "Confirm Logout!!",
   "cancel" : "Cancel"
 }

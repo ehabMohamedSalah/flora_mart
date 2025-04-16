@@ -12,4 +12,5 @@ class EndPoint {
   static const String homeEndpoint = "/v1/home";
   static const String logoutEndpoint = "/v1/auth/logout";
   static const String mainProfile = "/v1/auth/profile-data";
+  static const String resetPassword = "/v1/auth/change-password";
 }

@@ -11,7 +11,7 @@ class AppTheme {
       thumbColor: WidgetStateProperty.all(ColorManager.white),
       trackColor: MaterialStateProperty.all(ColorManager.primaryColor),
       overlayColor: MaterialStateProperty.all(ColorManager.white70),
-      trackOutlineColor: MaterialStateProperty.all(ColorManager.primaryColor),
+      trackOutlineColor: WidgetStateProperty.all(ColorManager.primaryColor),
     ),
 
     // 🎨 ألوان التطبيق
@@ -82,6 +82,20 @@ class AppTheme {
       ),
     ),
 
+    filledButtonTheme: FilledButtonThemeData(
+        style: FilledButton.styleFrom(
+            backgroundColor: ColorManager.pinkBase,
+            foregroundColor: ColorManager.white,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(32),
+            ),
+            disabledBackgroundColor: ColorManager.black30,
+            disabledForegroundColor: ColorManager.white,
+            textStyle: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
+            ))),
+
     // ✏️ تصميم الحقول النصية (TextFields)
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
@@ -127,3 +141,4 @@ class AppTheme {
     ),
   );
 }
+// Kareem@123
