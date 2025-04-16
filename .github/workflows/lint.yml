@@ -14,10 +14,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - name: Set executable permissions for setup.sh
+        run: chmod +x "$GITHUB_ACTION_PATH/setup.sh"
+
+
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: 3.6.1
+          flutter-version: 3.7.0
+          channel: stable
 
       - name: Install dependencies
         run: flutter pub get
