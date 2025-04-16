@@ -2,16 +2,16 @@ import 'package:flora_mart/core/utils/colors_manager.dart';
 import 'package:flutter/material.dart';
 
 class AppTheme {
-  static ThemeData lightTheme = ThemeData(
+  static ThemeData LightTheme = ThemeData(
     primaryColor: ColorManager.primaryColor,
     scaffoldBackgroundColor: ColorManager.backgroundColor,
     fontFamily: 'Inter',
 
     switchTheme: SwitchThemeData(
       thumbColor: WidgetStateProperty.all(ColorManager.white),
-      trackColor: MaterialStateProperty.all(ColorManager.primaryColor),
-      overlayColor: MaterialStateProperty.all(ColorManager.white70),
-      trackOutlineColor: MaterialStateProperty.all(ColorManager.primaryColor),
+      trackColor: WidgetStateProperty.all(ColorManager.primaryColor),
+      overlayColor: WidgetStateProperty.all(ColorManager.white70),
+      trackOutlineColor: WidgetStateProperty.all(ColorManager.primaryColor),
     ),
 
     // 🎨 ألوان التطبيق
