@@ -1,8 +1,11 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flora_mart/core/di/di.dart';
+import 'package:flora_mart/core/resuable_comp/dialogs.dart';
 import 'package:flora_mart/core/utils/colors_manager.dart';
 import 'package:flora_mart/core/utils/string_manager.dart';
+import 'package:flora_mart/presentation/auth/view_model/cubit/auth_cubit.dart';
+import 'package:flora_mart/presentation/auth/view_model/cubit/auth_intent.dart';
 import 'package:flora_mart/presentation/tabs/cart_tab/cart_screen.dart';
 import 'package:flora_mart/presentation/tabs/cart_tab/view_model/cubit/cart_cubit.dart';
 import 'package:flora_mart/presentation/tabs/cart_tab/view_model/cubit/cart_intent.dart';
@@ -33,10 +36,15 @@ class _MainScreenState extends State<MainScreen> {
   @override
   void initState() {
     super.initState();
+    AuthCubit.get(context).doIntent(CheckGuestIntent());
     _selectedIndex = widget.initialTab;
   }
 
   void _onItemTapped(int index) {
+    if (index == 2 && AuthCubit.get(context).isguest == true) {
+      Dialogs.restrictedAccess(context, () => Navigator.pop(context));
+      return;
+    }
     setState(() {
       _selectedIndex = index;
     });
@@ -75,7 +83,7 @@ class _MainScreenState extends State<MainScreen> {
             ),
           ),
           CategoriesScreen(selectedCategoryId: widget.selectedCategoryId),
-          BlocProvider(
+          BlocProvider<CartCubit>(
             key: ValueKey(_selectedIndex == 2), // أو UniqueKey() لو حبيت
             create: (context) =>
                 getIt<CartCubit>()..doIntent(GetCartItemsIntent()),

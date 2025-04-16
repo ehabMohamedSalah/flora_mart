@@ -4,8 +4,6 @@ import 'package:flora_mart/core/utils/text_style_manager.dart';
 import 'package:flora_mart/data/model/cart/Cart.dart';
 import 'package:flora_mart/data/model/cart/CartItems.dart';
 import 'package:flora_mart/data/model/cart/cart_response.dart';
-import 'package:flora_mart/presentation/auth/view_model/cubit/auth_cubit.dart';
-import 'package:flora_mart/presentation/auth/view_model/cubit/auth_intent.dart';
 import 'package:flora_mart/presentation/tabs/cart_tab/view_model/cubit/cart_cubit.dart';
 import 'package:flora_mart/presentation/tabs/cart_tab/view_model/cubit/cart_intent.dart';
 import 'package:flora_mart/presentation/tabs/cart_tab/widgets/order_summary_widget.dart';
@@ -21,8 +19,6 @@ class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Config().init(context);
-    AuthCubit.get(context).doIntent(CheckGuestIntent());
-
     return Scaffold(
         appBar: AppBar(
             forceMaterialTransparency: true,
