@@ -11,9 +11,9 @@ class OccasionsSection extends StatelessWidget {
   final List occasions;
 
   const OccasionsSection({
-    Key? key,
+    super.key,
     required this.occasions,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

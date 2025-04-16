@@ -93,5 +93,17 @@
   "quantityUpdated": "Quantity updated",
   "subTotal": "Sub Total",
   "deliveryFee": "Delivery Fee",
-  "total": "Total"
+  "total": "Total",
+  "myOrders": "My orders",
+  "savedAddress": "Saved address",
+  "notification": "Notification",
+  "languageItem": "Language",
+  "aboutUs": "About us",
+  "termsAndConditions": "Terms & conditions",
+  "logout": "Logout",
+  "changeLanguage": "Change Language",
+  "english": "English",
+  "arabic": "Arabic",
+  "confirmLogout": "Confirm Logout!!",
+  "cancel" : "Cancel"
 }

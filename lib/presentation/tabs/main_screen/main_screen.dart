@@ -12,7 +12,7 @@ import 'package:flora_mart/presentation/tabs/cart_tab/view_model/cubit/cart_inte
 import 'package:flora_mart/presentation/tabs/categories_tab/view/categories_screen.dart';
 import 'package:flora_mart/presentation/tabs/home_tab/bloc_scope/home_bloc_scope.dart';
 import 'package:flora_mart/presentation/tabs/home_tab/home_screen.dart';
-import 'package:flora_mart/presentation/tabs/profile_tab/profile_screen.dart';
+import 'package:flora_mart/presentation/tabs/profile_tab/view/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

@@ -10,11 +10,11 @@ class CategoriesSection extends StatelessWidget {
   final Function(String) onCategoryTapped;
 
   const CategoriesSection({
-    Key? key,
+    super.key,
     required this.categories,
     required this.onSeeAllTap,
     required this.onCategoryTapped,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

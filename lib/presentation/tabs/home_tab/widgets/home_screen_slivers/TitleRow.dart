@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flora_mart/core/utils/colors_manager.dart';
 import 'package:flora_mart/core/utils/string_manager.dart';
 import 'package:flutter/material.dart';
@@ -7,10 +9,10 @@ class TitleRowWidget extends StatelessWidget {
   final VoidCallback? onTap;
 
   const TitleRowWidget({
-    Key? key,
+    super.key,
     required this.title,
     this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

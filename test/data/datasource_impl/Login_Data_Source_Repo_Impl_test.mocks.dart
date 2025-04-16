@@ -228,4 +228,12 @@ class MockCacheHelper extends _i1.Mock implements _i5.CacheHelper {
             returnValue: _i3.Future<bool>.value(false),
           )
           as _i3.Future<bool>);
+
+  @override
+  _i3.Future<bool> logout() =>
+      (super.noSuchMethod(
+            Invocation.method(#logout, []),
+            returnValue: _i3.Future<bool>.value(false),
+          )
+          as _i3.Future<bool>);
 }

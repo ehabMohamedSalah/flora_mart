@@ -55,4 +55,48 @@ class Dialogs {
       ),
     );
   }
+
+  static void confirmLogout(BuildContext context, VoidCallback cancelButton, VoidCallback logoutButton) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => PopScope(
+        canPop: false,
+        child: AlertDialog(
+            backgroundColor: Colors.white,
+            shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            alignment: Alignment.center,
+            title: Center(
+              child:
+                Text(AppStrings.lOGOUT,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(fontSize: 18,fontWeight: FontWeight.w600)),
+            ),
+            content: Text(
+              textAlign: TextAlign.center,
+              AppStrings.confirmLogout,
+              style: const TextStyle(fontSize: 14,fontWeight: FontWeight.w300),
+            ),
+            actionsAlignment: MainAxisAlignment.spaceAround,
+            actions: [
+              OutlinedButton(onPressed: cancelButton, child: Text(AppStrings.cancel,
+                  style: const TextStyle(color: Colors.grey)),),
+              // TextButton(
+              //   onPressed: cancelButton,
+              //   child: Text(AppStrings.cancel,
+              //       style: const TextStyle(color: Colors.grey)),
+              // ),
+              ElevatedButton(
+                onPressed: logoutButton,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Theme.of(context).primaryColor,
+                ),
+                child: Text(AppStrings.logout,
+                    style: Theme.of(context).textTheme.labelLarge),
+              ),
+            ]),
+      ),
+    );
+  }
 }
