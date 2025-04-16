@@ -31,8 +31,9 @@ class FlowerCard extends StatelessWidget {
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),
             border: Border.all(
-              color: ColorManager.borderColor,
+              color: ColorManager.white70,
               width: 1,
+              style: BorderStyle.solid
             )),
         child: Padding(
           padding: const EdgeInsets.all(8),
