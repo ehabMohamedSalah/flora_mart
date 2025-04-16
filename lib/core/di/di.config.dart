@@ -33,6 +33,8 @@ import '../../data/datasource_contract/logout_datasource.dart' as _i375;
 import '../../data/datasource_contract/occasion_datasource/occasions_datasource.dart'
     as _i331;
 import '../../data/datasource_contract/profile_datasource.dart' as _i392;
+import '../../data/datasource_contract/reset_password_data_sourse_repo.dart'
+    as _i410;
 import '../../data/datasource_impl/auth_datasource_impl.dart' as _i422;
 import '../../data/datasource_impl/best_seller_datasource_impl.dart' as _i378;
 import '../../data/datasource_impl/cart_datasource_impl/cart_datasource_impl.dart'
@@ -53,6 +55,8 @@ import '../../data/datasource_impl/logout_datasource_impl.dart' as _i1011;
 import '../../data/datasource_impl/occasions_datasource_impl/occassions_datasource_impl.dart'
     as _i626;
 import '../../data/datasource_impl/profile_datasource_impl.dart' as _i807;
+import '../../data/datasource_impl/reset_password_data_source_repo_impl.dart'
+    as _i992;
 import '../../data/repo_impl/auth_repo_impl.dart' as _i540;
 import '../../data/repo_impl/best_seller_repo_impl.dart' as _i133;
 import '../../data/repo_impl/cart_repo_impl/cart_repo_impl.dart' as _i826;
@@ -70,6 +74,7 @@ import '../../data/repo_impl/Login_Repo_Impl.dart' as _i722;
 import '../../data/repo_impl/logout_repo_impl.dart' as _i88;
 import '../../data/repo_impl/occasions_repo_impl.dart' as _i750;
 import '../../data/repo_impl/profile_repo_impl.dart' as _i549;
+import '../../data/repo_impl/reset_password_repo_impl.dart' as _i1065;
 import '../../domain/repo_contract/auth_repo.dart' as _i233;
 import '../../domain/repo_contract/best_seller_repo.dart' as _i64;
 import '../../domain/repo_contract/cart_repo/cart_repo.dart' as _i64;
@@ -87,6 +92,7 @@ import '../../domain/repo_contract/Login_Repo.dart' as _i831;
 import '../../domain/repo_contract/logout_repo_contract.dart' as _i656;
 import '../../domain/repo_contract/occasions_repo.dart' as _i130;
 import '../../domain/repo_contract/profile_repo.dart' as _i772;
+import '../../domain/repo_contract/reset_password_repo.dart' as _i233;
 import '../../domain/usecase/cart_usecases/add_to_cart_usecase.dart' as _i971;
 import '../../domain/usecase/cart_usecases/get_cart_items_usecase.dart'
     as _i271;
@@ -111,9 +117,12 @@ import '../../domain/usecase/login_Usecase.dart' as _i181;
 import '../../domain/usecase/logout_usecase.dart' as _i140;
 import '../../domain/usecase/occasions_usecase.dart' as _i896;
 import '../../domain/usecase/register_usecase.dart' as _i626;
+import '../../domain/usecase/reset_password_Usecase.dart' as _i768;
 import '../../presentation/auth/view_model/cubit/auth_cubit.dart' as _i351;
 import '../../presentation/best_seller/view_model/cubit/best_seller_cubit.dart'
     as _i165;
+import '../../presentation/reset_password/view_model/reset_password_cubit.dart'
+    as _i833;
 import '../../presentation/tabs/cart_tab/view_model/cubit/cart_cubit.dart'
     as _i1071;
 import '../../presentation/tabs/categories_tab/view_model/categories_cubit.dart'
@@ -154,6 +163,13 @@ extension GetItInjectableX on _i174.GetIt {
             apiManager: gh<_i1047.ApiManager>()));
     gh.factory<_i623.GuestDatasource>(
         () => _i48.GuestDatasourceImpl(gh<_i299.CacheHelper>()));
+    gh.factory<_i410.ResetPasswordDataSourceRepo>(
+        () => _i992.ResetPasswordDataSourceRepoImpl(
+              gh<_i299.CacheHelper>(),
+              gh<_i1047.ApiManager>(),
+            ));
+    gh.factory<_i233.ResetPasswordRepo>(() =>
+        _i1065.ResetPasswordRepoImpl(gh<_i410.ResetPasswordDataSourceRepo>()));
     gh.factory<_i206.ForgetpasswordDataSourseRepo>(() =>
         _i319.ForgetpasswordDataSourceRepoImpl(
             apiManager: gh<_i1047.ApiManager>()));
@@ -203,6 +219,8 @@ extension GetItInjectableX on _i174.GetIt {
         _i289.Resetpasswordrepoimpl(gh<_i99.ResetpasswordDataSourceRepo>()));
     gh.factory<_i784.GetAllProductsUsecase>(
         () => _i784.GetAllProductsUsecase(gh<_i697.GetAllProductsRepo>()));
+    gh.factory<_i768.ResetPasswordUsecase>(() => _i768.ResetPasswordUsecase(
+        resetPasswordRepo: gh<_i233.ResetPasswordRepo>()));
     gh.factory<_i41.CategoriesRepo>(
         () => _i807.CategoriesRepoImpl(gh<_i546.CategoriesDatasource>()));
     gh.factory<_i130.OccasionsRepo>(
@@ -220,6 +238,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i722.SigninRepoImpl(gh<_i557.LoginDataSourceRepo>()));
     gh.factory<_i979.HomeCubit>(
         () => _i979.HomeCubit(gh<_i1069.HomeUsecase>()));
+    gh.factory<_i833.ResetPasswordCubit>(
+        () => _i833.ResetPasswordCubit(gh<_i768.ResetPasswordUsecase>()));
     gh.factory<_i285.ChangeguestUsecase>(
         () => _i285.ChangeguestUsecase(gh<_i234.GuestRepo>()));
     gh.factory<_i304.CheckGuestUseCase>(

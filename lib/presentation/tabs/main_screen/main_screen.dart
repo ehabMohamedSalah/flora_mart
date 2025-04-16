@@ -41,10 +41,11 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   void _onItemTapped(int index) {
-    if (index == 2 && AuthCubit.get(context).isguest == true) {
+    if ((index == 2 || index == 3) && AuthCubit.get(context).isguest == true) {
       Dialogs.restrictedAccess(context, () => Navigator.pop(context));
       return; // لا تغيّر التاب
     }
+
     setState(() {
       _selectedIndex = index;
     });
