@@ -94,11 +94,17 @@ class AppStrings {
   static String get aboutUs => "aboutUs".tr();
   static String get termsAndConditions => "termsAndConditions".tr();
   static String get logout => "logout".tr();
-  static String get lOGOUT => "lOGOUT".tr();
   static String get changeLanguage => "changeLanguage".tr();
   static String get english => "english".tr();
   static String get arabic => "arabic".tr();
   static String get bloomWithOurExquisiteBestSellers => "BloomWithOurExquisiteBestSellers".tr();
+  static String get items => "items".tr();
+  static String get checkout => "checkout".tr();
+  static String get cartIsempty => "cartIsempty".tr();
+  static String get quantityUpdated => "quantityUpdated".tr();
+  static String get subTotal => "subTotal".tr();
+  static String get deliveryFee => "deliveryFee".tr();
+  static String get total => "total".tr();
   static String get confirmLogout => "confirmLogout".tr();
   static String get cancel => "cancel".tr();
 

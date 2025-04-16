@@ -61,6 +61,7 @@ dependencies:
   skeletonizer: ^1.4.3
   carousel_slider: ^5.0.0
   smooth_page_indicator: ^1.2.1
+  logger: ^2.5.0
   badges: ^3.1.2
   animation_list: ^3.1.0
   # The following adds the Cupertino Icons font to your application.

@@ -1,31 +1,41 @@
-// ignore_for_file: file_names
-
-import 'package:flora_mart/core/utils/colors_manager.dart';
+import 'package:flora_mart/core/utils/text_style_manager.dart';
 import 'package:flutter/material.dart';
 
-Widget buildAddress() {
-  return const SliverToBoxAdapter(
-    child: Padding(
-      padding: EdgeInsets.symmetric(vertical: 16),
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Row(
-          children: [
-            Icon(Icons.location_on_outlined),
-            SizedBox(width: 8),
-            Text(
-              "Deliver to 2XVP+XC - Sheikh Zayed",
-              style: TextStyle(fontSize: 16),
-            ),
-            SizedBox(width: 8),
-            Icon(
-              Icons.keyboard_arrow_down_sharp,
-              size: 30,
-              color: ColorManager.pinkBase,
-            ),
-          ],
+class BuildAdress extends StatelessWidget {
+  const BuildAdress({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        const Icon(Icons.location_on_outlined),
+        const SizedBox(width: 8),
+        Flexible(
+          fit: FlexFit.loose,
+          child: Row(
+            children: [
+              Text(
+                "Deliver to ",
+                style: AppTextStyle.medium14.copyWith(color: Colors.grey),
+              ),
+              const Flexible(
+                fit: FlexFit.loose,
+                child: Text(
+                  "2XVP+XC - Sheikh Zayed",
+                  style: AppTextStyle.medium14,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ],
+          ),
         ),
-      ),
-    ),
-  );
+        const SizedBox(width: 8),
+        Icon(
+          Icons.keyboard_arrow_down_sharp,
+          size: 30,
+          color: Theme.of(context).colorScheme.primary,
+        ),
+      ],
+    );
+  }
 }
