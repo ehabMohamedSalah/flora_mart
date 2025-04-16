@@ -11,9 +11,12 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
+import 'package:logger/logger.dart' as _i974;
 
 import '../../data/datasource_contract/auth_datasource.dart' as _i214;
 import '../../data/datasource_contract/best_seller_datasource.dart' as _i575;
+import '../../data/datasource_contract/cart_datasource/cart_datasource.dart'
+    as _i770;
 import '../../data/datasource_contract/categories_datasource.dart' as _i546;
 import '../../data/datasource_contract/forget_password_datasource/forget_password_datasource.dart'
     as _i206;
@@ -32,6 +35,8 @@ import '../../data/datasource_contract/occasion_datasource/occasions_datasource.
 import '../../data/datasource_contract/profile_datasource.dart' as _i392;
 import '../../data/datasource_impl/auth_datasource_impl.dart' as _i422;
 import '../../data/datasource_impl/best_seller_datasource_impl.dart' as _i378;
+import '../../data/datasource_impl/cart_datasource_impl/cart_datasource_impl.dart'
+    as _i274;
 import '../../data/datasource_impl/categories_datasource_impl.dart' as _i71;
 import '../../data/datasource_impl/forget_password_datasource_impl/forget_password_datasource_impl.dart'
     as _i319;
@@ -50,6 +55,7 @@ import '../../data/datasource_impl/occasions_datasource_impl/occassions_datasour
 import '../../data/datasource_impl/profile_datasource_impl.dart' as _i807;
 import '../../data/repo_impl/auth_repo_impl.dart' as _i540;
 import '../../data/repo_impl/best_seller_repo_impl.dart' as _i133;
+import '../../data/repo_impl/cart_repo_impl/cart_repo_impl.dart' as _i826;
 import '../../data/repo_impl/categories_repo_impl.dart' as _i807;
 import '../../data/repo_impl/forget_password_repo_impl/forget_password_repo_impl.dart'
     as _i210;
@@ -66,6 +72,7 @@ import '../../data/repo_impl/occasions_repo_impl.dart' as _i750;
 import '../../data/repo_impl/profile_repo_impl.dart' as _i549;
 import '../../domain/repo_contract/auth_repo.dart' as _i233;
 import '../../domain/repo_contract/best_seller_repo.dart' as _i64;
+import '../../domain/repo_contract/cart_repo/cart_repo.dart' as _i64;
 import '../../domain/repo_contract/categories_repo.dart' as _i41;
 import '../../domain/repo_contract/forget_password_repo_contract/forget_password_repo.dart'
     as _i976;
@@ -80,6 +87,13 @@ import '../../domain/repo_contract/Login_Repo.dart' as _i831;
 import '../../domain/repo_contract/logout_repo_contract.dart' as _i656;
 import '../../domain/repo_contract/occasions_repo.dart' as _i130;
 import '../../domain/repo_contract/profile_repo.dart' as _i772;
+import '../../domain/usecase/cart_usecases/add_to_cart_usecase.dart' as _i971;
+import '../../domain/usecase/cart_usecases/get_cart_items_usecase.dart'
+    as _i271;
+import '../../domain/usecase/cart_usecases/remove_from_cart_usecase.dart'
+    as _i1045;
+import '../../domain/usecase/cart_usecases/update_product_quantity_usecase.dart'
+    as _i249;
 import '../../domain/usecase/categories_usecase.dart' as _i1036;
 import '../../domain/usecase/changeGuest_usecase.dart' as _i285;
 import '../../domain/usecase/check_guest_usecase.dart' as _i304;
@@ -100,6 +114,8 @@ import '../../domain/usecase/register_usecase.dart' as _i626;
 import '../../presentation/auth/view_model/cubit/auth_cubit.dart' as _i351;
 import '../../presentation/best_seller/view_model/cubit/best_seller_cubit.dart'
     as _i165;
+import '../../presentation/tabs/cart_tab/view_model/cubit/cart_cubit.dart'
+    as _i1071;
 import '../../presentation/tabs/categories_tab/view_model/categories_cubit.dart'
     as _i196;
 import '../../presentation/tabs/categories_tab/view_model/product_cubit.dart'
@@ -112,6 +128,7 @@ import '../../presentation/tabs/profile_tab/view_model/main_profile_cubit.dart'
     as _i238;
 import '../api/api_manager.dart' as _i1047;
 import '../cache/shared_pref.dart' as _i299;
+import '../logger/logger_module.dart' as _i279;
 
 extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -124,8 +141,11 @@ extension GetItInjectableX on _i174.GetIt {
       environment,
       environmentFilter,
     );
+    final loggerModule = _$LoggerModule();
     gh.singleton<_i1047.ApiManager>(() => _i1047.ApiManager());
     gh.singleton<_i299.CacheHelper>(() => _i299.CacheHelper());
+    gh.lazySingleton<_i974.Logger>(() => loggerModule.loggerProvider);
+    gh.lazySingleton<_i974.PrettyPrinter>(() => loggerModule.prettyPrinter);
     gh.factory<_i99.ResetpasswordDataSourceRepo>(() =>
         _i486.Resetpassworddatasourcerepoimpl(
             apiManager: gh<_i1047.ApiManager>()));
@@ -157,6 +177,10 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i626.OccasionsDatasourceImpl(gh<_i1047.ApiManager>()));
     gh.factory<_i233.AuthRepo>(
         () => _i540.AuthRepoImpl(gh<_i214.AuthDatasource>()));
+    gh.factory<_i770.CartDatasource>(() => _i274.CartDatasourceImpl(
+          apiManager: gh<_i1047.ApiManager>(),
+          cacheHelper: gh<_i299.CacheHelper>(),
+        ));
     gh.factory<_i557.LoginDataSourceRepo>(() => _i878.LoginDatasourceImpl(
           gh<_i1047.ApiManager>(),
           gh<_i299.CacheHelper>(),
@@ -200,6 +224,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i285.ChangeguestUsecase(gh<_i234.GuestRepo>()));
     gh.factory<_i304.CheckGuestUseCase>(
         () => _i304.CheckGuestUseCase(gh<_i234.GuestRepo>()));
+    gh.factory<_i64.CartRepo>(
+        () => _i826.CartRepoImpl(gh<_i770.CartDatasource>()));
     gh.factory<_i181.LoginUsecase>(
         () => _i181.LoginUsecase(loginRepo: gh<_i831.LoginRepo>()));
     gh.factory<_i626.RegisterUsecase>(
@@ -224,6 +250,14 @@ extension GetItInjectableX on _i174.GetIt {
         ));
     gh.factory<_i814.GetBestSellersUseCase>(
         () => _i814.GetBestSellersUseCase(gh<_i64.BestSellerRepo>()));
+    gh.factory<_i971.AddToCartUsecase>(
+        () => _i971.AddToCartUsecase(gh<_i64.CartRepo>()));
+    gh.factory<_i271.GetCartItemsUsecase>(
+        () => _i271.GetCartItemsUsecase(gh<_i64.CartRepo>()));
+    gh.factory<_i1045.RemoveFromCartUsecase>(
+        () => _i1045.RemoveFromCartUsecase(gh<_i64.CartRepo>()));
+    gh.factory<_i249.UpdateProductQuantityUsecase>(
+        () => _i249.UpdateProductQuantityUsecase(gh<_i64.CartRepo>()));
     gh.factory<_i196.CategoriesCubit>(
         () => _i196.CategoriesCubit(gh<_i1036.CategoriesUsecase>()));
     gh.factory<_i351.AuthCubit>(() => _i351.AuthCubit(
@@ -240,6 +274,15 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i165.BestSellerCubit(gh<_i814.GetBestSellersUseCase>()));
     gh.factory<_i238.MainProfileCubit>(
         () => _i238.MainProfileCubit(gh<_i920.GetProfileDetailsUsecase>()));
+    gh.factory<_i1071.CartCubit>(() => _i1071.CartCubit(
+          gh<_i971.AddToCartUsecase>(),
+          gh<_i271.GetCartItemsUsecase>(),
+          gh<_i974.Logger>(),
+          gh<_i1045.RemoveFromCartUsecase>(),
+          gh<_i249.UpdateProductQuantityUsecase>(),
+        ));
     return this;
   }
 }
+
+class _$LoggerModule extends _i279.LoggerModule {}
