@@ -43,7 +43,7 @@ class _MainScreenState extends State<MainScreen> {
   void _onItemTapped(int index) {
     if (index == 2 && AuthCubit.get(context).isguest == true) {
       Dialogs.restrictedAccess(context, () => Navigator.pop(context));
-      return;
+      return; // لا تغيّر التاب
     }
     setState(() {
       _selectedIndex = index;
@@ -87,6 +87,7 @@ class _MainScreenState extends State<MainScreen> {
             key: ValueKey(_selectedIndex == 2), // أو UniqueKey() لو حبيت
             create: (context) =>
                 getIt<CartCubit>()..doIntent(GetCartItemsIntent()),
+
             child: const CartScreen(),
           ),
           const ProfileScreen(),
