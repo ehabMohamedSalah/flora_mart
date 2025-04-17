@@ -1,6 +1,7 @@
 import 'package:flora_mart/core/di/di.dart';
 import 'package:flora_mart/core/resuable_comp/flower_card_resuble/flower_card.dart';
 import 'package:flora_mart/core/resuable_comp/toast_message.dart';
+import 'package:flora_mart/core/utils/config.dart';
 import 'package:flora_mart/core/utils/string_manager.dart';
 import 'package:flora_mart/data/model/products/Products.dart';
 import 'package:flora_mart/presentation/product_details/product_details_screen.dart';
@@ -15,6 +16,7 @@ class FlowerCardBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Config().init(context);
     return BlocProvider(
       create: (context) => getIt<CartCubit>(),
       child: BlocListener<CartCubit, CartState>(
@@ -32,9 +34,10 @@ class FlowerCardBuilder extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: GridView.builder(
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
-              childAspectRatio: 0.80,
+              childAspectRatio:
+                  (Config.screenWidth! / Config.screenHight!) * 0.9,
               crossAxisSpacing: 17,
               mainAxisSpacing: 17,
             ),

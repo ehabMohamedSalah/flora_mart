@@ -2,6 +2,7 @@ import 'package:flora_mart/core/resuable_comp/flower_card_resuble/flower_card_bu
 import 'package:flora_mart/presentation/tabs/home_tab/widgets/occasions/view_model/occasions_intent.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../../../../../core/di/di.dart';
 import '../../../../../../../data/model/products/Products.dart';
 import '../../view_model/occasions_cubit.dart';
@@ -37,10 +38,7 @@ class ProductsOfOccasionWidget extends StatelessWidget {
           } else if (state is GetProductsSuccess) {
             final List<Products> productsList = state.products;
 
-            return Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 0, vertical: 16.0),
-                child: FlowerCardBuilder(products: productsList));
+            return FlowerCardBuilder(products: productsList);
           } else {
             // Optionally handle other states if needed.
             return const SizedBox();
