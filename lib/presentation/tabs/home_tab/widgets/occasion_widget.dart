@@ -23,7 +23,7 @@ class OccasionWidget extends StatelessWidget {
           Flexible(
             child: Text(
               occasionsModel.name ?? "",
-              style: Theme.of(context).textTheme.titleSmall,
+              style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
             ),
           ),
         ],

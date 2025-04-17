@@ -46,15 +46,15 @@ class _LanguageBottomSheetState extends State<LanguageBottomSheet> {
                     label: AppStrings.english,
                     isSelected: context.locale == const Locale('en'),
                     onTap: () {
-                      setState(() {
-                        context.setLocale(const Locale('en'));
-                      });
+                      context.setLocale(const Locale('en'));
+                      Navigator.pop(context);
                     }),
                 LanguageSelectionItem(
                     label: AppStrings.arabic,
                     isSelected: context.locale == const Locale('ar'),
                     onTap: () {
                       context.setLocale(const Locale('ar'));
+                      Navigator.pop(context);
                     }),
               ]),
             )

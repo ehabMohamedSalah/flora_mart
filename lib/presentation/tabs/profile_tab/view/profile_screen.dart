@@ -44,6 +44,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
         appBar: buildAppBar(),
         body: BlocBuilder<MainProfileCubit, MainProfileState>(
           builder: (context, state) {
+            if (state is MainProfileLoading) {
+              return const Center(
+                  child:
+                      CircularProgressIndicator(color: ColorManager.pinkBase));
+            }
             if (state is MainProfileSuccess) {
               UserEntity? user = state.getLoggedUserDataEntity.user;
               return SingleChildScrollView(
@@ -186,14 +191,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                           if (state is LogoutSuccessState) {
                             toastMessage(
-                                message:
-                                    "Logout Successfully, Back to login",
+                                message: "Logout Successfully, Back to login",
                                 tybeMessage: TybeMessage.positive);
 
                             // Wait for 2 seconds, then navigate to login
                             Future.delayed(const Duration(seconds: 2), () {
                               Navigator.pushNamedAndRemoveUntil(
-                                  context, RouteManager.loginScreen, (route) => false,);
+                                context,
+                                RouteManager.loginScreen,
+                                (route) => false,
+                              );
                             });
                           }
 
@@ -219,7 +226,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             icon: Icons.logout_outlined,
                             iconArrow: Icons.keyboard_arrow_right_outlined,
                             onAction: () {
-                              Dialogs.confirmLogout(context, () => Navigator.pop(context), () => context.read<AuthCubit>().doIntent(LogoutIntent()),);
+                              Dialogs.confirmLogout(
+                                context,
+                                () => Navigator.pop(context),
+                                () => context
+                                    .read<AuthCubit>()
+                                    .doIntent(LogoutIntent()),
+                              );
                             },
                           ),
                         ),
@@ -238,8 +251,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
               );
             }
-
-            return const Center(child: CircularProgressIndicator());
+            return const Center(
+                child: CircularProgressIndicator(
+              color: ColorManager.pinkBase,
+            ));
           },
         ),
       ),

@@ -53,8 +53,7 @@ class _MainScreenState extends State<MainScreen> {
 
   void _onCategoryTapped(String categoryId) {
     setState(() {
-      widget.selectedCategoryId =
-          categoryId; // Dynamically update selectedCategory
+      widget.selectedCategoryId = categoryId;
     });
 
     // Now navigate after the state is updated
@@ -91,7 +90,11 @@ class _MainScreenState extends State<MainScreen> {
 
             child: const CartScreen(),
           ),
-          const ProfileScreen(),
+          _selectedIndex == 3
+              ? ProfileScreen(key: UniqueKey())
+              : const CircularProgressIndicator(
+                  color: Colors.black,
+                ),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
