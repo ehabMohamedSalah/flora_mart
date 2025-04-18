@@ -2,7 +2,7 @@ import 'package:flora_mart/core/utils/colors_manager.dart';
 import 'package:flutter/material.dart';
 
 class AppTheme {
-  static ThemeData LighstTheme = ThemeData(
+  static ThemeData LighsadtTheme = ThemeData(
     primaryColor: ColorManager.primaryColor,
     scaffoldBackgroundColor: ColorManager.backgroundColor,
     fontFamily: 'Inter',
