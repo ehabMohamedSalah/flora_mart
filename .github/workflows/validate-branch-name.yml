@@ -4,7 +4,7 @@ on:
   pull_request:
     types: [opened, edited, reopened, synchronize]
     branches:
-      - new-development
+      - develop
 
 jobs:
   validate-branch-name:
@@ -13,7 +13,7 @@ jobs:
       - name: Check branch name
         run: |
           echo "Branch name is ${{ github.head_ref }}"
-          if [[ ! "${{ github.head_ref }}" =~ ^(feature|bugfix|hotfix|release)/[A-Z]+-[0-9]+-[a-zA-Z0-9\-]+$ ]]; then
+          if [[ ! "${{ github.head_ref }}" =~ ^(feature|bugfix|hotfix|release)/[A-Z]+-[0-9]+-[a-zA-Z0-9_-]+$ ]]; then
             echo "❌ Branch name '${{ github.head_ref }}' is invalid."
             echo "✅ It should match: feature/ECOM-27-Initialize-Project"
             exit 1
