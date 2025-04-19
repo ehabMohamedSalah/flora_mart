@@ -40,18 +40,19 @@ class MockResetPasswordDataSourceRepo extends _i1.Mock
     required String? newPassword,
   }) =>
       (super.noSuchMethod(
-        Invocation.method(#resetPassword, [], {
-          #oldPassword: oldPassword,
-          #newPassword: newPassword,
-        }),
-        returnValue: _i3.Future<_i4.ApiResult<bool>>.value(
-          _i5.dummyValue<_i4.ApiResult<bool>>(
-            this,
             Invocation.method(#resetPassword, [], {
               #oldPassword: oldPassword,
               #newPassword: newPassword,
             }),
-          ),
-        ),
-      ) as _i3.Future<_i4.ApiResult<bool>>);
+            returnValue: _i3.Future<_i4.ApiResult<bool>>.value(
+              _i5.dummyValue<_i4.ApiResult<bool>>(
+                this,
+                Invocation.method(#resetPassword, [], {
+                  #oldPassword: oldPassword,
+                  #newPassword: newPassword,
+                }),
+              ),
+            ),
+          )
+          as _i3.Future<_i4.ApiResult<bool>>);
 }
