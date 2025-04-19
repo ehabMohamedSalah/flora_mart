@@ -115,7 +115,12 @@ class AppStrings {
   static String get schedule => "schedule".tr();
   static String get deliveryAddress => "deliveryAddress".tr();
   static String get addNewAddress => "addNewAddress".tr();
-
   static String get noAddressFound => "noAddressFound".tr();
+
+  static String get paymentMethod => "paymentMethod".tr();
+
+  static String get cashOnDelivery => "cashOnDelivery".tr();
+
+  static String get creditCard => "creditCard".tr();
   static String get cancel => "cancel".tr();
 }

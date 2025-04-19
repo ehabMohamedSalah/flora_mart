@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flora_mart/core/utils/string_manager.dart';
 import 'widgets/app_bar_delivery_time_widget.dart';
+import 'widgets/payment_method_part/payment_method_widget.dart';
 import 'widgets/separator.dart';
 
 class CheckOutPage extends StatelessWidget {
@@ -14,7 +15,9 @@ class CheckOutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => getIt<CheckoutCubit>()..doIntent(InitAddressIntent()),
+      create: (_) => getIt<CheckoutCubit>()
+        ..doIntent(InitAddressIntent())
+        ..doIntent(InitPaymentWayIntent()),
       child: Scaffold(
         appBar: AppBar(
           title: Text(AppStrings.checkout),
@@ -24,6 +27,8 @@ class CheckOutPage extends StatelessWidget {
           children: const [
             Separator(),
             DeliveryAddressWidget(),
+            Separator(),
+            PaymentMethodWidget(),
             Separator(),
           ],
         ),

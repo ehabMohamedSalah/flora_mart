@@ -1,3 +1,4 @@
+import 'package:flora_mart/core/constant.dart';
 import 'package:flora_mart/data/model/address.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -34,14 +35,22 @@ class CheckoutCubit extends Cubit<CheckoutStates> {
   ];
 
   String? selectedAddressId;
+  Address? selectedAddress;
+  String? selectedPaymentWayId;
 
   void doIntent(CheckoutIntent intent) {
     switch (intent) {
       case SelectAddressIntent():
-        _selectAddress(intent.id);
+        _selectAddress(intent);
+        break;
+      case SelectPaymentWayIntent():
+        _selectPaymentWay(intent.id);
         break;
       case InitAddressIntent():
         _initSelection();
+        break;
+      case InitPaymentWayIntent():
+        _initPaymentWay();
         break;
     }
   }
@@ -49,14 +58,26 @@ class CheckoutCubit extends Cubit<CheckoutStates> {
   void _initSelection() {
     if (addresses.isNotEmpty) {
       selectedAddressId = addresses.first.sId ?? "";
-      emit(CheckoutAddressSelected(selectedId: selectedAddressId!));
+      emit(CheckoutAddressSelected());
     } else {
       emit(CheckoutNoAddressesFound());
     }
   }
 
-  void _selectAddress(String id) {
-    selectedAddressId = id;
-    emit(CheckoutAddressSelected(selectedId: selectedAddressId!));
+  void _initPaymentWay() {
+    selectedPaymentWayId = Constant.cacheOnDelivery;
+    emit(CheckoutPaymentWaySelected());
+  }
+
+  void _selectAddress(SelectAddressIntent intent) {
+    selectedAddressId = intent.id;
+    selectedAddress = intent.address;
+    emit(CheckoutAddressSelected());
+  }
+
+  void _selectPaymentWay(String id) {
+    selectedPaymentWayId = id;
+    emit(CheckoutPaymentWaySelected());
+    print(id);
   }
 }

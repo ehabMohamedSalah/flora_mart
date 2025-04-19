@@ -90,7 +90,7 @@ class DeliveryAddressWidget extends StatelessWidget {
       address: address,
       onSelect: () {
         CheckoutCubit.get(context).doIntent(
-          SelectAddressIntent(id: address.sId ?? ""),
+          SelectAddressIntent(address: address, id: address.sId ?? ""),
         );
       },
     );

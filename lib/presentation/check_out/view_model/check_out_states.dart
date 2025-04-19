@@ -5,10 +5,8 @@ sealed class CheckoutStates {}
 
 final class CheckoutInitial extends CheckoutStates {}
 
-final class CheckoutAddressSelected extends CheckoutStates {
-  final String selectedId;
+final class CheckoutAddressSelected extends CheckoutStates {}
 
-  CheckoutAddressSelected({required this.selectedId});
-}
+final class CheckoutPaymentWaySelected extends CheckoutStates {}
 
 final class CheckoutNoAddressesFound extends CheckoutStates {}

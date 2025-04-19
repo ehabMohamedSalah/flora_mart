@@ -113,5 +113,8 @@
   "deliveryAddress": "Delivery address",
   "addNewAddress": "Add new address",
   "noAddressFound": "No Address Found",
+  "paymentMethod": "Payment method",
+  "cashOnDelivery": "Cash on delivery",
+  "creditCard": "Credit card",
   "cancel": "Cancel"
 }
