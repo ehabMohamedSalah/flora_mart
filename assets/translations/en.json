@@ -108,5 +108,9 @@
   "passwordChangedSuccessfully": "Password changed successfully",
   "BloomWithOurExquisiteBestSellers": "Bloom with our exquisite best sellers",
   "confirmLogout": "Confirm Logout!!",
-  "cancel" : "Cancel"
+  "deliveryTime": "Delivery time",
+  "schedule": "Schedule",
+  "deliveryAddress": "Delivery address",
+  "addNewAddress": "Add new address",
+  "cancel": "Cancel"
 }

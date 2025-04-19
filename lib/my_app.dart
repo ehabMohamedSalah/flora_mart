@@ -14,6 +14,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'config/theme/app_theme.dart';
 import 'core/utils/routes_manager.dart';
+import 'presentation/check_out/view/check_out_page.dart';
 import 'presentation/reset_password/change_password_page.dart';
 
 class MyApp extends StatelessWidget {
@@ -52,6 +53,7 @@ class MyApp extends StatelessWidget {
                 const ResetPasswordPage(),
             RouteManager.occasionScreen: (context) => const OccasionScreen(),
             RouteManager.loginScreen: (context) => const SignInScreen(),
+            RouteManager.checkOutScreen: (context) => const CheckOutPage(),
             RouteManager.registerScreen: (context) => const RegisterScreen(),
             RouteManager.forgetPasswordScreen: (context) =>
                 const ForgetPasswordScreen(),

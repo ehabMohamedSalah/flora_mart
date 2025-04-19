@@ -87,19 +87,12 @@ class AppStrings {
   static String get occasion => "occasion".tr();
   static String get viewAll => "viewAll".tr();
   static String get filter => "filter".tr();
-
   static String get items => "items".tr();
-
   static String get checkout => "checkout".tr();
-
   static String get cartIsempty => "cartIsempty".tr();
-
   static String get quantityUpdated => "quantityUpdated".tr();
-
   static String get subTotal => "subTotal".tr();
-
   static String get deliveryFee => "deliveryFee".tr();
-
   static String get total => "total".tr();
   static String get myOrders => "myOrders".tr();
   static String get savedAddress => "savedAddress".tr();
@@ -111,14 +104,20 @@ class AppStrings {
   static String get changeLanguage => "changeLanguage".tr();
   static String get english => "english".tr();
   static String get arabic => "arabic".tr();
-
   static String get update => "update".tr();
-
   static String get changePassword => "changePassword".tr();
 
   static String get passwordChangedSuccessfully =>
       "passwordChangedSuccessfully".tr();
   static String get bloomWithOurExquisiteBestSellers => "BloomWithOurExquisiteBestSellers".tr();
   static String get confirmLogout => "confirmLogout".tr();
+
+  static String get deliveryTime => "deliveryTime".tr();
+
+  static String get schedule => "schedule".tr();
+
+  static String get deliveryAddress => "deliveryAddress".tr();
+
+  static String get addNewAddress => "addNewAddress".tr();
   static String get cancel => "cancel".tr();
 }

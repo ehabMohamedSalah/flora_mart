@@ -1,4 +1,5 @@
 import 'package:flora_mart/core/utils/config.dart';
+import 'package:flora_mart/core/utils/routes_manager.dart';
 import 'package:flora_mart/core/utils/string_manager.dart';
 import 'package:flora_mart/core/utils/text_style_manager.dart';
 import 'package:flora_mart/data/model/cart/Cart.dart';
@@ -91,7 +92,10 @@ class CartScreen extends StatelessWidget {
                                     .toDouble()),
                             const SizedBox(height: 20),
                             ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.pushNamed(
+                                    context, RouteManager.checkOutScreen);
+                              },
                               child: Text(
                                 AppStrings.checkout,
                                 style: TextStyle(

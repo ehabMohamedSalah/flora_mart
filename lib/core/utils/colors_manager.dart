@@ -24,7 +24,7 @@ class ColorManager {
   static const white20 = Color(0xfffdfdfd);
   static const white30 = Color(0xffFCFCFC);
   static const white40 = Color(0xffFBFBFB);
-  static const white50 = Color(0xffFAFAFA);
+  static const white50 = Color(0xffEAEAEA);
   static const whiteBase = Color(0xffF9F9F9);
   static const white60 = Color(0xffD0D0D0);
   static const white70 = Color(0xffA6A6A6);
