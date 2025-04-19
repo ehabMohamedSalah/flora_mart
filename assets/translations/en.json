@@ -112,5 +112,6 @@
   "schedule": "Schedule",
   "deliveryAddress": "Delivery address",
   "addNewAddress": "Add new address",
+  "noAddressFound": "No Address Found",
   "cancel": "Cancel"
 }

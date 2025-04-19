@@ -111,13 +111,11 @@ class AppStrings {
       "passwordChangedSuccessfully".tr();
   static String get bloomWithOurExquisiteBestSellers => "BloomWithOurExquisiteBestSellers".tr();
   static String get confirmLogout => "confirmLogout".tr();
-
   static String get deliveryTime => "deliveryTime".tr();
-
   static String get schedule => "schedule".tr();
-
   static String get deliveryAddress => "deliveryAddress".tr();
-
   static String get addNewAddress => "addNewAddress".tr();
+
+  static String get noAddressFound => "noAddressFound".tr();
   static String get cancel => "cancel".tr();
 }
