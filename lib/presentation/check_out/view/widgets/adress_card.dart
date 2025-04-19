@@ -1,5 +1,6 @@
 import 'package:flora_mart/core/utils/colors_manager.dart';
-import 'package:flora_mart/data/model/adress.dart';
+import 'package:flora_mart/core/utils/text_style_manager.dart';
+import 'package:flora_mart/data/model/address.dart';
 import 'package:flutter/material.dart';
 
 class AddressCard extends StatelessWidget {
@@ -30,31 +31,27 @@ class AddressCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    children: [
-                      Radio(
-                        value: radioValue,
-                        groupValue: groupValue,
-                        activeColor: ColorManager.pinkBase,
-                        onChanged: (value) => onSelect(),
-                      ),
-                      Text(
-                        address.username ?? "",
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
+                  FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Row(
+                      children: [
+                        Radio(
+                          value: radioValue,
+                          groupValue: groupValue,
+                          activeColor: ColorManager.pinkBase,
+                          onChanged: (value) => onSelect(),
                         ),
-                      ),
-                    ],
+                        Text(address.username ?? "",
+                            style: AppTextStyle.medium16),
+                      ],
+                    ),
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
                     child: Text(
                       address.street ?? "",
-                      style: const TextStyle(
-                        fontSize: 14,
-                        color: ColorManager.white70,
-                      ),
+                      style: AppTextStyle.regular14
+                          .copyWith(color: ColorManager.white70),
                     ),
                   ),
                 ],

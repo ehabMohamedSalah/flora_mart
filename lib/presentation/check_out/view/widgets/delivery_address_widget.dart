@@ -1,7 +1,8 @@
 import 'package:flora_mart/core/utils/colors_manager.dart';
 import 'package:flora_mart/core/utils/config.dart';
 import 'package:flora_mart/core/utils/string_manager.dart';
-import 'package:flora_mart/data/model/adress.dart';
+import 'package:flora_mart/core/utils/text_style_manager.dart';
+import 'package:flora_mart/data/model/address.dart';
 import 'package:flora_mart/presentation/check_out/view/widgets/adress_card.dart';
 import 'package:flutter/material.dart';
 
@@ -63,16 +64,15 @@ class _DeliveryAddressWidgetState extends State<DeliveryAddressWidget> {
       height: Config.screenHight! * 0.4,
       padding: const EdgeInsets.all(16),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         spacing: 8,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            AppStrings.deliveryAddress,
-            style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
-          ),
+            AppStrings.deliveryAddress, style: AppTextStyle.medium18),
           Expanded(
             child: ListView.builder(
-              itemCount: Addresses.length,
+              itemCount: Addresses.length ?? 0,
               itemBuilder: (context, index) {
                 final address = Addresses[index];
                 return AddressCard(

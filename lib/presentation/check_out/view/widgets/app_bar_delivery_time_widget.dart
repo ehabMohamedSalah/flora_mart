@@ -1,6 +1,8 @@
 import 'package:flora_mart/core/utils/colors_manager.dart';
 import 'package:flora_mart/core/utils/string_manager.dart';
+import 'package:flora_mart/core/utils/text_style_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppBarDeliveryTimeWidget extends StatelessWidget
     implements PreferredSizeWidget {
@@ -12,15 +14,13 @@ class AppBarDeliveryTimeWidget extends StatelessWidget
       padding: const EdgeInsets.all(16),
       child: Column(
         spacing: 10,
-        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
               Text(
                 AppStrings.deliveryTime,
-                style:
-                    const TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
-              ),
+                style: AppTextStyle.medium18),
               const Spacer(),
               TextButton(
                 onPressed: () {},
@@ -31,20 +31,25 @@ class AppBarDeliveryTimeWidget extends StatelessWidget
                       fontSize: 18,
                       fontWeight: FontWeight.w600),
                 ),
-              )
-            ],
-          ),
-          const Row(
-            children: [
-              Icon(Icons.access_time_rounded),
-              SizedBox(width: 8),
-              Text("Instant,"),
-              SizedBox(width: 8),
-              Text(
-                "Arrive by 03 Sep 2024, 11:00 AM",
-                style: TextStyle(color: ColorManager.green),
               ),
             ],
+          ),
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                const Icon(Icons.access_time_rounded),
+                const SizedBox(width: 8),
+                const Text("Instant,"),
+                const SizedBox(width: 8),
+                Text(
+                  "Arrive by 03 Sep 2024, 11:00 AM",
+                  style: TextStyle(fontSize: 14.sp, color: ColorManager.green),
+                ),
+              ],
+            ),
           )
         ],
       ),
