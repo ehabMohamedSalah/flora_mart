@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:badges/badges.dart' as badges;
 import 'package:flora_mart/config/theme/app_theme.dart';
 import 'package:flora_mart/core/di/di.dart';
@@ -59,13 +61,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     children: [
                       Column(
                         children: [
-                          const CircleAvatar(
+                          CircleAvatar(
                             radius: 50,
+                            backgroundImage: user?.photo?.isNotEmpty == true
+                                ? NetworkImage(user!.photo!)
+                                : null,
                             backgroundColor: ColorManager.white60,
-                            child: Icon(
-                              Icons.person,
-                              size: 50,
-                            ),
+                            child: user?.photo?.isNotEmpty != true
+                                ? const Icon(
+                                    Icons.person,
+                                    size: 50,
+                                  )
+                                : null,
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -76,9 +83,26 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     ?.copyWith(color: ColorManager.black),
                               ),
                               const SizedBox(width: 10),
-                              const Icon(
-                                Icons.edit,
-                                size: 20,
+                              IconButton(
+                                onPressed: () async {
+                                  final result = await Navigator.pushNamed(
+                                    context,
+                                    RouteManager.editProfileScreen,
+                                    arguments: user,
+                                  );
+
+                                  if (result == true) {
+                                    if (mounted) {
+                                      await Future.delayed(
+                                          const Duration(milliseconds: 100));
+                                      context.read<MainProfileCubit>()
+                                        ..onIntent(DataProfileCubitIntent())
+                                        ..onIntent(
+                                            DataProfileCubitIntent()); // Call twice to force refresh
+                                    }
+                                  }
+                                },
+                                icon: const Icon(Icons.edit, size: 20),
                               )
                             ],
                           ),
@@ -243,7 +267,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
               );
             }
             if (state is MainProfileFailure) {
-              print(state.message);
               return Center(
                 child: Text(
                   state.message,

@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flora_mart/core/utils/colors_manager.dart';
 import 'package:flutter/material.dart';
 
