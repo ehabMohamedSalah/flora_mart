@@ -121,6 +121,7 @@ import '../../domain/usecase/reset_password_Usecase.dart' as _i768;
 import '../../presentation/auth/view_model/cubit/auth_cubit.dart' as _i351;
 import '../../presentation/best_seller/view_model/cubit/best_seller_cubit.dart'
     as _i165;
+import '../../presentation/check_out/view_model/check_out_cubit.dart' as _i277;
 import '../../presentation/reset_password/view_model/reset_password_cubit.dart'
     as _i833;
 import '../../presentation/tabs/cart_tab/view_model/cubit/cart_cubit.dart'
@@ -151,6 +152,7 @@ extension GetItInjectableX on _i174.GetIt {
       environmentFilter,
     );
     final loggerModule = _$LoggerModule();
+    gh.factory<_i277.CheckoutCubit>(() => _i277.CheckoutCubit());
     gh.singleton<_i1047.ApiManager>(() => _i1047.ApiManager());
     gh.singleton<_i299.CacheHelper>(() => _i299.CacheHelper());
     gh.lazySingleton<_i974.Logger>(() => loggerModule.loggerProvider);
