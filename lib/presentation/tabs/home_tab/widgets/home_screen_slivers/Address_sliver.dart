@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flora_mart/core/utils/text_style_manager.dart';
 import 'package:flutter/material.dart';
 

@@ -1,3 +1,5 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:bloc/bloc.dart';
 import 'package:flora_mart/core/api/api_result.dart';
 import 'package:flora_mart/domain/entity/get_logged_user_data_entity.dart';

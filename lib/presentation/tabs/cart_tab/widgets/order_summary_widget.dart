@@ -18,7 +18,7 @@ class OrderSummaryWidget extends StatelessWidget {
                 color: Colors.grey,
               )),
           const Spacer(),
-          Text("${subTotal ?? "0"}\$",
+          Text("$subTotal\$",
               overflow: TextOverflow.ellipsis,
               maxLines: 1,
               style: const TextStyle(

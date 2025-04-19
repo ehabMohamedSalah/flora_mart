@@ -17,6 +17,8 @@
 /// sold : 343
 /// discount : 50
 /// id : "673e2bd91159920171828139"
+// ignore_for_file: file_names
+
 library;
 
 import 'package:flora_mart/data/model/products/Products.dart';

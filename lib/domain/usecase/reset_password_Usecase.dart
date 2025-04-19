@@ -1,3 +1,4 @@
+// ignore_for_file: file_names
 
 import 'package:flora_mart/core/api/api_result.dart';
 import 'package:flora_mart/domain/repo_contract/reset_password_repo.dart';
