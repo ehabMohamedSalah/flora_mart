@@ -20,4 +20,6 @@ class EndPoint {
   static const String resetPassword = "/v1/auth/change-password";
   static const String editProfile = "/v1/auth/editProfile";
   static const String uploadPhoto = "/v1/auth/upload-photo";
+  static const String cashPaymentEndpoint = "/v1/orders";
+  static const String creditCardPaymentEndpoint = "/v1/orders/checkout";
 }
