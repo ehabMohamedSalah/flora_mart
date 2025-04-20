@@ -1,3 +1,5 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:flora_mart/core/api/api_result.dart';
 import 'package:flora_mart/data/model/cart/cart_response.dart';
 import 'package:flora_mart/domain/usecase/cart_usecases/add_to_cart_usecase.dart';

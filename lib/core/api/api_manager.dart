@@ -75,4 +75,24 @@ class ApiManager {
         ));
     return response;
   }
+
+  Future<Response> putFormData({
+    required String endpoint,
+    required FormData formData, // Change to accept FormData directly
+    Map<String, dynamic>? headers,
+  }) async {
+    try {
+      var response = await dio.put(
+        endpoint,
+        data: formData,
+        options: Options(
+          headers: headers,
+          contentType: 'multipart/form-data',
+        ),
+      );
+      return response;
+    } catch (e) {
+      rethrow;
+    }
+  }
 }
