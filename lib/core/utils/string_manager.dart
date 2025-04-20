@@ -20,6 +20,8 @@ class AppStrings {
   static String get home => "home".tr();
   static String get category => "category".tr();
   static String get cart => "cart".tr();
+
+  static String get name => "name".tr();
   static String get profile => "profile".tr();
   static String get rememberMe => "rememberMe".tr();
   static String get countinueAsGuest => "countinueAsGuest".tr();
@@ -116,11 +118,14 @@ class AppStrings {
   static String get deliveryAddress => "deliveryAddress".tr();
   static String get addNewAddress => "addNewAddress".tr();
   static String get noAddressFound => "noAddressFound".tr();
-
   static String get paymentMethod => "paymentMethod".tr();
-
   static String get cashOnDelivery => "cashOnDelivery".tr();
-
   static String get creditCard => "creditCard".tr();
+
+  static String get itIsAGift => "itIsAGift".tr();
+
+  static String get enterTheName => "enterTheName".tr();
+
+  static String get placeOrder => "placeOrder".tr();
   static String get cancel => "cancel".tr();
 }

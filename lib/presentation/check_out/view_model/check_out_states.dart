@@ -10,3 +10,5 @@ final class CheckoutAddressSelected extends CheckoutStates {}
 final class CheckoutPaymentWaySelected extends CheckoutStates {}
 
 final class CheckoutNoAddressesFound extends CheckoutStates {}
+
+class UpdateGiftSwitchState extends CheckoutStates {}

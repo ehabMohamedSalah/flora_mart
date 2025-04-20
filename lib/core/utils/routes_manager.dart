@@ -13,7 +13,6 @@ class RouteManager {
   static const String emailVerificationScreen = "/EMAILVERIFICATIONSCREEN";
 
   static const String registerScreen = "/REGISTERSCREEN";
-  static const String checkOutScreen = "/CHECKOUTSCREEN";
 
   static const String occasionScreen="/OCCASIONSCREEN";
   static const String productDetailsScreen = "/productDetailsScreen";

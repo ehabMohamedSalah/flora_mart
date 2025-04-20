@@ -19,6 +19,7 @@
   "home": "Home",
   "category": "Category",
   "cart": "Cart",
+  "name": "Name",
   "profile": "Profile",
   "rememberMe": "Remember me",
   "countinueAsGuest": "Continue as Guest",
@@ -116,5 +117,8 @@
   "paymentMethod": "Payment method",
   "cashOnDelivery": "Cash on delivery",
   "creditCard": "Credit card",
+  "itIsAGift": "It is a gift",
+  "enterTheName": "Enter the name",
+  "placeOrder": "Place order",
   "cancel": "Cancel"
 }

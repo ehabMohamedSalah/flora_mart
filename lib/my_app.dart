@@ -53,7 +53,6 @@ class MyApp extends StatelessWidget {
                 const ResetPasswordPage(),
             RouteManager.occasionScreen: (context) => const OccasionScreen(),
             RouteManager.loginScreen: (context) => const SignInScreen(),
-            RouteManager.checkOutScreen: (context) => const CheckOutPage(),
             RouteManager.registerScreen: (context) => const RegisterScreen(),
             RouteManager.forgetPasswordScreen: (context) =>
                 const ForgetPasswordScreen(),

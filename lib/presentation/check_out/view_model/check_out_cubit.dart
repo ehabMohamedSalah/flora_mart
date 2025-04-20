@@ -12,7 +12,8 @@ class CheckoutCubit extends Cubit<CheckoutStates> {
   CheckoutCubit() : super(CheckoutInitial());
 
   static CheckoutCubit get(context) => BlocProvider.of(context);
-
+  final TextEditingController NameController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
   List<Address> addresses = [
     Address(
       street: "123 Nile Street",
@@ -33,7 +34,7 @@ class CheckoutCubit extends Cubit<CheckoutStates> {
       sId: "2",
     ),
   ];
-
+  bool isGift = true;
   String? selectedAddressId;
   Address? selectedAddress;
   String? selectedPaymentWayId;
@@ -51,6 +52,9 @@ class CheckoutCubit extends Cubit<CheckoutStates> {
         break;
       case InitPaymentWayIntent():
         _initPaymentWay();
+        break;
+      case SelectGiftIntent():
+        _toggleGiftSwitch(intent.isSelected);
         break;
     }
   }
@@ -79,5 +83,10 @@ class CheckoutCubit extends Cubit<CheckoutStates> {
     selectedPaymentWayId = id;
     emit(CheckoutPaymentWaySelected());
     print(id);
+  }
+
+  void _toggleGiftSwitch(bool value) {
+    isGift = value;
+    emit(UpdateGiftSwitchState());
   }
 }

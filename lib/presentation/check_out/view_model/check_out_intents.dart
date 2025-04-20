@@ -18,3 +18,9 @@ class SelectPaymentWayIntent extends CheckoutIntent {
 class InitAddressIntent extends CheckoutIntent {}
 
 class InitPaymentWayIntent extends CheckoutIntent {}
+
+class SelectGiftIntent extends CheckoutIntent {
+  bool isSelected;
+
+  SelectGiftIntent({required this.isSelected});
+}
