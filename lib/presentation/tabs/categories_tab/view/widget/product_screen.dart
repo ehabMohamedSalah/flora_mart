@@ -8,14 +8,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProductScreen extends StatelessWidget {
-  final String typeId;
-  final String type;
 
-  const ProductScreen({
-    super.key,
-    required this.typeId,
-    required this.type,
-  });
+  const ProductScreen(
+  );
 
   @override
   Widget build(BuildContext context) {

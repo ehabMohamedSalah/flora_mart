@@ -1,7 +1,5 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flora_mart/config/theme/app_theme.dart';
 import 'package:flora_mart/core/utils/colors_manager.dart';
-import 'package:flora_mart/core/utils/string_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

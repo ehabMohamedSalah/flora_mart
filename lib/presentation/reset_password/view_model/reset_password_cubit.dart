@@ -34,7 +34,6 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
         emit(ResetPasswordSuccessState(isReset: result.data));
         break;
       case ErrorApiResult():
-        print("${result.exception.toString()} Error ⛔⛔");
         emit(ResetPasswordErrorState(message: result.exception.toString()));
         break;
     }

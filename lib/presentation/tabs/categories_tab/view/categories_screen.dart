@@ -4,6 +4,7 @@ import 'package:flora_mart/core/di/di.dart';
 import 'package:flora_mart/core/resuable_comp/search_bar/custom_searchbar_widget.dart';
 import 'package:flora_mart/core/utils/colors_manager.dart';
 import 'package:flora_mart/core/utils/string_manager.dart';
+import 'package:flora_mart/presentation/tabs/categories_tab/view/widget/filter_custom_widget.dart';
 import 'package:flora_mart/presentation/tabs/categories_tab/view/widget/product_screen.dart';
 import 'package:flora_mart/presentation/tabs/categories_tab/view/widget/tab_categories.dart';
 import 'package:flora_mart/presentation/tabs/categories_tab/view_model/product_cubit.dart';
@@ -11,6 +12,8 @@ import 'package:flora_mart/presentation/tabs/categories_tab/view_model/product_i
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../view_model/product_state.dart';
 
 class CategoriesScreen extends StatefulWidget {
   String? selectedCategoryId;
@@ -93,12 +96,12 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                 flex: 6,
                 child: BlocProvider.value(
                   value: _productCubit,
-                  child: ProductScreen(
-                    typeId: productID,
-                    // Ensure ProductScreen receives the updated productID
-                    type: "category",
-                  ),
+                  child: BlocBuilder<ProductCubit, ProductState>(
+                    builder: (context, state) {
+                      return ProductScreen();
+                    },
                 ),
+              ),
               ),
             ],
           ),
@@ -112,7 +115,21 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(50)),
       ),
-      onPressed: () {},
+      onPressed: () {
+        showModalBottomSheet(
+          context: context,
+          backgroundColor: const Color(0xFFF5F5F5),
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(top: Radius.circular(25)),
+          ),
+          isScrollControlled: true,
+          builder: (context) => Padding(
+            padding: const EdgeInsets.all(16),
+            child: FilterCustomWidget(productCubit: _productCubit,onFilterApplied: () {
+      },),
+          ),
+        );
+      },
       icon: const Icon(Icons.tune),
       label: Text(AppStrings.filter),
     );

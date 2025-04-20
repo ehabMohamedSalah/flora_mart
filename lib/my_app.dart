@@ -2,14 +2,19 @@
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flora_mart/core/cache/shared_pref.dart';
+import 'package:flora_mart/core/di/di.dart';
+import 'package:flora_mart/domain/entity/auth/user_entity.dart';
 import 'package:flora_mart/presentation/auth/forget_password/view/forget_password/view/forget_password_screen.dart';
 import 'package:flora_mart/presentation/auth/forget_password/view/forget_password/view/reset_password_screen.dart';
 import 'package:flora_mart/presentation/auth/forget_password/view/forget_password/view/verify_reset_code_screen.dart';
 import 'package:flora_mart/presentation/auth/login/login_screen.dart';
 import 'package:flora_mart/presentation/auth/register/view/register_screen.dart';
+import 'package:flora_mart/presentation/edit_profile_screen/edit_profile_screen.dart';
+import 'package:flora_mart/presentation/edit_profile_screen/view_model/edit_profile_cubit.dart';
 import 'package:flora_mart/presentation/tabs/home_tab/widgets/occasions/view/occasion_widget.dart';
 import 'package:flora_mart/presentation/tabs/main_screen/main_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'config/theme/app_theme.dart';
@@ -60,6 +65,13 @@ class MyApp extends StatelessWidget {
                 const VerifyResetCodeScreen(),
             RouteManager.resetPasswordScreen: (context) =>
                 const ResetPasswordScreen(),
+            RouteManager.editProfileScreen: (context) => BlocProvider(
+                  create: (context) => getIt<EditProfileCubit>(),
+                  child: EditProfileScreen(
+                    user: ModalRoute.of(context)!.settings.arguments
+                        as UserEntity,
+                  ),
+                ),
           },
 
           theme: AppTheme.lightTheme,

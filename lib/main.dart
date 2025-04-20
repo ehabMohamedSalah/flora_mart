@@ -20,7 +20,6 @@ void main() async {
   runApp(EasyLocalization(
     supportedLocales: const [Locale('en'), Locale('ar')],
     path: 'assets/translations',
-    // <-- change the path of the translation files
     fallbackLocale: const Locale('en'),
     startLocale: const Locale("en"),
     child: BlocProvider<AuthCubit>(

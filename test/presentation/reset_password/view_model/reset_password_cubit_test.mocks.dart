@@ -29,7 +29,7 @@ import 'package:mockito/src/dummies.dart' as _i6;
 class _FakeResetPasswordRepo_0 extends _i1.SmartFake
     implements _i2.ResetPasswordRepo {
   _FakeResetPasswordRepo_0(Object parent, Invocation parentInvocation)
-      : super(parent, parentInvocation);
+    : super(parent, parentInvocation);
 }
 
 /// A class which mocks [ResetPasswordUsecase].
@@ -42,13 +42,15 @@ class MockResetPasswordUsecase extends _i1.Mock
   }
 
   @override
-  _i2.ResetPasswordRepo get resetPasswordRepo => (super.noSuchMethod(
-        Invocation.getter(#resetPasswordRepo),
-        returnValue: _FakeResetPasswordRepo_0(
-          this,
-          Invocation.getter(#resetPasswordRepo),
-        ),
-      ) as _i2.ResetPasswordRepo);
+  _i2.ResetPasswordRepo get resetPasswordRepo =>
+      (super.noSuchMethod(
+            Invocation.getter(#resetPasswordRepo),
+            returnValue: _FakeResetPasswordRepo_0(
+              this,
+              Invocation.getter(#resetPasswordRepo),
+            ),
+          )
+          as _i2.ResetPasswordRepo);
 
   @override
   _i4.Future<_i5.ApiResult<bool>> invoke({
@@ -56,18 +58,19 @@ class MockResetPasswordUsecase extends _i1.Mock
     required String? newPassword,
   }) =>
       (super.noSuchMethod(
-        Invocation.method(#invoke, [], {
-          #oldPassword: oldPassword,
-          #newPassword: newPassword,
-        }),
-        returnValue: _i4.Future<_i5.ApiResult<bool>>.value(
-          _i6.dummyValue<_i5.ApiResult<bool>>(
-            this,
             Invocation.method(#invoke, [], {
               #oldPassword: oldPassword,
               #newPassword: newPassword,
             }),
-          ),
-        ),
-      ) as _i4.Future<_i5.ApiResult<bool>>);
+            returnValue: _i4.Future<_i5.ApiResult<bool>>.value(
+              _i6.dummyValue<_i5.ApiResult<bool>>(
+                this,
+                Invocation.method(#invoke, [], {
+                  #oldPassword: oldPassword,
+                  #newPassword: newPassword,
+                }),
+              ),
+            ),
+          )
+          as _i4.Future<_i5.ApiResult<bool>>);
 }

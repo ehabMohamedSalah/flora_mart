@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'CartItems.dart';
 
 /// _id : "67f96722a9832d8359de16df"

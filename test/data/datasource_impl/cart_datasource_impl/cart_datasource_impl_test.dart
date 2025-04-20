@@ -85,7 +85,6 @@ void main() {
         productId: productId,
         quantity: quantity,
       );
-      print('Received result: $result');
       verify(datasource.addToCart(productId: productId, quantity: quantity))
           .called(1);
 
