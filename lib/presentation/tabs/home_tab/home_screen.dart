@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../core/utils/routes_manager.dart';
 import 'widgets/home_screen_slivers/Best_Seller_sliver.dart';
 import 'widgets/home_screen_slivers/categories_sliver.dart';
 import 'widgets/home_screen_slivers/occaison_sliver.dart';
@@ -78,7 +79,13 @@ class _HomeScreenState extends State<HomeScreen> {
       title: Row(
         children: [
           Image.asset("assets/images/Logo.png", height: 25.h, width: 89.w),
-          const CustomSearchBar(margin: EdgeInsets.all(3)),
+           Expanded(
+             child: CustomSearchBar(margin: EdgeInsets.all(3),readOnly: true,
+               onTap: () {
+                 Navigator.pushNamed(
+                     context, RouteManager.searchScreen);
+               },),
+           ),
         ],
       ),
     );

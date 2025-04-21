@@ -162,7 +162,6 @@ import '../../presentation/edit_profile_screen/view_model/edit_profile_cubit.dar
     as _i678;
 import '../../presentation/reset_password/view_model/reset_password_cubit.dart'
     as _i833;
-import '../../presentation/search_screen/view_model/search_cubit.dart' as _i65;
 import '../../presentation/tabs/cart_tab/view_model/cubit/cart_cubit.dart'
     as _i1071;
 import '../../presentation/tabs/categories_tab/view_model/categories_cubit.dart'
@@ -337,8 +336,6 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i364.CreditCardUsecase(gh<_i265.PaymentProcessRepo>()));
     gh.factory<_i1036.CategoriesUsecase>(
         () => _i1036.CategoriesUsecase(gh<_i41.CategoriesRepo>()));
-    gh.factory<_i65.SearchCubit>(
-        () => _i65.SearchCubit(gh<_i840.SearchUsecase>()));
     gh.factory<_i327.EditProfileUsecase>(
         () => _i327.EditProfileUsecase(gh<_i808.EditProfileRepo>()));
     gh.factory<_i28.UploadPhotoUsecase>(
@@ -351,10 +348,6 @@ extension GetItInjectableX on _i174.GetIt {
         ));
     gh.factory<_i14.FilterUsecase>(
         () => _i14.FilterUsecase(gh<_i150.FilterRepo>()));
-    gh.factory<_i931.ProductCubit>(() => _i931.ProductCubit(
-          gh<_i784.GetAllProductsUsecase>(),
-          gh<_i14.FilterUsecase>(),
-        ));
     gh.factory<_i920.GetProfileDetailsUsecase>(
         () => _i920.GetProfileDetailsUsecase(gh<_i772.ProfileRepo>()));
     gh.factory<_i790.OccasionsCubit>(() => _i790.OccasionsCubit(
@@ -373,6 +366,11 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i249.UpdateProductQuantityUsecase(gh<_i64.CartRepo>()));
     gh.factory<_i196.CategoriesCubit>(
         () => _i196.CategoriesCubit(gh<_i1036.CategoriesUsecase>()));
+    gh.factory<_i931.ProductCubit>(() => _i931.ProductCubit(
+          gh<_i784.GetAllProductsUsecase>(),
+          gh<_i14.FilterUsecase>(),
+          gh<_i840.SearchUsecase>(),
+        ));
     gh.factory<_i351.AuthCubit>(() => _i351.AuthCubit(
           gh<_i323.VerifyresetcodeUseCase>(),
           gh<_i383.ResetpasswordUsecase>(),

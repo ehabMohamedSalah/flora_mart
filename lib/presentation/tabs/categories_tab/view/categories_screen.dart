@@ -13,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../core/utils/routes_manager.dart';
 import '../view_model/product_state.dart';
 
 class CategoriesScreen extends StatefulWidget {
@@ -57,38 +58,54 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
           child: Column(
             spacing: 10,
             children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const CustomSearchBar(margin: EdgeInsets.zero),
-                  SizedBox(width: 10.w),
-                  Container(
-                    padding: const EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(color: ColorManager.white70, width: 1),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 15),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Expanded(
+                      child: CustomSearchBar(
+                        margin: EdgeInsets.zero,
+                        readOnly: true,
+                        onTap: () {
+                          Navigator.pushNamed(
+                              context, RouteManager.searchScreen);
+                        },
+                      ),
                     ),
-                    child: const Icon(Icons.format_align_left,
-                        color: ColorManager.white70, size: 24),
-                  ),
-                ],
+                    SizedBox(width: 10.w),
+                    Container(
+                      padding: const EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(
+                            color: ColorManager.white70, width: 1),
+                      ),
+                      child: const Icon(Icons.format_align_left,
+                          color: ColorManager.white70, size: 24),
+                    ),
+                  ],
+                ),
               ),
               Expanded(
                 flex: 0,
-                child: TabCategories(
-                  id: widget.selectedCategoryId != null
-                      ? widget.selectedCategoryId ?? ""
-                      : productID,
-                  // Ensure the selected productID is passed here
-                  onCategorySelected: (selectedCategoryName) {
-                    setState(() {
-                      productID =
-                          selectedCategoryName ?? ""; // Update productID
-                    });
-                    _productCubit.doIntent(
-                      GetProductsIntent(productID, 'category'),
-                    );
-                  },
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 15),
+                  child: TabCategories(
+                    id: widget.selectedCategoryId != null
+                        ? widget.selectedCategoryId ?? ""
+                        : productID,
+                    // Ensure the selected productID is passed here
+                    onCategorySelected: (selectedCategoryName) {
+                      setState(() {
+                        productID =
+                            selectedCategoryName ?? ""; // Update productID
+                      });
+                      _productCubit.doIntent(
+                        GetProductsIntent(productID, 'category'),
+                      );
+                    },
+                  ),
                 ),
               ),
               SizedBox(height: 5.h),
@@ -100,8 +117,8 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                     builder: (context, state) {
                       return ProductScreen();
                     },
+                  ),
                 ),
-              ),
               ),
             ],
           ),
@@ -123,11 +140,12 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
             borderRadius: BorderRadius.vertical(top: Radius.circular(25)),
           ),
           isScrollControlled: true,
-          builder: (context) => Padding(
-            padding: const EdgeInsets.all(16),
-            child: FilterCustomWidget(productCubit: _productCubit,onFilterApplied: () {
-      },),
-          ),
+          builder: (context) =>
+              Padding(
+                padding: const EdgeInsets.all(16),
+                child: FilterCustomWidget(
+                  productCubit: _productCubit, onFilterApplied: () {},),
+              ),
         );
       },
       icon: const Icon(Icons.tune),

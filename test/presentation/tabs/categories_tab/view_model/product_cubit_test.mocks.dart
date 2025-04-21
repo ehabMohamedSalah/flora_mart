@@ -3,17 +3,19 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i5;
+import 'dart:async' as _i6;
 
-import 'package:flora_mart/core/api/api_result.dart' as _i6;
-import 'package:flora_mart/data/model/products/Products.dart' as _i7;
+import 'package:flora_mart/core/api/api_result.dart' as _i7;
+import 'package:flora_mart/data/model/products/Products.dart' as _i8;
 import 'package:flora_mart/domain/repo_contract/filter_repo.dart' as _i3;
 import 'package:flora_mart/domain/repo_contract/get_all_products_repo.dart'
     as _i2;
-import 'package:flora_mart/domain/usecase/filter_usecase.dart' as _i9;
-import 'package:flora_mart/domain/usecase/get_all_products_usecase.dart' as _i4;
+import 'package:flora_mart/domain/repo_contract/search_repo.dart' as _i4;
+import 'package:flora_mart/domain/usecase/filter_usecase.dart' as _i10;
+import 'package:flora_mart/domain/usecase/get_all_products_usecase.dart' as _i5;
+import 'package:flora_mart/domain/usecase/search_usecase.dart' as _i11;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:mockito/src/dummies.dart' as _i8;
+import 'package:mockito/src/dummies.dart' as _i9;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -40,11 +42,16 @@ class _FakeFilterRepo_1 extends _i1.SmartFake implements _i3.FilterRepo {
     : super(parent, parentInvocation);
 }
 
+class _FakeSearchRepo_2 extends _i1.SmartFake implements _i4.SearchRepo {
+  _FakeSearchRepo_2(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
+}
+
 /// A class which mocks [GetAllProductsUsecase].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockGetAllProductsUsecase extends _i1.Mock
-    implements _i4.GetAllProductsUsecase {
+    implements _i5.GetAllProductsUsecase {
   MockGetAllProductsUsecase() {
     _i1.throwOnMissingStub(this);
   }
@@ -61,26 +68,26 @@ class MockGetAllProductsUsecase extends _i1.Mock
           as _i2.GetAllProductsRepo);
 
   @override
-  _i5.Future<_i6.ApiResult<List<_i7.Products>>> execute(
+  _i6.Future<_i7.ApiResult<List<_i8.Products>>> execute(
     String? typeId,
     String? type,
   ) =>
       (super.noSuchMethod(
             Invocation.method(#execute, [typeId, type]),
-            returnValue: _i5.Future<_i6.ApiResult<List<_i7.Products>>>.value(
-              _i8.dummyValue<_i6.ApiResult<List<_i7.Products>>>(
+            returnValue: _i6.Future<_i7.ApiResult<List<_i8.Products>>>.value(
+              _i9.dummyValue<_i7.ApiResult<List<_i8.Products>>>(
                 this,
                 Invocation.method(#execute, [typeId, type]),
               ),
             ),
           )
-          as _i5.Future<_i6.ApiResult<List<_i7.Products>>>);
+          as _i6.Future<_i7.ApiResult<List<_i8.Products>>>);
 }
 
 /// A class which mocks [FilterUsecase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockFilterUsecase extends _i1.Mock implements _i9.FilterUsecase {
+class MockFilterUsecase extends _i1.Mock implements _i10.FilterUsecase {
   MockFilterUsecase() {
     _i1.throwOnMissingStub(this);
   }
@@ -97,15 +104,48 @@ class MockFilterUsecase extends _i1.Mock implements _i9.FilterUsecase {
           as _i3.FilterRepo);
 
   @override
-  _i5.Future<_i6.ApiResult<List<_i7.Products>>> execute(String? filter) =>
+  _i6.Future<_i7.ApiResult<List<_i8.Products>>> execute(String? filter) =>
       (super.noSuchMethod(
             Invocation.method(#execute, [filter]),
-            returnValue: _i5.Future<_i6.ApiResult<List<_i7.Products>>>.value(
-              _i8.dummyValue<_i6.ApiResult<List<_i7.Products>>>(
+            returnValue: _i6.Future<_i7.ApiResult<List<_i8.Products>>>.value(
+              _i9.dummyValue<_i7.ApiResult<List<_i8.Products>>>(
                 this,
                 Invocation.method(#execute, [filter]),
               ),
             ),
           )
-          as _i5.Future<_i6.ApiResult<List<_i7.Products>>>);
+          as _i6.Future<_i7.ApiResult<List<_i8.Products>>>);
+}
+
+/// A class which mocks [SearchUsecase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockSearchUsecase extends _i1.Mock implements _i11.SearchUsecase {
+  MockSearchUsecase() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i4.SearchRepo get searchRepo =>
+      (super.noSuchMethod(
+            Invocation.getter(#searchRepo),
+            returnValue: _FakeSearchRepo_2(
+              this,
+              Invocation.getter(#searchRepo),
+            ),
+          )
+          as _i4.SearchRepo);
+
+  @override
+  _i6.Future<_i7.ApiResult<List<_i8.Products>>> execute(String? searchQuery) =>
+      (super.noSuchMethod(
+            Invocation.method(#execute, [searchQuery]),
+            returnValue: _i6.Future<_i7.ApiResult<List<_i8.Products>>>.value(
+              _i9.dummyValue<_i7.ApiResult<List<_i8.Products>>>(
+                this,
+                Invocation.method(#execute, [searchQuery]),
+              ),
+            ),
+          )
+          as _i6.Future<_i7.ApiResult<List<_i8.Products>>>);
 }
