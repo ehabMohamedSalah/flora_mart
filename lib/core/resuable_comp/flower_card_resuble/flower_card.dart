@@ -69,6 +69,7 @@ class FlowerCard extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: AutoSizeText(
+                  textAlign: TextAlign.left,
                   title ?? "",
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
@@ -82,6 +83,7 @@ class FlowerCard extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8),
                   child: Row(
+                    textDirection: TextDirection.ltr,
                     mainAxisAlignment: MainAxisAlignment.start,
                     // spacing: 5,
                     children: [
