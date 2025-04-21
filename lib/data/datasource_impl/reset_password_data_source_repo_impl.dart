@@ -26,7 +26,7 @@ class ResetPasswordDataSourceRepoImpl implements ResetPasswordDataSourceRepo {
       final String token = await cacheHelper.getData<String>(Constant.tokenKey);
 
       final apiResponse = await apiManager.patchRequest(
-        endpoint: EndPoint.resetPassword,
+        endpoint: EndPoint.changePasswordEndpoint,
         body: {
           "password": oldPassword,
           "newPassword": newPassword,

@@ -163,4 +163,29 @@ class MockApiManager extends _i1.Mock implements _i3.ApiManager {
             ),
           )
           as _i4.Future<_i2.Response<dynamic>>);
+
+  @override
+  _i4.Future<_i2.Response<dynamic>> putFormData({
+    required String? endpoint,
+    required _i2.FormData? formData,
+    Map<String, dynamic>? headers,
+  }) =>
+      (super.noSuchMethod(
+            Invocation.method(#putFormData, [], {
+              #endpoint: endpoint,
+              #formData: formData,
+              #headers: headers,
+            }),
+            returnValue: _i4.Future<_i2.Response<dynamic>>.value(
+              _FakeResponse_0<dynamic>(
+                this,
+                Invocation.method(#putFormData, [], {
+                  #endpoint: endpoint,
+                  #formData: formData,
+                  #headers: headers,
+                }),
+              ),
+            ),
+          )
+          as _i4.Future<_i2.Response<dynamic>>);
 }
