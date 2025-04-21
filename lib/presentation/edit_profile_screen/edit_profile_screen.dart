@@ -1,14 +1,15 @@
 import 'dart:io';
 
+import 'package:flora_mart/core/utils/routes_manager.dart';
 import 'package:flora_mart/presentation/edit_profile_screen/view_model/edit_profile_state.dart';
+import 'package:flora_mart/presentation/edit_profile_screen/view_model/edit_profile_cubit.dart';
+import 'package:flora_mart/presentation/edit_profile_screen/view_model/edit_profile_intent.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flora_mart/core/resuable_comp/toast_message.dart';
 import 'package:flora_mart/core/resuable_comp/custom_text_field.dart';
 import 'package:flora_mart/domain/entity/auth/user_entity.dart';
-import 'package:flora_mart/presentation/edit_profile_screen/view_model/edit_profile_cubit.dart';
-import 'package:flora_mart/presentation/edit_profile_screen/view_model/edit_profile_intent.dart';
 import 'package:badges/badges.dart' as badges;
 
 class EditProfileScreen extends StatefulWidget {
@@ -25,7 +26,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   late TextEditingController lastNameController;
   late TextEditingController emailController;
   late TextEditingController phoneController;
-  String selectedGender = '';
+  late String selectedGender;
   String? profileImagePath;
   final _formKey = GlobalKey<FormState>();
 
@@ -36,7 +37,13 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     lastNameController = TextEditingController(text: widget.user.lastName);
     emailController = TextEditingController(text: widget.user.email);
     phoneController = TextEditingController(text: widget.user.phone);
-    selectedGender = widget.user.gender ?? 'Female';
+
+    // Capitalize first letter and make rest lowercase to match Radio button values
+    selectedGender = widget.user.gender != null
+        ? widget.user.gender![0].toUpperCase() +
+            widget.user.gender!.substring(1).toLowerCase()
+        : 'Female';
+    debugPrint('Initializing gender with formatting: $selectedGender');
   }
 
   @override
@@ -244,9 +251,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       child: CustomTextField(
                         controller: TextEditingController(text: '********'),
                         labelText: 'Password',
-                        suffixIcon: TextButton(
+                        suffixIcon: // In the password field's change button:
+                            TextButton(
                           onPressed: () {
-                            // Handle password change
+                            Navigator.pushNamed(
+                                context, RouteManager.changePasswordScreen);
                           },
                           child: const Text(
                             'Change',
@@ -280,6 +289,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 groupValue: selectedGender,
                                 activeColor: const Color(0xFFE91E63),
                                 onChanged: (value) {
+                                  debugPrint('Changing gender to: $value');
                                   setState(() => selectedGender = value!);
                                 },
                               ),
@@ -290,6 +300,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 groupValue: selectedGender,
                                 activeColor: const Color(0xFFE91E63),
                                 onChanged: (value) {
+                                  debugPrint('Changing gender to: $value');
                                   setState(() => selectedGender = value!);
                                 },
                               ),
