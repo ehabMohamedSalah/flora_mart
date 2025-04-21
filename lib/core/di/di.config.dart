@@ -144,15 +144,17 @@ import '../../domain/usecase/Payment_process_uesecases/credit_card_usecase.dart'
     as _i364;
 import '../../domain/usecase/register_usecase.dart' as _i626;
 import '../../domain/usecase/reset_password_Usecase.dart' as _i768;
-import '../../domain/usecase/upload_photo_usecase.dart' as _i28;
 import '../../domain/usecase/search_usecase.dart' as _i840;
+import '../../domain/usecase/upload_photo_usecase.dart' as _i28;
 import '../../presentation/auth/view_model/cubit/auth_cubit.dart' as _i351;
 import '../../presentation/best_seller/view_model/cubit/best_seller_cubit.dart'
     as _i165;
+import '../../presentation/check_out/view_model/check_out_cubit.dart' as _i277;
 import '../../presentation/edit_profile_screen/view_model/edit_profile_cubit.dart'
     as _i678;
 import '../../presentation/reset_password/view_model/reset_password_cubit.dart'
     as _i833;
+import '../../presentation/search_screen/view_model/search_cubit.dart' as _i65;
 import '../../presentation/tabs/cart_tab/view_model/cubit/cart_cubit.dart'
     as _i1071;
 import '../../presentation/tabs/categories_tab/view_model/categories_cubit.dart'
@@ -181,6 +183,7 @@ extension GetItInjectableX on _i174.GetIt {
       environmentFilter,
     );
     final loggerModule = _$LoggerModule();
+    gh.factory<_i277.CheckoutCubit>(() => _i277.CheckoutCubit());
     gh.singleton<_i1047.ApiManager>(() => _i1047.ApiManager());
     gh.singleton<_i299.CacheHelper>(() => _i299.CacheHelper());
     gh.lazySingleton<_i974.Logger>(() => loggerModule.loggerProvider);
@@ -240,13 +243,13 @@ extension GetItInjectableX on _i174.GetIt {
         ));
     gh.factory<_i466.GetAllProductsDatasource>(
         () => _i97.GetAllProductsDatasourceImpl(gh<_i1047.ApiManager>()));
+    gh.factory<_i484.FilterDatasource>(
+        () => _i540.FilterDatasourceImpl(gh<_i1047.ApiManager>()));
     gh.factory<_i949.EditProfileDatasource>(
         () => _i757.EditProfileDatasourceImpl(
               gh<_i1047.ApiManager>(),
               gh<_i299.CacheHelper>(),
             ));
-    gh.factory<_i484.FilterDatasource>(
-        () => _i540.FilterDatasourceImpl(gh<_i1047.ApiManager>()));
     gh.factory<_i1069.HomeUsecase>(
         () => _i1069.HomeUsecase(homeRepo: gh<_i820.HomeRepo>()));
     gh.factory<_i234.GuestRepo>(
@@ -310,12 +313,14 @@ extension GetItInjectableX on _i174.GetIt {
         forgetPassword: gh<_i976.ForgetpasswordRepo>()));
     gh.factory<_i140.LogoutUsecase>(() => _i140.LogoutUsecase(
         logoutRepoContract: gh<_i656.LogoutRepoContract>()));
-    gh.factory<_i364.CreditCardUsecase>(
-        () => _i364.CreditCardUsecase(gh<_i265.PaymentProcessRepo>()));
     gh.factory<_i879.CacheUsecase>(
         () => _i879.CacheUsecase(gh<_i265.PaymentProcessRepo>()));
+    gh.factory<_i364.CreditCardUsecase>(
+        () => _i364.CreditCardUsecase(gh<_i265.PaymentProcessRepo>()));
     gh.factory<_i1036.CategoriesUsecase>(
         () => _i1036.CategoriesUsecase(gh<_i41.CategoriesRepo>()));
+    gh.factory<_i65.SearchCubit>(
+        () => _i65.SearchCubit(gh<_i840.SearchUsecase>()));
     gh.factory<_i327.EditProfileUsecase>(
         () => _i327.EditProfileUsecase(gh<_i808.EditProfileRepo>()));
     gh.factory<_i28.UploadPhotoUsecase>(

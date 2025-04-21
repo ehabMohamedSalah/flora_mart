@@ -1,4 +1,5 @@
 import 'package:flora_mart/core/constant.dart';
+import 'package:flora_mart/core/resuable_comp/toast_message.dart';
 import 'package:flora_mart/data/model/address.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -56,6 +57,43 @@ class CheckoutCubit extends Cubit<CheckoutStates> {
       case SelectGiftIntent():
         _toggleGiftSwitch(intent.isSelected);
         break;
+      case PlaceOrderIntent():
+        _placeOrderIntentPayment(intent.context, intent.formKey);
+        break;
+    }
+  }
+
+  void _placeOrderIntentPayment(
+      BuildContext context, GlobalKey<FormState> formKey) {
+    final isCredit = selectedPaymentWayId == Constant.creditCard;
+    final isGift = this.isGift;
+
+    if (isCredit) {
+      if (isGift) {
+        if (formKey.currentState != null && formKey.currentState!.validate()) {
+          toastMessage(
+            message: "🎁 Gift order placed successfully! as a gift",
+            tybeMessage: TybeMessage.positive,
+          );
+        } else {
+          toastMessage(
+            message: "❗ Please complete the gift form correctly.",
+            tybeMessage: TybeMessage.negative,
+          );
+        }
+      } else {
+        // non-gift but still credit
+        toastMessage(
+          message: "💳 Credit card selected (non-gift)",
+          tybeMessage: TybeMessage.positive,
+        );
+      }
+    } else {
+      // it's cash on delivery
+      toastMessage(
+        message: "💵 Other payment method selected",
+        tybeMessage: TybeMessage.positive,
+      );
     }
   }
 

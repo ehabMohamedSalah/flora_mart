@@ -21,27 +21,6 @@ class CheckOutPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    void _validateAndGoToPayment(BuildContext context) {
-      if (_formKey.currentState != null) {
-        if (_formKey.currentState!.validate()) {
-          toastMessage(
-            message: "🎁 Gift order placed successfully!",
-            tybeMessage: TybeMessage.positive,
-          );
-        } else {
-          toastMessage(
-            message: "❗ Please fill the gift form correctly.",
-            tybeMessage: TybeMessage.negative,
-          );
-        }
-      } else {
-        toastMessage(
-          message: "it's cache on delivery",
-          tybeMessage: TybeMessage.negative,
-        );
-      }
-    }
-
     return BlocProvider(
       create: (_) => getIt<CheckoutCubit>()
         ..doIntent(InitAddressIntent())
@@ -91,7 +70,10 @@ class CheckOutPage extends StatelessWidget {
                           OrderSummaryWidget(subTotal: subtotal),
                           ElevatedButton(
                             onPressed: () {
-                              _validateAndGoToPayment(context);
+                              cubit.doIntent(PlaceOrderIntent(
+                                formKey: _formKey,
+                                context: context,
+                              ));
                             },
                             child: Text(
                               AppStrings.placeOrder,

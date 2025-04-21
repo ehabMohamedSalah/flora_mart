@@ -1,4 +1,5 @@
 import 'package:flora_mart/data/model/address.dart';
+import 'package:flutter/material.dart';
 
 sealed class CheckoutIntent {}
 
@@ -23,4 +24,11 @@ class SelectGiftIntent extends CheckoutIntent {
   bool isSelected;
 
   SelectGiftIntent({required this.isSelected});
+}
+
+class PlaceOrderIntent extends CheckoutIntent {
+  final BuildContext context;
+  final GlobalKey<FormState> formKey;
+
+  PlaceOrderIntent({required this.context, required this.formKey});
 }
