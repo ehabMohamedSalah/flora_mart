@@ -108,5 +108,14 @@
   "passwordChangedSuccessfully": "Password changed successfully",
   "BloomWithOurExquisiteBestSellers": "Bloom with our exquisite best sellers",
   "confirmLogout": "Confirm Logout!!",
-  "cancel" : "Cancel"
+  "cancel" : "Cancel",
+  "sortBy" : "Sort By",
+  "price" : "Price",
+  "search" : "Search",
+  "searchForAnyProductYouWant" : "Search For Any Product You Want",
+  "lowestPrice" : "Lowest Price",
+  "highestPrice" : "Highest Price",
+  "newProducts" : "New",
+  "oldProducts" : "Old",
+  "discount": "Discount"
 }

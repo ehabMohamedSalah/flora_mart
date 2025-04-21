@@ -11,3 +11,8 @@ class GetProductsBasedOnFilterIntent extends ProductIntent {
   final String filter;
   GetProductsBasedOnFilterIntent(this.filter);
 }
+
+class GetProductsBasedOnSearchQueryIntent extends ProductIntent {
+  final String searchQuery;
+  GetProductsBasedOnSearchQueryIntent(this.searchQuery);
+}

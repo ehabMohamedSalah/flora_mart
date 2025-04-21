@@ -17,4 +17,6 @@ class RouteManager {
   static const String occasionScreen = "/OCCASIONSCREEN";
   static const String productDetailsScreen = "/productDetailsScreen";
   static const String editProfileScreen = '/editProfile';
+
+  static const String searchScreen = '/SEARCHSCREEN';
 }

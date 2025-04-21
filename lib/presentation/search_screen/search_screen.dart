@@ -2,19 +2,38 @@
 
 import 'package:flora_mart/core/di/di.dart';
 import 'package:flora_mart/core/resuable_comp/search_bar/custom_searchbar_widget.dart';
-import 'package:flora_mart/core/utils/colors_manager.dart';
-import 'package:flora_mart/core/utils/string_manager.dart';
 import 'package:flora_mart/presentation/tabs/categories_tab/view/widget/product_screen.dart';
-import 'package:flora_mart/presentation/tabs/categories_tab/view/widget/tab_categories.dart';
 import 'package:flora_mart/presentation/tabs/categories_tab/view_model/product_cubit.dart';
 import 'package:flora_mart/presentation/tabs/categories_tab/view_model/product_intent.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class SearchScreen extends StatelessWidget {
+import '../../core/utils/colors_manager.dart';
+import '../../core/utils/string_manager.dart';
+import '../tabs/categories_tab/view_model/product_state.dart';
 
-  SearchScreen({super.key});
+class SearchScreen extends StatefulWidget {
+
+  const SearchScreen({super.key});
+
+  @override
+  State<SearchScreen> createState() => _SearchScreenState();
+}
+
+class _SearchScreenState extends State<SearchScreen> {
+  String searchQuery = "";
+  late final ProductCubit _productCubit;
+
+  @override
+  void initState() {
+    super.initState();
+    _productCubit = getIt<ProductCubit>();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,21 +44,36 @@ class SearchScreen extends StatelessWidget {
           child: Column(
             spacing: 10,
             children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const CustomSearchBar(margin: EdgeInsets.zero),
-                  SizedBox(width: 10.w),
-                  Container(
-                    padding: const EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(color: ColorManager.white70, width: 1),
-                    ),
-                    child: const Icon(Icons.format_align_left,
-                        color: ColorManager.white70, size: 24),
+              CustomSearchBar(margin: EdgeInsets.symmetric(horizontal: 15),readOnly: false,
+                onSubmitted: (value){
+                  setState(() {
+                    searchQuery = value.toString() ;
+                  });
+                  print("value : ${value.toString()}");
+                  _productCubit.doIntent(GetProductsBasedOnSearchQueryIntent(searchQuery));
+                },
+              ),
+              Expanded(
+                child: BlocProvider.value(
+                  value: _productCubit,
+                  child: BlocBuilder<ProductCubit, ProductState>(
+                    builder: (context, state) {
+                      if (searchQuery.isEmpty) {
+                        return Center(
+                          child: Text(
+                            AppStrings.searchForAnyProductYouWant,
+                            style: TextStyle(
+                              color: ColorManager.primaryColor,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        );
+                      }
+                      return ProductScreen();
+                    },
                   ),
-                ],
+                ),
               ),
             ],
           ),
@@ -48,3 +82,4 @@ class SearchScreen extends StatelessWidget {
     );
   }
 }
+
