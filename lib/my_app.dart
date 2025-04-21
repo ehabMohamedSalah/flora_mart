@@ -9,6 +9,8 @@ import 'package:flora_mart/presentation/auth/forget_password/view/forget_passwor
 import 'package:flora_mart/presentation/auth/forget_password/view/forget_password/view/verify_reset_code_screen.dart';
 import 'package:flora_mart/presentation/auth/login/login_screen.dart';
 import 'package:flora_mart/presentation/auth/register/view/register_screen.dart';
+import 'package:flora_mart/presentation/change_password/change_password_screen.dart';
+import 'package:flora_mart/presentation/change_password/cubit/change_password_cubit.dart';
 import 'package:flora_mart/presentation/edit_profile_screen/edit_profile_screen.dart';
 import 'package:flora_mart/presentation/edit_profile_screen/view_model/edit_profile_cubit.dart';
 import 'package:flora_mart/presentation/tabs/home_tab/widgets/occasions/view/occasion_widget.dart';
@@ -54,8 +56,11 @@ class MyApp extends StatelessWidget {
 
           routes: {
             RouteManager.mainScreen: (context) => MainScreen(),
-            RouteManager.changePasswordScreen: (context) =>
-                const ResetPasswordPage(),
+            // In the routes map:
+            RouteManager.changePasswordScreen: (context) => BlocProvider(
+                  create: (context) => getIt<ChangePasswordCubit>(),
+                  child: const ChangePasswordScreen(),
+                ),
             RouteManager.occasionScreen: (context) => const OccasionScreen(),
             RouteManager.loginScreen: (context) => const SignInScreen(),
             RouteManager.registerScreen: (context) => const RegisterScreen(),

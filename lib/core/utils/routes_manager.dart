@@ -9,7 +9,7 @@ class RouteManager {
   static const String loginScreen = "/LOGINSCREEN";
   static const String forgetPasswordScreen = "/FORGETPASSWORDSCREEN";
   static const String resetPasswordScreen = "/RESETPASSWORDSCREEN";
-  static const String changePasswordScreen = "/CHANGEPASSWORDSCREEN";
+  static const String changePasswordScreen = '/change-password';
   static const String emailVerificationScreen = "/EMAILVERIFICATIONSCREEN";
 
   static const String registerScreen = "/REGISTERSCREEN";
