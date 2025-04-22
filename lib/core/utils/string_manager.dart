@@ -153,4 +153,11 @@ class AppStrings {
 
   static String get creditCardSelectedNonGift =>
       "creditCardSelectedNonGift".tr();
+
+  static String get yourAddressDeletedSuccessfully =>
+      "yourAddressDeletedSuccessfully".tr();
+
+  static String get noAddressFound => "noAddressFound".tr();
+
+  static String get addNewAddress => "addNewAddress".tr();
 }

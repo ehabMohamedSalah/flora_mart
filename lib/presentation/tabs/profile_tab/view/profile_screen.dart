@@ -11,6 +11,7 @@ import 'package:flora_mart/domain/entity/auth/user_entity.dart';
 import 'package:flora_mart/presentation/Language_bottom_sheet/Wigets/language_button.dart';
 import 'package:flora_mart/presentation/auth/view_model/cubit/auth_cubit.dart';
 import 'package:flora_mart/presentation/auth/view_model/cubit/auth_intent.dart';
+import 'package:flora_mart/presentation/saved_address_page/view/saved_address_page.dart';
 import 'package:flora_mart/presentation/tabs/profile_tab/view/widget/item_carts_profile_widget.dart';
 import 'package:flora_mart/presentation/tabs/profile_tab/view_model/main_profile_cubit.dart';
 import 'package:flora_mart/presentation/tabs/profile_tab/view_model/main_profile_intent.dart';
@@ -123,7 +124,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         title: AppStrings.savedAddress,
                         icon: Icons.location_on_outlined,
                         iconArrow: Icons.keyboard_arrow_right_outlined,
-                        onAction: () {},
+                        onAction: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const SavedAddressPage()),
+                          );
+                        },
                       ),
                       const SizedBox(height: 12),
                       Container(
