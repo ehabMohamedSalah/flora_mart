@@ -117,5 +117,8 @@
   "highestPrice" : "Highest Price",
   "newProducts" : "New",
   "oldProducts" : "Old",
-  "discount": "Discount"
+  "discount": "Discount",
+  "yourAddressDeletedSuccessfully": "Your address deleted successfully",
+  "noAddressFound": "No address found",
+  "addNewAddress": "Add new address"
 }

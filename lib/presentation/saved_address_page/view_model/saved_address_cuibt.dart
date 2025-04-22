@@ -31,6 +31,7 @@ class SavedAddressCubit extends Cubit<SavedAddressState> {
     }
   }
 
+  List<Addresses>? addresses;
   static SavedAddressCubit get(context) => BlocProvider.of(context);
 
   _deleteSavedAddress({required String id}) async {
@@ -38,6 +39,7 @@ class SavedAddressCubit extends Cubit<SavedAddressState> {
     final result = await deleteSavedAddresUseCase.invoke(id: id);
     switch (result) {
       case SuccessApiResult():
+        addresses?.removeWhere((address) => address.id == id);
         emit(DeleteSavedAddressSuccessState(isDeleted: result.data));
         break;
       case ErrorApiResult():
@@ -53,6 +55,7 @@ class SavedAddressCubit extends Cubit<SavedAddressState> {
     final result = await getSavedAddressUsecase.invoke();
     switch (result) {
       case SuccessApiResult():
+        addresses = result.data?.addresses ?? [];
         emit(GetSavedAddressSuccessState(getSavedAddressResponce: result.data));
         break;
       case ErrorApiResult():
