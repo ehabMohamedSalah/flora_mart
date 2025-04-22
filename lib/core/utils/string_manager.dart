@@ -119,4 +119,11 @@ class AppStrings {
   static String get newProducts => "newProducts".tr();
   static String get oldProducts => "oldProducts".tr();
   static String get discount => "discount".tr();
+
+  static String get yourAddressDeletedSuccessfully =>
+      "yourAddressDeletedSuccessfully".tr();
+
+  static String get noAddressFound => "noAddressFound".tr();
+
+  static String get addNewAddress => "addNewAddress".tr();
 }

@@ -117,5 +117,8 @@
   "highestPrice": "السعر الأعلى",
   "newProducts": "الجديد",
   "oldProducts": "القديم",
-  "discount": "الخصم"
+  "discount": "الخصم",
+  "yourAddressDeletedSuccessfully": "تم حذف العنوان بنجاح",
+  "noAddressFound": "لم يتم العثور على عناوين",
+  "addNewAddress": "اضافة عنوان جديد"
 }

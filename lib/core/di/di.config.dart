@@ -41,6 +41,8 @@ import '../../data/datasource_contract/payment_process_datasource/payment_proces
 import '../../data/datasource_contract/profile_datasource.dart' as _i392;
 import '../../data/datasource_contract/reset_password_data_sourse_repo.dart'
     as _i410;
+import '../../data/datasource_contract/saved_Address_data_source_repo.dart'
+    as _i941;
 import '../../data/datasource_contract/search_datasource.dart' as _i242;
 import '../../data/datasource_impl/auth_datasource_impl.dart' as _i422;
 import '../../data/datasource_impl/best_seller_datasource_impl.dart' as _i378;
@@ -70,6 +72,8 @@ import '../../data/datasource_impl/Payment_process_datasource_impl/payment_proce
 import '../../data/datasource_impl/profile_datasource_impl.dart' as _i807;
 import '../../data/datasource_impl/reset_password_data_source_repo_impl.dart'
     as _i992;
+import '../../data/datasource_impl/saved_address_data_source_repo_impl.dart'
+    as _i828;
 import '../../data/datasource_impl/search_datasource_impl.dart' as _i721;
 import '../../data/repo_impl/auth_repo_impl.dart' as _i540;
 import '../../data/repo_impl/best_seller_repo_impl.dart' as _i133;
@@ -94,6 +98,7 @@ import '../../data/repo_impl/Payment_process_repo_impl/payment_process_repo_impl
     as _i418;
 import '../../data/repo_impl/profile_repo_impl.dart' as _i549;
 import '../../data/repo_impl/reset_password_repo_impl.dart' as _i1065;
+import '../../data/repo_impl/saved_address_repo_impl.dart' as _i238;
 import '../../data/repo_impl/search_repo_impl.dart' as _i1008;
 import '../../domain/repo_contract/auth_repo.dart' as _i233;
 import '../../domain/repo_contract/best_seller_repo.dart' as _i64;
@@ -118,6 +123,7 @@ import '../../domain/repo_contract/Payment_process_repo/payment_process_repo.dar
     as _i265;
 import '../../domain/repo_contract/profile_repo.dart' as _i772;
 import '../../domain/repo_contract/reset_password_repo.dart' as _i233;
+import '../../domain/repo_contract/saved_address_repo.dart' as _i41;
 import '../../domain/repo_contract/search_repo.dart' as _i404;
 import '../../domain/usecase/cart_usecases/add_to_cart_usecase.dart' as _i971;
 import '../../domain/usecase/cart_usecases/get_cart_items_usecase.dart'
@@ -151,6 +157,8 @@ import '../../domain/usecase/Payment_process_uesecases/credit_card_usecase.dart'
     as _i364;
 import '../../domain/usecase/register_usecase.dart' as _i626;
 import '../../domain/usecase/reset_password_Usecase.dart' as _i768;
+import '../../domain/usecase/saved_address/delete_addres.dart' as _i858;
+import '../../domain/usecase/saved_address/get_saved_Address.dart' as _i920;
 import '../../domain/usecase/search_usecase.dart' as _i840;
 import '../../domain/usecase/upload_photo_usecase.dart' as _i28;
 import '../../presentation/auth/view_model/cubit/auth_cubit.dart' as _i351;
@@ -162,6 +170,8 @@ import '../../presentation/edit_profile_screen/view_model/edit_profile_cubit.dar
     as _i678;
 import '../../presentation/reset_password/view_model/reset_password_cubit.dart'
     as _i833;
+import '../../presentation/saved_address_page/view_model/saved_address_cuibt.dart'
+    as _i68;
 import '../../presentation/tabs/cart_tab/view_model/cubit/cart_cubit.dart'
     as _i1071;
 import '../../presentation/tabs/categories_tab/view_model/categories_cubit.dart'
@@ -212,12 +222,19 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i206.ForgetpasswordDataSourseRepo>(() =>
         _i319.ForgetpasswordDataSourceRepoImpl(
             apiManager: gh<_i1047.ApiManager>()));
+    gh.factory<_i941.SavedAddressDataSourceRepo>(
+        () => _i828.SavedAddressDataSourceRepoImpl(
+              gh<_i299.CacheHelper>(),
+              gh<_i1047.ApiManager>(),
+            ));
     gh.factory<_i214.AuthDatasource>(
         () => _i422.AuthDatasourceImpl(gh<_i1047.ApiManager>()));
     gh.factory<_i375.LogoutDatasource>(() => _i1011.LogoutDatasourceImpl(
           apiManager: gh<_i1047.ApiManager>(),
           cacheHelper: gh<_i299.CacheHelper>(),
         ));
+    gh.factory<_i41.SavedAddressRepo>(() =>
+        _i238.SavedAddressRepoImpl(gh<_i941.SavedAddressDataSourceRepo>()));
     gh.factory<_i755.HomeDataSourceRepo>(
         () => _i437.HomeDatasourceImpl(gh<_i1047.ApiManager>()));
     gh.factory<_i575.BestSellerDataSource>(
@@ -226,8 +243,17 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i1047.ApiManager>(),
           gh<_i299.CacheHelper>(),
         ));
+    gh.factory<_i858.DeleteSavedAddresUseCase>(() =>
+        _i858.DeleteSavedAddresUseCase(
+            savedAddressRepo: gh<_i41.SavedAddressRepo>()));
+    gh.factory<_i920.GetSavedAddressUseCase>(() => _i920.GetSavedAddressUseCase(
+        savedAddressRepo: gh<_i41.SavedAddressRepo>()));
     gh.factory<_i820.HomeRepo>(
         () => _i420.homeRepoImpl(gh<_i755.HomeDataSourceRepo>()));
+    gh.factory<_i68.SavedAddressCubit>(() => _i68.SavedAddressCubit(
+          gh<_i858.DeleteSavedAddresUseCase>(),
+          gh<_i920.GetSavedAddressUseCase>(),
+        ));
     gh.factory<_i331.OccassionsDataSource>(
         () => _i626.OccasionsDatasourceImpl(gh<_i1047.ApiManager>()));
     gh.factory<_i233.AuthRepo>(
