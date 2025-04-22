@@ -1,6 +1,7 @@
 import 'package:flora_mart/core/di/di.dart';
 import 'package:flora_mart/core/resuable_comp/toast_message.dart';
 import 'package:flora_mart/core/utils/colors_manager.dart';
+import 'package:flora_mart/core/utils/config.dart';
 import 'package:flora_mart/core/utils/string_manager.dart';
 import 'package:flora_mart/presentation/saved_address_page/view/saved_address_card.dart';
 import 'package:flora_mart/presentation/saved_address_page/view_model/saved_address_cuibt.dart';
@@ -50,36 +51,45 @@ class SavedAddressPage extends StatelessWidget {
               if (state is GetSavedAddressSuccessState ||
                   state is DeleteSavedAddressSuccessState) {
                 if (cubit.addresses?.isEmpty ?? true) {
-                  return Column(
-                    children: [
-                      Expanded(
-                        child: Center(
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 16.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Center(
                           child: Text(
                             AppStrings.noAddressFound,
                             style:
                                 const TextStyle(color: ColorManager.pinkBase),
                           ),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: ElevatedButton(
-                          onPressed: () {
-                            // Handle add new address
-                          },
-                          child: Text(
-                            AppStrings.addNewAddress,
-                            style: TextStyle(
-                                color: Theme.of(context).colorScheme.onPrimary),
+                        Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: ElevatedButton(
+                            onPressed: () {
+                              // Handle add new address
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(8),
+                              child: Text(
+                                AppStrings.addNewAddress,
+                                style: TextStyle(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onPrimary),
+                              ),
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   );
                 } else {
                   return Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      Expanded(
+                      SizedBox(
+                        height: Config.screenHight! * 0.4,
                         child: ListView.builder(
                           padding: const EdgeInsets.all(8),
                           itemCount: cubit.addresses?.length,
