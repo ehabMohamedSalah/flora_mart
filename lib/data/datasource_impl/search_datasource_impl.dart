@@ -21,7 +21,7 @@ class SearchDatasourceImpl implements SearchDatasource {
     return await executeApi<List<Products>>(() async {
       Response  response = await apiManager.getRequest(
             endpoint: EndPoint.getAllProductsEndpoint,
-            queryParameters: {"keyword ": searchQuery});
+            queryParameters: {"keyword": searchQuery});
 
 
       final products = response.data['products'] as List;

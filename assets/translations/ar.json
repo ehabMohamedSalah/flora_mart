@@ -108,5 +108,14 @@
   "passwordChangedSuccessfully": "تم تغيير كلمة المرور بنجاح",
   "BloomWithOurExquisiteBestSellers": "تألقي مع أفضل مبيعاتنا الرائعة",
   "confirmLogout": "هل أنت متأكد من تسجيل الخروج؟",
-  "cancel": "إلغاء"
+  "cancel": "إلغاء",
+  "sortBy": "ترتيب حسب",
+  "price": "السعر",
+  "search": "بحث",
+  "searchForAnyProductYouWant": "ابحث عن أي منتج تريده",
+  "lowestPrice": "السعر الأقل",
+  "highestPrice": "السعر الأعلى",
+  "newProducts": "الجديد",
+  "oldProducts": "القديم",
+  "discount": "الخصم"
 }

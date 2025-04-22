@@ -7,6 +7,7 @@ import 'package:injectable/injectable.dart';
 import '../../core/api/api_excuter.dart';
 import '../../core/api/api_manager.dart';
 import '../../core/api/endpoints.dart';
+import '../../core/utils/string_manager.dart';
 import '../model/products/Products.dart';
 
 @Injectable(as: FilterDatasource)
@@ -20,22 +21,22 @@ class FilterDatasourceImpl implements FilterDatasource {
       String filter) async {
     return await executeApi<List<Products>>(() async {
       Response response;
-      if (filter == "Lowest Price" ) {
+      if (filter == AppStrings.lowestPrice ) {
         response = await apiManager.getRequest(
             endpoint: EndPoint.getAllProductsEndpoint,
             queryParameters: {"sort": "priceAfterDiscount"});
       }
-      else if (filter == "Highest Price" ) {
+      else if (filter == AppStrings.highestPrice ) {
         response = await apiManager.getRequest(
             endpoint: EndPoint.getAllProductsEndpoint,
             queryParameters: {"sort": "-priceAfterDiscount"});
       }
-      else if (filter == "New" ) {
+      else if (filter == AppStrings.newProducts ) {
         response = await apiManager.getRequest(
             endpoint: EndPoint.getAllProductsEndpoint,
             queryParameters: {"sort": "-createdAt"});
       }
-      else if (filter == "Old" ) {
+      else if (filter == AppStrings.oldProducts ) {
         response = await apiManager.getRequest(
             endpoint: EndPoint.getAllProductsEndpoint,
             queryParameters: {"sort": "createdAt"});

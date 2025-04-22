@@ -1,5 +1,7 @@
 class Constant {
   static const String tokenKey = 'auth_token';
+  static const String highestPrice = 'HighestPrice';
+  static const String lowestPrice = 'LowestPrice';
   static const String isRememberMe = 'isRememberMe';
   static const String baseUrl = "https://flower.elevateegy.com/api";
   static const String regExValidateEmail =

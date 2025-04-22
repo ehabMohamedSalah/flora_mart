@@ -7,6 +7,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../core/cache/shared_pref.dart';
+import '../../../../../core/constant.dart';
+import '../../../../../core/di/di.dart';
+
 class ProductScreen extends StatelessWidget {
 
   const ProductScreen(
@@ -20,6 +24,7 @@ class ProductScreen extends StatelessWidget {
           return const Center(child: CircularProgressIndicator());
 
         case ProductLoadedState():
+          print("Loaded Products: ${state.products}");
           if (state.products.isEmpty) {
             return Center(
                 child: Row(
@@ -40,6 +45,15 @@ class ProductScreen extends StatelessWidget {
               ],
             ));
           } else {
+            final cacheHelper = getIt<CacheHelper>();
+            final maxPrice = state.products.isNotEmpty
+                ? state.products.map((p) => p.price).reduce((curr, next) => curr! > next! ? curr : next)
+                : 0;
+            final minPrice = state.products.isNotEmpty
+                ? state.products.map((p) => p.price).reduce((curr, next) => curr! < next! ? curr : next)
+                : 0;
+            cacheHelper.setData(Constant.highestPrice, maxPrice);
+            cacheHelper.setData(Constant.lowestPrice, minPrice);
             return FlowerCardBuilder(products: state.products);
           }
         case ProductErrorState():

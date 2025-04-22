@@ -13,6 +13,8 @@ import 'package:flora_mart/presentation/change_password/change_password_screen.d
 import 'package:flora_mart/presentation/change_password/cubit/change_password_cubit.dart';
 import 'package:flora_mart/presentation/edit_profile_screen/edit_profile_screen.dart';
 import 'package:flora_mart/presentation/edit_profile_screen/view_model/edit_profile_cubit.dart';
+import 'package:flora_mart/presentation/search_screen/search_screen.dart';
+import 'package:flora_mart/presentation/tabs/categories_tab/view_model/product_cubit.dart';
 import 'package:flora_mart/presentation/tabs/home_tab/widgets/occasions/view/occasion_widget.dart';
 import 'package:flora_mart/presentation/tabs/main_screen/main_screen.dart';
 import 'package:flutter/material.dart';
@@ -56,6 +58,10 @@ class MyApp extends StatelessWidget {
 
           routes: {
             RouteManager.mainScreen: (context) => MainScreen(),
+            RouteManager.searchScreen: (context) => BlocProvider(
+                 create: (context) => getIt<ProductCubit>(),
+                 child: const SearchScreen(),
+               ),
             // In the routes map:
             RouteManager.changePasswordScreen: (context) => BlocProvider(
                   create: (context) => getIt<ChangePasswordCubit>(),
