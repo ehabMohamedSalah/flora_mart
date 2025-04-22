@@ -31,6 +31,7 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   bool isNotificationTurn = true;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  String? addressId; // Add this line to declare the addressId variable
 
   @override
   void initState() {
@@ -128,7 +129,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const SavedAddressPage()),
+                              builder: (context) => const SavedAddressPage(),
+                            ),
                           );
                         },
                       ),

@@ -24,7 +24,11 @@ class EndPoint {
   static const String cashPaymentEndpoint = "/v1/orders";
   static const String creditCardPaymentEndpoint = "/v1/orders/checkout";
   static const String changepassword = "/v1/auth/change-password";
+
   static const String getSavedAddress = "/v1/addresses";
 
   static String deleteSavedAddres(String Id) => '/v1/addresses/$Id';
+
+  static const String addAddress = "/v1/addresses";
+  static String updateAddress(String addressId) => "/v1/addresses/$addressId";
 }
