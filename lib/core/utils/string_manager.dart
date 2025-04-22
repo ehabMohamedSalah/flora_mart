@@ -110,6 +110,27 @@ class AppStrings {
   static String get passwordChangedSuccessfully => "passwordChangedSuccessfully".tr();
   static String get bloomWithOurExquisiteBestSellers => "BloomWithOurExquisiteBestSellers".tr();
   static String get confirmLogout => "confirmLogout".tr();
+
+  static String get cancel => "cancel".tr();
+
+  static String get sortBy => "sortBy".tr();
+
+  static String get price => "price".tr();
+
+  static String get search => "search".tr();
+
+  static String get searchForAnyProductYouWant =>
+      "searchForAnyProductYouWant".tr();
+
+  static String get lowestPrice => "lowestPrice".tr();
+
+  static String get highestPrice => "highestPrice".tr();
+
+  static String get newProducts => "newProducts".tr();
+
+  static String get oldProducts => "oldProducts".tr();
+
+  static String get discount => "discount".tr();
   static String get deliveryTime => "deliveryTime".tr();
   static String get schedule => "schedule".tr();
   static String get deliveryAddress => "deliveryAddress".tr();
@@ -124,9 +145,7 @@ class AppStrings {
 
   static String get yourOrderPlacedSuccessfully =>
       "YourOrderPlacedSuccessfully".tr();
-
   static String get paymentCanceled => "paymentCanceled".tr();
-
   static String get payment => "payment".tr();
 
   static String get pleaseSelectADeliveryAddress =>
@@ -134,16 +153,6 @@ class AppStrings {
 
   static String get pleaseSelectAPaymentMethod =>
       "pleaseSelectAPaymentMethod".tr();
-  static String get cancel => "cancel".tr();
-  static String get sortBy => "sortBy".tr();
-  static String get price => "price".tr();
-  static String get search => "search".tr();
-  static String get searchForAnyProductYouWant => "searchForAnyProductYouWant".tr();
-  static String get lowestPrice => "lowestPrice".tr();
-  static String get highestPrice => "highestPrice".tr();
-  static String get newProducts => "newProducts".tr();
-  static String get oldProducts => "oldProducts".tr();
-  static String get discount => "discount".tr();
 
   static String get giftOrderPlacedSuccessfullyAsGift =>
       "giftOrderPlacedSuccessfullyAsGift".tr();
@@ -156,8 +165,4 @@ class AppStrings {
 
   static String get yourAddressDeletedSuccessfully =>
       "yourAddressDeletedSuccessfully".tr();
-
-  static String get noAddressFound => "noAddressFound".tr();
-
-  static String get addNewAddress => "addNewAddress".tr();
 }
