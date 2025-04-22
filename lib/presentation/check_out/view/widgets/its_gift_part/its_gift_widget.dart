@@ -42,7 +42,7 @@ class ItsGiftWidget extends StatelessWidget {
                     child: CustomTextField(
                       labelText: AppStrings.name,
                       hintText: AppStrings.enterTheName,
-                      controller: cubit.NameController,
+                      controller: cubit.nameController,
                       keyboard: TextInputType.text,
                       validator: (data) =>
                           (data?.isEmpty ?? true) ? 'Invalid first name' : null,

@@ -13,12 +13,26 @@ final class CheckoutNoAddressesFound extends CheckoutStates {}
 
 class UpdateGiftSwitchState extends CheckoutStates {}
 
-class PlaceOrderSuccessState extends CheckoutStates {}
+class CashOnDeliverySuccessState extends CheckoutStates {}
 
-class PlaceOrderLoadingState extends CheckoutStates {}
+class CashOnDeliveryLoadingState extends CheckoutStates {}
 
-class PlaceOrderErrorState extends CheckoutStates {
-  String? message;
+class CashOnDeliveryErrorState extends CheckoutStates {
+  final String? message;
 
-  PlaceOrderErrorState({required this.message});
+  CashOnDeliveryErrorState({required this.message});
+}
+
+class CreditCardSuccessState extends CheckoutStates {
+  final String? url;
+
+  CreditCardSuccessState({required this.url});
+}
+
+class CreditCardLoadingState extends CheckoutStates {}
+
+class CreditCardErrorState extends CheckoutStates {
+  final String? message;
+
+  CreditCardErrorState({required this.message});
 }
