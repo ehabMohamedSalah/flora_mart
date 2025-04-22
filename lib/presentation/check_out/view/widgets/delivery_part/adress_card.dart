@@ -1,10 +1,10 @@
 import 'package:flora_mart/core/utils/colors_manager.dart';
 import 'package:flora_mart/core/utils/text_style_manager.dart';
-import 'package:flora_mart/data/model/address.dart';
+import 'package:flora_mart/data/model/getSavedAddressResponce.dart';
 import 'package:flutter/material.dart';
 
 class AddressCard extends StatelessWidget {
-  final Address address;
+  final Addresses address;
   final String radioValue;
   final String groupValue;
   final VoidCallback onSelect;

@@ -36,3 +36,17 @@ class CreditCardErrorState extends CheckoutStates {
 
   CreditCardErrorState({required this.message});
 }
+
+final class GetSavedAddressSuccessState extends CheckoutStates {
+  final GetSavedAddressResponce? getSavedAddressResponce;
+
+  GetSavedAddressSuccessState({required this.getSavedAddressResponce});
+}
+
+final class GetSavedAddressLoadingState extends CheckoutStates {}
+
+final class GetSavedAddressErrorState extends CheckoutStates {
+  final String? message;
+
+  GetSavedAddressErrorState({required this.message});
+}

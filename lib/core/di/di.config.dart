@@ -361,10 +361,6 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i879.CacheUsecase(gh<_i265.PaymentProcessRepo>()));
     gh.factory<_i364.CreditCardUsecase>(
         () => _i364.CreditCardUsecase(gh<_i265.PaymentProcessRepo>()));
-    gh.factory<_i277.CheckoutCubit>(() => _i277.CheckoutCubit(
-          gh<_i364.CreditCardUsecase>(),
-          gh<_i879.CacheUsecase>(),
-        ));
     gh.factory<_i1036.CategoriesUsecase>(
         () => _i1036.CategoriesUsecase(gh<_i41.CategoriesRepo>()));
     gh.factory<_i327.EditProfileUsecase>(
@@ -387,6 +383,11 @@ extension GetItInjectableX on _i174.GetIt {
         ));
     gh.factory<_i814.GetBestSellersUseCase>(
         () => _i814.GetBestSellersUseCase(gh<_i64.BestSellerRepo>()));
+    gh.factory<_i277.CheckoutCubit>(() => _i277.CheckoutCubit(
+          gh<_i364.CreditCardUsecase>(),
+          gh<_i879.CacheUsecase>(),
+          gh<_i920.GetSavedAddressUseCase>(),
+        ));
     gh.factory<_i971.AddToCartUsecase>(
         () => _i971.AddToCartUsecase(gh<_i64.CartRepo>()));
     gh.factory<_i271.GetCartItemsUsecase>(

@@ -9,7 +9,6 @@ import 'package:flora_mart/presentation/tabs/cart_tab/widgets/order_summary_widg
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flora_mart/core/utils/string_manager.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'widgets/app_bar_delivery_time_widget.dart';
 import 'widgets/delivery_part/delivery_address_widget.dart';
 import 'widgets/payment_method_part/payment_method_widget.dart';
@@ -24,7 +23,7 @@ class CheckOutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => getIt<CheckoutCubit>(),
+      create: (_) => getIt<CheckoutCubit>()..doIntent(GetSavedAddressIntent()),
       child: Scaffold(
         appBar: AppBar(
           forceMaterialTransparency: true,

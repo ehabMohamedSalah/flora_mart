@@ -1,11 +1,11 @@
-import 'package:flora_mart/data/model/address.dart';
+import 'package:flora_mart/data/model/getSavedAddressResponce.dart';
 import 'package:flutter/material.dart';
 
 sealed class CheckoutIntent {}
 
 class SelectAddressIntent extends CheckoutIntent {
   final String id;
-  final Address address;
+  final Addresses address;
 
   SelectAddressIntent({required this.address, required this.id});
 }
@@ -36,3 +36,5 @@ class LaunchPaymentUrl extends CheckoutIntent {
 
   LaunchPaymentUrl({required this.context, required this.url});
 }
+
+class GetSavedAddressIntent extends CheckoutIntent {}

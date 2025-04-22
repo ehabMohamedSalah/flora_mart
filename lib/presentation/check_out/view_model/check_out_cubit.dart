@@ -2,14 +2,14 @@ import 'package:flora_mart/core/api/api_result.dart';
 import 'package:flora_mart/core/constant.dart';
 import 'package:flora_mart/core/resuable_comp/toast_message.dart';
 import 'package:flora_mart/core/utils/string_manager.dart';
-import 'package:flora_mart/data/model/address.dart';
+import 'package:flora_mart/data/model/getSavedAddressResponce.dart';
 import 'package:flora_mart/domain/usecase/Payment_process_uesecases/cash_usecase.dart';
 import 'package:flora_mart/domain/usecase/Payment_process_uesecases/credit_card_usecase.dart';
+import 'package:flora_mart/domain/usecase/saved_address/get_saved_Address.dart';
 import 'package:flora_mart/presentation/check_out/view/widgets/web_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'check_out_intents.dart';
 
 part 'check_out_states.dart';
@@ -18,58 +18,26 @@ part 'check_out_states.dart';
 class CheckoutCubit extends Cubit<CheckoutStates> {
   final CreditCardUsecase creditCardUsecase;
   final CacheUsecase cacheUsecase;
+  final GetSavedAddressUseCase getSavedAddressUsecase;
 
-  CheckoutCubit(this.creditCardUsecase, this.cacheUsecase)
+  CheckoutCubit(
+      this.creditCardUsecase, this.cacheUsecase, this.getSavedAddressUsecase)
       : super(CheckoutInitial());
 
   static CheckoutCubit get(context) => BlocProvider.of(context);
   final TextEditingController nameController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
-  List<Address> addresses = [
-    Address(
-      street: "123 Nile Street",
-      phone: "+201234567890",
-      city: "Cairo",
-      lat: "30.0444",
-      long: "31.2357",
-      username: "Kareem Hekal",
-      sId: "1",
-    ),
-    Address(
-      street: "123 Nile Street",
-      phone: "+201234567890",
-      city: "Cairo",
-      lat: "30.0444",
-      long: "31.2357",
-      username: "Kareem Hekal",
-      sId: "1",
-    ),
-    Address(
-      street: "123 Nile Street",
-      phone: "+201234567890",
-      city: "Cairo",
-      lat: "30.0444",
-      long: "31.2357",
-      username: "Kareem Hekal",
-      sId: "1",
-    ),
-    Address(
-      street: "456 Tahrir Street",
-      phone: "+201098765432",
-      city: "Giza",
-      lat: "30.0131",
-      long: "31.2089",
-      username: "Ali Mahmoud",
-      sId: "2",
-    ),
-  ];
+  List<Addresses> addresses = [];
   bool isGift = true;
   String? selectedAddressId;
-  Address? selectedAddress;
+  Addresses? selectedAddress;
   String? selectedPaymentWayId;
 
   void doIntent(CheckoutIntent intent) {
     switch (intent) {
+      case GetSavedAddressIntent():
+        _getSavedAddress();
+        break;
       case SelectAddressIntent():
         _selectAddress(intent);
         break;
@@ -231,6 +199,21 @@ class CheckoutCubit extends Cubit<CheckoutStates> {
         message: "Failed to open payment page",
         tybeMessage: TybeMessage.negative,
       );
+    }
+  }
+
+  _getSavedAddress() async {
+    emit(GetSavedAddressLoadingState());
+    final result = await getSavedAddressUsecase.invoke();
+    switch (result) {
+      case SuccessApiResult():
+        addresses = result.data?.addresses ?? [];
+        emit(GetSavedAddressSuccessState(getSavedAddressResponce: result.data));
+        break;
+      case ErrorApiResult():
+        print("${result.exception.toString()} Error ⛔⛔");
+        emit(GetSavedAddressErrorState(message: result.exception.toString()));
+        break;
     }
   }
 }

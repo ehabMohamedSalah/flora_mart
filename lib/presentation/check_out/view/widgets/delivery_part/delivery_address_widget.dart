@@ -2,7 +2,7 @@ import 'package:flora_mart/core/utils/colors_manager.dart';
 import 'package:flora_mart/core/utils/config.dart';
 import 'package:flora_mart/core/utils/string_manager.dart';
 import 'package:flora_mart/core/utils/text_style_manager.dart';
-import 'package:flora_mart/data/model/address.dart';
+import 'package:flora_mart/data/model/getSavedAddressResponce.dart';
 import 'package:flora_mart/presentation/check_out/view/widgets/delivery_part/adress_card.dart';
 import 'package:flora_mart/presentation/check_out/view_model/check_out_cubit.dart';
 import 'package:flora_mart/presentation/check_out/view_model/check_out_intents.dart';
@@ -27,7 +27,7 @@ class DeliveryAddressWidget extends StatelessWidget {
             children: [
               Text(AppStrings.deliveryAddress, style: AppTextStyle.medium18),
               const SizedBox(height: 8),
-              addresses.isEmpty
+              addresses!.isEmpty
                   ? Center(
                       child: Text(
                         AppStrings.noAddressFound,
@@ -54,8 +54,8 @@ class DeliveryAddressWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildAddressList(
-      List<Address> addresses, String? selectedId, BuildContext context) {
+  Widget _buildAddressList(List<Addresses> addresses, String? selectedId,
+      BuildContext context) {
     final hasManyAddresses = addresses.length >= 3;
 
     final listView = ListView.builder(
@@ -79,18 +79,18 @@ class DeliveryAddressWidget extends StatelessWidget {
 
   Widget _buildAddressCard(
     int index,
-    List<Address> addresses,
+    List<Addresses> addresses,
     String? selectedAddressId,
     BuildContext context,
   ) {
     final address = addresses[index];
     return AddressCard(
-      radioValue: address.sId ?? "",
+      radioValue: address.id ?? "",
       groupValue: selectedAddressId ?? "",
       address: address,
       onSelect: () {
         CheckoutCubit.get(context).doIntent(
-          SelectAddressIntent(address: address, id: address.sId ?? ""),
+          SelectAddressIntent(address: address, id: address.id ?? ""),
         );
       },
     );
