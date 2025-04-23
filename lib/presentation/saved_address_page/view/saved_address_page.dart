@@ -44,13 +44,15 @@ class SavedAddressPage extends StatelessWidget {
             builder: (context, state) {
               final cubit = SavedAddressCubit.get(context);
 
-              if (state is GetSavedAddressLoadingState ||
-                  state is DeleteSavedAddressLoadingState) {
+              // Remove the loading check for DeleteSavedAddressLoadingState
+              if (state is GetSavedAddressLoadingState) {
                 return const Center(child: CircularProgressIndicator());
               }
 
               if (state is GetSavedAddressSuccessState ||
-                  state is DeleteSavedAddressSuccessState) {
+                  state is DeleteSavedAddressSuccessState ||
+                  state is DeleteSavedAddressLoadingState) {
+                // Add this state
                 if (cubit.addresses?.isEmpty ?? true) {
                   return Padding(
                     padding: const EdgeInsets.symmetric(vertical: 16.0),

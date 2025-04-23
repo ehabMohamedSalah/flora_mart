@@ -1,7 +1,12 @@
 import 'package:flora_mart/core/utils/colors_manager.dart';
 import 'package:flora_mart/core/utils/text_style_manager.dart';
+import 'package:flora_mart/data/model/address_model.dart';
 import 'package:flora_mart/data/model/getSavedAddressResponce.dart';
+import 'package:flora_mart/presentation/address/view/update_address_screen.dart';
+import 'package:flora_mart/presentation/check_out/view_model/check_out_cubit.dart';
+import 'package:flora_mart/presentation/check_out/view_model/check_out_intents.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AddressCard extends StatelessWidget {
   final Addresses address;
@@ -57,10 +62,39 @@ class AddressCard extends StatelessWidget {
                 ],
               ),
             ),
-            const Icon(
-              Icons.mode_edit_outlined,
-              size: 20,
-              color: Colors.black54,
+            IconButton(
+              onPressed: () async {
+                final addressModel = AddressModel(
+                  id: address.id ?? "",
+                  street: address.street ?? "",
+                  city: address.city ?? "",
+                  phone: address.phone ?? "",
+                  username: address.username ?? "",
+                  lat: address.lat ?? "",
+                  long: address.long ?? "",
+                );
+
+                final result = await Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => UpdateAddressScreen(
+                      addressId: address.id ?? "",
+                      address: addressModel,
+                    ),
+                  ),
+                );
+
+                if (result == true) {
+                  // Refresh the addresses in checkout page
+                  context
+                      .read<CheckoutCubit>()
+                      .doIntent(GetSavedAddressIntent());
+                }
+              },
+              icon: const Icon(
+                Icons.edit,
+                size: 20,
+              ),
             ),
           ],
         ),
