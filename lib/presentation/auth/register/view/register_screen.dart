@@ -10,6 +10,7 @@ import 'package:flora_mart/core/utils/routes_manager.dart';
 import 'package:flora_mart/core/utils/string_manager.dart';
 import 'package:flora_mart/presentation/auth/view_model/cubit/auth_cubit.dart';
 import 'package:flora_mart/presentation/auth/view_model/cubit/auth_intent.dart';
+import 'package:flora_mart/presentation/terms_and_conditions/terms_and_conditions_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -256,7 +257,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       Text(AppStrings.bySigningUpYouAgreeToOur,
                           style: const TextStyle(fontSize: 12)),
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const TermsAndConditionsScreen()));
+                        },
                         child: Text(AppStrings.termsandConditions,
                             style: const TextStyle(
                                 fontSize: 12,

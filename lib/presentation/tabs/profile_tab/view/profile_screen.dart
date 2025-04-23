@@ -15,6 +15,7 @@ import 'package:flora_mart/presentation/saved_address_page/view/saved_address_pa
 import 'package:flora_mart/presentation/tabs/profile_tab/view/widget/item_carts_profile_widget.dart';
 import 'package:flora_mart/presentation/tabs/profile_tab/view_model/main_profile_cubit.dart';
 import 'package:flora_mart/presentation/tabs/profile_tab/view_model/main_profile_intent.dart';
+import 'package:flora_mart/presentation/terms_and_conditions/terms_and_conditions_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -206,7 +207,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ItemCartsProfileWidget(
                         title: AppStrings.termsandConditions,
                         iconArrow: Icons.keyboard_arrow_right_outlined,
-                        onAction: () {},
+                        onAction: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const TermsAndConditionsScreen()));
+                        },
                       ),
                       const SizedBox(height: 12),
                       BlocListener<AuthCubit, AuthState>(
