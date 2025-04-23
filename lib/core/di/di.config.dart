@@ -173,6 +173,7 @@ import '../../presentation/best_seller/view_model/cubit/best_seller_cubit.dart'
     as _i165;
 import '../../presentation/change_password/cubit/change_password_cubit.dart'
     as _i526;
+import '../../presentation/check_out/view_model/check_out_cubit.dart' as _i277;
 import '../../presentation/edit_profile_screen/view_model/edit_profile_cubit.dart'
     as _i678;
 import '../../presentation/reset_password/view_model/reset_password_cubit.dart'
@@ -399,6 +400,11 @@ extension GetItInjectableX on _i174.GetIt {
         ));
     gh.factory<_i814.GetBestSellersUseCase>(
         () => _i814.GetBestSellersUseCase(gh<_i64.BestSellerRepo>()));
+    gh.factory<_i277.CheckoutCubit>(() => _i277.CheckoutCubit(
+          gh<_i364.CreditCardUsecase>(),
+          gh<_i879.CacheUsecase>(),
+          gh<_i920.GetSavedAddressUseCase>(),
+        ));
     gh.factory<_i971.AddToCartUsecase>(
         () => _i971.AddToCartUsecase(gh<_i64.CartRepo>()));
     gh.factory<_i271.GetCartItemsUsecase>(

@@ -6,8 +6,10 @@ import 'package:injectable/injectable.dart';
 @injectable
 class CacheUsecase {
   final PaymentProcessRepo paymentProcessRepo;
+
   @factoryMethod
   CacheUsecase(this.paymentProcessRepo);
+
   Future<ApiResult<CashPaymentResponse>> call(
       {required String lat,
       required String long,

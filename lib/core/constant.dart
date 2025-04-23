@@ -10,4 +10,6 @@ class Constant {
     r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$',
   );
   static const String questCacheKey = "is_quest";
+  static const String cacheOnDelivery = "CacheOnDelivery";
+  static const String creditCard = "CreditCard";
 }

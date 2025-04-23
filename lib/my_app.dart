@@ -5,6 +5,7 @@ import 'package:flora_mart/core/cache/shared_pref.dart';
 import 'package:flora_mart/core/di/di.dart';
 import 'package:flora_mart/data/model/address_model.dart';
 import 'package:flora_mart/domain/entity/auth/user_entity.dart';
+import 'package:flora_mart/presentation/address/view/add_address_screen.dart';
 import 'package:flora_mart/presentation/address/view/update_address_screen.dart';
 import 'package:flora_mart/presentation/address/view_model/address_cubit.dart';
 import 'package:flora_mart/presentation/auth/forget_password/view/forget_password/view/forget_password_screen.dart';
@@ -26,6 +27,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'config/theme/app_theme.dart';
 import 'core/utils/routes_manager.dart';
+import 'presentation/check_out/view/check_out_page.dart';
 import 'presentation/reset_password/change_password_page.dart';
 
 class MyApp extends StatelessWidget {
@@ -72,6 +74,8 @@ class MyApp extends StatelessWidget {
             RouteManager.occasionScreen: (context) => const OccasionScreen(),
             RouteManager.loginScreen: (context) => const SignInScreen(),
             RouteManager.registerScreen: (context) => const RegisterScreen(),
+            RouteManager.addAddressScreen: (context) =>
+                const AddAddressScreen(),
 
             RouteManager.forgetPasswordScreen: (context) =>
                 const ForgetPasswordScreen(),

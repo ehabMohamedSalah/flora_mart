@@ -1,9 +1,11 @@
 import 'package:flora_mart/core/utils/config.dart';
+import 'package:flora_mart/core/utils/routes_manager.dart';
 import 'package:flora_mart/core/utils/string_manager.dart';
 import 'package:flora_mart/core/utils/text_style_manager.dart';
 import 'package:flora_mart/data/model/cart/Cart.dart';
 import 'package:flora_mart/data/model/cart/CartItems.dart';
 import 'package:flora_mart/data/model/cart/cart_response.dart';
+import 'package:flora_mart/presentation/check_out/view/check_out_page.dart';
 import 'package:flora_mart/presentation/tabs/cart_tab/view_model/cubit/cart_cubit.dart';
 import 'package:flora_mart/presentation/tabs/cart_tab/view_model/cubit/cart_intent.dart';
 import 'package:flora_mart/presentation/tabs/cart_tab/widgets/order_summary_widget.dart';
@@ -82,7 +84,20 @@ class CartScreen extends StatelessWidget {
                                     .toDouble()),
                             const SizedBox(height: 20),
                             ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        CheckOutPage(
+                                          subtotal: (state.cartItems.cart
+                                              ?.totalPriceAfterDiscount ??
+                                              0)
+                                              .toDouble(),
+                                        ),
+                                  ),
+                                );
+                              },
                               child: Text(
                                 AppStrings.checkout,
                                 style: TextStyle(
