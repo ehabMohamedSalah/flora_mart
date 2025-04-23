@@ -3,7 +3,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flora_mart/core/cache/shared_pref.dart';
 import 'package:flora_mart/core/di/di.dart';
+import 'package:flora_mart/data/model/address_model.dart';
 import 'package:flora_mart/domain/entity/auth/user_entity.dart';
+import 'package:flora_mart/presentation/address/view/update_address_screen.dart';
+import 'package:flora_mart/presentation/address/view_model/address_cubit.dart';
 import 'package:flora_mart/presentation/auth/forget_password/view/forget_password/view/forget_password_screen.dart';
 import 'package:flora_mart/presentation/auth/forget_password/view/forget_password/view/reset_password_screen.dart';
 import 'package:flora_mart/presentation/auth/forget_password/view/forget_password/view/verify_reset_code_screen.dart';
@@ -59,9 +62,9 @@ class MyApp extends StatelessWidget {
           routes: {
             RouteManager.mainScreen: (context) => MainScreen(),
             RouteManager.searchScreen: (context) => BlocProvider(
-                 create: (context) => getIt<ProductCubit>(),
-                 child: const SearchScreen(),
-               ),
+                  create: (context) => getIt<ProductCubit>(),
+                  child: const SearchScreen(),
+                ),
             // In the routes map:
             RouteManager.changePasswordScreen: (context) => BlocProvider(
                   create: (context) => getIt<ChangePasswordCubit>(),
@@ -70,6 +73,7 @@ class MyApp extends StatelessWidget {
             RouteManager.occasionScreen: (context) => const OccasionScreen(),
             RouteManager.loginScreen: (context) => const SignInScreen(),
             RouteManager.registerScreen: (context) => const RegisterScreen(),
+
             RouteManager.forgetPasswordScreen: (context) =>
                 const ForgetPasswordScreen(),
             RouteManager.emailVerificationScreen: (context) =>
@@ -81,6 +85,15 @@ class MyApp extends StatelessWidget {
                   child: EditProfileScreen(
                     user: ModalRoute.of(context)!.settings.arguments
                         as UserEntity,
+                  ),
+                ),
+            RouteManager.updateAddressScreen: (context) => BlocProvider(
+                  create: (context) => getIt<AddressCubit>(),
+                  child: UpdateAddressScreen(
+                    addressId: (ModalRoute.of(context)!.settings.arguments
+                        as Map)['addressId'] as String,
+                    address: (ModalRoute.of(context)!.settings.arguments
+                        as Map)['address'] as AddressModel,
                   ),
                 ),
           },

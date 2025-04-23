@@ -1,7 +1,12 @@
 import 'package:flora_mart/core/utils/colors_manager.dart';
 import 'package:flora_mart/core/utils/text_style_manager.dart';
+import 'package:flora_mart/data/model/address_model.dart';
 import 'package:flora_mart/data/model/getSavedAddressResponce.dart';
+import 'package:flora_mart/presentation/address/view/update_address_screen.dart';
+import 'package:flora_mart/presentation/saved_address_page/view_model/saved_address_cuibt.dart';
+import 'package:flora_mart/presentation/saved_address_page/view_model/saved_address_intent.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SavedAddressCard extends StatelessWidget {
   Addresses? addresses;
@@ -40,10 +45,38 @@ class SavedAddressCard extends StatelessWidget {
                         color: ColorManager.red,
                       )),
                   IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.edit_outlined,
-                      )),
+                    onPressed: () async {
+                      final result = await Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => UpdateAddressScreen(
+                            addressId: addresses?.id ?? "",
+                            address: AddressModel(
+                              id: addresses?.id ?? "",
+                              street: addresses?.street ?? "",
+                              phone: addresses?.phone ?? "",
+                              city: addresses?.city ?? "",
+                              lat: addresses?.lat == "z"
+                                  ? "0.0"
+                                  : (addresses?.lat ?? "0.0"),
+                              long: addresses?.long == "z"
+                                  ? "0.0"
+                                  : (addresses?.long ?? "0.0"),
+                              username: addresses?.username ?? "",
+                            ),
+                          ),
+                        ),
+                      );
+
+                      if (result == true) {
+                        // Refresh the saved addresses list
+                        context
+                            .read<SavedAddressCubit>()
+                            .doIntent(GetSavedAddressIntent());
+                      }
+                    },
+                    icon: const Icon(Icons.edit),
+                  ),
                 ],
               ),
               Text(

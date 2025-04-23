@@ -3,6 +3,7 @@ import 'package:flora_mart/core/resuable_comp/toast_message.dart';
 import 'package:flora_mart/core/utils/colors_manager.dart';
 import 'package:flora_mart/core/utils/config.dart';
 import 'package:flora_mart/core/utils/string_manager.dart';
+import 'package:flora_mart/presentation/address/view/add_address_screen.dart';
 import 'package:flora_mart/presentation/saved_address_page/view/saved_address_card.dart';
 import 'package:flora_mart/presentation/saved_address_page/view_model/saved_address_cuibt.dart';
 import 'package:flora_mart/presentation/saved_address_page/view_model/saved_address_intent.dart';
@@ -108,13 +109,27 @@ class SavedAddressPage extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: ElevatedButton(
-                          onPressed: () {
-                            // Handle add new address
+                          onPressed: () async {
+                            final result = await Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const AddAddressScreen(),
+                              ),
+                            );
+                            if (result == true) {
+                              context
+                                  .read<SavedAddressCubit>()
+                                  .doIntent(GetSavedAddressIntent());
+                            }
                           },
-                          child: Text(
-                            AppStrings.addNewAddress,
-                            style: TextStyle(
-                                color: Theme.of(context).colorScheme.onPrimary),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8),
+                            child: Text(
+                              AppStrings.addNewAddress,
+                              style: TextStyle(
+                                  color:
+                                      Theme.of(context).colorScheme.onPrimary),
+                            ),
                           ),
                         ),
                       ),
