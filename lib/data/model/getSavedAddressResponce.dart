@@ -47,6 +47,7 @@ class Addresses {
     this.long,
     this.username,
     this.id,
+    this.area,
   });
 
   Addresses.fromJson(dynamic json) {
@@ -57,6 +58,7 @@ class Addresses {
     long = json['long'];
     username = json['username'];
     id = json['_id'];
+    area = json['area'];
   }
 
   String? street;
@@ -66,6 +68,7 @@ class Addresses {
   String? long;
   String? username;
   String? id;
+  String? area;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -76,6 +79,7 @@ class Addresses {
     map['long'] = long;
     map['username'] = username;
     map['_id'] = id;
+    map['area'] = area;
     return map;
   }
 }
