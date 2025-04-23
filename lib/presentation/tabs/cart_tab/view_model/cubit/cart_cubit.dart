@@ -1,6 +1,8 @@
 // ignore_for_file: depend_on_referenced_packages
 
 import 'package:flora_mart/core/api/api_result.dart';
+import 'package:flora_mart/data/model/cart/Cart.dart';
+import 'package:flora_mart/data/model/cart/CartItems.dart';
 import 'package:flora_mart/data/model/cart/cart_response.dart';
 import 'package:flora_mart/domain/usecase/cart_usecases/add_to_cart_usecase.dart';
 import 'package:flora_mart/domain/usecase/cart_usecases/get_cart_items_usecase.dart';
@@ -61,14 +63,19 @@ class CartCubit extends Cubit<CartState> {
   }
 
   int productCount = 0;
+  List<CartItems> _cartItems = [];
+  num _totalPriceAfterDiscount = 0;
 
   _getCartItems(GetCartItemsIntent intent) async {
     emit(GetCartItemsLoadingState());
     var result = await _getCartItemsUsecase.call();
     switch (result) {
       case SuccessApiResult():
-        productCount = (result.data?.numOfCartItems ?? 0).toInt();
         if (isClosed) return;
+        final cart = result.data?.cart;
+        _cartItems = cart?.cartItems ?? [];
+        _totalPriceAfterDiscount = cart?.totalPriceAfterDiscount ?? 0;
+        productCount = (result.data?.numOfCartItems ?? 0).toInt();
         emit(
             GetCartItemsSuccessState(cartItems: result.data ?? CartResponse()));
         break;
@@ -84,8 +91,20 @@ class CartCubit extends Cubit<CartState> {
     var result = await _removeFromCartUsecase.call(productId: intent.productId);
     switch (result) {
       case SuccessApiResult():
-        await _getCartItems(GetCartItemsIntent());
+        _cartItems.removeWhere(
+          (item) => item.product?.id == intent.productId,
+        );
+        productCount = _cartItems.length;
+        _recalculateTotal();
         emit(RemoveFromCartSuccessState());
+        emit(GetCartItemsSuccessState(
+            cartItems: CartResponse(
+          cart: Cart(
+            cartItems: _cartItems,
+            totalPriceAfterDiscount: _totalPriceAfterDiscount,
+          ),
+          numOfCartItems: _cartItems.length,
+        )));
         break;
       case ErrorApiResult():
         _logger.e(result.exception.toString());
@@ -99,8 +118,25 @@ class CartCubit extends Cubit<CartState> {
         productId: intent.productId, quantity: intent.quantity);
     switch (result) {
       case SuccessApiResult():
-        await _getCartItems(GetCartItemsIntent());
-        emit(UpdateProductQuantitySuccessState());
+        // ✅ تحديث محلي بدل جلب جديد
+
+        final index = _cartItems
+            .indexWhere((item) => item.product?.id == intent.productId);
+        if (index != -1) {
+          _cartItems[index] =
+              _cartItems[index].copyWith(quantity: intent.quantity);
+          _recalculateTotal();
+          productCount = _cartItems.length;
+
+          emit(UpdateProductQuantitySuccessState());
+          emit(GetCartItemsSuccessState(
+              cartItems: CartResponse(
+            cart: Cart(
+                cartItems: _cartItems,
+                totalPriceAfterDiscount: _totalPriceAfterDiscount),
+            numOfCartItems: _cartItems.length,
+          )));
+        }
         break;
       case ErrorApiResult():
         _logger.e(result.exception.toString());
@@ -108,5 +144,18 @@ class CartCubit extends Cubit<CartState> {
             message: result.exception.toString()));
         break;
     }
+  }
+
+  void _recalculateTotal() {
+    _totalPriceAfterDiscount = _cartItems.fold(
+      0,
+      (total, item) {
+        final product = item.product;
+        final priceAfterDiscount = product?.priceAfterDiscount;
+        final price = priceAfterDiscount ?? product?.price ?? 0;
+        final quantity = item.quantity ?? 1;
+        return total + (price * quantity);
+      },
+    );
   }
 }

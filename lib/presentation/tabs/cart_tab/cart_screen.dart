@@ -67,15 +67,6 @@ class CartScreen extends StatelessWidget {
                             ),
                           );
                         }
-
-                        // // ✅ احسب subtotal هنا
-                        // final double subtotal = cartItems.fold(
-                        //   0,
-                        //   (total, item) =>
-                        //       total +
-                        //       (item.product?.price ?? 0) * (item.quantity ?? 1),
-                        // );
-
                         return Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           mainAxisSize: MainAxisSize.min,

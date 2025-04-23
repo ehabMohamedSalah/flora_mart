@@ -37,4 +37,11 @@ class CartItems {
     map['_id'] = id;
     return map;
   }
+
+  CartItems copyWith({int? quantity, Product? product}) {
+    return CartItems(
+      quantity: quantity ?? this.quantity,
+      product: product ?? this.product,
+    );
+  }
 }
