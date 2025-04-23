@@ -9,6 +9,7 @@ import 'package:flora_mart/core/utils/routes_manager.dart';
 import 'package:flora_mart/core/utils/string_manager.dart';
 import 'package:flora_mart/domain/entity/auth/user_entity.dart';
 import 'package:flora_mart/presentation/Language_bottom_sheet/Wigets/language_button.dart';
+import 'package:flora_mart/presentation/about_us_screen/About_us_screen.dart';
 import 'package:flora_mart/presentation/auth/view_model/cubit/auth_cubit.dart';
 import 'package:flora_mart/presentation/auth/view_model/cubit/auth_intent.dart';
 import 'package:flora_mart/presentation/saved_address_page/view/saved_address_page.dart';
@@ -202,7 +203,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ItemCartsProfileWidget(
                         title: AppStrings.aboutUs,
                         iconArrow: Icons.keyboard_arrow_right_outlined,
-                        onAction: () {},
+                        onAction: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const AboutUsScreen()));
+                        },
                       ),
                       ItemCartsProfileWidget(
                         title: AppStrings.termsandConditions,
