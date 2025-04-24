@@ -27,7 +27,7 @@ class EndPoint {
 
   static const String getSavedAddress = "/v1/addresses";
 
-  static String deleteSavedAddres(String Id) => '/v1/addresses/$Id';
+  static String deleteSavedAddres(String id) => '/v1/addresses/$id';
 
   static const String addAddress = "/v1/addresses";
   static String updateAddress(String addressId) => "/v1/addresses/$addressId";

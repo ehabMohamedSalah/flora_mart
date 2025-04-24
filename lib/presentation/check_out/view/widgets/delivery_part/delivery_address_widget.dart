@@ -27,7 +27,7 @@ class DeliveryAddressWidget extends StatelessWidget {
             children: [
               Text(AppStrings.deliveryAddress, style: AppTextStyle.medium18),
               const SizedBox(height: 8),
-              addresses!.isEmpty
+              addresses.isEmpty
                   ? Center(
                       child: Text(
                         AppStrings.noAddressFound,

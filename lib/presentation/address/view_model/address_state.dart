@@ -67,7 +67,6 @@ class UpdateAddressSuccessState extends AddressState {
 }
 
 class UpdateAddressErrorState extends AddressState {
-  @override
   String message;
 
   UpdateAddressErrorState(this.message)
@@ -118,7 +117,7 @@ class addAddressSuccessState extends AddressState {
 }
 
 class addAddressErrorState extends AddressState {
-  @override
+
   String message;
 
   addAddressErrorState(this.message) : super(error: message, isSuccess: false);

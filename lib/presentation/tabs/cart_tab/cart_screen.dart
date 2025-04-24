@@ -1,5 +1,4 @@
 import 'package:flora_mart/core/utils/config.dart';
-import 'package:flora_mart/core/utils/routes_manager.dart';
 import 'package:flora_mart/core/utils/string_manager.dart';
 import 'package:flora_mart/core/utils/text_style_manager.dart';
 import 'package:flora_mart/data/model/cart/Cart.dart';

@@ -80,7 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           Image.asset("assets/images/Logo.png", height: 25.h, width: 89.w),
            Expanded(
-             child: CustomSearchBar(margin: EdgeInsets.all(3),readOnly: true,
+             child: CustomSearchBar(margin: const EdgeInsets.all(3),readOnly: true,
                onTap: () {
                  Navigator.pushNamed(
                      context, RouteManager.searchScreen);

@@ -1,6 +1,5 @@
 
-
-import 'package:dio/src/response.dart';
+import 'package:dio/dio.dart';
 import 'package:flora_mart/core/api/api_result.dart';
 import 'package:flora_mart/data/datasource_contract/search_datasource.dart';
 import 'package:injectable/injectable.dart';

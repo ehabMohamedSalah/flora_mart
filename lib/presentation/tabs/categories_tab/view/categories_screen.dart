@@ -59,7 +59,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
             spacing: 10,
             children: [
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 15),
+                padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -90,7 +90,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
               Expanded(
                 flex: 0,
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 15),
+                  padding: const EdgeInsets.symmetric(horizontal: 15),
                   child: TabCategories(
                     id: widget.selectedCategoryId != null
                         ? widget.selectedCategoryId ?? ""
@@ -115,7 +115,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                   value: _productCubit,
                   child: BlocBuilder<ProductCubit, ProductState>(
                     builder: (context, state) {
-                      return ProductScreen();
+                      return const ProductScreen();
                     },
                   ),
                 ),

@@ -12,9 +12,7 @@ import '../../../../../core/constant.dart';
 import '../../../../../core/di/di.dart';
 
 class ProductScreen extends StatelessWidget {
-
-  const ProductScreen(
-  );
+  const ProductScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

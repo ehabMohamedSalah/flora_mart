@@ -52,7 +52,7 @@ class _FilterCustomWidgetState extends State<FilterCustomWidget> {
       highestPrice = highestPriceInt.toDouble();
       selectedPrice = highestPrice;
     });
-    print("highestPrice : ${highestPrice}");
+    print("highestPrice : $highestPrice");
   }
 
   void getMinPrice() async {
@@ -60,7 +60,7 @@ class _FilterCustomWidgetState extends State<FilterCustomWidget> {
     setState(() {
       lowestPrice = lowestPriceInt.toDouble();
     });
-    print("lowestPrice : ${lowestPrice}");
+    print("lowestPrice : $lowestPrice");
   }
 
   @override
@@ -71,11 +71,11 @@ class _FilterCustomWidgetState extends State<FilterCustomWidget> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(AppStrings.sortBy,
-              style: TextStyle(
+              style: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                   color: ColorManager.primaryColor)),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           ...sortOptions.map((option) => Container(
             margin: const EdgeInsets.symmetric(vertical: 6),
             decoration: BoxDecoration(
@@ -94,7 +94,7 @@ class _FilterCustomWidgetState extends State<FilterCustomWidget> {
           Align(
             alignment: Alignment.centerLeft,
             child: Text(AppStrings.price,
-                style: TextStyle(
+                style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
                     color: ColorManager.primaryColor)),
@@ -112,15 +112,15 @@ class _FilterCustomWidgetState extends State<FilterCustomWidget> {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [Text("$lowestPrice"), Text("${selectedPrice.toStringAsFixed(2)}")],
+            children: [Text("$lowestPrice"), Text(selectedPrice.toStringAsFixed(2))],
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           ElevatedButton.icon(
             onPressed: _applyFilters,
-            icon: Icon(Icons.tune),
+            icon: const Icon(Icons.tune),
             label: Text(AppStrings.filter),
             style: ElevatedButton.styleFrom(
-              minimumSize: Size(double.infinity, 50),
+              minimumSize: const Size(double.infinity, 50),
               backgroundColor: ColorManager.primaryColor,
               foregroundColor: ColorManager.white,
               shape: RoundedRectangleBorder(
@@ -133,7 +133,7 @@ class _FilterCustomWidgetState extends State<FilterCustomWidget> {
   }
 
   void _applyFilters() {
-    final filterString = "$selectedSort";
+    final filterString = selectedSort;
     Navigator.pop(context);
 
     widget.productCubit.doIntent(

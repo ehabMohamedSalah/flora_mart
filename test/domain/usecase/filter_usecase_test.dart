@@ -1,15 +1,11 @@
 import 'package:flora_mart/core/api/api_result.dart';
 import 'package:flora_mart/data/model/products/Products.dart';
 import 'package:flora_mart/domain/repo_contract/filter_repo.dart';
-import 'package:flora_mart/domain/repo_contract/get_all_products_repo.dart';
 import 'package:flora_mart/domain/usecase/filter_usecase.dart';
-import 'package:flora_mart/domain/usecase/get_all_products_usecase.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:mockito/annotations.dart';
-
 import 'filter_usecase_test.mocks.dart';
-import 'get_all_products_usecase_test.mocks.dart';
 
 @GenerateMocks([FilterRepo])
 void main() {

@@ -1,8 +1,6 @@
 import 'package:flora_mart/core/api/api_result.dart';
 import 'package:flora_mart/data/model/products/Products.dart';
-import 'package:flora_mart/domain/repo_contract/filter_repo.dart';
 import 'package:flora_mart/domain/repo_contract/search_repo.dart';
-import 'package:flora_mart/domain/usecase/filter_usecase.dart';
 import 'package:flora_mart/domain/usecase/search_usecase.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';

@@ -16,35 +16,33 @@ class PaymentMethodWidget extends StatelessWidget {
       builder: (context, state) {
         final cubit = CheckoutCubit.get(context);
 
-        return Container(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(AppStrings.paymentMethod, style: AppTextStyle.medium18),
-                PaymentWayCard(
-                  label: AppStrings.cashOnDelivery,
-                  radioValue: "CacheOnDelivery",
-                  groupValue: cubit.selectedPaymentWayId ?? "",
-                  onSelect: () {
-                    CheckoutCubit.get(context).doIntent(
-                      SelectPaymentWayIntent(id: Constant.cacheOnDelivery),
-                    );
-                  },
-                ),
-                PaymentWayCard(
-                  label: AppStrings.creditCard,
-                  radioValue: "CreditCard",
-                  groupValue: cubit.selectedPaymentWayId ?? "",
-                  onSelect: () {
-                    CheckoutCubit.get(context).doIntent(
-                      SelectPaymentWayIntent(id: Constant.creditCard),
-                    );
-                  },
-                ),
-              ],
-            ),
+        return Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(AppStrings.paymentMethod, style: AppTextStyle.medium18),
+              PaymentWayCard(
+                label: AppStrings.cashOnDelivery,
+                radioValue: "CacheOnDelivery",
+                groupValue: cubit.selectedPaymentWayId ?? "",
+                onSelect: () {
+                  CheckoutCubit.get(context).doIntent(
+                    SelectPaymentWayIntent(id: Constant.cacheOnDelivery),
+                  );
+                },
+              ),
+              PaymentWayCard(
+                label: AppStrings.creditCard,
+                radioValue: "CreditCard",
+                groupValue: cubit.selectedPaymentWayId ?? "",
+                onSelect: () {
+                  CheckoutCubit.get(context).doIntent(
+                    SelectPaymentWayIntent(id: Constant.creditCard),
+                  );
+                },
+              ),
+            ],
           ),
         );
       },

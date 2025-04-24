@@ -44,7 +44,7 @@ class _SearchScreenState extends State<SearchScreen> {
           child: Column(
             spacing: 10,
             children: [
-              CustomSearchBar(margin: EdgeInsets.symmetric(horizontal: 15),readOnly: false,
+              CustomSearchBar(margin: const EdgeInsets.symmetric(horizontal: 15),readOnly: false,
                 onSubmitted: (value){
                   setState(() {
                     searchQuery = value.toString() ;
@@ -62,7 +62,7 @@ class _SearchScreenState extends State<SearchScreen> {
                         return Center(
                           child: Text(
                             AppStrings.searchForAnyProductYouWant,
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: ColorManager.primaryColor,
                               fontSize: 16,
                               fontWeight: FontWeight.w500,
@@ -70,7 +70,7 @@ class _SearchScreenState extends State<SearchScreen> {
                           ),
                         );
                       }
-                      return ProductScreen();
+                      return const ProductScreen();
                     },
                   ),
                 ),

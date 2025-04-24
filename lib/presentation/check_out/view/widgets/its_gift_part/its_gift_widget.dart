@@ -1,7 +1,6 @@
 import 'package:flora_mart/core/resuable_comp/custom_text_field.dart';
 import 'package:flora_mart/core/utils/string_manager.dart';
 import 'package:flora_mart/core/utils/text_style_manager.dart';
-import 'package:flora_mart/presentation/check_out/view/widgets/separator.dart';
 import 'package:flora_mart/presentation/check_out/view_model/check_out_intents.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
