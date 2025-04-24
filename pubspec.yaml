@@ -70,6 +70,7 @@ dependencies:
   mocktail: ^1.0.4
   geocoding: ^3.0.0
   geolocator: ^14.0.0
+  geolocator_android: ^5.0.1+1
   google_maps_flutter: ^2.12.1
   google_places_flutter: ^2.1.0
   # The following adds the Cupertino Icons font to your application.
@@ -141,5 +142,5 @@ flutter_assets:
   field_prefix:
   ignore_comments: true
   classname: AssetsManager
-dependency_overrides:
-  geolocator_android: 4.1.7
+
+
