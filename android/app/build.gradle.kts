@@ -7,8 +7,8 @@ plugins {
 
 android {
     namespace = "com.example.flora_mart"
-    compileSdk = 34
-    ndkVersion = "27"
+    compileSdk = flutter.compileSdkVersion
+    ndkVersion = flutter.ndkVersion
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
@@ -24,8 +24,8 @@ android {
         applicationId = "com.example.flora_mart"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
-        minSdk = 21
-        targetSdk = 34
+        minSdk = flutter.minSdkVersion
+        targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
     }
