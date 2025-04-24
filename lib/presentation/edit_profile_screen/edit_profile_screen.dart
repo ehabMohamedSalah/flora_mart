@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flora_mart/core/utils/routes_manager.dart';
+import 'package:flora_mart/core/utils/string_manager.dart';
 import 'package:flora_mart/presentation/edit_profile_screen/view_model/edit_profile_state.dart';
 import 'package:flora_mart/presentation/edit_profile_screen/view_model/edit_profile_cubit.dart';
 import 'package:flora_mart/presentation/edit_profile_screen/view_model/edit_profile_intent.dart';
@@ -89,7 +90,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       listener: (context, state) {
         if (state is EditProfileSuccess) {
           toastMessage(
-            message: "Profile updated successfully",
+            message: AppStrings.profileUpdatedSuccessfully,
             tybeMessage: TybeMessage.positive,
           );
           Navigator.pop(context, true);
@@ -102,7 +103,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           Navigator.pop(context, true);
 
           toastMessage(
-            message: "Photo uploaded successfully",
+            message: AppStrings.photoUploadedSuccessfully,
             tybeMessage: TybeMessage.positive,
           );
         } else if (state is PhotoUploadFailure) {
@@ -122,9 +123,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 icon: const Icon(Icons.arrow_back, color: Colors.black),
                 onPressed: () => Navigator.pop(context),
               ),
-              title: const Text(
-                'Edit profile',
-                style: TextStyle(color: Colors.black, fontSize: 16),
+              title: Text(
+                AppStrings.editProfile,
+                style: const TextStyle(color: Colors.black, fontSize: 16),
               ),
               actions: [
                 IconButton(
@@ -194,8 +195,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           Expanded(
                             child: CustomTextField(
                               controller: firstNameController,
-                              labelText: 'First name',
-                              hintText: 'Enter first name',
+                              labelText: AppStrings.firstName,
+                              hintText: AppStrings.enterFirstName,
                               validator: (value) =>
                                   value?.isEmpty == true ? 'Required' : null,
                             ),
@@ -204,8 +205,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           Expanded(
                             child: CustomTextField(
                               controller: lastNameController,
-                              labelText: 'Last name',
-                              hintText: 'Enter last name',
+                              labelText: AppStrings.lastName,
+                              hintText: AppStrings.enterLastName,
                               validator: (value) =>
                                   value?.isEmpty == true ? 'Required' : null,
                             ),
@@ -218,8 +219,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: CustomTextField(
                         controller: emailController,
-                        labelText: 'Email',
-                        hintText: 'Enter email',
+                        labelText: AppStrings.email,
+                        hintText: AppStrings.enterEmail,
                         keyboard: TextInputType.emailAddress,
                         validator: (value) {
                           if (value?.isEmpty == true) return 'Required';
@@ -236,8 +237,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: CustomTextField(
                         controller: phoneController,
-                        labelText: 'Phone number',
-                        hintText: 'Enter phone number',
+                        labelText: AppStrings.phoneNumber,
+                        hintText: AppStrings.enterPhoneNumber,
                         keyboard: TextInputType.phone,
                         validator: (value) =>
                             value?.isEmpty == true ? 'Required' : null,
@@ -250,16 +251,15 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: CustomTextField(
                         controller: TextEditingController(text: '********'),
-                        labelText: 'Password',
-                        suffixIcon: // In the password field's change button:
-                            TextButton(
+                        labelText: AppStrings.password,
+                        suffixIcon: TextButton(
                           onPressed: () {
                             Navigator.pushNamed(
                                 context, RouteManager.changePasswordScreen);
                           },
-                          child: const Text(
-                            'Change',
-                            style: TextStyle(
+                          child: Text(
+                            AppStrings.change,
+                            style: const TextStyle(
                               color: Color(0xFFE91E63),
                               fontSize: 14,
                             ),
@@ -275,9 +275,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
-                            'Gender',
-                            style: TextStyle(
+                          Text(
+                            AppStrings.gender,
+                            style: const TextStyle(
                               fontSize: 14,
                               color: Colors.black87,
                             ),
@@ -285,7 +285,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           Row(
                             children: [
                               Radio<String>(
-                                value: 'Female',
+                                value: AppStrings.female,
                                 groupValue: selectedGender,
                                 activeColor: const Color(0xFFE91E63),
                                 onChanged: (value) {
@@ -293,10 +293,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                   setState(() => selectedGender = value!);
                                 },
                               ),
-                              const Text('Female'),
+                              Text(AppStrings.female),
                               const SizedBox(width: 24),
                               Radio<String>(
-                                value: 'Male',
+                                value: AppStrings.male,
                                 groupValue: selectedGender,
                                 activeColor: const Color(0xFFE91E63),
                                 onChanged: (value) {
@@ -304,7 +304,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                   setState(() => selectedGender = value!);
                                 },
                               ),
-                              const Text('Male'),
+                              Text(AppStrings.male),
                             ],
                           ),
                         ],
@@ -351,9 +351,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                     strokeWidth: 2,
                                   ),
                                 )
-                              : const Text(
-                                  'Update',
-                                  style: TextStyle(
+                              : Text(
+                                  AppStrings.update,
+                                  style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 16,
                                     fontWeight: FontWeight.w500,

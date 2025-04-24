@@ -138,5 +138,41 @@
   "giftOrderPlacedSuccessfullyAsGift": "🎁 تم إتمام الطلب بنجاح كهدية!",
   "pleaseCompleteTheGiftFormCorrectly": "❗ يرجى إكمال نموذج الهدية بشكل صحيح.",
   "creditCardSelectedNonGift": "💳 تم اختيار الدفع بالبطاقة (بدون هدية)",
-  "yourAddressDeletedSuccessfully": "تم حذف العنوان بنجاح"
+  "yourAddressDeletedSuccessfully": "تم حذف العنوان بنجاح",
+  "enterAddress": "أدخل العنوان",
+  "address": "العنوان",
+  "phoneNumber": "رقم الهاتف",
+  "enterPhoneNumber": "أدخل رقم الهاتف",
+  "recipientName": "اسم المستلم",
+  "enterRecipientName": "أدخل اسم المستلم",
+  "city": "المدينة",
+  "area": "المنطقة",
+  "addressUpdatedSuccessfully": "تم تحديث العنوان بنجاح",
+  "updateAddress": "تحديث العنوان",
+  "male": "ذكر",
+  "female": "أنثى",
+  "gender": "الجنس",
+  "change": "تغيير",
+  "password": "كلمة المرور",
+  "invalidEmail": "البريد الإلكتروني غير صالح",
+  "email": "البريد الإلكتروني",
+  "enterEmail": "أدخل البريد الإلكتروني",
+  "lastName": "الاسم الأخير",
+  "enterLastName": "أدخل الاسم الأخير",
+  "firstName": "الاسم الأول",
+  "enterFirstName": "أدخل الاسم الأول",
+  "editProfile": "تعديل الملف الشخصي",
+  "profileUpdatedSuccessfully": "تم تحديث الملف الشخصي بنجاح",
+  "photoUploadedSuccessfully": "تم رفع الصورة بنجاح",
+  "addressAddedSuccessfully": "تمت إضافة العنوان بنجاح",
+  "YourOrderPlacedSuccessfully": "تم إتمام طلبك بنجاح!",
+  "paymentCanceled": "تم إلغاء الدفع",
+  "payment": "الدفع",
+  "pleaseSelectADeliveryAddress": "يرجى اختيار عنوان التوصيل.",
+  "pleaseSelectAPaymentMethod": "يرجى اختيار وسيلة الدفع.",
+  "giftOrderPlacedSuccessfullyAsGift": "🎁 تم إتمام الطلب بنجاح كهدية!",
+  "pleaseCompleteTheGiftFormCorrectly": "❗ يرجى إكمال نموذج الهدية بشكل صحيح.",
+  "creditCardSelectedNonGift": "💳 تم اختيار الدفع بالبطاقة (بدون هدية)",
+  "yourAddressDeletedSuccessfully": "تم حذف العنوان بنجاح",
+  "enterAddress": "أدخل العنوان"
 }

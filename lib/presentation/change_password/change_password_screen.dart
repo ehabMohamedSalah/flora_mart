@@ -1,3 +1,4 @@
+import 'package:flora_mart/core/utils/string_manager.dart';
 import 'package:flora_mart/presentation/change_password/cubit/change_password_cubit.dart';
 import 'package:flora_mart/presentation/change_password/cubit/change_password_intent.dart';
 import 'package:flora_mart/presentation/change_password/cubit/change_password_state.dart';
@@ -52,9 +53,9 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
             icon: const Icon(Icons.arrow_back, color: Colors.black),
             onPressed: () => Navigator.pop(context),
           ),
-          title: const Text(
-            'Reset password',
-            style: TextStyle(color: Colors.black, fontSize: 16),
+          title: Text(
+            AppStrings.resetPassword,
+            style: const TextStyle(color: Colors.black, fontSize: 16),
           ),
         ),
         body: Form(
@@ -65,8 +66,8 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
               children: [
                 CustomTextField(
                   controller: currentPasswordController,
-                  labelText: 'Current password',
-                  hintText: 'Enter current password',
+                  labelText: AppStrings.currentPassword,
+                  hintText: AppStrings.enterYourPassword,
                   obscureText: true,
                   validator: (value) =>
                       value?.isEmpty == true ? 'Required' : null,
@@ -74,8 +75,8 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                 const SizedBox(height: 16),
                 CustomTextField(
                   controller: newPasswordController,
-                  labelText: 'New password',
-                  hintText: 'Enter new password',
+                  labelText: AppStrings.newPassword,
+                  hintText: AppStrings.enterYourNewPassword,
                   obscureText: true,
                   validator: (value) =>
                       value?.isEmpty == true ? 'Required' : null,
@@ -83,19 +84,18 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                 const SizedBox(height: 16),
                 CustomTextField(
                   controller: confirmPasswordController,
-                  labelText: 'Confirm password',
-                  hintText: 'Confirm new password',
+                  labelText: AppStrings.confirmPassword,
+                  hintText: AppStrings.confirmPassword,
                   obscureText: true,
                   validator: (value) {
                     if (value?.isEmpty == true) return 'Required';
                     if (value != newPasswordController.text) {
-                      return 'Passwords do not match';
+                      return AppStrings.passwordsDoNotMatch;
                     }
                     return null;
                   },
                 ),
                 const SizedBox(height: 24),
-                // Replace the existing button with this BlocBuilder
                 SizedBox(
                   width: double.infinity,
                   height: 48,
@@ -131,9 +131,9 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                                   strokeWidth: 2,
                                 ),
                               )
-                            : const Text(
-                                'Update',
-                                style: TextStyle(color: Colors.white),
+                            : Text(
+                                AppStrings.update,
+                                style: const TextStyle(color: Colors.white),
                               ),
                       );
                     },

@@ -3,6 +3,7 @@
 import 'package:flora_mart/core/di/di.dart';
 import 'package:flora_mart/core/resuable_comp/address_custom_text_field.dart';
 import 'package:flora_mart/core/utils/colors_manager.dart';
+import 'package:flora_mart/core/utils/string_manager.dart';
 import 'package:flora_mart/data/model/address_model.dart';
 import 'package:flora_mart/presentation/address/view_model/address_cubit.dart';
 import 'package:flora_mart/presentation/address/view_model/address_state.dart';
@@ -119,9 +120,9 @@ class _AddressFormScreenState extends State<AddressFormScreen> {
                               'AIzaSyAxJRTgg0zZK4skdhqdmlrIymFGOympPZg',
                           countries: const ['eg'],
                           inputDecoration: InputDecoration(
-                            labelText: 'Address',
+                            labelText: AppStrings.address,
                             hintText: _streetController.text.isEmpty
-                                ? 'Enter the address'
+                                ? AppStrings.enterAddress
                                 : _streetController.text,
                             labelStyle: const TextStyle(color: Colors.black),
                             hintStyle: const TextStyle(color: Colors.black54),
@@ -181,15 +182,15 @@ class _AddressFormScreenState extends State<AddressFormScreen> {
                         const SizedBox(height: 16),
                         AddressCustomTextField(
                           controller: _phoneController,
-                          labelText: 'Phone number',
-                          hintText: 'Enter the phone number',
+                          labelText: AppStrings.phoneNumber,
+                          hintText: AppStrings.enterPhoneNumber,
                           keyboard: TextInputType.phone,
                         ),
                         const SizedBox(height: 16),
                         AddressCustomTextField(
                           controller: _recipientNameController,
-                          labelText: 'Recipient name',
-                          hintText: 'Enter the recipient name',
+                          labelText: AppStrings.recipientName,
+                          hintText: AppStrings.enterRecipientName,
                           keyboard: TextInputType.name,
                         ),
                         const SizedBox(height: 16),
@@ -199,7 +200,7 @@ class _AddressFormScreenState extends State<AddressFormScreen> {
                               child: AddressCustomTextField(
                                 controller:
                                     TextEditingController(text: _selectedCity),
-                                labelText: 'City',
+                                labelText: AppStrings.city,
                                 hintText: _selectedCity.isEmpty
                                     ? 'Cairo'
                                     : _selectedCity,
@@ -210,7 +211,7 @@ class _AddressFormScreenState extends State<AddressFormScreen> {
                               child: AddressCustomTextField(
                                 controller:
                                     TextEditingController(text: _selectedArea),
-                                labelText: 'Area',
+                                labelText: AppStrings.area,
                                 hintText: _selectedArea.isEmpty
                                     ? 'October'
                                     : _selectedArea,

@@ -1,5 +1,6 @@
 import 'package:flora_mart/core/di/di.dart';
 import 'package:flora_mart/core/resuable_comp/toast_message.dart';
+import 'package:flora_mart/core/utils/string_manager.dart';
 import 'package:flora_mart/presentation/address/view/address_form_screen.dart';
 import 'package:flora_mart/presentation/address/view_model/address_cubit.dart';
 import 'package:flora_mart/presentation/address/view_model/address_intent.dart';
@@ -18,7 +19,7 @@ class AddAddressScreen extends StatelessWidget {
         listener: (context, state) {
           if (state is addAddressSuccessState) {
             toastMessage(
-              message: "Address added successfully",
+              message: AppStrings.addressAddedSuccessfully,
               tybeMessage: TybeMessage.positive,
             );
             Navigator.pop(context, true);
@@ -34,7 +35,7 @@ class AddAddressScreen extends StatelessWidget {
             body: Stack(
               children: [
                 AddressFormScreen(
-                  submitButtonText: 'Add New Address',
+                  submitButtonText: AppStrings.addNewAddress,
                   onSubmit: (street, phone, city, latitude, longitude,
                       recipientName) {
                     context.read<AddressCubit>().doIntent(
