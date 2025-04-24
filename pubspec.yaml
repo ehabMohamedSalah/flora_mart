@@ -142,5 +142,7 @@ flutter_assets:
   field_prefix:
   ignore_comments: true
   classname: AssetsManager
+dependency_overrides:
+  geolocator_android: ^4.1.7
 
 
