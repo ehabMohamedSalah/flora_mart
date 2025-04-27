@@ -1,6 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flora_mart/presentation/auth/view_model/cubit/auth_cubit.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flora_mart/core/observer/bloc_observer.dart';
+import 'package:flora_mart/firebase_options.dart';
+import 'package:flora_mart/presentation/auth/view_model/cubit/auth_cubit.dart';
 import 'package:flora_mart/presentation/auth/view_model/cubit/auth_intent.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,10 +14,13 @@ import 'my_app.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
+
   configureDependencies();
   Bloc.observer = MyBlocObserver();
   ApiManager.init();
-
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   final authCubit = getIt<AuthCubit>()..doIntent(CheckAuthIntent());
   runApp(EasyLocalization(
     supportedLocales: const [Locale('en'), Locale('ar')],
