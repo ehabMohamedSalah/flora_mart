@@ -14,7 +14,6 @@ import 'my_app.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
-
   configureDependencies();
   Bloc.observer = MyBlocObserver();
   ApiManager.init();
