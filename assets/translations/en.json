@@ -168,5 +168,6 @@
   "profileUpdatedSuccessfully": "Profile updated successfully",
   "photoUploadedSuccessfully": "Photo uploaded successfully",
   "YourAddressDeletedSuccessfully": "Your address deleted successfully",
-  "enterAddress": "Enter the address"
+  "enterAddress": "Enter the address",
+  "notification": "Notification"
 }
