@@ -30,6 +30,7 @@ jobs:
 
       - name: Build APK
         run: flutter build apk --release
+      - run: ls build/app/outputs/flutter-apk
 
       - name: Upload to Firebase App Distribution
         uses: wzieba/Firebase-Distribution-Github-Action@v1
