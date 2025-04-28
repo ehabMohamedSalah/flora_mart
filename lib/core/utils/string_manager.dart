@@ -5,7 +5,7 @@ class AppStrings {
   static String get emailCantBeEmpty => "emailCantBeEmpty".tr();
   static String get thePinCodeIsWrong => "thePinCodeIsWrong".tr();
   static String get enterValidEmailAddress => "enterValidEmailAddress".tr();
-  static String get passwordCantBeEmpty => "passwordCantBeEmptya".tr();
+  static String get passwordCantBeEmpty => "passwordCantBeEmptyaad".tr();
   static String get passwordMustBeAtLeast6Characters =>
       "passwordMustBeAtLeast6Characters".tr();
   static String get passwordMustContainAtLeastOneUppercaseLetter =>
