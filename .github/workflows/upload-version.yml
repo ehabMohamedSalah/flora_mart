@@ -11,6 +11,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Install Flutter
+        uses: subosito/flutter-action@v2
+
+      - name: Run Flutter Pub Get
+        run: flutter pub get
+
+      - name: Build APK
+        run: flutter build apk --release
+
       - name: Upload and Distribute App
         uses: mastersam07/firebase-app-distribution-action@v0.1
         with:
