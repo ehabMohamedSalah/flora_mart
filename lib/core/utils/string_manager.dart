@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 
 class AppStrings {
   static String get address => "address".tr();
-  static String get emailCantBeEmpty => "emailCantBeEmptya".tr();
+  static String get emailCantBeEmpty => "emailCantBeEmpty".tr();
   static String get thePinCodeIsWrong => "thePinCodeIsWrong".tr();
   static String get enterValidEmailAddress => "enterValidEmailAddress".tr();
   static String get passwordCantBeEmpty => "passwordCantBeEmptyaad".tr();
