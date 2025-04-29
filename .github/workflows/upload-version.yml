@@ -26,11 +26,11 @@ jobs:
         run: |
           ls -lh build/app/outputs/flutter-apk/
           file build/app/outputs/flutter-apk/app-release.apk
-
-      - name: Upload and Distribute App
-        uses: mastersam07/firebase-app-distribution-action@v0.1
+          
+      - name: Upload artifact to Firebase App Distribution
+        uses: wzieba/Firebase-Distribution-Github-Action@v1
         with:
-          serviceCredentialsFileContent: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
-          appId: ${{ secrets.APP_ID }}
-          file: build/app/outputs/flutter-apk/app-release.apk
-          groups: 'testers'
+            appId: ${{secrets.APP_ID}}
+            serviceCredentialsFileContent: ${{secrets.GOOGLE_APPLICATION_CREDENTIALS}}
+            groups: testers
+            file: build/app/outputs/flutter-apk/app-release.apk
