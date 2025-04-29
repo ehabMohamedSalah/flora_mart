@@ -1,12 +1,14 @@
 name: Distribute App via Firebase
 
 on:
-    pull_request:
-        branches:
-          - feature/FM-38-Firebase_App_Distribution
+  pull_request:
+    branches:
+      - feature/FM-38-Firebase_App_Distribution
+
 jobs:
   firebase_distribution:
-    runs-on: ubuntu-latest  # Can be any supported runner
+    runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -20,10 +22,15 @@ jobs:
       - name: Build APK
         run: flutter build apk --release
 
+      - name: Verify APK exists
+        run: |
+          ls -lh build/app/outputs/flutter-apk/
+          file build/app/outputs/flutter-apk/app-release.apk
+
       - name: Upload and Distribute App
         uses: mastersam07/firebase-app-distribution-action@v0.1
         with:
-          serviceCredentialsFileContent: ${{secrets.GOOGLE_APPLICATION_CREDENTIALS}}
-          appId: ${{secrets.APP_ID}}
-          file: build/app/outputs/flutter-apk/app-release.apk  # e.g., './build/app/outputs/flutter-apk/app-release.apk'
-          groups: 'testers'  # Optional: distribution groups
+          serviceCredentialsFileContent: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+          appId: ${{ secrets.APP_ID }}
+          file: build/app/outputs/flutter-apk/app-release.apk
+          groups: 'testers'
