@@ -174,5 +174,6 @@
   "pleaseCompleteTheGiftFormCorrectly": "❗ يرجى إكمال نموذج الهدية بشكل صحيح.",
   "creditCardSelectedNonGift": "💳 تم اختيار الدفع بالبطاقة (بدون هدية)",
   "yourAddressDeletedSuccessfully": "تم حذف العنوان بنجاح",
-  "enterAddress": "أدخل العنوان"
+  "enterAddress": "أدخل العنوان",
+  "notification": "الإشعارات"
 }

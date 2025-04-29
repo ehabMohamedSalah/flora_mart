@@ -20,4 +20,5 @@ class RouteManager {
   static const String searchScreen = "/searchScreen";
   static const String updateAddressScreen = "/updateAddressScreen";
   static const String addAddressScreen = "/addAddressScreen";
+  static const String notificationScreen = "/notificationScreen";
 }

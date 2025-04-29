@@ -12,6 +12,9 @@ import 'package:flora_mart/presentation/Language_bottom_sheet/Wigets/language_bu
 import 'package:flora_mart/presentation/about_us_screen/About_us_screen.dart';
 import 'package:flora_mart/presentation/auth/view_model/cubit/auth_cubit.dart';
 import 'package:flora_mart/presentation/auth/view_model/cubit/auth_intent.dart';
+import 'package:flora_mart/presentation/notification_screen/view/notification_screen.dart';
+import 'package:flora_mart/presentation/notification_screen/view_model/notification_cubit.dart';
+import 'package:flora_mart/presentation/notification_screen/view_model/notification_intent.dart';
 import 'package:flora_mart/presentation/saved_address_page/view/saved_address_page.dart';
 import 'package:flora_mart/presentation/tabs/profile_tab/view/widget/item_carts_profile_widget.dart';
 import 'package:flora_mart/presentation/tabs/profile_tab/view_model/main_profile_cubit.dart';
@@ -217,7 +220,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const TermsAndConditionsScreen()));
+                                  builder: (context) =>
+                                      const TermsAndConditionsScreen()));
                         },
                       ),
                       const SizedBox(height: 12),
@@ -318,9 +322,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
               badgeCounter.toString(),
               style: AppTheme.lightTheme.textTheme.titleSmall,
             ),
-            child: const Icon(
-              Icons.notifications_none,
-              size: 30,
+            child: IconButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => BlocProvider(
+                        create: (context) => getIt<NotificationCubit>()
+                          ..doIntent(GetNotificationIntent()),
+                        child: const NotificationScreen(),
+                      ),
+                    ));
+                // Navigator.pushNamed(context, RouteManager.notificationScreen);
+              },
+              icon: const Icon(
+                Icons.notifications_none,
+                size: 30,
+              ),
             ),
           ),
         ],
