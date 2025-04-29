@@ -31,4 +31,5 @@ class EndPoint {
 
   static const String addAddress = "/v1/addresses";
   static String updateAddress(String addressId) => "/v1/addresses/$addressId";
+  static String orderEndpoint="/v1/orders";
 }

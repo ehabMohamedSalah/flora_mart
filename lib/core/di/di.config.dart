@@ -37,6 +37,7 @@ import '../../data/datasource_contract/Login_Data_Source_Repo.dart' as _i557;
 import '../../data/datasource_contract/logout_datasource.dart' as _i375;
 import '../../data/datasource_contract/occasion_datasource/occasions_datasource.dart'
     as _i331;
+import '../../data/datasource_contract/order_datasource_contract.dart' as _i519;
 import '../../data/datasource_contract/payment_process_datasource/payment_process_datasource.dart'
     as _i441;
 import '../../data/datasource_contract/profile_datasource.dart' as _i392;
@@ -69,6 +70,7 @@ import '../../data/datasource_impl/Login_Data_Source_Repo_Impl.dart' as _i878;
 import '../../data/datasource_impl/logout_datasource_impl.dart' as _i1011;
 import '../../data/datasource_impl/occasions_datasource_impl/occassions_datasource_impl.dart'
     as _i626;
+import '../../data/datasource_impl/order_datasource_impl.dart' as _i648;
 import '../../data/datasource_impl/Payment_process_datasource_impl/payment_process_datasource_impl.dart'
     as _i24;
 import '../../data/datasource_impl/profile_datasource_impl.dart' as _i807;
@@ -97,6 +99,7 @@ import '../../data/repo_impl/Home_Repo_Impl.dart' as _i420;
 import '../../data/repo_impl/Login_Repo_Impl.dart' as _i722;
 import '../../data/repo_impl/logout_repo_impl.dart' as _i88;
 import '../../data/repo_impl/occasions_repo_impl.dart' as _i750;
+import '../../data/repo_impl/order_repo_impl.dart' as _i774;
 import '../../data/repo_impl/Payment_process_repo_impl/payment_process_repo_impl.dart'
     as _i418;
 import '../../data/repo_impl/profile_repo_impl.dart' as _i549;
@@ -123,6 +126,7 @@ import '../../domain/repo_contract/Home_Repo.dart' as _i820;
 import '../../domain/repo_contract/Login_Repo.dart' as _i831;
 import '../../domain/repo_contract/logout_repo_contract.dart' as _i656;
 import '../../domain/repo_contract/occasions_repo.dart' as _i130;
+import '../../domain/repo_contract/order_repo.dart' as _i455;
 import '../../domain/repo_contract/Payment_process_repo/payment_process_repo.dart'
     as _i265;
 import '../../domain/repo_contract/profile_repo.dart' as _i772;
@@ -156,6 +160,7 @@ import '../../domain/usecase/home_Usecase.dart' as _i1069;
 import '../../domain/usecase/login_Usecase.dart' as _i181;
 import '../../domain/usecase/logout_usecase.dart' as _i140;
 import '../../domain/usecase/occasions_usecase.dart' as _i896;
+import '../../domain/usecase/order_usecase.dart' as _i906;
 import '../../domain/usecase/Payment_process_uesecases/cash_usecase.dart'
     as _i879;
 import '../../domain/usecase/Payment_process_uesecases/credit_card_usecase.dart'
@@ -176,6 +181,7 @@ import '../../presentation/change_password/cubit/change_password_cubit.dart'
 import '../../presentation/check_out/view_model/check_out_cubit.dart' as _i277;
 import '../../presentation/edit_profile_screen/view_model/edit_profile_cubit.dart'
     as _i678;
+import '../../presentation/orders/view_model/order_cubit.dart' as _i238;
 import '../../presentation/reset_password/view_model/reset_password_cubit.dart'
     as _i833;
 import '../../presentation/saved_address_page/view_model/saved_address_cuibt.dart'
@@ -301,6 +307,10 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i1047.ApiManager>(),
           gh<_i299.CacheHelper>(),
         ));
+    gh.factory<_i519.OrderDatasourceContract>(() => _i648.OrderDataSourceImpl(
+          gh<_i1047.ApiManager>(),
+          gh<_i299.CacheHelper>(),
+        ));
     gh.factory<_i234.GuestRepo>(
         () => _i905.GuestRepoImpl(gh<_i623.GuestDatasource>()));
     gh.factory<_i544.VerifyresetcodeRepo>(() => _i721.Verifyresetcoderepoimpl(
@@ -340,12 +350,16 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i976.ForgetpasswordRepo>(() => _i210.Forgetpasswordrepoimpl(
         forgetpassword_data_sourse_repo:
             gh<_i206.ForgetpasswordDataSourseRepo>()));
+    gh.factory<_i455.OrderRepo>(
+        () => _i774.OrderRepoIml(gh<_i519.OrderDatasourceContract>()));
     gh.factory<_i64.BestSellerRepo>(
         () => _i133.BestSellerRepoImpl(gh<_i575.BestSellerDataSource>()));
     gh.factory<_i526.ChangePasswordCubit>(
         () => _i526.ChangePasswordCubit(gh<_i790.ChangePasswordUsecase>()));
     gh.factory<_i896.OccassionsUsecase>(
         () => _i896.OccassionsUsecase(gh<_i130.OccasionsRepo>()));
+    gh.factory<_i906.OrderUsecase>(
+        () => _i906.OrderUsecase(gh<_i455.OrderRepo>()));
     gh.factory<_i831.LoginRepo>(
         () => _i722.SigninRepoImpl(gh<_i557.LoginDataSourceRepo>()));
     gh.factory<_i979.HomeCubit>(
@@ -376,6 +390,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i879.CacheUsecase(gh<_i265.PaymentProcessRepo>()));
     gh.factory<_i364.CreditCardUsecase>(
         () => _i364.CreditCardUsecase(gh<_i265.PaymentProcessRepo>()));
+    gh.factory<_i238.OrderCubit>(
+        () => _i238.OrderCubit(gh<_i906.OrderUsecase>()));
     gh.factory<_i1036.CategoriesUsecase>(
         () => _i1036.CategoriesUsecase(gh<_i41.CategoriesRepo>()));
     gh.factory<_i60.UpdateAddressUseCase>(

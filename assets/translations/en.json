@@ -168,5 +168,11 @@
   "profileUpdatedSuccessfully": "Profile updated successfully",
   "photoUploadedSuccessfully": "Photo uploaded successfully",
   "YourAddressDeletedSuccessfully": "Your address deleted successfully",
-  "enterAddress": "Enter the address"
+  "enterAddress": "Enter the address",
+  "myOrders":"My orders",
+  "active":"Active",
+  "complete": "Completed",
+  "orderNumber": "Order Number",
+  "noActiveOrder": "No Active Order",
+  "noCompletedOrder": "No Completed Order"
 }
