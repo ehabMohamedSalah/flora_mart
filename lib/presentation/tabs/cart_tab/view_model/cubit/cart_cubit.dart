@@ -1,8 +1,8 @@
 // ignore_for_file: depend_on_referenced_packages
 
 import 'package:flora_mart/core/api/api_result.dart';
-import 'package:flora_mart/data/model/cart/Cart.dart';
-import 'package:flora_mart/data/model/cart/CartItems.dart';
+import 'package:flora_mart/data/model/cart/cart.dart';
+import 'package:flora_mart/data/model/cart/cart_Items.dart';
 import 'package:flora_mart/data/model/cart/cart_response.dart';
 import 'package:flora_mart/domain/usecase/cart_usecases/add_to_cart_usecase.dart';
 import 'package:flora_mart/domain/usecase/cart_usecases/get_cart_items_usecase.dart';
