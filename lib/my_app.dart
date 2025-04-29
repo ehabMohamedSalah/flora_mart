@@ -28,7 +28,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'config/theme/app_theme.dart';
 import 'core/utils/routes_manager.dart';
 
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -89,6 +88,11 @@ class MyApp extends StatelessWidget {
                         as UserEntity,
                   ),
                 ),
+            // RouteManager.notificationScreen: (context) => BlocProvider(
+            //       create: (context) => getIt<NotificationCubit>()
+            //         ..doIntent(GetNotificationIntent()),
+            //       child: const NotificationScreen(),
+            //     ),
             RouteManager.updateAddressScreen: (context) => BlocProvider(
                   create: (context) => getIt<AddressCubit>(),
                   child: UpdateAddressScreen(

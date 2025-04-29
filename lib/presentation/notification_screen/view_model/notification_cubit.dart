@@ -10,7 +10,8 @@ class NotificationCubit extends Cubit<NotificationState> {
   @factoryMethod
   final GetAllNotificationsUsecase getAllNotificationsUsecase;
 
-  NotificationCubit(this.getAllNotificationsUsecase) : super(NotificationInitial());
+  NotificationCubit(this.getAllNotificationsUsecase)
+      : super(NotificationInitial());
 
   Future<void> _getNotifications() async {
     emit(NotificationLoadingState());
@@ -18,6 +19,7 @@ class NotificationCubit extends Cubit<NotificationState> {
 
     switch (result) {
       case SuccessApiResult():
+        if (isClosed) return;
         emit(NotificationLoadedState(notifications: result.data ?? []));
       case ErrorApiResult():
         emit(NotificationErrorState(message: result.exception.toString()));

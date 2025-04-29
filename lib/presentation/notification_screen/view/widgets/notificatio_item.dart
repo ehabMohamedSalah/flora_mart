@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 
 class NotificatioItem extends StatelessWidget {
-
   IconData icon;
   String title;
   String description;
 
-  NotificatioItem({super.key,required this.icon,
+  NotificatioItem({
+    super.key,
+    required this.icon,
     required this.title,
-    required this.description,});
+    required this.description,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +20,7 @@ class NotificatioItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Icon Circle
-          Icon(icon, color: Colors.white, size: 24),
+          Icon(icon, color: Colors.black, size: 24),
           const SizedBox(width: 16),
           // Notification Text
           Expanded(
