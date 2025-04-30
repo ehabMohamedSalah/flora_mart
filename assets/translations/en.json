@@ -174,7 +174,11 @@
   "complete": "Completed",
   "orderNumber": "Order Number",
   "noActiveOrder": "No Active Order",
-  "noCompletedOrder": "No Completed Order"
+  "noCompletedOrder": "No Completed Order",
   "enterAddress": "Enter the address",
-  "notification": "Notification"
+  "notification": "Notification",
+  "active":"Active",
+  "complete":"completed",
+  "noActiveOrder": "No Active Order",
+  "noCompletedOrder": "No Completed Order"
 }

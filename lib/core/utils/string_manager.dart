@@ -60,11 +60,9 @@ class AppStrings {
   static String get password => "password".tr();
   static String get enterPassword => "enterPassword".tr();
   static String get pleaseEnterAPassword => "pleaseEnterAPassword".tr();
-  static String get pleaseEnterACorrectPassword =>
-      "pleaseEnterACorrectPassword".tr();
+  static String get pleaseEnterACorrectPassword => "pleaseEnterACorrectPassword".tr();
   static String get confirmPassword => "confirmPassword".tr();
-  static String get pleaseEnterYourPasswordConfirmation =>
-      "pleaseEnterYourPasswordConfirmation".tr();
+  static String get pleaseEnterYourPasswordConfirmation => "pleaseEnterYourPasswordConfirmation".tr();
   static String get phoneNumber => "phoneNumber".tr();
   static String get enterPhoneNumber => "enterPhoneNumber".tr();
   static String get invalidPhoneNumber => "invalidPhoneNumber".tr();
@@ -109,31 +107,18 @@ class AppStrings {
   static String get arabic => "arabic".tr();
   static String get update => "update".tr();
   static String get changePassword => "changePassword".tr();
-  static String get passwordChangedSuccessfully =>
-      "passwordChangedSuccessfully".tr();
-  static String get bloomWithOurExquisiteBestSellers =>
-      "BloomWithOurExquisiteBestSellers".tr();
+  static String get passwordChangedSuccessfully => "passwordChangedSuccessfully".tr();
+  static String get bloomWithOurExquisiteBestSellers => "BloomWithOurExquisiteBestSellers".tr();
   static String get confirmLogout => "confirmLogout".tr();
-
   static String get cancel => "cancel".tr();
-
   static String get sortBy => "sortBy".tr();
-
   static String get price => "price".tr();
-
   static String get search => "search".tr();
-
-  static String get searchForAnyProductYouWant =>
-      "searchForAnyProductYouWant".tr();
-
+  static String get searchForAnyProductYouWant => "searchForAnyProductYouWant".tr();
   static String get lowestPrice => "lowestPrice".tr();
-
   static String get highestPrice => "highestPrice".tr();
-
   static String get newProducts => "newProducts".tr();
-
   static String get oldProducts => "oldProducts".tr();
-
   static String get discount => "discount".tr();
   static String get deliveryTime => "deliveryTime".tr();
   static String get schedule => "schedule".tr();
@@ -146,44 +131,32 @@ class AppStrings {
   static String get itIsAGift => "itIsAGift".tr();
   static String get enterTheName => "enterTheName".tr();
   static String get placeOrder => "placeOrder".tr();
-
-  static String get yourOrderPlacedSuccessfully =>
-      "YourOrderPlacedSuccessfully".tr();
+  static String get yourOrderPlacedSuccessfully => "YourOrderPlacedSuccessfully".tr();
   static String get paymentCanceled => "paymentCanceled".tr();
   static String get payment => "payment".tr();
-
-  static String get pleaseSelectADeliveryAddress =>
-      "pleaseSelectADeliveryAddress".tr();
-
-  static String get pleaseSelectAPaymentMethod =>
-      "pleaseSelectAPaymentMethod".tr();
-
-  static String get giftOrderPlacedSuccessfullyAsGift =>
-      "giftOrderPlacedSuccessfullyAsGift".tr();
-
-  static String get pleaseCompleteTheGiftFormCorrectly =>
-      "pleaseCompleteTheGiftFormCorrectly".tr();
-
-  static String get creditCardSelectedNonGift =>
-      "creditCardSelectedNonGift".tr();
-
-  static String get yourAddressDeletedSuccessfully =>
-      "yourAddressDeletedSuccessfully".tr();
-
+  static String get pleaseSelectADeliveryAddress => "pleaseSelectADeliveryAddress".tr();
+  static String get pleaseSelectAPaymentMethod => "pleaseSelectAPaymentMethod".tr();
+  static String get giftOrderPlacedSuccessfullyAsGift => "giftOrderPlacedSuccessfullyAsGift".tr();
+  static String get pleaseCompleteTheGiftFormCorrectly => "pleaseCompleteTheGiftFormCorrectly".tr();
+  static String get creditCardSelectedNonGift => "creditCardSelectedNonGift".tr();
+  static String get yourAddressDeletedSuccessfully => "yourAddressDeletedSuccessfully".tr();
+  static String get enterAddress => "enterAddress".tr();
+  static String get addressAddedSuccessfully => "addressAddedSuccessfully".tr();
   static String get recipientName => "recipientName".tr();
   static String get enterRecipientName => "enterRecipientName".tr();
   static String get city => "city".tr();
   static String get area => "area".tr();
+  static String get addressUpdatedSuccessfully => "addressUpdatedSuccessfully".tr();
   static String get updateAddress => "updateAddress".tr();
   static String get change => "change".tr();
   static String get enterEmail => "enterEmail".tr();
-  static String get addressAddedSuccessfully => "addressAddedSuccessfully".tr();
-  static String get addressUpdatedSuccessfully =>
-      "addressUpdatedSuccessfully".tr();
   static String get editProfile => "editProfile".tr();
-  static String get profileUpdatedSuccessfully =>
-      "profileUpdatedSuccessfully".tr();
-  static String get photoUploadedSuccessfully =>
-      "photoUploadedSuccessfully".tr();
-  static String get enterAddress => "Enter the address".tr();
+  static String get profileUpdatedSuccessfully => "profileUpdatedSuccessfully".tr();
+  static String get photoUploadedSuccessfully => "photoUploadedSuccessfully".tr();
+  static String get yourAddressDeletedSuccessfully => "YourAddressDeletedSuccessfully".tr();
+  static String get active => "active".tr();
+  static String get complete => "complete".tr();
+  static String get orderNumber => "orderNumber".tr();
+  static String get noActiveOrder => "noActiveOrder".tr();
+  static String get noCompletedOrder => "noCompletedOrder".tr();
 }
