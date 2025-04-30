@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_print
 
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flora_mart/core/api/firebase_api.dart';
 import 'package:flora_mart/core/cache/shared_pref.dart';
 import 'package:flora_mart/core/di/di.dart';
 import 'package:flora_mart/data/model/address_model.dart';
@@ -17,7 +18,9 @@ import 'package:flora_mart/presentation/change_password/change_password_screen.d
 import 'package:flora_mart/presentation/change_password/cubit/change_password_cubit.dart';
 import 'package:flora_mart/presentation/edit_profile_screen/edit_profile_screen.dart';
 import 'package:flora_mart/presentation/edit_profile_screen/view_model/edit_profile_cubit.dart';
-import 'package:flora_mart/presentation/orders/view/orders_screen.dart';
+import 'package:flora_mart/presentation/notification_screen/view/notification_screen.dart';
+import 'package:flora_mart/presentation/notification_screen/view_model/notification_cubit.dart';
+import 'package:flora_mart/presentation/notification_screen/view_model/notification_intent.dart';
 import 'package:flora_mart/presentation/search_screen/search_screen.dart';
 import 'package:flora_mart/presentation/tabs/categories_tab/view_model/product_cubit.dart';
 import 'package:flora_mart/presentation/tabs/home_tab/widgets/occasions/view/occasion_widget.dart';
@@ -29,14 +32,26 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'config/theme/app_theme.dart';
 import 'core/utils/routes_manager.dart';
 
-
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(
-    BuildContext context,
-  ) {
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    super.initState();
+
+    // Ensure context is ready
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      FirebaseApi().handleContextListeners(context);
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     String initialRoute() {
       bool? rememberMe = CacheHelper.getRememberMe();
       print("$rememberMe ⭐⭐⭐⭐⭐⭐⭐⭐");
@@ -51,6 +66,7 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       builder: (context, child) {
         return MaterialApp(
+          navigatorKey: FirebaseApi.navigatorKey,
           debugShowCheckedModeBanner: false,
 
           // routes: {
@@ -66,7 +82,6 @@ class MyApp extends StatelessWidget {
                   create: (context) => getIt<ProductCubit>(),
                   child: const SearchScreen(),
                 ),
-            // In the routes map:
             RouteManager.changePasswordScreen: (context) => BlocProvider(
                   create: (context) => getIt<ChangePasswordCubit>(),
                   child: const ChangePasswordScreen(),
@@ -76,7 +91,6 @@ class MyApp extends StatelessWidget {
             RouteManager.registerScreen: (context) => const RegisterScreen(),
             RouteManager.addAddressScreen: (context) =>
                 const AddAddressScreen(),
-
             RouteManager.forgetPasswordScreen: (context) =>
                 const ForgetPasswordScreen(),
             RouteManager.emailVerificationScreen: (context) =>
@@ -105,8 +119,7 @@ class MyApp extends StatelessWidget {
           localizationsDelegates: context.localizationDelegates,
           supportedLocales: context.supportedLocales,
           locale: context.locale,
-          //initialRoute: initialRoute(),
-          home: OrdersScreen(),
+          initialRoute: initialRoute(),
         );
       },
     );

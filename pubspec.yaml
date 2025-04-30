@@ -54,7 +54,7 @@ dependencies:
     sdk: flutter
   dio: any
   image_picker: any
-  shared_preferences: any
+  shared_preferences: ^2.5.3
   percent_indicator: any
   flutter_plugin_android_lifecycle: any
   easy_localization: any
@@ -71,9 +71,12 @@ dependencies:
   geocoding: ^3.0.0
   geolocator: ^14.0.0
   geolocator_android: ^5.0.1+1
+  firebase_crashlytics: ^4.3.5
   google_maps_flutter: ^2.12.1
   google_places_flutter: ^2.1.0
   firebase_core: ^3.13.0
+  firebase_messaging: ^15.2.5
+  flutter_local_notifications: ^19.1.0
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
 

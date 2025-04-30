@@ -175,4 +175,6 @@
   "orderNumber": "Order Number",
   "noActiveOrder": "No Active Order",
   "noCompletedOrder": "No Completed Order"
+  "enterAddress": "Enter the address",
+  "notification": "Notification"
 }

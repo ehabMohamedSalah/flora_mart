@@ -28,6 +28,8 @@ class MainProfileCubit extends Cubit<MainProfileState> {
     final result = await getProfileDetailsUsecase.call();
 
     if (result is SuccessApiResult<GetLoggedUserDataEntity>) {
+      if (isClosed) return;
+
       emit(MainProfileSuccess(result.data!));
     } else if (result is ErrorApiResult<GetLoggedUserDataEntity>) {
       emit(MainProfileFailure(result.exception.toString()));
