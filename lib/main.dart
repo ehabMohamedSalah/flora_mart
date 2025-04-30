@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:flora_mart/core/api/firebase_api.dart';
 import 'package:flora_mart/core/observer/bloc_observer.dart';
 import 'package:flora_mart/firebase_options.dart';
 import 'package:flora_mart/presentation/auth/view_model/cubit/auth_cubit.dart';
@@ -20,6 +21,7 @@ void main() async {
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
+    await FirebaseApi().initFCM();
 
     FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
 
