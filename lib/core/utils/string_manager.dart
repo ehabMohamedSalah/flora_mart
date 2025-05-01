@@ -26,7 +26,8 @@ class AppStrings {
   static String get countinueAsGuest => "countinueAsGuest".tr();
   static String get passwordMustContainAtLeastOneSpecialCharacter => "passwordMustContainAtLeastOneSpecialCharacter".tr();
   static String get restrictedAccess => "restrictedAccess".tr();
-  static String get guestRestrictionMessage => "guestRestrictionMessage".tr();
+
+  static String get guestRestrictionMessage => "jguestRestrictionMessage".tr();
   static String get notValidEmail => "notValidEmail".tr();
   static String get forgetPassword => "forgetPassword".tr();
   static String get enterYourForgetPassword => "enterYourForgetPassword".tr();
