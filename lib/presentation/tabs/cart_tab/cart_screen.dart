@@ -1,8 +1,8 @@
 import 'package:flora_mart/core/utils/config.dart';
 import 'package:flora_mart/core/utils/string_manager.dart';
 import 'package:flora_mart/core/utils/text_style_manager.dart';
-import 'package:flora_mart/data/model/cart/Cart.dart';
-import 'package:flora_mart/data/model/cart/CartItems.dart';
+import 'package:flora_mart/data/model/cart/cart.dart';
+import 'package:flora_mart/data/model/cart/cart_Items.dart';
 import 'package:flora_mart/data/model/cart/cart_response.dart';
 import 'package:flora_mart/presentation/check_out/view/check_out_page.dart';
 import 'package:flora_mart/presentation/tabs/cart_tab/view_model/cubit/cart_cubit.dart';
@@ -87,13 +87,12 @@ class CartScreen extends StatelessWidget {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) =>
-                                        CheckOutPage(
-                                          subtotal: (state.cartItems.cart
-                                              ?.totalPriceAfterDiscount ??
+                                    builder: (context) => CheckOutPage(
+                                      subtotal: (state.cartItems.cart
+                                                  ?.totalPriceAfterDiscount ??
                                               0)
-                                              .toDouble(),
-                                        ),
+                                          .toDouble(),
+                                    ),
                                   ),
                                 );
                               },

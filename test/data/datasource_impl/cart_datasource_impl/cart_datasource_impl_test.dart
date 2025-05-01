@@ -4,14 +4,15 @@ import 'package:flora_mart/core/api/api_result.dart';
 import 'package:flora_mart/core/cache/shared_pref.dart';
 import 'package:flora_mart/core/constant.dart';
 import 'package:flora_mart/data/datasource_impl/cart_datasource_impl/cart_datasource_impl.dart';
-import 'package:flora_mart/data/model/cart/Cart.dart';
-import 'package:flora_mart/data/model/cart/CartItems.dart';
+import 'package:flora_mart/data/model/cart/cart.dart';
+import 'package:flora_mart/data/model/cart/cart_Items.dart';
 import 'package:flora_mart/data/model/cart/cart_response.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import 'cart_datasource_impl_test.mocks.dart';
+import '../best_seller_datasource_impl_test.mocks.dart';
+import '../guest_datasource_impl_test.mocks.dart';
 
 @GenerateMocks([ApiManager, CacheHelper])
 void main() {

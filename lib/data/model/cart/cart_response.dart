@@ -1,4 +1,4 @@
-import 'package:flora_mart/data/model/cart/Cart.dart';
+import 'package:flora_mart/data/model/cart/cart.dart';
 
 /// message : "success"
 /// numOfCartItems : 2
