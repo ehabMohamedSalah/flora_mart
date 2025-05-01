@@ -1,6 +1,6 @@
 // ignore_for_file: file_names
 
-import 'CartItems.dart';
+import 'package:flora_mart/data/model/cart/cart_Items.dart';
 
 /// _id : "67f96722a9832d8359de16df"
 /// user : "678a783d3c3797492747c8e6"
