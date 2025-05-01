@@ -153,8 +153,7 @@ class AppStrings {
   static String get editProfile => "editProfile".tr();
   static String get profileUpdatedSuccessfully => "profileUpdatedSuccessfully".tr();
   static String get photoUploadedSuccessfully => "photoUploadedSuccessfully".tr();
-  static String get yourAddressDeletedSuccessfully => "YourAddressDeletedSuccessfully".tr();
-  static String get active => "active".tr();
+   static String get active => "active".tr();
   static String get complete => "complete".tr();
   static String get orderNumber => "orderNumber".tr();
   static String get noActiveOrder => "noActiveOrder".tr();

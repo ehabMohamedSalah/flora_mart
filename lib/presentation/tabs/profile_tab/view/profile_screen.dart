@@ -25,6 +25,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/resuable_comp/dialogs.dart';
+import '../../../orders/view/orders_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -124,7 +125,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         title: AppStrings.myOrders,
                         icon: Icons.list_alt_outlined,
                         iconArrow: Icons.keyboard_arrow_right_outlined,
-                        onAction: () {},
+                        onAction: () {
+                          MaterialPageRoute(
+                            builder: (context) =>   OrdersScreen(),
+                          );
+                        },
                       ),
                       ItemCartsProfileWidget(
                         title: AppStrings.savedAddress,
