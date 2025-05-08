@@ -1,5 +1,6 @@
 import 'package:flora_mart/core/utils/colors_manager.dart';
 import 'package:flora_mart/core/utils/config.dart';
+import 'package:flora_mart/core/utils/routes_manager.dart';
 import 'package:flora_mart/core/utils/string_manager.dart';
 import 'package:flora_mart/core/utils/text_style_manager.dart';
 import 'package:flora_mart/data/model/getSavedAddressResponce.dart';
@@ -40,7 +41,9 @@ class DeliveryAddressWidget extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: OutlinedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, RouteManager.addAddressScreen);
+                  },
                   child: Text(
                     AppStrings.addNewAddress,
                     style: const TextStyle(color: ColorManager.pinkBase),
@@ -54,8 +57,8 @@ class DeliveryAddressWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildAddressList(List<Addresses> addresses, String? selectedId,
-      BuildContext context) {
+  Widget _buildAddressList(
+      List<Addresses> addresses, String? selectedId, BuildContext context) {
     final hasManyAddresses = addresses.length >= 3;
 
     final listView = ListView.builder(

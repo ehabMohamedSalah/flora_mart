@@ -2,6 +2,7 @@ import 'package:flora_mart/core/di/di.dart';
 import 'package:flora_mart/core/resuable_comp/toast_message.dart';
 import 'package:flora_mart/core/utils/colors_manager.dart';
 import 'package:flora_mart/core/utils/config.dart';
+import 'package:flora_mart/core/utils/routes_manager.dart';
 import 'package:flora_mart/core/utils/string_manager.dart';
 import 'package:flora_mart/presentation/address/view/add_address_screen.dart';
 import 'package:flora_mart/presentation/saved_address_page/view/saved_address_card.dart';
@@ -71,6 +72,8 @@ class SavedAddressPage extends StatelessWidget {
                           child: ElevatedButton(
                             onPressed: () {
                               // Handle add new address
+                              Navigator.pushNamed(
+                                  context, RouteManager.addAddressScreen);
                             },
                             child: Padding(
                               padding: const EdgeInsets.all(8),
