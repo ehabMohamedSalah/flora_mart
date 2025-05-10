@@ -2,19 +2,19 @@
 
 import 'dart:developer';
 
+import 'package:bloc/bloc.dart';
+import 'package:flora_mart/core/api/api_result.dart';
 import 'package:flora_mart/core/cache/shared_pref.dart';
 import 'package:flora_mart/core/constant.dart';
 import 'package:flora_mart/core/di/di.dart';
 import 'package:flora_mart/core/utils/routes_manager.dart';
+import 'package:flora_mart/data/model/UserModel.dart';
 import 'package:flora_mart/domain/common/result.dart';
 import 'package:flora_mart/domain/entity/auth/auth_response_entity.dart';
 import 'package:flora_mart/domain/usecase/changeGuest_usecase.dart';
 import 'package:flora_mart/domain/usecase/check_guest_usecase.dart';
-import 'package:flora_mart/domain/usecase/register_usecase.dart';
-import 'package:bloc/bloc.dart';
-import 'package:flora_mart/core/api/api_result.dart';
-import 'package:flora_mart/data/model/UserModel.dart';
 import 'package:flora_mart/domain/usecase/login_Usecase.dart';
+import 'package:flora_mart/domain/usecase/register_usecase.dart';
 import 'package:flora_mart/presentation/auth/view_model/cubit/auth_intent.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -111,6 +111,8 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
+  UserModel? userModel;
+
   _SignIn({required SignInIntent intent}) async {
     emit(LoginLoadingState());
     final result = await signInUsecase.invoke(
@@ -120,6 +122,7 @@ class AuthCubit extends Cubit<AuthState> {
     );
     switch (result) {
       case SuccessApiResult():
+        userModel = result.data;
         emit(LoginSuccessState(userModel: result.data));
         _changeGuest(intent: ChangeGuestIntent(isGuest: false));
         break;
@@ -223,8 +226,7 @@ class AuthCubit extends Cubit<AuthState> {
 
   _Logout({required LogoutIntent intent}) async {
     emit(LogoutLoadingState());
-    final result = await logoutUsecase.invoke(
-    );
+    final result = await logoutUsecase.invoke();
     switch (result) {
       case SuccessApiResult():
         {
@@ -232,8 +234,7 @@ class AuthCubit extends Cubit<AuthState> {
         }
       case ErrorApiResult():
         {
-          emit(LogoutFailureState(
-              message: result.exception.toString()));
+          emit(LogoutFailureState(message: result.exception.toString()));
         }
     }
   }

@@ -16,7 +16,6 @@ class SelectPaymentWayIntent extends CheckoutIntent {
   SelectPaymentWayIntent({required this.id});
 }
 
-
 class SelectGiftIntent extends CheckoutIntent {
   bool isSelected;
 
@@ -33,8 +32,10 @@ class PlaceOrderIntent extends CheckoutIntent {
 class LaunchPaymentUrl extends CheckoutIntent {
   final BuildContext context;
   final String? url;
+  final String orderId;
 
-  LaunchPaymentUrl({required this.context, required this.url});
+  LaunchPaymentUrl(
+      {required this.context, required this.url, required this.orderId});
 }
 
 class GetSavedAddressIntent extends CheckoutIntent {}
