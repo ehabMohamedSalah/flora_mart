@@ -22,7 +22,6 @@ import 'package:flora_mart/presentation/search_screen/search_screen.dart';
 import 'package:flora_mart/presentation/tabs/categories_tab/view_model/product_cubit.dart';
 import 'package:flora_mart/presentation/tabs/home_tab/widgets/occasions/view/occasion_widget.dart';
 import 'package:flora_mart/presentation/tabs/main_screen/main_screen.dart';
-import 'package:flora_mart/presentation/track_order_screeen/track_order_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -117,8 +116,11 @@ class _MyAppState extends State<MyApp> {
           localizationsDelegates: context.localizationDelegates,
           supportedLocales: context.supportedLocales,
           locale: context.locale,
-          // initialRoute: initialRoute(),
-          home: const TrackOrderScreen(),
+          initialRoute: initialRoute(),
+          // home: BlocProvider<TrackOrderCubit>(
+          //   create: (context) => getIt<TrackOrderCubit>(),
+          //   child: const TrackOrderScreen(),
+          // ),
         );
       },
     );

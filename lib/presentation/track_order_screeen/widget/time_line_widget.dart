@@ -1,19 +1,21 @@
 import 'package:flora_mart/core/utils/config.dart';
 import 'package:flora_mart/core/utils/text_style_manager.dart';
+import 'package:flora_mart/data/model/order_tracked/order_status.dart';
 import 'package:flutter/material.dart';
 import 'package:timelines_plus/timelines_plus.dart';
 
 class TimeLineWidget extends StatelessWidget {
-  const TimeLineWidget({super.key});
+  final List<OrderStatus> orderStatus;
+  const TimeLineWidget({super.key, required this.orderStatus});
 
   @override
   Widget build(BuildContext context) {
-    final List<Map<String, dynamic>> steps = [
-      {'label': 'Order Received', 'isDone': true, "date": "12/12/2022"},
-      {'label': 'Processing', 'isDone': true, "date": "12/12/2022"},
-      {'label': 'Out for Delivery', 'isDone': false, "date": "12/12/2022"},
-      {'label': 'Delivered', 'isDone': false, "date": "12/12/2022"},
-    ];
+    // final List<Map<String, dynamic>> steps = [
+    //   {'label': 'Received your order', 'isDone': true, "date": "12/12/2022"},
+    //   {'label': 'Preparing your order', 'isDone': true, "date": "12/12/2022"},
+    //   {'label': 'Out for Delivery', 'isDone': false, "date": "12/12/2022"},
+    //   {'label': 'Delivered', 'isDone': false, "date": "12/12/2022"},
+    // ];
     Config().init(context);
     return Timeline.tileBuilder(
       physics: const BouncingScrollPhysics(),
@@ -23,7 +25,7 @@ class TimeLineWidget extends StatelessWidget {
         nodeItemOverlap: false,
       ),
       builder: TimelineTileBuilder.connected(
-        connectionDirection: ConnectionDirection.before,
+        connectionDirection: ConnectionDirection.after,
         itemExtent: 100,
         contentsBuilder: (context, index) => Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -33,11 +35,11 @@ class TimeLineWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  steps[index]['label'],
+                  orderStatus[index].statusName ?? "",
                   style: AppTextStyle.medium14,
                 ),
                 Text(
-                  steps[index]['date'],
+                  (orderStatus[index].date ?? "").toString(),
                   style: AppTextStyle.regular14.copyWith(color: Colors.grey),
                 ),
               ],
@@ -45,7 +47,7 @@ class TimeLineWidget extends StatelessWidget {
           ),
         ),
         indicatorBuilder: (context, index) {
-          final isDone = steps[index]['isDone'] as bool;
+          final isDone = orderStatus[index].isDone ?? false;
           return IgnorePointer(
             child: SizedBox(
               width: Config.screenWidth! * 0.02,
@@ -60,14 +62,14 @@ class TimeLineWidget extends StatelessWidget {
           );
         },
         connectorBuilder: (context, index, type) {
+          final isDone = orderStatus[index].isDone ?? false;
+
           return SolidLineConnector(
             thickness: 1.5,
-            color: steps[index]['isDone']
-                ? Theme.of(context).colorScheme.primary
-                : Colors.grey,
+            color: isDone ? Theme.of(context).colorScheme.primary : Colors.grey,
           );
         },
-        itemCount: steps.length,
+        itemCount: orderStatus.length,
       ),
     );
   }
