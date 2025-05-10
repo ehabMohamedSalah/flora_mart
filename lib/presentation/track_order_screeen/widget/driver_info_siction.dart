@@ -4,6 +4,7 @@ import 'package:flora_mart/core/utils/config.dart';
 import 'package:flora_mart/core/utils/string_manager.dart';
 import 'package:flora_mart/core/utils/text_style_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -33,17 +34,7 @@ class DriverInfoSiction extends StatelessWidget {
       SizedBox(width: Config.screenWidth! * 0.09),
       InkWell(
         onTap: () async {
-          final phone =
-              driverPhone ?? "".replaceAll('+', '').replaceAll(' ', '');
-          final telUrl = Uri.parse('tel:$phone');
-
-          if (await canLaunchUrl(telUrl)) {
-            await launchUrl(telUrl);
-          } else {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('لا يمكن إجراء المكالمة')),
-            );
-          }
+          await FlutterPhoneDirectCaller.callNumber(driverPhone ?? "");
         },
         child: SvgPicture.asset(AssetsManager.imagesCall),
       ),

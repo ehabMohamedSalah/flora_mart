@@ -38,80 +38,83 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
   @override
   Widget build(BuildContext context) {
     Config().init(context);
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(AppStrings.trackorder),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () => Navigator.pushNamedAndRemoveUntil(
-              context, RouteManager.mainScreen, (_) => false),
+    return PopScope(
+      canPop: false,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(AppStrings.trackorder),
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () => Navigator.pushNamedAndRemoveUntil(
+                context, RouteManager.mainScreen, (_) => false),
+          ),
         ),
-      ),
-      body: BlocBuilder<TrackOrderCubit, TrackOrderState>(
-        builder: (context, state) {
-          if (state is GetTrackOrderSuccessState) {
-            return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Text(
-                    AppStrings.estimatedArrival,
-                    style: AppTextStyle.medium14.copyWith(color: Colors.grey),
-                  ),
-                  Text(
-                    (state.orderTrackerModel.estimatedArrival ?? "Soon")
-                        .toString(),
-                    style: AppTextStyle.medium16,
-                  ),
-                  const Divider(
-                    color: Colors.black,
-                    thickness: 0.5,
-                  ),
-                  Config.spaceMedium,
-                  state.orderTrackerModel.driverName != null &&
-                          state.orderTrackerModel.driverPhone != null
-                      ? DriverInfoSiction(
-                          driverPhone: state.orderTrackerModel.driverPhone,
-                          driverName: state.orderTrackerModel.driverName,
-                        )
-                      : Center(
-                          child: Text(
-                            AppStrings.waitingfordriveraccept,
-                            style: AppTextStyle.regular24,
+        body: BlocBuilder<TrackOrderCubit, TrackOrderState>(
+          builder: (context, state) {
+            if (state is GetTrackOrderSuccessState) {
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Text(
+                      AppStrings.estimatedArrival,
+                      style: AppTextStyle.medium14.copyWith(color: Colors.grey),
+                    ),
+                    Text(
+                      (state.orderTrackerModel.estimatedArrival ?? "Soon")
+                          .toString(),
+                      style: AppTextStyle.medium16,
+                    ),
+                    const Divider(
+                      color: Colors.black,
+                      thickness: 0.5,
+                    ),
+                    Config.spaceMedium,
+                    state.orderTrackerModel.driverName != null &&
+                            state.orderTrackerModel.driverPhone != null
+                        ? DriverInfoSiction(
+                            driverPhone: state.orderTrackerModel.driverPhone,
+                            driverName: state.orderTrackerModel.driverName,
+                          )
+                        : Center(
+                            child: Text(
+                              AppStrings.waitingfordriveraccept,
+                              style: AppTextStyle.regular24,
+                            ),
                           ),
+                    Config.spaceMedium,
+                    Center(child: SvgPicture.asset(AssetsManager.imagesCar)),
+                    Config.spaceMedium,
+                    Expanded(
+                        child: TimeLineWidget(
+                      orderStatus: state.orderTrackerModel.orderStatus ?? [],
+                    )),
+                    ElevatedButton(
+                        onPressed: () {},
+                        style: ElevatedButton.styleFrom(
+                          fixedSize:
+                              Size(double.infinity, Config.screenHight! * 0.06),
                         ),
-                  Config.spaceMedium,
-                  Center(child: SvgPicture.asset(AssetsManager.imagesCar)),
-                  Config.spaceMedium,
-                  Expanded(
-                      child: TimeLineWidget(
-                    orderStatus: state.orderTrackerModel.orderStatus ?? [],
-                  )),
-                  ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        fixedSize:
-                            Size(double.infinity, Config.screenHight! * 0.06),
-                      ),
-                      child: Text(
-                        AppStrings.showmap,
-                        style: AppTextStyle.medium18.copyWith(
-                            color: Theme.of(context).colorScheme.onPrimary),
-                      )),
-                  Config.spaceSmall,
-                ],
-              ),
-            );
-          }
-          if (state is GetTrackOrderErrorState) {
-            return Center(child: Text(state.message));
-          }
-          return Center(
-              child: CircularProgressIndicator(
-            color: Theme.of(context).colorScheme.primary,
-          ));
-        },
+                        child: Text(
+                          AppStrings.showmap,
+                          style: AppTextStyle.medium18.copyWith(
+                              color: Theme.of(context).colorScheme.onPrimary),
+                        )),
+                    Config.spaceSmall,
+                  ],
+                ),
+              );
+            }
+            if (state is GetTrackOrderErrorState) {
+              return Center(child: Text(state.message));
+            }
+            return Center(
+                child: CircularProgressIndicator(
+              color: Theme.of(context).colorScheme.primary,
+            ));
+          },
+        ),
       ),
     );
   }
