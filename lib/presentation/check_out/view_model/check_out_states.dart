@@ -13,7 +13,11 @@ final class CheckoutNoAddressesFound extends CheckoutStates {}
 
 class UpdateGiftSwitchState extends CheckoutStates {}
 
-class CashOnDeliverySuccessState extends CheckoutStates {}
+class CashOnDeliverySuccessState extends CheckoutStates {
+  CashPaymentResponse cashPaymentResponse;
+
+  CashOnDeliverySuccessState({required this.cashPaymentResponse});
+}
 
 class CashOnDeliveryLoadingState extends CheckoutStates {}
 
@@ -24,9 +28,9 @@ class CashOnDeliveryErrorState extends CheckoutStates {
 }
 
 class CreditCardSuccessState extends CheckoutStates {
-  final String? url;
+  final CreditCardPaymentResponse creditCardPaymentResponse;
 
-  CreditCardSuccessState({required this.url});
+  CreditCardSuccessState({required this.creditCardPaymentResponse});
 }
 
 class CreditCardLoadingState extends CheckoutStates {}

@@ -3,6 +3,8 @@ import 'package:flora_mart/core/constant.dart';
 import 'package:flora_mart/core/resuable_comp/toast_message.dart';
 import 'package:flora_mart/core/utils/string_manager.dart';
 import 'package:flora_mart/data/model/getSavedAddressResponce.dart';
+import 'package:flora_mart/data/model/payment/cash/cash_payment_response.dart';
+import 'package:flora_mart/data/model/payment/credit_card/Credit_card_payment_response.dart';
 import 'package:flora_mart/domain/usecase/Payment_process_uesecases/cash_usecase.dart';
 import 'package:flora_mart/domain/usecase/Payment_process_uesecases/credit_card_usecase.dart';
 import 'package:flora_mart/domain/usecase/saved_address/get_saved_Address.dart';
@@ -10,6 +12,7 @@ import 'package:flora_mart/presentation/check_out/view/widgets/web_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+
 import 'check_out_intents.dart';
 
 part 'check_out_states.dart';
@@ -54,6 +57,7 @@ class CheckoutCubit extends Cubit<CheckoutStates> {
         _launchPaymentUrl(
           intent.url,
           intent.context,
+          intent.orderId,
         );
         break;
     }
@@ -106,7 +110,6 @@ class CheckoutCubit extends Cubit<CheckoutStates> {
     }
   }
 
-
   void _selectAddress(SelectAddressIntent intent) {
     selectedAddressId = intent.id;
     selectedAddress = intent.address;
@@ -134,7 +137,8 @@ class CheckoutCubit extends Cubit<CheckoutStates> {
         phone: selectedAddress?.phone ?? "");
     switch (result) {
       case SuccessApiResult():
-        emit(CashOnDeliverySuccessState());
+        emit(CashOnDeliverySuccessState(
+            cashPaymentResponse: result.data ?? CashPaymentResponse()));
         break;
       case ErrorApiResult():
         print("${result.exception.toString()} Error ⛔⛔");
@@ -153,7 +157,9 @@ class CheckoutCubit extends Cubit<CheckoutStates> {
         phone: selectedAddress?.phone ?? "");
     switch (result) {
       case SuccessApiResult():
-        emit(CreditCardSuccessState(url: result.data?.session?.url ?? ""));
+        emit(CreditCardSuccessState(
+            creditCardPaymentResponse:
+                result.data ?? CreditCardPaymentResponse()));
         break;
       case ErrorApiResult():
         print("${result.exception.toString()} Error ⛔⛔");
@@ -173,7 +179,9 @@ class CheckoutCubit extends Cubit<CheckoutStates> {
         phone: selectedAddress?.phone ?? "");
     switch (result) {
       case SuccessApiResult():
-        emit(CreditCardSuccessState(url: result.data?.session?.url ?? ""));
+        emit(CreditCardSuccessState(
+            creditCardPaymentResponse:
+                result.data ?? CreditCardPaymentResponse()));
         break;
       case ErrorApiResult():
         print("${result.exception.toString()} Error ⛔⛔");
@@ -182,7 +190,7 @@ class CheckoutCubit extends Cubit<CheckoutStates> {
     }
   }
 
-  _launchPaymentUrl(String? url, BuildContext context) {
+  _launchPaymentUrl(String? url, BuildContext context, String orderId) {
     if (url == null || url.isEmpty) return;
     try {
       final uri = Uri.tryParse(url);
@@ -190,7 +198,10 @@ class CheckoutCubit extends Cubit<CheckoutStates> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (_) => PaymentWebView(url: url),
+            builder: (_) => PaymentWebView(
+              url: url,
+              orderId: orderId,
+            ),
           ),
         );
       }

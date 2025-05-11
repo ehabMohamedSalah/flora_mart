@@ -1,14 +1,15 @@
 import 'package:flora_mart/core/constant.dart';
 import 'package:flora_mart/core/di/di.dart';
 import 'package:flora_mart/core/resuable_comp/toast_message.dart';
-import 'package:flora_mart/core/utils/routes_manager.dart';
+import 'package:flora_mart/core/utils/string_manager.dart';
 import 'package:flora_mart/presentation/check_out/view/widgets/its_gift_part/its_gift_widget.dart';
 import 'package:flora_mart/presentation/check_out/view_model/check_out_cubit.dart';
 import 'package:flora_mart/presentation/check_out/view_model/check_out_intents.dart';
+import 'package:flora_mart/presentation/order_success_screen/order_success_screen.dart';
 import 'package:flora_mart/presentation/tabs/cart_tab/widgets/order_summary_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flora_mart/core/utils/string_manager.dart';
+
 import 'widgets/app_bar_delivery_time_widget.dart';
 import 'widgets/delivery_part/delivery_address_widget.dart';
 import 'widgets/payment_method_part/payment_method_widget.dart';
@@ -34,12 +35,17 @@ class CheckOutPage extends StatelessWidget {
           listener: (context, state) async {
             final cubit = CheckoutCubit.get(context);
             if (state is CreditCardSuccessState) {
-              cubit
-                  .doIntent(LaunchPaymentUrl(context: context, url: state.url));
+              cubit.doIntent(LaunchPaymentUrl(
+                  context: context,
+                  url: state.creditCardPaymentResponse.session?.url,
+                  orderId: state.creditCardPaymentResponse.session?.id ?? ""));
             }
             if (state is CashOnDeliverySuccessState) {
-              Navigator.pushNamedAndRemoveUntil(
-                  context, RouteManager.mainScreen, (_) => false);
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => OrderSuccessScreen(
+                          orderId: state.cashPaymentResponse.order?.id ?? "")));
               toastMessage(
                 message: AppStrings.yourOrderPlacedSuccessfully,
                 tybeMessage: TybeMessage.positive,

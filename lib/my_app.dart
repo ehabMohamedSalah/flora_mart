@@ -18,9 +18,6 @@ import 'package:flora_mart/presentation/change_password/change_password_screen.d
 import 'package:flora_mart/presentation/change_password/cubit/change_password_cubit.dart';
 import 'package:flora_mart/presentation/edit_profile_screen/edit_profile_screen.dart';
 import 'package:flora_mart/presentation/edit_profile_screen/view_model/edit_profile_cubit.dart';
-import 'package:flora_mart/presentation/notification_screen/view/notification_screen.dart';
-import 'package:flora_mart/presentation/notification_screen/view_model/notification_cubit.dart';
-import 'package:flora_mart/presentation/notification_screen/view_model/notification_intent.dart';
 import 'package:flora_mart/presentation/search_screen/search_screen.dart';
 import 'package:flora_mart/presentation/tabs/categories_tab/view_model/product_cubit.dart';
 import 'package:flora_mart/presentation/tabs/home_tab/widgets/occasions/view/occasion_widget.dart';
@@ -120,6 +117,10 @@ class _MyAppState extends State<MyApp> {
           supportedLocales: context.supportedLocales,
           locale: context.locale,
           initialRoute: initialRoute(),
+          // home: BlocProvider<TrackOrderCubit>(
+          //   create: (context) => getIt<TrackOrderCubit>(),
+          //   child: const TrackOrderScreen(),
+          // ),
         );
       },
     );
