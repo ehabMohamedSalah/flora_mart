@@ -12,9 +12,17 @@ class OrderStatus {
   });
 
   factory OrderStatus.fromjson(Map<String, dynamic> data) {
-    final timestamp = data['date'];
+    final rawDate = data['date'];
+    DateTime? parsedDate;
+
+    if (rawDate is Timestamp) {
+      parsedDate = rawDate.toDate();
+    } else if (rawDate is String) {
+      parsedDate = DateTime.tryParse(rawDate);
+    }
+
     return OrderStatus(
-      date: timestamp != null ? (timestamp as Timestamp).toDate() : null,
+      date: parsedDate,
       isDone: data['is done'] ?? false,
       statusName: data['status name'] ?? '',
     );
