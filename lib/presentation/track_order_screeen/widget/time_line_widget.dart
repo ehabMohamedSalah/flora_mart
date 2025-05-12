@@ -27,9 +27,9 @@ class TimeLineWidget extends StatelessWidget {
       builder: TimelineTileBuilder.connected(
         connectionDirection: ConnectionDirection.after,
         itemExtent: 100,
-        contentsBuilder: (context, index) => Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Expanded(
+        contentsBuilder: (context, index) {
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -44,8 +44,8 @@ class TimeLineWidget extends StatelessWidget {
                 ),
               ],
             ),
-          ),
-        ),
+          );
+        },
         indicatorBuilder: (context, index) {
           final isDone = orderStatus[index].isDone ?? false;
           return IgnorePointer(

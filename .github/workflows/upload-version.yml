@@ -3,7 +3,7 @@ name: Distribute App via Firebase
 on:
   pull_request:
     branches:
-      - feature/FM-38-Firebase_App_Distribution
+      - new-development
 
 jobs:
   firebase_distribution:
