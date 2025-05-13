@@ -52,6 +52,8 @@ class ChangePasswordDatasourceImpl implements ChangePasswordDatasource {
       developer.log('Response data: ${response.data}');
 
       if (response.statusCode == 200 || response.statusCode == 201) {
+        await cacheHelper.setData<String>(
+            Constant.tokenKey, response.data['token']);
         return SuccessApiResult(null);
       }
 
