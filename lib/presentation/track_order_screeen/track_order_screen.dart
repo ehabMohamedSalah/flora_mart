@@ -7,6 +7,7 @@ import 'package:flora_mart/data/model/order_tracked/order_tracked_response.dart'
 import 'package:flora_mart/presentation/auth/view_model/cubit/auth_cubit.dart';
 import 'package:flora_mart/presentation/track_order_screeen/view_model/cubit/track_order_cubit.dart';
 import 'package:flora_mart/presentation/track_order_screeen/widget/driver_info_siction.dart';
+import 'package:flora_mart/presentation/track_order_screeen/widget/order_map_screen.dart';
 import 'package:flora_mart/presentation/track_order_screeen/widget/time_line_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -90,8 +91,18 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
                         child: TimeLineWidget(
                       orderStatus: state.orderTrackerModel.orderStatus ?? [],
                     )),
+                    // Update the ElevatedButton onPressed callback (around line 95)
                     ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => OrderMapScreen(
+                                orderTrackerModel: state.orderTrackerModel,
+                              ),
+                            ),
+                          );
+                        },
                         style: ElevatedButton.styleFrom(
                           fixedSize:
                               Size(double.infinity, Config.screenHight! * 0.06),
