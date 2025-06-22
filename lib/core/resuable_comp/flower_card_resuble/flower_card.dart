@@ -14,7 +14,6 @@ class FlowerCard extends StatelessWidget {
   final String? imgCover;
   final num? price;
   final num? priceAfterDiscount;
-  final num? discount;
   final VoidCallback onTap;
   const FlowerCard(
       {super.key,
@@ -22,11 +21,13 @@ class FlowerCard extends StatelessWidget {
       this.imgCover,
       this.price,
       this.priceAfterDiscount,
-      this.discount,
       required this.onTap});
 
   @override
   Widget build(BuildContext context) {
+    double discount = price != null && priceAfterDiscount != null
+        ? ((price! - priceAfterDiscount!) / price!) * 100
+        : 0;
     Config().init(context);
     return Container(
         decoration: BoxDecoration(
@@ -105,7 +106,7 @@ class FlowerCard extends StatelessWidget {
                       ),
                       const SizedBox(width: 5),
                       AutoSizeText(
-                        "${discount ?? "0"}%",
+                        "${discount.toInt()}%",
                         overflow: TextOverflow.ellipsis,
                         style: const TextStyle(color: ColorManager.green),
                         maxLines: 2,

@@ -110,7 +110,6 @@ class Product {
     return Products(
       category: category,
       description: description,
-      discount: discount,
       id: id,
       imgCover: imgCover,
       images: images,

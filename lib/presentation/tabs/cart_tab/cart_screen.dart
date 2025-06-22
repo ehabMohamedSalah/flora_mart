@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flora_mart/core/utils/config.dart';
 import 'package:flora_mart/core/utils/string_manager.dart';
 import 'package:flora_mart/core/utils/text_style_manager.dart';
@@ -77,10 +79,9 @@ class CartScreen extends StatelessWidget {
                                     cartResponse: state.cartItems)),
                             const SizedBox(height: 20),
                             OrderSummaryWidget(
-                                subTotal: (state.cartItems.cart
-                                            ?.totalPriceAfterDiscount ??
-                                        0)
-                                    .toDouble()),
+                                subTotal:
+                                    (state.cartItems.cart?.totalPrice ?? 0)
+                                        .toDouble()),
                             const SizedBox(height: 20),
                             ElevatedButton(
                               onPressed: () {
@@ -88,10 +89,10 @@ class CartScreen extends StatelessWidget {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => CheckOutPage(
-                                      subtotal: (state.cartItems.cart
-                                                  ?.totalPriceAfterDiscount ??
-                                              0)
-                                          .toDouble(),
+                                      subtotal:
+                                          (state.cartItems.cart?.totalPrice ??
+                                                  0)
+                                              .toDouble(),
                                     ),
                                   ),
                                 );

@@ -39,7 +39,7 @@ class _ProductCartWidgetState extends State<ProductCartWidget> {
   @override
   void initState() {
     super.initState();
-    unitPrice = widget.priceAfterDiscount ?? widget.price ?? 0;
+    unitPrice = widget.price ?? 0;
     quantity = widget.quantity ?? 1;
   }
 
