@@ -5,6 +5,7 @@ import 'package:flora_mart/config/theme/app_theme.dart';
 import 'package:flora_mart/core/di/di.dart';
 import 'package:flora_mart/core/resuable_comp/toast_message.dart';
 import 'package:flora_mart/core/utils/colors_manager.dart';
+import 'package:flora_mart/core/utils/config.dart';
 import 'package:flora_mart/core/utils/routes_manager.dart';
 import 'package:flora_mart/core/utils/string_manager.dart';
 import 'package:flora_mart/domain/entity/auth/user_entity.dart';
@@ -45,6 +46,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Config().init(context);
     return BlocProvider(
       create: (context) =>
           getIt<MainProfileCubit>()..onIntent(DataProfileCubitIntent()),

@@ -1,207 +1,186 @@
-import 'dart:async';
+import 'dart:convert';
+import 'dart:developer';
+
+import 'package:flora_mart/core/utils/string_manager.dart';
+import 'package:flora_mart/presentation/track_order_screeen/widget/custom_marker_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:flutter_map/flutter_map.dart';
 import 'package:flora_mart/core/utils/config.dart';
-import 'package:flora_mart/core/utils/text_style_manager.dart';
 import 'package:flora_mart/data/model/order_tracked/order_tracked_response.dart';
+import 'package:latlong2/latlong.dart';
+import 'package:location/location.dart';
+import 'package:http/http.dart' as http;
 
 class OrderMapScreen extends StatefulWidget {
   final OrderTrackerModel orderTrackerModel;
-  
-  const OrderMapScreen({Key? key, required this.orderTrackerModel}) : super(key: key);
+
+  const OrderMapScreen({super.key, required this.orderTrackerModel});
 
   @override
   State<OrderMapScreen> createState() => _OrderMapScreenState();
 }
 
 class _OrderMapScreenState extends State<OrderMapScreen> {
-  GoogleMapController? _mapController;
-  Timer? _timer;
-  
-  // Starting position for the driver (will be updated from Firebase in real implementation)
-  LatLng _driverPosition = const LatLng(24.7136, 46.6753); // Example coordinates
-  
-  // Destination position (customer location)
-  final LatLng _destinationPosition = const LatLng(24.7255, 46.6468); // Example coordinates
-  
-  // Polyline coordinates representing the route
-  final List<LatLng> _routeCoordinates = [
-    const LatLng(24.7136, 46.6753), // Starting point
-    const LatLng(24.7175, 46.6700),
-    const LatLng(24.7200, 46.6650),
-    const LatLng(24.7225, 46.6600),
-    const LatLng(24.7255, 46.6468), // Destination point
-  ];
-  
-  // Current position index in the route
-  int _currentPositionIndex = 0;
-  
-  // Map markers and polylines
-  final Set<Marker> _markers = {};
-  final Set<Polyline> _polylines = {};
+  ThemeData theme(BuildContext context) => Theme.of(context);
+  MapController mapController = MapController(); // for scrolling in map
+  LocationData? currentLocation; // get current location
+  List<LatLng> routesPoints = []; // for draw line in map from start to end
+  List<Marker> markers = []; // for add markers in map
+  final String orsApiKey =
+      "5b3ce3597851110001cf6248a7255b57b721401d9fb5f8c156423b8e"; // this key from website service (https://openrouteservice.org/) for return 2 routes points
 
   @override
   void initState() {
     super.initState();
-    _initializeMap();
-    _startDriverAnimation();
+    _initMap();
   }
 
-  @override
-  void dispose() {
-    _timer?.cancel();
-    _mapController?.dispose();
-    super.dispose();
-  }
+  _initMap() async {
+    await _getCurrentLocation();
 
-  void _initializeMap() {
-    // Create the polyline for the route
-    _polylines.add(
-      Polyline(
-        polylineId: const PolylineId('route'),
-        points: _routeCoordinates,
-        color: Colors.pink,
-        width: 5,
-      ),
-    );
-    
-    // Add destination marker
-    _markers.add(
-      Marker(
-        markerId: const MarkerId('destination'),
-        position: _destinationPosition,
-        icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRose),
-        infoWindow: const InfoWindow(title: 'Destination'),
-      ),
-    );
-    
-    // Add initial driver marker
-    _updateDriverMarker();
-  }
-
-  void _startDriverAnimation() {
-    // Update driver position every 5 seconds
-    _timer = Timer.periodic(const Duration(seconds: 5), (timer) {
-      if (_currentPositionIndex < _routeCoordinates.length - 1) {
-        setState(() {
-          _currentPositionIndex++;
-          _driverPosition = _routeCoordinates[_currentPositionIndex];
-          _updateDriverMarker();
-          _animateToCurrentPosition();
-        });
-      } else {
-        // Driver has reached destination
-        timer.cancel();
-      }
-    });
-  }
-
-  void _updateDriverMarker() {
-    // Remove old driver marker
-    _markers.removeWhere((marker) => marker.markerId.value == 'driver');
-    
-    // Add updated driver marker
-    _markers.add(
-      Marker(
-        markerId: const MarkerId('driver'),
-        position: _driverPosition,
-        icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueAzure),
-        infoWindow: InfoWindow(title: widget.orderTrackerModel.driverName ?? 'Driver'),
-      ),
-    );
-  }
-
-  void _animateToCurrentPosition() {
-    _mapController?.animateCamera(
-      CameraUpdate.newLatLngBounds(
-        _getBounds(_routeCoordinates),
-        50.0, // padding
-      ),
-    );
-  }
-
-  LatLngBounds _getBounds(List<LatLng> positions) {
-    double minLat = positions.first.latitude;
-    double maxLat = positions.first.latitude;
-    double minLng = positions.first.longitude;
-    double maxLng = positions.first.longitude;
-    
-    for (final position in positions) {
-      if (position.latitude < minLat) minLat = position.latitude;
-      if (position.latitude > maxLat) maxLat = position.latitude;
-      if (position.longitude < minLng) minLng = position.longitude;
-      if (position.longitude > maxLng) maxLng = position.longitude;
+    if (currentLocation != null) {
+      _getRoute(const LatLng(29.988351, 31.229417));
     }
-    
-    return LatLngBounds(
-      southwest: LatLng(minLat, minLng),
-      northeast: LatLng(maxLat, maxLng),
+  }
+
+  Future<void> _getCurrentLocation() async {
+    var location = Location();
+    try {
+      var userLocation = await location.getLocation();
+      setState(() {
+        currentLocation = userLocation;
+        markers.add(Marker(
+          width: 80,
+          height: 80,
+          point: LatLng(userLocation.latitude!, userLocation.longitude!),
+          child:
+              const CustomMarkerWidget(label: "Appartment", icon: Icons.home),
+        ));
+      });
+    } on Exception {
+      currentLocation = null;
+    }
+    location.onLocationChanged.listen(
+      (LocationData newLocation) {
+        setState(() {
+          currentLocation = newLocation;
+        });
+      },
     );
   }
+
+  Future<void> _getRoute(LatLng destination) async {
+    log('currentLocation: $currentLocation');
+
+    if (currentLocation == null) return;
+    log('currentLocation: $currentLocation');
+    final start =
+        LatLng(currentLocation!.latitude!, currentLocation!.longitude!);
+    final response = await http.get(Uri.parse(
+        'https://api.openrouteservice.org/v2/directions/driving-car?api_key=$orsApiKey&start=${start.longitude},${start.latitude}&end=${destination.longitude},${destination.latitude}'));
+    if (response.statusCode == 200) {
+      log("Success to get route");
+      final data = json.decode(response.body);
+      final List<dynamic> coords =
+          data['features'][0]['geometry']['coordinates'];
+      setState(() {
+        routesPoints =
+            coords.map((coord) => LatLng(coord[1], coord[0])).toList();
+        markers.add(Marker(
+            width: 80,
+            height: 80,
+            point: destination,
+            child: CustomMarkerWidget(label: "Flowery", icon: Icons.store)));
+      });
+    } else {
+      log("Error to get route");
+    }
+  }
+
+  // Future<void> _addDestinationMarker(LatLng point) async {
+  //   await _getRoute(point);
+  // }
 
   @override
   Widget build(BuildContext context) {
     Config().init(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Track Order',
-          style: AppTextStyle.medium18,
-        ),
-      ),
-      body: Column(
+          centerTitle: true,
+          title: Text(
+            AppStrings.showmap,
+          )),
+      body: currentLocation == null
+          ? const Center(child: CircularProgressIndicator())
+          : FlutterMap(
+              mapController: mapController,
+              options: MapOptions(
+                initialCenter: LatLng(
+                    currentLocation!.latitude!,
+                    currentLocation!
+                        .longitude!), // مركز الخريطة (مثلاً القاهرة)
+                initialZoom: 15.0,
+                // onTap: (tapPosition, point) => _addDestinationMarker(point),
+              ),
+              children: [
+                TileLayer(
+                  urlTemplate:
+                      "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                  subdomains: const ['a', 'b', 'c'],
+                  userAgentPackageName: 'com.example.yourapp',
+                ),
+                if (routesPoints.isNotEmpty)
+                  PolylineLayer(
+                    polylines: [
+                      Polyline(
+                        points: routesPoints,
+                        strokeWidth: 4,
+                        color: theme(context).colorScheme.primary,
+                      ),
+                    ],
+                  ),
+                MarkerLayer(markers: markers),
+              ],
+            ),
+      floatingActionButton: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
-          // Driver info card
-          if (widget.orderTrackerModel.driverName != null)
-            Container(
-              padding: const EdgeInsets.all(16),
-              color: Colors.white,
-              child: Row(
-                children: [
-                  CircleAvatar(
-                    backgroundColor: Theme.of(context).primaryColor.withOpacity(0.2),
-                    child: Icon(
-                      Icons.person,
-                      color: Theme.of(context).primaryColor,
-                    ),
-                  ),
-                  const SizedBox(width: 16),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          widget.orderTrackerModel.driverName ?? 'Driver',
-                          style: AppTextStyle.medium16,
-                        ),
-                        Text(
-                          'Estimated arrival: ${widget.orderTrackerModel.estimatedArrival?.toString().substring(0, 16) ?? 'Soon'}',
-                          style: AppTextStyle.medium14.copyWith(color: Colors.grey),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          // Map view
-          Expanded(
-            child: GoogleMap(
-              initialCameraPosition: CameraPosition(
-                target: _driverPosition,
-                zoom: 14,
-              ),
-              markers: _markers,
-              polylines: _polylines,
-              onMapCreated: (controller) {
-                _mapController = controller;
-                _animateToCurrentPosition();
-              },
-              myLocationEnabled: false,
-              compassEnabled: true,
-              zoomControlsEnabled: true,
-              mapType: MapType.normal,
-            ),
+          FloatingActionButton(
+            heroTag: "zoom_in",
+            mini: true,
+            child: const Icon(Icons.zoom_in),
+            onPressed: () {
+              mapController.move(
+                mapController.camera.center,
+                mapController.camera.zoom + 1,
+              );
+            },
+          ),
+          const SizedBox(height: 10),
+          FloatingActionButton(
+            heroTag: "zoom_out",
+            mini: true,
+            child: const Icon(Icons.zoom_out),
+            onPressed: () {
+              mapController.move(
+                mapController.camera.center,
+                mapController.camera.zoom - 1,
+              );
+            },
+          ),
+          const SizedBox(height: 10),
+          FloatingActionButton(
+            heroTag: "my_location",
+            child: const Icon(Icons.my_location),
+            onPressed: () {
+              if (currentLocation != null) {
+                mapController.move(
+                  LatLng(
+                      currentLocation!.latitude!, currentLocation!.longitude!),
+                  15.0,
+                );
+              }
+            },
           ),
         ],
       ),
