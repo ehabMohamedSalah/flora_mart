@@ -11,7 +11,7 @@ import 'package:flora_mart/presentation/tabs/cart_tab/view_model/cubit/cart_cubi
 import 'package:flora_mart/presentation/tabs/cart_tab/view_model/cubit/cart_intent.dart';
 import 'package:flora_mart/presentation/tabs/cart_tab/widgets/order_summary_widget.dart';
 import 'package:flora_mart/presentation/tabs/cart_tab/widgets/product_cart_builder.dart';
-import 'package:flora_mart/presentation/tabs/home_tab/widgets/home_screen_slivers/Address_sliver.dart';
+import 'package:flora_mart/core/resuable_comp/build_address_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -48,7 +48,7 @@ class CartScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                const BuildAdress(),
+                const BuildAdressWidget(),
                 const SizedBox(height: 10),
 
                 /// BlocBuilder لمحتوى السلة بالكامل (المنتجات + OrderSummary)
