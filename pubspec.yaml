@@ -49,9 +49,6 @@ dependencies:
   flutter_svg: ^2.1.0
   flutter_otp_text_field: any
   google_fonts: any
-
-  flutter:
-    sdk: flutter
   dio: any
   image_picker: any
   shared_preferences: ^2.5.3
@@ -60,7 +57,7 @@ dependencies:
   easy_localization: any
   mockito: any
   bloc_test: any
-  skeletonizer: ^1.4.3
+  # skeletonizer: ^1.4.3
   carousel_slider: ^5.0.0
   smooth_page_indicator: ^1.2.1
   logger: ^2.5.0

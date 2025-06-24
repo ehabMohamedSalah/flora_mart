@@ -3,7 +3,8 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flora_mart/core/utils/assets_manager.dart';
 import 'package:flora_mart/core/utils/config.dart';
 import 'package:flutter/material.dart';
-import 'package:skeletonizer/skeletonizer.dart';
+import 'package:shimmer/shimmer.dart';
+// import 'package:skeletonizer/skeletonizer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class ImageSliderWidget extends StatefulWidget {
@@ -52,7 +53,9 @@ class _ImageSliderWidgetState extends State<ImageSliderWidget> {
                     fit: BoxFit.fill,
                     width: MediaQuery.of(context).size.width,
                     progressIndicatorBuilder:
-                        (context, url, downloadProgress) => Skeletonizer(
+                        (context, url, downloadProgress) => Shimmer.fromColors(
+                      baseColor: Colors.grey[300]!,
+                      highlightColor: Colors.grey[100]!,
                       enabled: true,
                       child: Container(
                         color: const Color.fromARGB(131, 158, 158, 158),

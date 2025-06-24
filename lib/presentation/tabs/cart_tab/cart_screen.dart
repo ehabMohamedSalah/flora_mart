@@ -14,7 +14,8 @@ import 'package:flora_mart/presentation/tabs/cart_tab/widgets/product_cart_build
 import 'package:flora_mart/core/resuable_comp/build_address_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:skeletonizer/skeletonizer.dart';
+import 'package:shimmer/shimmer.dart';
+// import 'package:skeletonizer/skeletonizer.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({super.key});
@@ -115,7 +116,9 @@ class CartScreen extends StatelessWidget {
                       }
 
                       // في حالة التحميل (Skeleton)
-                      return Skeletonizer(
+                      return Shimmer.fromColors(
+                        baseColor: Colors.grey[300]!,
+                        highlightColor: Colors.grey[100]!,
                         enabled: true,
                         child: Column(
                           children: [

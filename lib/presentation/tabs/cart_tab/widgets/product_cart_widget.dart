@@ -3,7 +3,8 @@ import 'package:flora_mart/core/utils/assets_manager.dart';
 import 'package:flora_mart/core/utils/colors_manager.dart';
 import 'package:flora_mart/core/utils/config.dart';
 import 'package:flutter/material.dart';
-import 'package:skeletonizer/skeletonizer.dart';
+import 'package:shimmer/shimmer.dart';
+// import 'package:skeletonizer/skeletonizer.dart';
 
 class ProductCartWidget extends StatefulWidget {
   final String? title;
@@ -69,7 +70,9 @@ class _ProductCartWidgetState extends State<ProductCartWidget> {
                   fit: BoxFit.cover,
                   // width: Config.screenWidth! * 0.4,
                   progressIndicatorBuilder: (context, url, downloadProgress) =>
-                      Skeletonizer(
+                      Shimmer.fromColors(
+                    baseColor: Colors.grey[300]!,
+                    highlightColor: Colors.grey[100]!,
                     enabled: true,
                     child: Container(
                       color: const Color.fromARGB(131, 158, 158, 158),
