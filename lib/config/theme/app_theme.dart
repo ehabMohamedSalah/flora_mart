@@ -124,7 +124,7 @@ class AppTheme {
       showUnselectedLabels: true,
     ),
 
-    tabBarTheme: const TabBarTheme(
+    tabBarTheme: const TabBarThemeData(
       labelColor: ColorManager.primaryColor,
       dividerColor: Colors.transparent,
       indicatorSize: TabBarIndicatorSize.tab,
@@ -138,7 +138,7 @@ class AppTheme {
     ),
 
     // 🛒 تصميم بطاقات المنتجات (Cards)
-    cardTheme: CardTheme(
+    cardTheme: CardThemeData(
       color: Colors.white,
       elevation: 2,
       shape: RoundedRectangleBorder(
@@ -147,4 +147,3 @@ class AppTheme {
     ),
   );
 }
-// Kareem@123
