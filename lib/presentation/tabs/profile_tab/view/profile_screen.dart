@@ -126,9 +126,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         icon: Icons.list_alt_outlined,
                         iconArrow: Icons.keyboard_arrow_right_outlined,
                         onAction: () {
-                          MaterialPageRoute(
-                            builder: (context) =>   OrdersScreen(),
-                          );
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => OrdersScreen(),
+                              ));
                         },
                       ),
                       ItemCartsProfileWidget(
