@@ -134,7 +134,7 @@ class AppTheme {
     ),
 
     progressIndicatorTheme: const ProgressIndicatorThemeData(
-      color: ColorManager.backgroundColor,
+      color: ColorManager.primaryColor,
     ),
 
     // 🛒 تصميم بطاقات المنتجات (Cards)
