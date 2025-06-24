@@ -160,4 +160,17 @@
   "whatsAppcannotbeopened": "WhatsApp cannot be opened",
   "yourorderplacedsuccessfully": "Your order placed\nsuccessfully!",
   "trackorder": "Track order"
+  "enterAddress": "Enter the address",
+  "myOrders":"My orders",
+  "active":"Active",
+  "complete": "Completed",
+  "orderNumber": "Order Number",
+  "noActiveOrder": "No Active Order",
+  "noCompletedOrder": "No Completed Order",
+  "enterAddress": "Enter the address",
+  "notification": "Notification",
+  "active":"Active",
+  "complete":"completed",
+  "noActiveOrder": "No Active Order",
+  "noCompletedOrder": "No Completed Order"
 }
