@@ -31,7 +31,7 @@ class SavedAddressCubit extends Cubit<SavedAddressState> {
     }
   }
 
-  List<Addresses>? addresses;
+  List<AddressesModel>? addresses;
   static SavedAddressCubit get(context) => BlocProvider.of(context);
 
   _deleteSavedAddress({required String id}) async {

@@ -187,6 +187,8 @@ import '../../domain/usecase/saved_address/get_saved_Address.dart' as _i920;
 import '../../domain/usecase/search_usecase.dart' as _i840;
 import '../../domain/usecase/tracked_order_usecase/create_tracked_order_usecase.dart'
     as _i96;
+import '../../domain/usecase/tracked_order_usecase/get_route_usecase.dart'
+    as _i1011;
 import '../../domain/usecase/tracked_order_usecase/get_tracked_order_usecase.dart'
     as _i866;
 import '../../domain/usecase/update_address_usecase.dart' as _i60;
@@ -202,6 +204,8 @@ import '../../presentation/edit_profile_screen/view_model/edit_profile_cubit.dar
     as _i678;
 import '../../presentation/notification_screen/view_model/notification_cubit.dart'
     as _i478;
+import '../../presentation/order_map_screen/view_model.dart/cubit/order_map_cubit.dart'
+    as _i1016;
 import '../../presentation/orders/view_model/order_cubit.dart' as _i238;
 import '../../presentation/reset_password/view_model/reset_password_cubit.dart'
     as _i833;
@@ -249,8 +253,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i574.VerifyresetcodeRepoDataSource>(() =>
         _i353.Verifyresetcoderepodatasourceimpl(
             apiManager: gh<_i1047.ApiManager>()));
-    gh.factory<_i460.TrackedOrderDatasource>(
-        () => _i339.TrackedOrderDatasourceImpl(gh<_i17.FirestoreHelper>()));
     gh.factory<_i623.GuestDatasource>(
         () => _i48.GuestDatasourceImpl(gh<_i299.CacheHelper>()));
     gh.factory<_i410.ResetPasswordDataSourceRepo>(
@@ -260,8 +262,11 @@ extension GetItInjectableX on _i174.GetIt {
             ));
     gh.factory<_i233.ResetPasswordRepo>(() =>
         _i1065.ResetPasswordRepoImpl(gh<_i410.ResetPasswordDataSourceRepo>()));
-    gh.factory<_i294.TrackedOrderRepo>(
-        () => _i203.TrackedOrderRepoImpl(gh<_i460.TrackedOrderDatasource>()));
+    gh.factory<_i460.TrackedOrderDatasource>(
+        () => _i339.TrackedOrderDatasourceImpl(
+              gh<_i17.FirestoreHelper>(),
+              gh<_i1047.ApiManager>(),
+            ));
     gh.factory<_i206.ForgetpasswordDataSourseRepo>(() =>
         _i319.ForgetpasswordDataSourceRepoImpl(
             apiManager: gh<_i1047.ApiManager>()));
@@ -367,6 +372,8 @@ extension GetItInjectableX on _i174.GetIt {
         _i836.ChangePasswordRepoImpl(gh<_i457.ChangePasswordDatasource>()));
     gh.factory<_i265.PaymentProcessRepo>(() =>
         _i418.PaymentProcessRepoImpl(gh<_i441.PaymentProcessDataSource>()));
+    gh.factory<_i294.TrackedOrderRepo>(
+        () => _i203.TrackedOrderRepoImpl(gh<_i460.TrackedOrderDatasource>()));
     gh.factory<_i51.AddressRepository>(
         () => _i302.AddressRepositoryImpl(gh<_i44.AddressDataSource>()));
     gh.factory<_i768.ResetPasswordUsecase>(() => _i768.ResetPasswordUsecase(
@@ -385,6 +392,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i96.CreateTrackedOrderUsecase(gh<_i294.TrackedOrderRepo>()));
     gh.factory<_i866.GetTrackedOrderUsecase>(
         () => _i866.GetTrackedOrderUsecase(gh<_i294.TrackedOrderRepo>()));
+    gh.factory<_i1011.GetRouteUsecase>(
+        () => _i1011.GetRouteUsecase(gh<_i294.TrackedOrderRepo>()));
     gh.factory<_i976.ForgetpasswordRepo>(() => _i210.Forgetpasswordrepoimpl(
         forgetpassword_data_sourse_repo:
             gh<_i206.ForgetpasswordDataSourseRepo>()));
@@ -407,6 +416,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i979.HomeCubit(gh<_i1069.HomeUsecase>()));
     gh.factory<_i833.ResetPasswordCubit>(
         () => _i833.ResetPasswordCubit(gh<_i768.ResetPasswordUsecase>()));
+    gh.factory<_i1016.OrdermapCubit>(
+        () => _i1016.OrdermapCubit(gh<_i1011.GetRouteUsecase>()));
     gh.factory<_i150.FilterRepo>(
         () => _i522.FilterRepoImpl(gh<_i484.FilterDatasource>()));
     gh.factory<_i285.ChangeguestUsecase>(

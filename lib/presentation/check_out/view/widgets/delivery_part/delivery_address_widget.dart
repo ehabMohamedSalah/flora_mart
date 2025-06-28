@@ -57,8 +57,8 @@ class DeliveryAddressWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildAddressList(
-      List<Addresses> addresses, String? selectedId, BuildContext context) {
+  Widget _buildAddressList(List<AddressesModel> addresses, String? selectedId,
+      BuildContext context) {
     final hasManyAddresses = addresses.length >= 3;
 
     final listView = ListView.builder(
@@ -82,7 +82,7 @@ class DeliveryAddressWidget extends StatelessWidget {
 
   Widget _buildAddressCard(
     int index,
-    List<Addresses> addresses,
+    List<AddressesModel> addresses,
     String? selectedAddressId,
     BuildContext context,
   ) {

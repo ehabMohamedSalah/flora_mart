@@ -10,6 +10,10 @@ class OrderTrackerModel {
   String? orderId;
   String? userId;
   List<OrderStatus>? orderStatus;
+  String? userLatitude;
+  String? userLongitude;
+  String? driverLatitude;
+  String? driverLongitude;
 
   OrderTrackerModel({
     this.driverId,
@@ -20,6 +24,10 @@ class OrderTrackerModel {
     this.orderId,
     this.userId,
     this.orderStatus,
+    this.userLatitude,
+    this.userLongitude,
+    this.driverLatitude,
+    this.driverLongitude,
   });
 
   OrderTrackerModel.fromJson(Map<String, dynamic> data) {
@@ -35,7 +43,10 @@ class OrderTrackerModel {
     driverName = data['driverName'];
     driverPhone = data['driverPhone'];
     driverStatus = data['driverStatus'];
-
+    userLatitude = data['userLatitude'];
+    userLongitude = data['userLongitude'];
+    driverLatitude = data['driverLatitude'];
+    driverLongitude = data['driverLongitude'];
     if (data['orderStatus'] != null) {
       orderStatus = [];
       for (var item in data['orderStatus']) {
@@ -53,6 +64,10 @@ class OrderTrackerModel {
       'driverName': driverName,
       'driverPhone': driverPhone,
       'driverStatus': driverStatus,
+      'userLatitude': userLatitude,
+      'userLongitude': userLongitude,
+      'driverLatitude': driverLatitude,
+      'driverLongitude': driverLongitude,
       'orderStatus': orderStatus?.map((e) => e.tojson()).toList(),
     };
   }

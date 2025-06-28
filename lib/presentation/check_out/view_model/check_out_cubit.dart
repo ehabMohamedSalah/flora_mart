@@ -30,10 +30,10 @@ class CheckoutCubit extends Cubit<CheckoutStates> {
   static CheckoutCubit get(context) => BlocProvider.of(context);
   final TextEditingController nameController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
-  List<Addresses> addresses = [];
+  List<AddressesModel> addresses = [];
   bool isGift = true;
   String? selectedAddressId;
-  Addresses? selectedAddress;
+  AddressesModel? selectedAddress;
   String? selectedPaymentWayId;
 
   void doIntent(CheckoutIntent intent) {
@@ -199,6 +199,7 @@ class CheckoutCubit extends Cubit<CheckoutStates> {
           context,
           MaterialPageRoute(
             builder: (_) => PaymentWebView(
+              address: selectedAddress ?? AddressesModel(),
               url: url,
               orderId: orderId,
             ),

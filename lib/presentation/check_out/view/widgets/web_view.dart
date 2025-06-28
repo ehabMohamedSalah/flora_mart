@@ -1,5 +1,6 @@
 import 'package:flora_mart/core/resuable_comp/toast_message.dart';
 import 'package:flora_mart/core/utils/string_manager.dart';
+import 'package:flora_mart/data/model/getSavedAddressResponce.dart';
 import 'package:flora_mart/presentation/order_success_screen/order_success_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -7,8 +8,13 @@ import 'package:webview_flutter/webview_flutter.dart';
 class PaymentWebView extends StatefulWidget {
   final String url;
   final String orderId;
+  final AddressesModel address;
 
-  const PaymentWebView({super.key, required this.url, required this.orderId});
+  const PaymentWebView(
+      {super.key,
+      required this.url,
+      required this.orderId,
+      required this.address});
 
   @override
   State<PaymentWebView> createState() => _PaymentWebViewState();
@@ -31,8 +37,10 @@ class _PaymentWebViewState extends State<PaymentWebView> {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) =>
-                          OrderSuccessScreen(orderId: widget.orderId)));
+                      builder: (context) => OrderSuccessScreen(
+                            orderId: widget.orderId,
+                            address: widget.address,
+                          )));
               toastMessage(
                 message: AppStrings.yourOrderPlacedSuccessfully,
                 tybeMessage: TybeMessage.positive,

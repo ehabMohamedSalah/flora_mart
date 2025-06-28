@@ -4,6 +4,7 @@ import 'package:flora_mart/core/utils/config.dart';
 import 'package:flora_mart/core/utils/routes_manager.dart';
 import 'package:flora_mart/core/utils/string_manager.dart';
 import 'package:flora_mart/core/utils/text_style_manager.dart';
+import 'package:flora_mart/data/model/getSavedAddressResponce.dart';
 import 'package:flora_mart/presentation/track_order_screeen/track_order_screen.dart';
 import 'package:flora_mart/presentation/track_order_screeen/view_model/cubit/track_order_cubit.dart';
 import 'package:flutter/material.dart';
@@ -11,8 +12,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class OrderSuccessScreen extends StatelessWidget {
   final String orderId;
+  final AddressesModel address;
 
-  const OrderSuccessScreen({super.key, required this.orderId});
+  const OrderSuccessScreen(
+      {super.key, required this.orderId, required this.address});
 
   @override
   Widget build(BuildContext context) {
@@ -62,6 +65,7 @@ class OrderSuccessScreen extends StatelessWidget {
                                 create: (context) => getIt<TrackOrderCubit>(),
                                 child: TrackOrderScreen(
                                   orderId: orderId,
+                                  address: address,
                                 ),
                               )));
                 },

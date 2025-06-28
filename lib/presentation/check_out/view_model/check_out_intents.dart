@@ -5,7 +5,7 @@ sealed class CheckoutIntent {}
 
 class SelectAddressIntent extends CheckoutIntent {
   final String id;
-  final Addresses address;
+  final AddressesModel address;
 
   SelectAddressIntent({required this.address, required this.id});
 }

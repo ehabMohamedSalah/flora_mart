@@ -2,6 +2,7 @@ import 'package:flora_mart/core/constant.dart';
 import 'package:flora_mart/core/di/di.dart';
 import 'package:flora_mart/core/resuable_comp/toast_message.dart';
 import 'package:flora_mart/core/utils/string_manager.dart';
+import 'package:flora_mart/data/model/getSavedAddressResponce.dart';
 import 'package:flora_mart/presentation/check_out/view/widgets/its_gift_part/its_gift_widget.dart';
 import 'package:flora_mart/presentation/check_out/view_model/check_out_cubit.dart';
 import 'package:flora_mart/presentation/check_out/view_model/check_out_intents.dart';
@@ -45,6 +46,7 @@ class CheckOutPage extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                       builder: (context) => OrderSuccessScreen(
+                          address: cubit.selectedAddress ?? AddressesModel(),
                           orderId: state.cashPaymentResponse.order?.id ?? "")));
               toastMessage(
                 message: AppStrings.yourOrderPlacedSuccessfully,

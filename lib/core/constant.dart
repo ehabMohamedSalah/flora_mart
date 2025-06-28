@@ -12,4 +12,6 @@ class Constant {
   static const String questCacheKey = "is_quest";
   static const String cacheOnDelivery = "CacheOnDelivery";
   static const String creditCard = "CreditCard";
+  static const String orsApiKey =
+      "5b3ce3597851110001cf6248a7255b57b721401d9fb5f8c156423b8e"; // this key from website service (https://openrouteservice.org/) for return 2 routes points
 }

@@ -12,13 +12,13 @@ class GetSavedAddressResponce {
     if (json['addresses'] != null) {
       addresses = [];
       json['addresses'].forEach((v) {
-        addresses?.add(Addresses.fromJson(v));
+        addresses?.add(AddressesModel.fromJson(v));
       });
     }
   }
 
   String? message;
-  List<Addresses>? addresses;
+  List<AddressesModel>? addresses;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -38,8 +38,8 @@ class GetSavedAddressResponce {
 /// username : "ahmedmuti"
 /// _id : "680791041433a666c8d1ead0"
 
-class Addresses {
-  Addresses({
+class AddressesModel {
+  AddressesModel({
     this.street,
     this.phone,
     this.city,
@@ -50,7 +50,7 @@ class Addresses {
     this.area,
   });
 
-  Addresses.fromJson(dynamic json) {
+  AddressesModel.fromJson(dynamic json) {
     street = json['street'];
     phone = json['phone'];
     city = json['city'];
