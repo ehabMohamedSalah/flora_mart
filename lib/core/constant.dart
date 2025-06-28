@@ -15,3 +15,14 @@ class Constant {
   static const String orsApiKey =
       "5b3ce3597851110001cf6248a7255b57b721401d9fb5f8c156423b8e"; // this key from website service (https://openrouteservice.org/) for return 2 routes points
 }
+
+enum OrderStatusEnum {
+  receivedYourOrder("Received your order"),
+  preparingYourOrder("Preparing your order"),
+  outForDelivery("Out for delivery"),
+  delivered("Delivered");
+
+  final String statusName;
+
+  const OrderStatusEnum(this.statusName);
+}

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:collection/collection.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flora_mart/core/di/di.dart';
@@ -17,6 +19,7 @@ import 'package:flora_mart/presentation/track_order_screeen/widget/time_line_wid
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:latlong2/latlong.dart';
 
 class TrackOrderScreen extends StatefulWidget {
   final String orderId;
@@ -64,6 +67,8 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
         body: BlocBuilder<TrackOrderCubit, TrackOrderState>(
           builder: (context, state) {
             if (state is GetTrackOrderSuccessState) {
+              log(state.orderTrackerModel.driverLongitude.toString());
+
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Column(
@@ -105,32 +110,40 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
                       orderStatus: state.orderTrackerModel.orderStatus ?? [],
                     )),
                     // Update the ElevatedButton onPressed callback (around line 95)
-                    ElevatedButton(
-                        onPressed: () {
-                          // Update the onPressed callback state
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => BlocProvider(
-                                create: (context) => getIt<OrdermapCubit>()
-                                  ..initMap(widget.address),
-                                child: OrderMapScreen(
-                                  address: widget.address,
-                                  orderTrackerModel: state.orderTrackerModel,
+                    if (state.orderTrackerModel.orderStatus?[2].isDone ?? false)
+                      ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => BlocProvider(
+                                  create: (context) => getIt<OrdermapCubit>()
+                                    ..initMap(
+                                        startAddress: widget.address,
+                                        destination: LatLng(
+                                            double.parse(state.orderTrackerModel
+                                                    .driverLatitude ??
+                                                "0"),
+                                            double.parse(state.orderTrackerModel
+                                                    .driverLongitude ??
+                                                "0"))),
+                                  child: OrderMapScreen(
+                                    address: widget.address,
+                                    orderTrackerModel: state.orderTrackerModel,
+                                  ),
                                 ),
                               ),
-                            ),
-                          );
-                        },
-                        style: ElevatedButton.styleFrom(
-                          fixedSize:
-                              Size(double.infinity, Config.screenHight! * 0.06),
-                        ),
-                        child: Text(
-                          AppStrings.showmap,
-                          style: AppTextStyle.medium18.copyWith(
-                              color: Theme.of(context).colorScheme.onPrimary),
-                        )),
+                            );
+                          },
+                          style: ElevatedButton.styleFrom(
+                            fixedSize: Size(
+                                double.infinity, Config.screenHight! * 0.06),
+                          ),
+                          child: Text(
+                            AppStrings.showmap,
+                            style: AppTextStyle.medium18.copyWith(
+                                color: Theme.of(context).colorScheme.onPrimary),
+                          )),
                     Config.spaceSmall,
                   ],
                 ),

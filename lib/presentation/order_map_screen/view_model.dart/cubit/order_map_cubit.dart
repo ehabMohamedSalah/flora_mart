@@ -26,10 +26,10 @@ class OrdermapCubit extends Cubit<OrdermapState> {
 
   static OrdermapCubit get(BuildContext context) =>
       Provider.of<OrdermapCubit>(context, listen: false);
-  initMap(AddressesModel startAddress) async {
-    _getRoute(
-        destination: const LatLng(29.988351, 31.229417),
-        startAddress: startAddress);
+  initMap(
+      {required AddressesModel startAddress,
+      required LatLng destination}) async {
+    _getRoute(destination: destination, startAddress: startAddress);
 
     // await _getCurrentLocation();
     // if (currentLocation != null) {
@@ -79,6 +79,7 @@ class OrdermapCubit extends Cubit<OrdermapState> {
 
     switch (result) {
       case SuccessApiResult():
+        log(result.data.toString());
         routesPoints = result.data ?? [];
         markers.add(Marker(
             width: 80,
