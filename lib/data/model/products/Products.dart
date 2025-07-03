@@ -37,7 +37,6 @@ class Products {
     this.createdAt,
     this.updatedAt,
     this.v,
-    this.discount,
     this.sold,
     this.rateAvg,
     this.rateCount,
@@ -58,7 +57,6 @@ class Products {
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
     v = json['__v'];
-    discount = json['discount'];
     sold = json['sold'];
     rateAvg = json['rateAvg'];
     rateCount = json['rateCount'];
@@ -77,7 +75,6 @@ class Products {
   String? createdAt;
   String? updatedAt;
   num? v;
-  num? discount;
   num? sold;
   num? rateAvg;
   num? rateCount;
@@ -98,7 +95,6 @@ class Products {
     map['createdAt'] = createdAt;
     map['updatedAt'] = updatedAt;
     map['__v'] = v;
-    map['discount'] = discount;
     map['sold'] = sold;
     map['rateAvg'] = rateAvg;
     map['rateCount'] = rateCount;

@@ -1,5 +1,7 @@
 // ignore_for_file: depend_on_referenced_packages
 
+import 'dart:developer';
+
 import 'package:flora_mart/core/api/api_result.dart';
 import 'package:flora_mart/data/model/cart/cart.dart';
 import 'package:flora_mart/data/model/cart/cart_Items.dart';
@@ -64,7 +66,7 @@ class CartCubit extends Cubit<CartState> {
 
   int productCount = 0;
   List<CartItems> _cartItems = [];
-  num _totalPriceAfterDiscount = 0;
+  num _totalPrice = 0;
 
   _getCartItems(GetCartItemsIntent intent) async {
     emit(GetCartItemsLoadingState());
@@ -74,7 +76,7 @@ class CartCubit extends Cubit<CartState> {
         if (isClosed) return;
         final cart = result.data?.cart;
         _cartItems = cart?.cartItems ?? [];
-        _totalPriceAfterDiscount = cart?.totalPriceAfterDiscount ?? 0;
+        _totalPrice = cart?.totalPrice ?? 0;
         productCount = (result.data?.numOfCartItems ?? 0).toInt();
         emit(
             GetCartItemsSuccessState(cartItems: result.data ?? CartResponse()));
@@ -101,7 +103,7 @@ class CartCubit extends Cubit<CartState> {
             cartItems: CartResponse(
           cart: Cart(
             cartItems: _cartItems,
-            totalPriceAfterDiscount: _totalPriceAfterDiscount,
+            totalPrice: _totalPrice,
           ),
           numOfCartItems: _cartItems.length,
         )));
@@ -119,7 +121,7 @@ class CartCubit extends Cubit<CartState> {
     switch (result) {
       case SuccessApiResult():
         // ✅ تحديث محلي بدل جلب جديد
-
+        log(result.data?.cart?.cartItems?[0].quantity.toString() ?? "");
         final index = _cartItems
             .indexWhere((item) => item.product?.id == intent.productId);
         if (index != -1) {
@@ -132,8 +134,9 @@ class CartCubit extends Cubit<CartState> {
           emit(GetCartItemsSuccessState(
               cartItems: CartResponse(
             cart: Cart(
-                cartItems: _cartItems,
-                totalPriceAfterDiscount: _totalPriceAfterDiscount),
+              cartItems: _cartItems,
+              totalPrice: _totalPrice,
+            ),
             numOfCartItems: _cartItems.length,
           )));
         }
@@ -147,12 +150,11 @@ class CartCubit extends Cubit<CartState> {
   }
 
   void _recalculateTotal() {
-    _totalPriceAfterDiscount = _cartItems.fold(
+    _totalPrice = _cartItems.fold(
       0,
       (total, item) {
         final product = item.product;
-        final priceAfterDiscount = product?.priceAfterDiscount;
-        final price = priceAfterDiscount ?? product?.price ?? 0;
+        final price = product?.price ?? 0;
         final quantity = item.quantity ?? 1;
         return total + (price * quantity);
       },

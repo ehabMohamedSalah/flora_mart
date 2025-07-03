@@ -5,6 +5,7 @@ import 'package:flora_mart/config/theme/app_theme.dart';
 import 'package:flora_mart/core/di/di.dart';
 import 'package:flora_mart/core/resuable_comp/toast_message.dart';
 import 'package:flora_mart/core/utils/colors_manager.dart';
+import 'package:flora_mart/core/utils/config.dart';
 import 'package:flora_mart/core/utils/routes_manager.dart';
 import 'package:flora_mart/core/utils/string_manager.dart';
 import 'package:flora_mart/domain/entity/auth/user_entity.dart';
@@ -25,6 +26,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/resuable_comp/dialogs.dart';
+import '../../../orders/view/orders_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -45,6 +47,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Config().init(context);
     return BlocProvider(
       create: (context) =>
           getIt<MainProfileCubit>()..onIntent(DataProfileCubitIntent()),
@@ -124,7 +127,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         title: AppStrings.myOrders,
                         icon: Icons.list_alt_outlined,
                         iconArrow: Icons.keyboard_arrow_right_outlined,
-                        onAction: () {},
+                        onAction: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => OrdersScreen(),
+                              ));
+                        },
                       ),
                       ItemCartsProfileWidget(
                         title: AppStrings.savedAddress,

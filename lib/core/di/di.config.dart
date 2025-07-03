@@ -39,6 +39,7 @@ import '../../data/datasource_contract/Login_Data_Source_Repo.dart' as _i557;
 import '../../data/datasource_contract/logout_datasource.dart' as _i375;
 import '../../data/datasource_contract/occasion_datasource/occasions_datasource.dart'
     as _i331;
+import '../../data/datasource_contract/order_datasource_contract.dart' as _i519;
 import '../../data/datasource_contract/payment_process_datasource/payment_process_datasource.dart'
     as _i441;
 import '../../data/datasource_contract/profile_datasource.dart' as _i392;
@@ -75,6 +76,7 @@ import '../../data/datasource_impl/Login_Data_Source_Repo_Impl.dart' as _i878;
 import '../../data/datasource_impl/logout_datasource_impl.dart' as _i1011;
 import '../../data/datasource_impl/occasions_datasource_impl/occassions_datasource_impl.dart'
     as _i626;
+import '../../data/datasource_impl/order_datasource_impl.dart' as _i648;
 import '../../data/datasource_impl/Payment_process_datasource_impl/payment_process_datasource_impl.dart'
     as _i24;
 import '../../data/datasource_impl/profile_datasource_impl.dart' as _i807;
@@ -106,6 +108,7 @@ import '../../data/repo_impl/Home_Repo_Impl.dart' as _i420;
 import '../../data/repo_impl/Login_Repo_Impl.dart' as _i722;
 import '../../data/repo_impl/logout_repo_impl.dart' as _i88;
 import '../../data/repo_impl/occasions_repo_impl.dart' as _i750;
+import '../../data/repo_impl/order_repo_impl.dart' as _i774;
 import '../../data/repo_impl/Payment_process_repo_impl/payment_process_repo_impl.dart'
     as _i418;
 import '../../data/repo_impl/profile_repo_impl.dart' as _i549;
@@ -135,6 +138,7 @@ import '../../domain/repo_contract/Home_Repo.dart' as _i820;
 import '../../domain/repo_contract/Login_Repo.dart' as _i831;
 import '../../domain/repo_contract/logout_repo_contract.dart' as _i656;
 import '../../domain/repo_contract/occasions_repo.dart' as _i130;
+import '../../domain/repo_contract/order_repo.dart' as _i455;
 import '../../domain/repo_contract/Payment_process_repo/payment_process_repo.dart'
     as _i265;
 import '../../domain/repo_contract/profile_repo.dart' as _i772;
@@ -171,6 +175,7 @@ import '../../domain/usecase/home_Usecase.dart' as _i1069;
 import '../../domain/usecase/login_Usecase.dart' as _i181;
 import '../../domain/usecase/logout_usecase.dart' as _i140;
 import '../../domain/usecase/occasions_usecase.dart' as _i896;
+import '../../domain/usecase/order_usecase.dart' as _i906;
 import '../../domain/usecase/Payment_process_uesecases/cash_usecase.dart'
     as _i879;
 import '../../domain/usecase/Payment_process_uesecases/credit_card_usecase.dart'
@@ -182,6 +187,8 @@ import '../../domain/usecase/saved_address/get_saved_Address.dart' as _i920;
 import '../../domain/usecase/search_usecase.dart' as _i840;
 import '../../domain/usecase/tracked_order_usecase/create_tracked_order_usecase.dart'
     as _i96;
+import '../../domain/usecase/tracked_order_usecase/get_route_usecase.dart'
+    as _i1011;
 import '../../domain/usecase/tracked_order_usecase/get_tracked_order_usecase.dart'
     as _i866;
 import '../../domain/usecase/update_address_usecase.dart' as _i60;
@@ -197,6 +204,9 @@ import '../../presentation/edit_profile_screen/view_model/edit_profile_cubit.dar
     as _i678;
 import '../../presentation/notification_screen/view_model/notification_cubit.dart'
     as _i478;
+import '../../presentation/order_map_screen/view_model.dart/cubit/order_map_cubit.dart'
+    as _i1016;
+import '../../presentation/orders/view_model/order_cubit.dart' as _i238;
 import '../../presentation/reset_password/view_model/reset_password_cubit.dart'
     as _i833;
 import '../../presentation/saved_address_page/view_model/saved_address_cuibt.dart'
@@ -243,8 +253,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i574.VerifyresetcodeRepoDataSource>(() =>
         _i353.Verifyresetcoderepodatasourceimpl(
             apiManager: gh<_i1047.ApiManager>()));
-    gh.factory<_i460.TrackedOrderDatasource>(
-        () => _i339.TrackedOrderDatasourceImpl(gh<_i17.FirestoreHelper>()));
     gh.factory<_i623.GuestDatasource>(
         () => _i48.GuestDatasourceImpl(gh<_i299.CacheHelper>()));
     gh.factory<_i410.ResetPasswordDataSourceRepo>(
@@ -254,8 +262,11 @@ extension GetItInjectableX on _i174.GetIt {
             ));
     gh.factory<_i233.ResetPasswordRepo>(() =>
         _i1065.ResetPasswordRepoImpl(gh<_i410.ResetPasswordDataSourceRepo>()));
-    gh.factory<_i294.TrackedOrderRepo>(
-        () => _i203.TrackedOrderRepoImpl(gh<_i460.TrackedOrderDatasource>()));
+    gh.factory<_i460.TrackedOrderDatasource>(
+        () => _i339.TrackedOrderDatasourceImpl(
+              gh<_i17.FirestoreHelper>(),
+              gh<_i1047.ApiManager>(),
+            ));
     gh.factory<_i206.ForgetpasswordDataSourseRepo>(() =>
         _i319.ForgetpasswordDataSourceRepoImpl(
             apiManager: gh<_i1047.ApiManager>()));
@@ -335,6 +346,10 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i1047.ApiManager>(),
           gh<_i299.CacheHelper>(),
         ));
+    gh.factory<_i519.OrderDatasourceContract>(() => _i648.OrderDataSourceImpl(
+          gh<_i1047.ApiManager>(),
+          gh<_i299.CacheHelper>(),
+        ));
     gh.factory<_i234.GuestRepo>(
         () => _i905.GuestRepoImpl(gh<_i623.GuestDatasource>()));
     gh.factory<_i544.VerifyresetcodeRepo>(() => _i721.Verifyresetcoderepoimpl(
@@ -357,6 +372,8 @@ extension GetItInjectableX on _i174.GetIt {
         _i836.ChangePasswordRepoImpl(gh<_i457.ChangePasswordDatasource>()));
     gh.factory<_i265.PaymentProcessRepo>(() =>
         _i418.PaymentProcessRepoImpl(gh<_i441.PaymentProcessDataSource>()));
+    gh.factory<_i294.TrackedOrderRepo>(
+        () => _i203.TrackedOrderRepoImpl(gh<_i460.TrackedOrderDatasource>()));
     gh.factory<_i51.AddressRepository>(
         () => _i302.AddressRepositoryImpl(gh<_i44.AddressDataSource>()));
     gh.factory<_i768.ResetPasswordUsecase>(() => _i768.ResetPasswordUsecase(
@@ -375,9 +392,13 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i96.CreateTrackedOrderUsecase(gh<_i294.TrackedOrderRepo>()));
     gh.factory<_i866.GetTrackedOrderUsecase>(
         () => _i866.GetTrackedOrderUsecase(gh<_i294.TrackedOrderRepo>()));
+    gh.factory<_i1011.GetRouteUsecase>(
+        () => _i1011.GetRouteUsecase(gh<_i294.TrackedOrderRepo>()));
     gh.factory<_i976.ForgetpasswordRepo>(() => _i210.Forgetpasswordrepoimpl(
         forgetpassword_data_sourse_repo:
             gh<_i206.ForgetpasswordDataSourseRepo>()));
+    gh.factory<_i455.OrderRepo>(
+        () => _i774.OrderRepoIml(gh<_i519.OrderDatasourceContract>()));
     gh.factory<_i64.BestSellerRepo>(
         () => _i133.BestSellerRepoImpl(gh<_i575.BestSellerDataSource>()));
     gh.factory<_i526.ChangePasswordCubit>(
@@ -387,12 +408,16 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i815.GetAllNotificationsRepo>(() =>
         _i47.GetAllNotificationsRepoImpl(
             gh<_i335.GetAllNotificationsDatasource>()));
+    gh.factory<_i906.OrderUsecase>(
+        () => _i906.OrderUsecase(gh<_i455.OrderRepo>()));
     gh.factory<_i831.LoginRepo>(
         () => _i722.SigninRepoImpl(gh<_i557.LoginDataSourceRepo>()));
     gh.factory<_i979.HomeCubit>(
         () => _i979.HomeCubit(gh<_i1069.HomeUsecase>()));
     gh.factory<_i833.ResetPasswordCubit>(
         () => _i833.ResetPasswordCubit(gh<_i768.ResetPasswordUsecase>()));
+    gh.factory<_i1016.OrdermapCubit>(
+        () => _i1016.OrdermapCubit(gh<_i1011.GetRouteUsecase>()));
     gh.factory<_i150.FilterRepo>(
         () => _i522.FilterRepoImpl(gh<_i484.FilterDatasource>()));
     gh.factory<_i285.ChangeguestUsecase>(
@@ -423,6 +448,8 @@ extension GetItInjectableX on _i174.GetIt {
         ));
     gh.factory<_i864.GetAllNotificationsUsecase>(() =>
         _i864.GetAllNotificationsUsecase(gh<_i815.GetAllNotificationsRepo>()));
+    gh.factory<_i238.OrderCubit>(
+        () => _i238.OrderCubit(gh<_i906.OrderUsecase>()));
     gh.factory<_i1036.CategoriesUsecase>(
         () => _i1036.CategoriesUsecase(gh<_i41.CategoriesRepo>()));
     gh.factory<_i60.UpdateAddressUseCase>(

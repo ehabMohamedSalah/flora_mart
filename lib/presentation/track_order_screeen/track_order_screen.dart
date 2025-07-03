@@ -1,21 +1,31 @@
+import 'dart:developer';
+
+import 'package:collection/collection.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flora_mart/core/di/di.dart';
 import 'package:flora_mart/core/utils/assets_manager.dart';
 import 'package:flora_mart/core/utils/config.dart';
 import 'package:flora_mart/core/utils/routes_manager.dart';
 import 'package:flora_mart/core/utils/string_manager.dart';
 import 'package:flora_mart/core/utils/text_style_manager.dart';
+import 'package:flora_mart/data/model/getSavedAddressResponce.dart';
 import 'package:flora_mart/data/model/order_tracked/order_tracked_response.dart';
 import 'package:flora_mart/presentation/auth/view_model/cubit/auth_cubit.dart';
+import 'package:flora_mart/presentation/order_map_screen/view_model.dart/cubit/order_map_cubit.dart';
 import 'package:flora_mart/presentation/track_order_screeen/view_model/cubit/track_order_cubit.dart';
 import 'package:flora_mart/presentation/track_order_screeen/widget/driver_info_siction.dart';
-import 'package:flora_mart/presentation/track_order_screeen/widget/order_map_screen.dart';
+import 'package:flora_mart/presentation/order_map_screen/order_map_screen.dart';
 import 'package:flora_mart/presentation/track_order_screeen/widget/time_line_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:latlong2/latlong.dart';
 
 class TrackOrderScreen extends StatefulWidget {
   final String orderId;
-  const TrackOrderScreen({super.key, required this.orderId});
+  final AddressesModel address;
+  const TrackOrderScreen(
+      {super.key, required this.orderId, required this.address});
 
   @override
   State<TrackOrderScreen> createState() => _TrackOrderScreenState();
@@ -30,6 +40,8 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
       TrackOrderCubit.get(context).createTrackedOrder(OrderTrackerModel(
           orderId: widget.orderId,
           userId: user?.user?.id ?? "",
+          userLatitude: widget.address.lat,
+          userLongitude: widget.address.long,
           estimatedArrival: DateTime.now().add(const Duration(days: 3))));
 
       TrackOrderCubit.get(context).getTrackedOrder(widget.orderId);
@@ -39,6 +51,8 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
   @override
   Widget build(BuildContext context) {
     Config().init(context);
+    final DateFormat formatter = DateFormat('yyyy-MM-dd');
+
     return PopScope(
       canPop: false,
       child: Scaffold(
@@ -53,6 +67,8 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
         body: BlocBuilder<TrackOrderCubit, TrackOrderState>(
           builder: (context, state) {
             if (state is GetTrackOrderSuccessState) {
+              log(state.orderTrackerModel.driverLongitude.toString());
+
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Column(
@@ -63,8 +79,10 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
                       style: AppTextStyle.medium14.copyWith(color: Colors.grey),
                     ),
                     Text(
-                      (state.orderTrackerModel.estimatedArrival ?? "Soon")
-                          .toString(),
+                      state.orderTrackerModel.estimatedArrival != null
+                          ? formatter
+                              .format(state.orderTrackerModel.estimatedArrival!)
+                          : 'Soon',
                       style: AppTextStyle.medium16,
                     ),
                     const Divider(
@@ -92,26 +110,40 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
                       orderStatus: state.orderTrackerModel.orderStatus ?? [],
                     )),
                     // Update the ElevatedButton onPressed callback (around line 95)
-                    ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => OrderMapScreen(
-                                orderTrackerModel: state.orderTrackerModel,
+                    if (state.orderTrackerModel.orderStatus?[2].isDone ?? false)
+                      ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => BlocProvider(
+                                  create: (context) => getIt<OrdermapCubit>()
+                                    ..initMap(
+                                        startAddress: widget.address,
+                                        destination: LatLng(
+                                            double.parse(state.orderTrackerModel
+                                                    .driverLatitude ??
+                                                "0"),
+                                            double.parse(state.orderTrackerModel
+                                                    .driverLongitude ??
+                                                "0"))),
+                                  child: OrderMapScreen(
+                                    address: widget.address,
+                                    orderTrackerModel: state.orderTrackerModel,
+                                  ),
+                                ),
                               ),
-                            ),
-                          );
-                        },
-                        style: ElevatedButton.styleFrom(
-                          fixedSize:
-                              Size(double.infinity, Config.screenHight! * 0.06),
-                        ),
-                        child: Text(
-                          AppStrings.showmap,
-                          style: AppTextStyle.medium18.copyWith(
-                              color: Theme.of(context).colorScheme.onPrimary),
-                        )),
+                            );
+                          },
+                          style: ElevatedButton.styleFrom(
+                            fixedSize: Size(
+                                double.infinity, Config.screenHight! * 0.06),
+                          ),
+                          child: Text(
+                            AppStrings.showmap,
+                            style: AppTextStyle.medium18.copyWith(
+                                color: Theme.of(context).colorScheme.onPrimary),
+                          )),
                     Config.spaceSmall,
                   ],
                 ),

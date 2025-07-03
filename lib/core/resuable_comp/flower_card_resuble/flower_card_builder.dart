@@ -37,7 +37,7 @@ class FlowerCardBuilder extends StatelessWidget {
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               childAspectRatio:
-                  (Config.screenWidth! / Config.screenHight!) * 1.2 ,
+                  (Config.screenWidth! / Config.screenHight!) * 1.2,
               crossAxisSpacing: 17,
               mainAxisSpacing: 17,
             ),
@@ -51,7 +51,6 @@ class FlowerCardBuilder extends StatelessWidget {
                     ));
               },
               child: FlowerCard(
-                discount: products[index].discount,
                 price: products[index].price,
                 priceAfterDiscount: products[index].priceAfterDiscount,
                 imgCover: products[index].imgCover,

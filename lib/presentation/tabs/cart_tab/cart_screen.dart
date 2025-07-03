@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flora_mart/core/utils/config.dart';
 import 'package:flora_mart/core/utils/string_manager.dart';
 import 'package:flora_mart/core/utils/text_style_manager.dart';
@@ -9,10 +11,11 @@ import 'package:flora_mart/presentation/tabs/cart_tab/view_model/cubit/cart_cubi
 import 'package:flora_mart/presentation/tabs/cart_tab/view_model/cubit/cart_intent.dart';
 import 'package:flora_mart/presentation/tabs/cart_tab/widgets/order_summary_widget.dart';
 import 'package:flora_mart/presentation/tabs/cart_tab/widgets/product_cart_builder.dart';
-import 'package:flora_mart/presentation/tabs/home_tab/widgets/home_screen_slivers/Address_sliver.dart';
+import 'package:flora_mart/core/resuable_comp/build_address_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:skeletonizer/skeletonizer.dart';
+import 'package:shimmer/shimmer.dart';
+// import 'package:skeletonizer/skeletonizer.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({super.key});
@@ -46,7 +49,7 @@ class CartScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                const BuildAdress(),
+                const BuildAdressWidget(),
                 const SizedBox(height: 10),
 
                 /// BlocBuilder لمحتوى السلة بالكامل (المنتجات + OrderSummary)
@@ -77,10 +80,9 @@ class CartScreen extends StatelessWidget {
                                     cartResponse: state.cartItems)),
                             const SizedBox(height: 20),
                             OrderSummaryWidget(
-                                subTotal: (state.cartItems.cart
-                                            ?.totalPriceAfterDiscount ??
-                                        0)
-                                    .toDouble()),
+                                subTotal:
+                                    (state.cartItems.cart?.totalPrice ?? 0)
+                                        .toDouble()),
                             const SizedBox(height: 20),
                             ElevatedButton(
                               onPressed: () {
@@ -88,10 +90,10 @@ class CartScreen extends StatelessWidget {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => CheckOutPage(
-                                      subtotal: (state.cartItems.cart
-                                                  ?.totalPriceAfterDiscount ??
-                                              0)
-                                          .toDouble(),
+                                      subtotal:
+                                          (state.cartItems.cart?.totalPrice ??
+                                                  0)
+                                              .toDouble(),
                                     ),
                                   ),
                                 );
@@ -114,7 +116,9 @@ class CartScreen extends StatelessWidget {
                       }
 
                       // في حالة التحميل (Skeleton)
-                      return Skeletonizer(
+                      return Shimmer.fromColors(
+                        baseColor: Colors.grey[300]!,
+                        highlightColor: Colors.grey[100]!,
                         enabled: true,
                         child: Column(
                           children: [

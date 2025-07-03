@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AddressCard extends StatelessWidget {
-  final Addresses address;
+  final AddressesModel address;
   final String radioValue;
   final String groupValue;
   final VoidCallback onSelect;

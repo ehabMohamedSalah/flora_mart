@@ -7,14 +7,14 @@ import 'package:flora_mart/core/utils/config.dart';
 import 'package:flora_mart/core/utils/string_manager.dart';
 import 'package:flora_mart/presentation/auth/view_model/cubit/auth_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:skeletonizer/skeletonizer.dart';
+import 'package:shimmer/shimmer.dart';
+// import 'package:skeletonizer/skeletonizer.dart';
 
 class FlowerCard extends StatelessWidget {
   final String? title;
   final String? imgCover;
   final num? price;
   final num? priceAfterDiscount;
-  final num? discount;
   final VoidCallback onTap;
   const FlowerCard(
       {super.key,
@@ -22,11 +22,13 @@ class FlowerCard extends StatelessWidget {
       this.imgCover,
       this.price,
       this.priceAfterDiscount,
-      this.discount,
       required this.onTap});
 
   @override
   Widget build(BuildContext context) {
+    double discount = price != null && priceAfterDiscount != null
+        ? ((price! - priceAfterDiscount!) / price!) * 100
+        : 0;
     Config().init(context);
     return Container(
         decoration: BoxDecoration(
@@ -53,7 +55,10 @@ class FlowerCard extends StatelessWidget {
                       height: double.infinity,
                       width: double.infinity,
                       progressIndicatorBuilder:
-                          (context, url, downloadProgress) => Skeletonizer(
+                          (context, url, downloadProgress) =>
+                              Shimmer.fromColors(
+                        baseColor: Colors.grey[300]!,
+                        highlightColor: Colors.grey[100]!,
                         enabled: true,
                         child: Container(
                           color: const Color.fromARGB(131, 158, 158, 158),
@@ -105,7 +110,7 @@ class FlowerCard extends StatelessWidget {
                       ),
                       const SizedBox(width: 5),
                       AutoSizeText(
-                        "${discount ?? "0"}%",
+                        "${discount.toInt()}%",
                         overflow: TextOverflow.ellipsis,
                         style: const TextStyle(color: ColorManager.green),
                         maxLines: 2,
@@ -114,6 +119,7 @@ class FlowerCard extends StatelessWidget {
                   ),
                 ),
               ),
+              SizedBox(height: Config.screenHight! * 0.01),
               SizedBox(
                 height: 30,
                 child: ElevatedButton(

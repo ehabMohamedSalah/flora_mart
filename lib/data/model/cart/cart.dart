@@ -19,7 +19,6 @@ class Cart {
     this.cartItems,
     this.discount,
     this.totalPrice,
-    this.totalPriceAfterDiscount,
     this.createdAt,
     this.updatedAt,
     this.v,
@@ -36,7 +35,6 @@ class Cart {
     }
     discount = json['discount'];
     totalPrice = json['totalPrice'];
-    totalPriceAfterDiscount = json['totalPriceAfterDiscount'];
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
     v = json['__v'];
@@ -46,7 +44,6 @@ class Cart {
   List<CartItems>? cartItems;
   num? discount;
   num? totalPrice;
-  num? totalPriceAfterDiscount;
   String? createdAt;
   String? updatedAt;
   num? v;
@@ -60,7 +57,6 @@ class Cart {
     }
     map['discount'] = discount;
     map['totalPrice'] = totalPrice;
-    map['totalPriceAfterDiscount'] = totalPriceAfterDiscount;
     map['createdAt'] = createdAt;
     map['updatedAt'] = updatedAt;
     map['__v'] = v;

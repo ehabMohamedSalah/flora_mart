@@ -1,3 +1,5 @@
+import 'package:latlong2/latlong.dart';
+
 class EndPoint {
   static const String signInEndpoint = "/v1/auth/signin";
   static const String verifyEndpoint = "/v1/auth/verifyResetCode";
@@ -9,7 +11,6 @@ class EndPoint {
   static const String getAllProductsEndpoint = "/v1/products";
 
   static const String getAllNotificationsEndpoint = "/v1/notifications";
-
   static const String bestSellerEndpoint = "/v1/best-seller";
   static const String allCategoriesEndpoint = "/v1/categories";
   static const String homeEndpoint = "/v1/home";
@@ -34,4 +35,10 @@ class EndPoint {
 
   static const String addAddress = "/v1/addresses";
   static String updateAddress(String addressId) => "/v1/addresses/$addressId";
+  static String orderEndpoint = "/v1/orders";
+  static String getRouteEndPoint(
+          {required LatLng start,
+          required LatLng destination,
+          required String orsApiKey}) =>
+      'https://api.openrouteservice.org/v2/directions/driving-car?api_key=$orsApiKey&start=${start.longitude},${start.latitude}&end=${destination.longitude},${destination.latitude}';
 }

@@ -119,7 +119,6 @@ class BestSeller {
       priceAfterDiscount: model.priceAfterDiscount,
       quantity: model.quantity,
       category: model.category,
-      discount: model.discount,
       rateAvg: model.rateAvg,
       rateCount: model.rateCount,
     );

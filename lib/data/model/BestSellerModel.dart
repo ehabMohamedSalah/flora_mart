@@ -77,7 +77,6 @@ class BestSellerModel {
       priceAfterDiscount: priceAfterDiscount,
       quantity: quantity,
       category: category,
-      discount: discount,
       rateAvg: rateAvg,
       rateCount: rateCount,
     );

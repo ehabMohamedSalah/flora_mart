@@ -1,7 +1,7 @@
 import 'package:flora_mart/core/resuable_comp/search_bar/custom_searchbar_widget.dart';
 import 'package:flora_mart/presentation/tabs/home_tab/view_model/cubit/home_cubit.dart';
 import 'package:flora_mart/presentation/tabs/home_tab/view_model/cubit/home_intent.dart';
-import 'package:flora_mart/presentation/tabs/home_tab/widgets/home_screen_slivers/Address_sliver.dart';
+import 'package:flora_mart/core/resuable_comp/build_address_widget.dart';
 import 'package:flora_mart/presentation/tabs/home_tab/widgets/shimmer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -44,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: CustomScrollView(
                 slivers: [
-                  const SliverToBoxAdapter(child: BuildAdress()),
+                  const SliverToBoxAdapter(child: BuildAdressWidget()),
                   CategoriesSection(
                     categories: homeData?.categories?.take(10).toList() ?? [],
                     onSeeAllTap: widget.onViewAllTapped,
@@ -79,13 +79,15 @@ class _HomeScreenState extends State<HomeScreen> {
       title: Row(
         children: [
           Image.asset("assets/images/Logo.png", height: 25.h, width: 89.w),
-           Expanded(
-             child: CustomSearchBar(margin: const EdgeInsets.all(3),readOnly: true,
-               onTap: () {
-                 Navigator.pushNamed(
-                     context, RouteManager.searchScreen);
-               },),
-           ),
+          Expanded(
+            child: CustomSearchBar(
+              margin: const EdgeInsets.all(3),
+              readOnly: true,
+              onTap: () {
+                Navigator.pushNamed(context, RouteManager.searchScreen);
+              },
+            ),
+          ),
         ],
       ),
     );
